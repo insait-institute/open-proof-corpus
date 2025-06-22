@@ -1,0 +1,7 @@
+n_problems: 136
+overlap: 0.3
+judge_file: "configs/judges/pass_at_n.json"
+competition_weight:
+ USAMO3: 1
+ BMOSL3: 1
+ IMOSL3: 1

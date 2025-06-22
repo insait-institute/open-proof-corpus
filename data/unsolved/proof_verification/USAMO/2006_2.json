@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.12,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2006
+    },
+    "problem": "Let \\( k > 0 \\) be a fixed integer. Compute the minimum integer \\( N \\) (in terms of \\( k \\)) for which there exists a set of \\( 2k+1 \\) distinct positive integers that has a sum greater than \\( N \\), but for which every subset of size \\( k \\) has a sum at most \\( N/2 \\).",
+    "problem_id": "USAMO_2006_2",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "The answer is $N=k\\left(2 k^{2}+3 k+3\\right)$ given by\n\n$$\nS=\\left\\{k^{2}+1, k^{2}+2, \\ldots, k^{2}+2 k+1\\right\\} .\n$$\n\nTo show this is best possible, let the set be $S=\\left\\{a_{0}<a_{1}<\\cdots<a_{2 k}\\right\\}$ so that the hypothesis becomes\n\n$$\n\\begin{aligned}\nN+1 & \\leq a_{0}+a_{1}+\\cdots+a_{2 k} \\\\\nN / 2 & \\geq a_{k+1}+\\cdots+a_{2 k} .\n\\end{aligned}\n$$\n\nSubtracting twice the latter from the former gives\n\n$$\n\\begin{aligned}\na_{0} & \\geq 1+\\left(a_{k+1}-a_{1}\\right)+\\left(a_{k+2}-a_{2}\\right)+\\cdots+\\left(a_{2 k}-a_{k}\\right) \\\\\n& \\geq 1+\\underbrace{k+k+\\cdots+k}_{k \\text { terms }}=1+k^{2} .\n\\end{aligned}\n$$\n\nNow, we have\n\n$$\n\\begin{aligned}\nN / 2 & \\geq a_{k+1}+\\cdots+a_{2 k} \\\\\n& \\geq\\left(a_{0}+(k+1)\\right)+\\left(a_{0}+(k+2)\\right)+\\cdots+\\left(a_{0}+2 k\\right) \\\\\n& =k \\cdot a_{0}+((k+1)+\\cdots+2 k) \\\\\n& \\geq k\\left(k^{2}+1\\right)+k \\cdot \\frac{3 k+1}{2}\n\\end{aligned}\n$$\n\nso $N \\geq k\\left(2 k^{2}+3 k+3\\right)$.\nRemark. The exact value of $N$ is therefore very superficial. From playing with these concrete examples we find out we are essentially just trying to find an increasing set $S$ obeying\n\n$$\na_{0}+a_{1}+\\cdots+a_{k}>a_{k+1}+\\cdots+a_{2 k}\n$$\nand indeed given a sequence satisfying these properties one simply sets $N=2\\left(a_{k+1}+\\cdots+a_{2 k}\\right)$. Therefore we can focus almost entirely on $a_{i}$ and not $N$.\n\nRemark. It is relatively straightforward to figure out what is going on based on the small cases. For example, one can work out by hand that\n\n- $\\{2,3,4\\}$ is optimal for $k=1$\n- $\\{5,6,7,8,9\\}$ is optimal for $k=2$,\n- $\\{10,11,12,13,14,15,16\\}$ is optimal for $k=3$.\n\nIn all the examples, the $a_{i}$ are an arithmetic progression of difference $1$, so that $a_{j}-a_{i} \\geq j-i$ is a sharp for all $i<j$, and thus this estimate may be used freely without loss of sharpness;\napplying it in $(\\star)$ gives a lower bound on $a_{0}$ which is then good enough to get a lower bound on $N$ matching the equality cases we found empirically.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

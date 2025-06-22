@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.01,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2019
+    },
+    "problem": "Let \\( \\triangle ABC \\) be a scalene and acute triangle with circumcenter \\( O \\). Let \\( \\omega \\) be the circle with center \\( A \\), tangent to \\( BC \\) at \\( D \\). Suppose there are two points \\( F \\) and \\( G \\) on \\( \\omega \\) such that \\( FG \\perp AO \\), \\( \\angle BFD = \\angle DGC \\), and the pairs of points \\( (B, F) \\) and \\( (C, G) \\) are in different half-planes with respect to the line \\( AD \\). Show that the tangents to \\( \\omega \\) at \\( F \\) and \\( G \\) meet on the circumcircle of \\( \\triangle ABC \\).",
+    "problem_id": "BMOSL_2019_8",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Consider any two points $F, G$ on $\\omega$ such that $\\angle B F D=\\angle D G C$. Exploiting the isosceles triangles $\\triangle A F G, \\triangle A F D$, and $\\triangle A D G$, we deduce (using directed angles throughout):\n\n$$\n\\begin{gathered}\n\\angle D B F-\\angle G C D=180^{\\circ}-\\angle B F D-\\angle B D F-\\left(180^{\\circ}-\\angle D G C-\\angle C D G\\right) \\stackrel{(*)}{=} \\\\\n\\angle C D G-\\angle F D B=\\frac{1}{2} \\cdot(\\angle D A G-\\angle D A F)=\\frac{1}{2} \\cdot\\left[\\left(180^{\\circ}-2 \\cdot \\angle A D G\\right)-\\left(180^{\\circ}-2 \\cdot \\angle A D F\\right)\\right]= \\\\\n\\angle A D F-\\angle G D A=\\angle D F A-\\angle A G D=\\angle D F G-\\angle F G D \\stackrel{(*)}{=} \\angle B F G-\\angle F G C,\n\\end{gathered}\n$$\n\nwhere we use $\\angle B F D=\\angle D G C$ at $\\left(^{*}\\right)$. Thus $B F G C$ is cyclic.\n\nFigure 3: G3\nNow, if in addition $F G \\perp A O$, then since $A$ is the centre of $\\omega$, in fact $A O$ is the perpendicular bisector of $F G$. But by definition, since $A B C$ is scalene, $A O$ meets the perpendicular bisector of $B C$ at $O$. Hence $O$ is the centre of $B F G C$, and thus in fact $B F A G C$ is cyclic. But then the lines perpendicular to $A F$ at $F$, and $A G$ at $G$ (the tangents to $\\omega$ ) must intersect at $E$, the point antipodal to $A$ on $\\odot B F A G C$.\n\nAlternative solution: Let the circumcircle of $A B C$ be $\\Gamma$. From the conditions, $G$ is the reflection of $F$ in the line $A O$. Let $B^{\\prime}, D^{\\prime}$ be the reflections of $B, D$ across this same line $A O$. Clearly $D^{\\prime}$ also lies on $\\omega$ and $B^{\\prime}$ lies on $\\Gamma$.\n\nThen, using directed angles, $\\angle C G D=\\angle D F B=\\angle B^{\\prime} G D^{\\prime}$ so\n\n$$\n\\angle B^{\\prime} G C=\\angle B^{\\prime} G D^{\\prime}-\\angle C G D^{\\prime}=\\angle C G D-\\angle C G D^{\\prime}=\\angle D^{\\prime} G D=\\frac{1}{2} \\angle D^{\\prime} A D=\\angle O A D .\n$$\n\nThen, exploiting the isogonality property that $\\angle D A B=\\angle C A O$, we have $\\angle O A D=\\angle C A B-2 \\angle D A B=\\angle A B C-\\angle B C A=\\angle A B C-\\angle B^{\\prime} B A=\\angle B^{\\prime} B C$.\n\nSo $G$ lies on $\\Gamma$, and by the reflection property so does $F$.\nBut then, as in the previous solution, the tangents at $F$ and $G$ to $\\omega$ must intersect at $E$, the point antipodal to $A$ on $\\Gamma$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

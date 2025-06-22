@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.46,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2023
+    },
+    "problem": "Let \\( \\triangle ABC \\) be a triangle with incenter \\( I \\) and excenters \\( I_a, I_b, I_c \\) opposite \\( A, B, \\) and \\( C \\), respectively. Given an arbitrary point \\( D \\) on the circumcircle of \\( \\triangle ABC \\) that does not lie on any of the lines \\( II_a, I_bI_c, \\) or \\( BC \\), suppose the circumcircles of \\( \\triangle DII_a \\) and \\( \\triangle DI_bI_c \\) intersect at two distinct points \\( D \\) and \\( F \\). If \\( E \\) is the intersection of lines \\( DF \\) and \\( BC \\), prove that \\( \\angle BAD = \\angle EAC \\).",
+    "problem_id": "USAMO_2023_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nLet $A B C$ be a triangle with incenter $I$ and excenters $I_{a}, I_{b}, I_{c}$ opposite $A, B$, and $C$, respectively. Given an arbitrary point $D$ on the circumcircle of $\\triangle A B C$ that does not lie on any of the lines $I I_{a}, I_{b} I_{c}$, or $B C$, suppose the circumcircles of $\\triangle D I I_{a}$ and $\\triangle D I_{b} I_{c}$ intersect at two distinct points $D$ and $F$. If $E$ is the intersection of lines $D F$ and $B C$, prove that $\\angle B A D=\\angle E A C$.\n\nHere are two approaches.\n\n\n\u0430\u2116\u2020 Barycentric coordinates (Carl Schildkraut). With reference triangle $\\triangle A B C$, set $D=(r: s: t)$.\n\nClaim - The equations of $\\left(D I I_{a}\\right)$ and $\\left(D I_{b} I_{c}\\right)$ are, respectively,\n\n$$\n\\begin{aligned}\n& 0=-a^{2} y z-b^{2} z x-c^{2} x y+(x+y+z) \\cdot\\left(b c x-\\frac{b c r}{c s-b t}(c y-b z)\\right) \\\\\n& 0=-a^{2} y z-b^{2} z x-c^{2} x y+(x+y+z) \\cdot\\left(-b c x+\\frac{b c r}{c s+b t}(c y+b z)\\right) .\n\\end{aligned}\n$$\n\nProof. Since $D \\in(A B C)$, we have $a^{2} s t+b^{2} t r+c^{2} r s=0$. Now each equation can be verified by direct substitution of three points.\n\nBy EGMO Lemma 7.24, the radical axis is then given by\n\n$$\n\\overline{D F}: b c x-\\frac{b c r}{c s-b t}(c y-b z)=-b c x+\\frac{b c r}{c s+b t}(c y+b z) .\n$$\n\nNow the point\n\n$$\n\\left(0: \\frac{b^{2}}{s}: \\frac{c^{2}}{t}\\right)=\\left(0: b^{2} t: c^{2} s\\right)\n$$\nlies on line $D F$ by inspection, and is obviously on line $B C$, hence it coincides with $E$. This lies on the isogonal of $\\overline{A D}$ (by EGMO Lemma 7.6), as needed.\n\n\u0433\u0402\u0452 Synthetic approach (Anant Mudgal). Focus on just $\\left(D I I_{a}\\right)$. Let $P$ be the second intersection of $\\left(D I I_{a}\\right)$ with $(A B C)$, and let $M$ be the midpoint of minor arc $\\overparen{B C}$. Then by radical axis, lines $A M, D P$, and $B C$ are concurrent at a point $K$.\n\nLet $E^{\\prime}=\\overline{P M} \\cap \\overline{B C}$.\n\n\nClaim - We have $\\measuredangle B A D=\\measuredangle E^{\\prime} A C$.\n\nProof. By shooting lemma, $A K E^{\\prime} P$ is cyclic, so\n\n$$\n\\measuredangle K A E^{\\prime}=\\measuredangle K P E^{\\prime}=\\measuredangle D P M=\\measuredangle D A M\n$$\n\nClaim - The power of point $E^{\\prime}$ with respect to $\\left(D I I_{a}\\right)$ is $2 E^{\\prime} B \\cdot E^{\\prime} C$.\n\nProof. Construct parallelogram $I E^{\\prime} I_{a} X$. Since $M I^{2}=M E^{\\prime} \\cdot M P$, we can get\n\n$$\n\\measuredangle X I_{a} I=\\measuredangle I_{a} I E^{\\prime}=\\measuredangle M I E^{\\prime}=\\measuredangle M P I=\\measuredangle X P I\n$$\n\nHence $X$ lies on $\\left(D I I_{a}\\right)$, and $E^{\\prime} X \\cdot E^{\\prime} P=2 E^{\\prime} M \\cdot E^{\\prime} P=2 E^{\\prime} B \\cdot E^{\\prime} C$.\nRepeat the argument on $\\left(D I_{b} I_{c}\\right)$; the same point $E^{\\prime}$ (because of the first claim) then has power $2 E^{\\prime} B \\cdot E^{\\prime} C$ with respect to $\\left(D I_{b} I_{c}\\right)$. Hence $E^{\\prime}$ lies on the radical axis of $\\left(D I I_{a}\\right)$ and $\\left(D I_{b} I_{c}\\right)$, ergo $E^{\\prime}=E$. The first claim then solves the problem.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

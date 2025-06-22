@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.26,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2013
+    },
+    "problem": "Find all real numbers \\(x, y, z \\geq 1\\) satisfying\n\n\\[\n\\min (\\sqrt{x+x y z}, \\sqrt{y+x y z}, \\sqrt{z+x y z})=\\sqrt{x-1}+\\sqrt{y-1}+\\sqrt{z-1}\n\\]",
+    "problem_id": "USAMO_2013_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Find all real numbers $x, y, z \\geq 1$ satisfying\n\n$$\n\\min (\\sqrt{x+x y z}, \\sqrt{y+x y z}, \\sqrt{z+x y z})=\\sqrt{x-1}+\\sqrt{y-1}+\\sqrt{z-1} .\n$$\n\nSet $x=1+a, y=1+b, z=1+c$ which eliminates the $x, y, z \\geq 1$ condition. Assume without loss of generality that $a \\leq b \\leq c$. Then the given equation rewrites as\n\n$$\n\\sqrt{(1+a)(1+(1+b)(1+c))}=\\sqrt{a}+\\sqrt{b}+\\sqrt{c}\n$$\n\nIn fact, we are going to prove the left-hand side always exceeds the right-hand side, and then determine the equality cases. We have:\n\n$$\n\\begin{aligned}\n(1+a)(1+(1+b)(1+c)) & =(a+1)(1+(b+1)(1+c)) \\\\\n& \\leq(a+1)\\left(1+(\\sqrt{b}+\\sqrt{c})^{2}\\right) \\\\\n& \\leq(\\sqrt{a}+(\\sqrt{b}+\\sqrt{c}))^{2}\n\\end{aligned}\n$$\n\nby two applications of Cauchy-Schwarz.\nEquality holds if $b c=1$ and $1 / a=\\sqrt{b}+\\sqrt{c}$. Letting $c=t^{2}$ for $t \\geq 1$, we recover $b=t^{-2} \\leq t^{2}$ and $a=\\frac{1}{t+1 / t} \\leq t^{2}$.\n\nHence the solution set is\n\n$$\n(x, y, z)=\\left(1+\\left(\\frac{t}{t^{2}+1}\\right)^{2}, 1+\\frac{1}{t^{2}}, 1+t^{2}\\right)\n$$\nand permutations, for any $t>0$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

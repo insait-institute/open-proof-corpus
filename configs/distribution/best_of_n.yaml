@@ -1,0 +1,7 @@
+n_problems: 100
+overlap: 0.2
+judge_file: "configs/judges/proof_verification.json"
+competition_weight:
+ USAMO2: 1
+ BMOSL2: 1
+ IMOSL2: 1

@@ -1,0 +1,296 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.05,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2020
+    },
+    "problem": "Let \\( \\triangle ABC \\) be an isosceles triangle with \\( AB = AC \\) and \\( \\angle A = 45^\\circ \\). Its circumcircle \\((c)\\) has center \\( O \\). \\( M \\) is the midpoint of \\( BC \\) and \\( D \\) is the foot of the perpendicular from \\( C \\) to \\( AB \\). With center \\( C \\) and radius \\( CD \\), we draw a circle which internally intersects \\( AC \\) at the point \\( F \\) and the circle \\((c)\\) at the points \\( Z \\) and \\( E \\), such that \\( Z \\) lies on the small arc \\(\\overparen{BC}\\) and \\( E \\) on the small arc \\(\\overparen{AC}\\). Prove that the lines \\( ZE, CO, FM \\) are concurrent.",
+    "problem_id": "BMOSL_2020_13",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Since $Z E$ is the common chord of the two circles, the line of the centres $C O$ is its perpendicular bisector. This means that $C O$ passes through the midpoint of $Z E$, let it be $T$. Thus, it suffices to prove that $F M$ passes through $T$. To this end, we will prove that $F Z M E$ is a parallelogram: we will precisely show that the segments $F E$ and $Z M$ are parallel and equal.\n\nLet $K$ be the intersection point of $Z E$ and $A C$. Then $K$ lies on the radical axis of the two circles, so it has equal powers to both circles. The power of the point $K$ with respect to the one circle is $K A \\cdot K C$, while the power to the other circle is $R^{2}-K C^{2}=C D^{2}-K C^{2}$ \u0433\u0402\u201a\n\nFrom the theorem of Pythagoras in triangle $A D C$ we get $A C^{2}=2 C D^{2}$. We set $K A=x, K C=y$, and combining all the above yields $x y=\\frac{(x+y)^{2}}{2}-y^{2}$, hence $2 x y=$ $x^{2}+y^{2}+2 x y-y^{2}$, i.e. $x=y$.\n\nThis means that $K$ is the midpoint of $A C$. Moreover, we have $\\angle A D C=\\angle A M C=$ $90^{\\circ}$, so the points $A, D, M, C$ are on the same circle - let it be $\\left(c_{1}\\right)$ - and the center of this circle is $K$.\n\nFrom the cyclic quadrilateral we have that $\\angle D M B=45^{\\circ}$, but we have also that $\\angle O C B=45^{\\circ}$, so the lines $O C, D M$ are parallel, hence $K Z \\perp D M$ and, since $D M$ is a chord of the circle, $Z D=Z M$. (1)\n\nThe triangle $C D F$ is isosceles and $C O$ is bisector, so $C O \\perp D F$, and this means that $Z E \\| D F$. It follows that $D F E Z$ is an isosceles trapezium, so $D Z=F E$ (2), and from (1) and (2) we have that $Z M=F E(*)$.\n\nFrom the isosceles trapezium we also have that $\\angle F E Z=\\angle D Z E$ (3). Since $Z K$ is an altitude in the isosceles triangle $D Z M$, it will be also angle bisector, so $\\angle D Z E=\\angle M Z E$ (4).\n\nFrom (3) and (4) we conclude that $\\angle F E Z=\\angle M Z E$, so $F E \\| Z M\\left({ }^{* *}\\right)$. From (*) and $\\left({ }^{* *}\\right)$ we get that $F Z M E$ is a parallelogram, which is the desired result.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof.  We work in a convenient Cartesian coordinate system.\n\n1.  Choice of coordinates.  \n   Let \n     A=(0,0), \n     B=(1,0), \n   and choose C on the line through A making angle 45\u00b0 with the x\u2013axis so that AC=1.  Thus\n     \\(C=(\\cos45^\\circ,\\;\\sin45^\\circ)=\\bigl(\\tfrac{\\sqrt2}2,\\;\\tfrac{\\sqrt2}2\\bigr).\\)\n\n2.  The foot \\(D\\) of the perpendicular from \\(C\\) to \\(AB\\).  \n   Since \\(AB\\) is the x\u2013axis, the foot of the perpendicular from \\(C=(x_C,y_C)\\) to \\(AB\\) is \n     \\(D=(x_C,0)\\).  \n   Hence \n     \\[\n        D=\\bigl(\\tfrac{\\sqrt2}2,\\,0\\bigr),\n     \\]\n   and therefore the small circle we shall shortly introduce has radius \n     \\[\n        CD\n        =\\bigl|\\,y_C-0\\bigr|\n        =\\frac{\\sqrt2}2.\n     \\]\n\n3.  The midpoint \\(M\\) of \\(BC\\).  \n   \\[\n      M\n      =\\frac{B+C}2\n      =\\Bigl(\\frac{1+\\frac{\\sqrt2}2}2,\\;\\frac{0+\\frac{\\sqrt2}2}2\\Bigr)\n      =\\Bigl(\\frac{2+\\sqrt2}4,\\;\\frac{\\sqrt2}4\\Bigr).\n   \\]\n\n4.  The circumcenter \\(O\\) of \\(\\triangle ABC\\).  \n   \u2013  The midpoint of \\(AB\\) is \\(\\bigl(\\tfrac12,0\\bigr)\\), and the perpendicular bisector of \\(AB\\) is the vertical line \\(x=\\tfrac12\\).  \n   \u2013  The midpoint of \\(AC\\) is \\(\\bigl(\\tfrac{\\sqrt2}{4},\\,\\tfrac{\\sqrt2}{4}\\bigr)\\), and the slope of \\(AC\\) is \\(1\\), so its perpendicular bisector has slope \\(-1\\).  \n   One checks by solving\n   \\[\n     x=\\frac12,\n     \\quad\n     y-\\frac{\\sqrt2}{4}\n       =-1\\;\\bigl(x-\\tfrac{\\sqrt2}{4}\\bigr)\n   \\]\n   that these two bisectors meet in\n   \\[\n     O=\\Bigl(\\tfrac12,\\;\\tfrac{\\sqrt2-1}2\\Bigr).\n   \\]\n   A direct check shows \\(\\;OA=OB=OC\\), so this is indeed the circumcenter.\n\n5.  Equations of the two circles.  \n   (i)  The *circumcircle* \\((c)\\) has center \\(O=(\\tfrac12,\\tfrac{\\sqrt2-1}2)\\) and radius\n   \\[\n     R^2 \\;=\\; OA^2\n     \\;=\\;\n       \\Bigl(\\tfrac12-0\\Bigr)^2\n     + \\Bigl(\\tfrac{\\sqrt2-1}2-0\\Bigr)^2\n     =\\frac{4-2\\sqrt2}4.\n   \\]\n   Hence its equation is\n   \\[\n     (x-\\tfrac12)^2+(y-\\tfrac{\\sqrt2-1}2)^2\n     \\;=\\;\n     \\frac{4-2\\sqrt2}4.\n   \\]\n   (ii)  The *small circle* centered at \\(C\\) through \\(D\\) has center \\(C=(\\tfrac{\\sqrt2}2,\\tfrac{\\sqrt2}2)\\) and radius\n   \\(\\;CD=\\tfrac{\\sqrt2}2.\\)\n   Its equation is\n   \\[\n     \\bigl(x-\\tfrac{\\sqrt2}2\\bigr)^2\n    +\\bigl(y-\\tfrac{\\sqrt2}2\\bigr)^2\n     \\;=\\;\n     \\tfrac12.\n   \\]\n\n6.  The line \\(ZE\\) is the radical axis of these two circles.  \n   Subtract the two circle\u2013equations:\n   \\[\n     \\bigl(x-\\tfrac12\\bigr)^2\n     +\\bigl(y-\\tfrac{\\sqrt2-1}2\\bigr)^2\n     \\;-\\;\n     \\Bigl[\n     \\bigl(x-\\tfrac{\\sqrt2}2\\bigr)^2\n    +\\bigl(y-\\tfrac{\\sqrt2}2\\bigr)^2\n     \\Bigr]\n     =\\frac{4-2\\sqrt2}4-\\frac12.\n   \\]\n   A clean simplification yields the linear equation\n   \\[\n     y \\;=\\;\\frac12\\;-\\;(\\sqrt2-1)\\,x.\n     \\tag{*}\n   \\]\n   All points \\(Z,E\\) of intersection of the two circles lie on \\((*)\\), and conversely every point of \\((*)\\) has equal power to both circles, so \\((*)\\) is exactly the line \\(ZE\\).\n\n7.  The line \\(CO\\).  \n   Since\n   \\[\n     C=\\Bigl(\\tfrac{\\sqrt2}2,\\tfrac{\\sqrt2}2\\Bigr),\n     \\quad\n     O=\\Bigl(\\tfrac12,\\tfrac{\\sqrt2-1}2\\Bigr),\n   \\]\n   the vector \\(\\overrightarrow{CO}=(\\,\\tfrac12-\\tfrac{\\sqrt2}2,\\;\\tfrac{\\sqrt2-1}2-\\tfrac{\\sqrt2}2)\\)\n   simplifies to\n   \\[\n     \\overrightarrow{CO}\n     =\\Bigl(\\tfrac{1-\\sqrt2}2,\\,-\\tfrac12\\Bigr).\n   \\]\n   Hence the parametric equation of the line \\(CO\\) is\n   \\[\n     P(t)\n     =C + t\\,\\overrightarrow{CO}\n     =\\Bigl(\\tfrac{\\sqrt2}2,\\tfrac{\\sqrt2}2\\Bigr)\n      + t\\Bigl(\\tfrac{1-\\sqrt2}2,\\,-\\tfrac12\\Bigr).\n     \\tag{**}\n   \\]\n\n8.  Intersection \\(P\\) of \\(CO\\) and \\(ZE\\).  \n   We plug \\((**)\\) into \\((*)\\).  Writing\n   \\[\n     P(t)=(x(t),y(t)),\n     \\quad\n     x(t)=\\frac{\\sqrt2}2+t\\frac{1-\\sqrt2}2,\n     \\quad\n     y(t)=\\frac{\\sqrt2}2-\\frac t2,\n   \\]\n   the condition \\(y(t)=\\tfrac12-(\\sqrt2-1)\\,x(t)\\) becomes a single linear equation in \\(t\\).  One solves easily to find\n   \\[\n     t=\\frac{2+\\sqrt2}4.\n   \\]\n   Consequently the *unique* intersection \\(P=ZE\\;\\cap\\;CO\\) has exact coordinates\n   \\[\n     P\n     =P\\!\\Bigl(t=\\tfrac{2+\\sqrt2}4\\Bigr)\n     =\\Bigl(\\tfrac{3\\sqrt2}8,\\;\\tfrac{3\\sqrt2-2}8\\Bigr).\n   \\]\n   (In particular one checks by taking averages of the two solutions of the quadratic that \\(P\\) is the midpoint of the chord \\(ZE\\).)\n\n9.  Collinearity of \\(F,\\;M,\\;P\\).  \n   Next we write down the coordinates of \\(F\\).  By definition \\(F\\) lies on \\(AC\\) and on the small circle \\((x-\\tfrac{\\sqrt2}2)^2+(y-\\tfrac{\\sqrt2}2)^2=\\tfrac12\\).  Parameterizing \\(AC\\) by\n   \\[\n     A+(u)\\bigl(C-A\\bigr)\n     =(u\\tfrac{\\sqrt2}2,\\;u\\tfrac{\\sqrt2}2),\n     \\quad 0<u<1,\n   \\]\n   the condition\n   \\(\\bigl|\\,F-C\\bigl|=\\tfrac{\\sqrt2}2\\)\n   gives immediately \\(u=1-\\tfrac{\\sqrt2}2\\).  Hence\n   \\[\n     F=\\Bigl(\\tfrac{\\sqrt2-1}2,\\;\\tfrac{\\sqrt2-1}2\\Bigr).\n   \\]\n   We already found\n   \\[\n     M=\\Bigl(\\tfrac{2+\\sqrt2}4,\\;\\tfrac{\\sqrt2}4\\Bigr),\n     \\quad\n     P=\\Bigl(\\tfrac{3\\sqrt2}8,\\;\\tfrac{3\\sqrt2-2}8\\Bigr).\n   \\]\n   A routine check of slopes (or equivalently of the determinant of the \\(3\\times3\\) matrix of homogeneous coordinates) shows\n   \\[\n     \\frac{y_P-y_F}{x_P-x_F}\n     \\;=\\;\n     \\frac{y_M-y_F}{x_M-x_F},\n   \\]\n   i.e.\\ the three points \\(F,M,P\\) lie on one straight line.\n\n10.  Conclusion.  \n   We have exhibited\n   \\[\n     P=ZE\\;\\cap\\;CO,\n     \\quad\n     P\\in FM.\n   \\]\n   Hence the three lines \\(ZE,\\;CO,\\;FM\\) are concurrent, as required.  \u220e",
+            "cost": {
+                "cost": 0.1334201,
+                "input_tokens": 495,
+                "output_tokens": 30199
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:36:45.263123",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof places A, B, C in the plane with coordinates A=(0,0), B=(1,0), C=(\u221a2/2,\u221a2/2), computes D, M, and the circumcenter O, then writes down the equations of the circumcircle and the small circle centered at C. It finds their radical axis as line ZE, parametrizes line CO, and solves for its intersection P with ZE. Next it finds F as the second intersection of AC with the small circle and checks that F, M, and P are collinear by comparing slopes, concluding that ZE, CO, and FM concur.",
+                    "issues": [
+                        {
+                            "location": "Step 8",
+                            "text": "one solves easily to find\n    \\(t=\\frac{2+\\sqrt2}{4}\\).",
+                            "description": "The proof omits the algebraic steps solving the linear equation in t obtained by substituting the parametric form of CO into the radical axis equation.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3788,
+                            "end_index": 3843
+                        },
+                        {
+                            "location": "Step 8",
+                            "text": "In particular one checks by taking averages of the two solutions of the quadratic that \\(P\\) is the midpoint of the chord \\(ZE\\).",
+                            "description": "The proof asserts without calculation that P is the midpoint of ZE, omitting the computation of the two intersection points of the circles and their midpoint.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4055,
+                            "end_index": 4182
+                        },
+                        {
+                            "location": "Step 9",
+                            "text": "A routine check of slopes (or equivalently of the determinant of the 3\u00d73 matrix of homogeneous coordinates) shows\n    \\(\\frac{y_P-y_F}{x_P-x_F}=\\frac{y_M-y_F}{x_M-x_F},\\) i.e. the three points lie on one straight line.",
+                            "description": "The collinearity of F, M, and P is asserted as a 'routine check' without showing the actual slope or determinant computation.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4858,
+                            "end_index": 5119
+                        },
+                        {
+                            "location": "Step 9",
+                            "text": "the condition \\(\\lvert F-C\\rvert=\\tfrac{\\sqrt2}{2}\\) gives immediately \\(u=1-\\tfrac{\\sqrt2}{2}\\).",
+                            "description": "The proof solves for the parameter u defining F in one step, without showing the solution of the quadratic equation or explaining why the other root is discarded.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4520,
+                            "end_index": 4617
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:23:38.599099"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let the circumcircle \\((c)\\) of \\(\\triangle ABC\\) have its center \\(O\\) at the origin \\((0,0)\\) and let its radius be \\(R\\).\nSince \\( \\triangle ABC \\) is isosceles with \\(AB=AC\\) and \\(\\angle A = 45^\\circ\\), the angles are \\(\\angle A = 45^\\circ\\), \\(\\angle B = \\angle C = (180^\\circ-45^\\circ)/2 = 67.5^\\circ\\).\nThe central angle \\(\\angle BOC = 2\\angle A = 2 \\cdot 45^\\circ = 90^\\circ\\), because \\(O\\) is inside \\(\\triangle ABC\\) (an acute triangle).\nLet \\(AM\\) be the angle bisector of \\(A\\), with \\(M\\) on \\(BC\\). In an isosceles triangle, \\(AM\\) is also the median to \\(BC\\) and the altitude from \\(A\\), and it passes through \\(O\\).\nWe can align \\(AM\\) with the y-axis. Since \\(\\angle A < 90^\\circ\\), \\(A\\) and \\(O\\) are on the same side of \\(BC\\). We set \\(A=(0,-R)\\).\nThe coordinates of the vertices of \\(\\triangle BOC\\) can be determined. Since \\(\\angle BOC=90^\\circ\\) and \\(OB=OC=R\\), \\(\\triangle BOC\\) is a right isosceles triangle. \\(M\\) is the midpoint of \\(BC\\), so \\(OM \\perp BC\\). \\(\\angle MOC = \\angle BOC/2 = 45^\\circ\\).\nThe coordinates are \\(C=(R\\cos 45^\\circ, R\\sin 45^\\circ) = (R/\\sqrt{2}, R/\\sqrt{2})\\) and \\(B=(-R/\\sqrt{2}, R/\\sqrt{2})\\).\nThen \\(M=(0, R/\\sqrt{2})\\).\nLet's verify \\(\\angle A = 45^\\circ\\). The vector \\(\\vec{AC} = (R/\\sqrt{2}, R/\\sqrt{2}+R)\\) and \\(\\vec{AB} = (-R/\\sqrt{2}, R/\\sqrt{2}+R)\\).\nThe slope of \\(AC\\) is \\(m_{AC} = \\frac{R/\\sqrt{2}+R}{R/\\sqrt{2}} = 1+\\sqrt{2}\\). The angle \\(AC\\) makes with the positive x-axis is \\(\\arctan(1+\\sqrt{2}) = 67.5^\\circ\\).\nThe slope of \\(AB\\) is \\(m_{AB} = \\frac{R/\\sqrt{2}+R}{-R/\\sqrt{2}} = -(1+\\sqrt{2})\\). The angle \\(AB\\) makes with the positive x-axis is \\(\\arctan(-(1+\\sqrt{2})) = 180^\\circ-67.5^\\circ = 112.5^\\circ\\).\nSo \\(\\angle A = 112.5^\\circ - 67.5^\\circ = 45^\\circ\\). These coordinates are correct.\n\nPoint \\(D\\) is the foot of the perpendicular from \\(C\\) to \\(AB\\). In \\(\\triangle ADC\\), \\(\\angle CAD = \\angle A = 45^\\circ\\) and \\(\\angle CDA=90^\\circ\\). So \\(\\triangle ADC\\) is a right isosceles triangle, with \\(AD=CD\\).\nThe length \\(AC^2 = (R/\\sqrt{2})^2 + (R/\\sqrt{2}+R)^2 = R^2/2 + R^2(1/\\sqrt{2}+1)^2 = R^2/2 + R^2(1/2+\\sqrt{2}+1) = R^2(1/2+3/2+\\sqrt{2}) = R^2(2+\\sqrt{2})\\).\nSo \\(AC = R\\sqrt{2+\\sqrt{2}}\\).\nSince \\(\\triangle ADC\\) is a right isosceles triangle, \\(AC^2 = CD^2+AD^2 = 2CD^2\\).\nSo \\(CD^2 = AC^2/2 = R^2(1+\\sqrt{2}/2)\\). The radius of circle \\((c')\\) is \\(r' = CD = R\\sqrt{1+\\sqrt{2}/2}\\).\n\nPoint \\(F\\) is on \\(AC\\) such that \\(CF=CD\\). Since \\(AC=\\sqrt{2}CD\\), we have \\(CF = CD = AC/\\sqrt{2}\\).\n\\(F\\) divides \\(AC\\) in the ratio \\(AF:FC = (\\sqrt{2}-1):1\\).\nThe coordinates of \\(F\\) are given by \\(\\vec{F} = \\frac{1 \\cdot \\vec{A} + (\\sqrt{2}-1)\\vec{C}}{\\sqrt{2}}\\). (Note: this is section formula \\(\\vec{F} = \\frac{m\\vec{C} + n\\vec{A}}{m+n}\\) with \\(m=AF\\) and \\(n=FC\\)).\nIt is \\(\\vec{F} = \\frac{FC \\cdot \\vec{A} + AF \\cdot \\vec{C}}{AC}\\). As \\(F\\) is on segment \\(AC\\), \\( \\vec{F} = (1-t)\\vec{A} + t\\vec{C} \\) with \\( t = AF/AC = (\\sqrt{2}-1)/\\sqrt{2} = 1-1/\\sqrt{2} \\).\nNo, this is incorrect. \\(F\\) is between A and C. \\( \\vec{F} = (1-\\lambda)\\vec{A} + \\lambda\\vec{C} \\) where \\( \\lambda = AF/AC \\). Or \\( \\vec{F} = (1-\\lambda)\\vec{C} + \\lambda\\vec{A} \\) where \\( \\lambda = CF/CA \\).\nLet's use \\( \\vec{F} = \\vec{C} + \\frac{CD}{AC}(\\vec{A}-\\vec{C}) = \\vec{C} + \\frac{1}{\\sqrt{2}}(\\vec{A}-\\vec{C}) = (1-1/\\sqrt{2})\\vec{C} + (1/\\sqrt{2})\\vec{A} \\).\n\\(F_x = (1-1/\\sqrt{2})(R/\\sqrt{2}) + (1/\\sqrt{2})(0) = R(1/\\sqrt{2}-1/2) = R\\frac{\\sqrt{2}-1}{2}\\).\n\\(F_y = (1-1/\\sqrt{2})(R/\\sqrt{2}) + (1/\\sqrt{2})(-R) = R(1/\\sqrt{2}-1/2) - R/\\sqrt{2} = R(-1/2) = -R/2\\).\nSo \\(F = (R\\frac{\\sqrt{2}-1}{2}, -R/2)\\).\n\nThe lines involved:\n1. Line \\(CO\\): Passes through \\(O(0,0)\\) and \\(C(R/\\sqrt{2}, R/\\sqrt{2})\\). Its equation is \\(y=x\\).\n2. Line \\(FM\\): Passes through \\(F(R\\frac{\\sqrt{2}-1}{2}, -R/2)\\) and \\(M(0, R/\\sqrt{2})\\).\nThe slope of \\(FM\\) is \\(m_{FM} = \\frac{R/\\sqrt{2} - (-R/2)}{0 - R(\\sqrt{2}-1)/2} = \\frac{R(\\frac{1}{\\sqrt{2}}+\\frac{1}{2})}{-R\\frac{\\sqrt{2}-1}{2}} = \\frac{\\frac{\\sqrt{2}+1}{2\\sqrt{2}}}{-\\frac{\\sqrt{2}-1}{2}} = -\\frac{\\sqrt{2}+1}{\\sqrt{2}(\\sqrt{2}-1)}\\).\n\\(m_{FM} = -\\frac{\\sqrt{2}+1}{2-\\sqrt{2}} = -\\frac{(\\sqrt{2}+1)(2+\\sqrt{2})}{(2-\\sqrt{2})(2+\\sqrt{2})} = -\\frac{2\\sqrt{2}+2+2+\\sqrt{2}}{4-2} = -\\frac{4+3\\sqrt{2}}{2}\\).\nThe equation of line \\(FM\\) is \\(y - y_M = m_{FM}(x - x_M)\\), so \\(y - R/\\sqrt{2} = -\\frac{4+3\\sqrt{2}}{2}x\\).\n3. Line \\(ZE\\): This is the radical axis of circles \\((c)\\) and \\((c')\\).\n\\((c)\\) is \\(x^2+y^2=R^2\\).\n\\((c')\\) has center \\(C(R/\\sqrt{2}, R/\\sqrt{2})\\) and radius \\(CD\\). Its equation is \\((x-R/\\sqrt{2})^2+(y-R/\\sqrt{2})^2 = CD^2 = R^2(1+\\sqrt{2}/2)\\).\nExpanding \\((c')\\): \\(x^2 - \\sqrt{2}Rx + R^2/2 + y^2 - \\sqrt{2}Ry + R^2/2 = R^2(1+\\sqrt{2}/2)\\).\n\\(x^2+y^2 - \\sqrt{2}R(x+y) + R^2 = R^2 + R^2\\sqrt{2}/2\\).\nThe radical axis is obtained by subtracting the two equations (after normalization if needed, but here coefficient of \\(x^2, y^2\\) are 1 for both original equations):\n\\( (x^2+y^2-R^2) - [(x-R/\\sqrt{2})^2+(y-R/\\sqrt{2})^2 - R^2(1+\\sqrt{2}/2)] = 0 \\).\nThis simplifies to \\( -R^2 - [-\\sqrt{2}R(x+y) + R^2 - R^2(1+\\sqrt{2}/2)] = 0 \\).\n\\( -R^2 + \\sqrt{2}R(x+y) - R^2 + R^2 + R^2\\sqrt{2}/2 = 0 \\).\n\\( \\sqrt{2}R(x+y) - R^2 + R^2\\sqrt{2}/2 = 0 \\).\n\\( \\sqrt{2}R(x+y) = R^2(1-\\sqrt{2}/2) \\). Assuming \\(R \\ne 0\\).\n\\( \\sqrt{2}(x+y) = R(1-\\sqrt{2}/2) \\).\nSo the equation of line \\(ZE\\) is \\(x+y = R(1/\\sqrt{2}-1/2) = R\\frac{\\sqrt{2}-1}{2}\\).\n\nConcurrency point: Let \\(P=(x_P, y_P)\\) be the intersection of \\(CO\\) and \\(FM\\).\nSince \\(P\\) is on \\(CO\\), \\(y_P=x_P\\).\nSubstitute into the equation for \\(FM\\): \\(x_P - R/\\sqrt{2} = -\\frac{4+3\\sqrt{2}}{2}x_P\\).\n\\(x_P (1 + \\frac{4+3\\sqrt{2}}{2}) = R/\\sqrt{2}\\).\n\\(x_P (\\frac{2+4+3\\sqrt{2}}{2}) = R/\\sqrt{2}\\).\n\\(x_P (\\frac{6+3\\sqrt{2}}{2}) = R/\\sqrt{2}\\).\n\\(x_P = \\frac{2R}{\\sqrt{2}(6+3\\sqrt{2})} = \\frac{\\sqrt{2}R}{6+3\\sqrt{2}} = \\frac{\\sqrt{2}R}{3(2+\\sqrt{2})}\\).\nTo simplify, multiply numerator and denominator by \\((2-\\sqrt{2})\\):\n\\(x_P = \\frac{\\sqrt{2}R(2-\\sqrt{2})}{3(2+\\sqrt{2})(2-\\sqrt{2})} = \\frac{R(2\\sqrt{2}-2)}{3(4-2)} = \\frac{R(2\\sqrt{2}-2)}{6} = \\frac{R(\\sqrt{2}-1)}{3}\\).\nSo \\(P = (R\\frac{\\sqrt{2}-1}{3}, R\\frac{\\sqrt{2}-1}{3})\\).\n\nNow we check if \\(P\\) lies on the line \\(ZE\\). The equation for \\(ZE\\) is \\(x+y = R\\frac{\\sqrt{2}-1}{2}\\).\nFor point \\(P\\), \\(x_P+y_P = R\\frac{\\sqrt{2}-1}{3} + R\\frac{\\sqrt{2}-1}{3} = 2R\\frac{\\sqrt{2}-1}{3}\\).\nFor \\(P\\) to be on \\(ZE\\), we must have \\(2R\\frac{\\sqrt{2}-1}{3} = R\\frac{\\sqrt{2}-1}{2}\\).\nSince \\(R \\ne 0\\) and \\(\\sqrt{2}-1 \\ne 0\\), this would imply \\(2/3 = 1/2\\). This is false.\n\nThe calculations have been checked multiple times. This implies that, based on the provided coordinates and standard geometric interpretations, the lines \\(ZE, CO, FM\\) are not concurrent.\nThere might be a misunderstanding of the problem statement or a subtle geometric property missed, but the coordinate geometry approach suggests non-concurrence.\n\nLet's verify the intersection of \\(ZE\\) and \\(CO\\). Let this be \\(P^*\\).\nLine \\(CO\\) is \\(y=x\\). Line \\(ZE\\) is \\(x+y = R\\frac{\\sqrt{2}-1}{2}\\).\nSo \\(2x_{P^*} = R\\frac{\\sqrt{2}-1}{2}\\), which gives \\(x_{P^*} = R\\frac{\\sqrt{2}-1}{4}\\).\nSo \\(P^*=(R\\frac{\\sqrt{2}-1}{4}, R\\frac{\\sqrt{2}-1}{4})\\).\nFor the lines to be concurrent, \\(P^*\\) must lie on \\(FM\\).\nThe line \\(FM\\) passes through \\(M(0, R/\\sqrt{2})\\) and has slope \\(m_{FM} = -\\frac{4+3\\sqrt{2}}{2}\\).\nEquation of \\(FM\\): \\(y - R/\\sqrt{2} = -\\frac{4+3\\sqrt{2}}{2}x\\).\nSubstitute \\(P^*\\): \\(R\\frac{\\sqrt{2}-1}{4} - R/\\sqrt{2} = -\\frac{4+3\\sqrt{2}}{2} R\\frac{\\sqrt{2}-1}{4}\\).\nDivide by \\(R\\): \\(\\frac{\\sqrt{2}-1-2\\sqrt{2}}{4} = -\\frac{(4+3\\sqrt{2})(\\sqrt{2}-1)}{8}\\).\n\\(\\frac{-1-\\sqrt{2}}{4} = -\\frac{4\\sqrt{2}-4+6-3\\sqrt{2}}{8}\\).\n\\(\\frac{-1-\\sqrt{2}}{4} = -\\frac{\\sqrt{2}+2}{8}\\).\n\\(-2(1+\\sqrt{2}) = -(\\sqrt{2}+2)\\).\n\\(-2-2\\sqrt{2} = -\\sqrt{2}-2\\).\nThis implies \\(-2\\sqrt{2} = -\\sqrt{2}\\), which means \\(\\sqrt{2}=0\\). This is false.\n\nConclusion based on calculations:\nThe point of intersection of \\(CO\\) and \\(FM\\) is \\(P = (R\\frac{\\sqrt{2}-1}{3}, R\\frac{\\sqrt{2}-1}{3})\\).\nThe line \\(ZE\\) has equation \\(x+y = R\\frac{\\sqrt{2}-1}{2}\\).\nThe sum of coordinates for \\(P\\) is \\(x_P+y_P = 2R\\frac{\\sqrt{2}-1}{3}\\).\nSince \\(2R\\frac{\\sqrt{2}-1}{3} \\neq R\\frac{\\sqrt{2}-1}{2}\\) (as \\(2/3 \\neq 1/2\\)), the point \\(P\\) does not lie on line \\(ZE\\).\nThus, the lines \\(ZE, CO, FM\\) are not concurrent.\n\nGiven that this problem likely originates from a competition where statements are usually true, there could be an error in my interpretation or calculation. However, the calculations presented are robust and have been verified. Potential sources of error typically include sign errors or misinterpretation of points/angles. The coordinate system and points \\(A,B,C,M,O,D,F\\) have been defined based on the problem's conditions and checked. The equations for lines \\(CO, FM, ZE\\) have been derived using standard formulas. The intersection point \\(P\\) has been found correctly. The check for \\(P\\) on \\(ZE\\) is straightforward. It seems that there is an issue with the problem statement or a very subtle point is missed. However, within the framework of coordinate geometry as applied, the lines are not concurrent.\n\nFinal check of coordinates of \\(F\\).\n\\(F\\) on \\(AC\\) with \\(CF=CD\\). We have \\(AC = \\sqrt{2}CD\\). So \\(AF = AC-CF = (\\sqrt{2}-1)CD\\).\nThus \\(F\\) divides \\(CA\\) in ratio \\(CF:FA = CD:(\\sqrt{2}-1)CD = 1:(\\sqrt{2}-1)\\).\nSo \\(\\vec{F} = \\frac{(\\sqrt{2}-1)\\vec{C} + 1\\vec{A}}{(\\sqrt{2}-1)+1} = \\frac{(\\sqrt{2}-1)\\vec{C} + \\vec{A}}{\\sqrt{2}} = (1-1/\\sqrt{2})\\vec{C} + (1/\\sqrt{2})\\vec{A}\\).\nThis is the same formula used before and confirmed to be correct.\n\nAll calculations appear to be correct. Therefore, based on this analysis, the statement that the lines \\(ZE, CO, FM\\) are concurrent is false.\n\nThe final answer is $\\boxed{ZE, CO, FM \\text{ are not concurrent}}$.",
+            "cost": {
+                "cost": 0.315395,
+                "input_tokens": 484,
+                "output_tokens": 31479
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:55:39.206610",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof places the circumcenter O at (0,0) and A at (0,\u2212R), computes B and C from the 90\u00b0 central angle BOC, then finds M, D (the foot from C to AB) and F on AC with CF=CD via section formulas. It derives equations for lines CO, FM and the radical axis ZE of the two circles, finds the intersection P of CO and FM, and checks whether P satisfies ZE, concluding the three lines are not concurrent.",
+                    "issues": [
+                        {
+                            "location": "Slope calculation of line FM",
+                            "text": "m_{FM} = -\\frac{4+3\\sqrt{2}}{2}",
+                            "description": "The algebraic simplification of the slope from the difference quotient is incorrect; the numerator and denominator were miscomputed, yielding a wrong value for m_{FM}.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 7307,
+                            "end_index": 7336
+                        },
+                        {
+                            "location": "Derivation of the radical axis (line ZE)",
+                            "text": "x+y = R\\frac{\\sqrt{2}-1}{2}",
+                            "description": "The proof subtracts the circle equations to get the radical axis but makes algebraic mistakes in expansion and collection of terms, producing an incorrect line equation.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 6216,
+                            "end_index": 6242
+                        },
+                        {
+                            "location": "Coordinates of point F via section formula",
+                            "text": "\\vec{F} = \\frac{1 \\cdot \\vec{A} + (\\sqrt{2}-1)\\vec{C}}{\\sqrt{2}}",
+                            "description": "The proof presents multiple, conflicting formulas for the position of F and does not clearly derive or justify the section\u2010formula steps, leading to confusion and potential error in F\u2019s coordinates.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2604,
+                            "end_index": 2667
+                        },
+                        {
+                            "location": "Conclusion of non-concurrency",
+                            "text": "Thus, the lines ZE, CO, FM are not concurrent.",
+                            "description": "This final conclusion contradicts both the problem statement and standard geometric results, indicating a fundamental error in the computations or reasoning.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 8279,
+                            "end_index": 8327
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:24:14.250584"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Let us put the whole configuration into an orthogonal system of coordinates.\nBecause the statement is purely projective-metric, we are free to choose a\nconvenient scale; we take  \n\n\u2003AB = AC = 1 .  \n\nPut  \n\n\u2003A(0,0),\u2003B(1,0) \u2003(the side AB lies on the x\u2013axis).\n\nSince \u2220A = 45\u00b0 and AB = AC, point C is obtained from B by a 45\u00b0 counter-clockwise\nrotation about A; hence  \n\n\u2003C( cos45\u00b0, sin45\u00b0 ) = ( \u221a2/2 , \u221a2/2 ).\n\nFor brevity write s = \u221a2.\n\n------------------------------------------------------------\n1.  The auxiliary points in coordinates\n------------------------------------------------------------\n\u2022  Foot D of the perpendicular from C to AB (the x\u2013axis):\n\n\u2003D( s/2 , 0 ).\n\nTherefore CD = s/2 and the circle \u03c9\ncentred at C has radius  \n\n\u2003r = CD = s/2.\u2003(1)\n\n\u2022  The circum-centre O of \u25b3ABC is the intersection of the perpendicular\n  bisectors of AB and AC.\n\n\u2003\u2013  The perpendicular bisector of AB is x = 1/2.\n\n\u2003\u2013  The perpendicular bisector of AC passes through the midpoint\n\u2003\u2003( s/4 , s/4 ) and has slope \u20131, hence equation y = \u2013x + s/2.\n\n  Consequently  \n\n\u2003O( 1/2 , (s \u2013 1)/2 ).\u2003(2)\n\n  The circum-radius is  \n\n\u2003R = OA = \u221a[(1/2)\u00b2 + ((s \u2013 1)/2)\u00b2]\n\u2003\u2003\u2003\u2003= \u221a[ 1/4 + (s\u00b2 \u2013 2s + 1)/4 ]\n\u2003\u2003\u2003\u2003= \u221a[ (4 \u2013 2s)/4 ] = \u221a(1 \u2013 s/2).     (3)\n\n\u2022  Midpoint M of BC:\n\n\u2003M( (1 + s/2)/2 , (0 + s/2)/2 )\n\u2003\u2003= ( (2 + s)/4 , s/4 ).\u2003(4)\n\n\u2022  Point F = \u03c9 \u2229 AC (inside AC).\n\n  A generic point on AC has coordinates ( ts/2 , ts/2 ), 0 \u2264 t \u2264 1.\n  Its distance from C is  \n\n\u2003CF = s/2 \u00b7(1 \u2013 t).\n\n  Requiring CF = r = s/2 gives 1 \u2013 t = 1/s, i.e.  \n\n\u2003t = 1 \u2013 1/\u221a2.\n\n  Hence  \n\n\u2003F( (s \u2013 1)/2 , (s \u2013 1)/2 ).\u2003(5)\n\n------------------------------------------------------------\n2.  The lines CO and FM\n------------------------------------------------------------\n\u2022  Equation of CO (through C and O).  \n  From (2) and the coordinates of C one finds\n\n\u2003slope CO = [ (s \u2013 1)/2 \u2013 s/2 ] / [ 1/2 \u2013 s/2 ]\n\u2003\u2003\u2003\u2003\u2003 = \u2013(1/2) / \u2013(s \u2013 1)/2\n\u2003\u2003\u2003\u2003\u2003 = 1/(s \u2013 1) = 1/(\u221a2 \u2013 1) = 1 + \u221a2.\n\n  Thus CO has equation  \n\n\u2003y \u2013 s/2 = (1 + s)(x \u2013 s/2).\u2003(6)\n\n\u2022  Equation of FM (through F and M).\n\n  Slope FM = [ s/4 \u2013 (s \u2013 1)/2 ] / [ (2 + s)/4 \u2013 (s \u2013 1)/2 ]\n\u2003\u2003\u2003\u2003\u2003 = [ (s \u2013 2)/4 ] / [ (1 + s)/4 ]\n\u2003\u2003\u2003\u2003\u2003 = (s \u2013 2)/(1 + s).\n\n  Hence  \n\n\u2003y \u2013 (s \u2013 1)/2 = (s \u2013 2)/(1 + s)\\,(x \u2013 (s \u2013 1)/2).\u2003(7)\n\n------------------------------------------------------------\n3.  Intersection P of CO and FM\n------------------------------------------------------------\nSolving (6) and (7) gives\n\u2003\u2003P( 3s/8 , (3s \u2013 2)/8 ).\u2003(8)\n\n(The computation is straightforward; eliminate y from (6) and (7).)\n\n------------------------------------------------------------\n4.  P is the midpoint of FM\n------------------------------------------------------------\nFrom (5), (4) and (8):\n\n\u2003x-coordinate of the midpoint of F and M:\n\u2003\u2003[(s \u2013 1)/2 + (2 + s)/4]/2 = (3s)/8 \u2003= x_P;\n\n\u2003y-coordinate:\n\u2003\u2003[(s \u2013 1)/2 + s/4]/2 = (3s \u2013 2)/8 = y_P.\n\nThus P is the midpoint of the segment FM; hence  \n\n\u2003F, P, M are collinear.\u2003(9)\n\n------------------------------------------------------------\n5.  P lies on the radical axis ZE of (c) and \u03c9\n------------------------------------------------------------\nFor any point X, power(X, circle) = (distance to centre)\u00b2 \u2013 (radius)\u00b2.\nWith (1), (3) and (8):\n\nPC\u00b2 = ( x_P \u2013 s/2 )\u00b2 + ( y_P \u2013 s/2 )\u00b2\n\u2003\u2003= ( (3s/8 \u2013 s/2)\u00b2 + ((3s \u2013 2)/8 \u2013 s/2)\u00b2 )\n\u2003\u2003= (2 + s)/16,\n\nPO\u00b2 = ( x_P \u2013 1/2 )\u00b2 + ( y_P \u2013 (s \u2013 1)/2 )\u00b2\n\u2003\u2003= (10 \u2013 7s)/16.\n\nTherefore\n\npower_\u03c9(P) = PC\u00b2 \u2013 r\u00b2 = (2 + s)/16 \u2013 1/2 = (s \u2013 6)/16,\n\npower_{(c)}(P) = PO\u00b2 \u2013 R\u00b2 = (10 \u2013 7s)/16 \u2013 (1 \u2013 s/2)\n\u2003\u2003\u2003\u2003\u2003\u2003\u2003\u2002= (s \u2013 6)/16.\n\nThe two powers are equal; hence P belongs to the radical axis of (c)\nand \u03c9, i.e.  \n\n\u2003P \u2208 ZE.\u2003(10)\n\n------------------------------------------------------------\n6.  Concurrency\n------------------------------------------------------------\nFrom (6) and (8) we already have P \u2208 CO; from (9) P \u2208 FM; from (10)\nP \u2208 ZE.  Consequently the three lines\n\n\u2003ZE,\u2003CO,\u2003FM\n\nall pass through the same point P.  The required concurrence is proved. \u220e",
+            "cost": {
+                "cost": 0.80559,
+                "input_tokens": 495,
+                "output_tokens": 20016
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:40:56.745270",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof places the configuration in a Cartesian coordinate system by normalizing AB=AC=1, assigns coordinates to A, B, C, then computes coordinates of D (foot from C), O (circumcenter), M (midpoint of BC), and F (second intersection of the circle centered at C with radius CD and line AC). It derives equations for lines CO and FM, finds their intersection P by eliminating y, and then shows by power-of-a-point calculations that P also lies on the radical axis of the two circles (hence on line ZE). Thus P is the common point of ZE, CO, and FM, proving concurrency.",
+                    "issues": [
+                        {
+                            "location": "Introduction",
+                            "text": "Because the statement is purely projective-metric, we are free to choose a convenient scale; we take AB = AC = 1.",
+                            "description": "The justification that the problem is \u201cpurely projective-metric\u201d and thus allows arbitrary scaling is unclear and misleading: the configuration involves circle intersections and perpendiculars, which are metric (not projective) properties, so one must restrict to similarities (not full projective transformations).",
+                            "category": "Oversimplification",
+                            "start_index": 77,
+                            "end_index": 192
+                        },
+                        {
+                            "location": "Section 2, equation of FM",
+                            "text": "Slope FM = [s/4 \u2212 (s\u22121)/2] / [(2+s)/4 \u2212 (s\u22121)/2] = (s\u22122)/(1+s).",
+                            "description": "The derivation of the slope of FM is neither shown step-by-step nor correct as stated; the algebraic simplification is omitted and the final expression does not match the actual ratio of differences.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2016,
+                            "end_index": 2093
+                        },
+                        {
+                            "location": "Section 3, intersection P of CO and FM",
+                            "text": "(The computation is straightforward; eliminate y from (6) and (7).)",
+                            "description": "The elimination of y to solve the two line equations is skipped entirely, contrary to the requirement that all computational steps be shown.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2417,
+                            "end_index": 2482
+                        },
+                        {
+                            "location": "Section 5, power-of-a-point calculations",
+                            "text": "PC\u00b2 = (\u2026) = (2 + s)/16,  PO\u00b2 = (\u2026) = (10 \u2212 7s)/16; hence power_\u03c9(P) = (s\u22126)/16 = power_{(c)}(P).",
+                            "description": "The intermediate algebraic steps simplifying the expressions for PC\u00b2, PO\u00b2 and then subtracting the radii squared are omitted, making it hard to verify the equality of powers.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3270,
+                            "end_index": 3392
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:24:04.760339"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the problem, we are given an isosceles triangle $ \\triangle ABC $ with $ AB = AC $ and $ \\angle A = 45^\\circ $. The circumcircle of $ \\triangle ABC $, denoted $ (c) $, has center $ O $. The point $ M $ is the midpoint of $ BC $, and $ D $ is the foot of the perpendicular from $ C $ to $ AB $. A circle centered at $ C $ with radius $ CD $ intersects the circumcircle $ (c) $ at points $ Z $ and $ E $, and intersects segment $ AC $ at point $ F $. We are to prove that the lines $ ZE $, $ CO $, and $ FM $ are concurrent.\n\n---\n\n### Step 1: Coordinate Setup\n\nTo simplify computations, we place the triangle in the coordinate plane:\n\n- Let $ A = (0, 0) $\n- Since $ AB = AC = 1 $ and $ \\angle A = 45^\\circ $, place:\n  - $ B = (1, 0) $\n  - $ C = \\left( \\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{2}}{2} \\right) $\n\nFrom this, we compute:\n\n- $ M = \\text{midpoint of } BC = \\left( \\frac{2 + \\sqrt{2}}{4}, \\frac{\\sqrt{2}}{4} \\right) $\n- $ D = \\text{foot of perpendicular from } C \\text{ to } AB = \\left( \\frac{\\sqrt{2}}{2}, 0 \\right) $\n- $ CD = \\frac{\\sqrt{2}}{2} $, so the circle centered at $ C $ with radius $ CD $ has equation:\n  $$\n  (x - \\frac{\\sqrt{2}}{2})^2 + (y - \\frac{\\sqrt{2}}{2})^2 = \\frac{1}{2}\n  $$\n\n---\n\n### Step 2: Coordinates of Key Points\n\n- **Point $ F $** lies on $ AC $ such that $ CF = CD = \\frac{\\sqrt{2}}{2} $. Since $ AC $ has length 1, point $ F $ lies between $ A $ and $ C $, at a distance $ \\frac{\\sqrt{2}}{2} $ from $ C $, so:\n  $$\n  F = \\left( \\frac{\\sqrt{2} - 1}{2}, \\frac{\\sqrt{2} - 1}{2} \\right)\n  $$\n\n- **Circumcenter $ O $** of $ \\triangle ABC $ is found by intersecting perpendicular bisectors of $ AB $ and $ AC $. The result is:\n  $$\n  O = \\left( \\frac{1}{2}, \\frac{\\sqrt{2} - 1}{2} \\right)\n  $$\n\n---\n\n### Step 3: Equations of Lines\n\n- **Line $ CO $** passes through $ C $ and $ O $, and has slope:\n  $$\n  \\text{slope of } CO = \\frac{y_C - y_O}{x_C - x_O} = \\frac{\\frac{\\sqrt{2}}{2} - \\frac{\\sqrt{2} - 1}{2}}{\\frac{\\sqrt{2}}{2} - \\frac{1}{2}} = \\frac{1}{\\sqrt{2} - 1} = \\sqrt{2} + 1\n  $$\n  Using point-slope form, the equation of $ CO $ is:\n  $$\n  y = (\\sqrt{2} + 1)x - 1\n  $$\n\n- **Line $ ZE $** is the radical axis of the two circles: the circumcircle $ (c) $ and the circle centered at $ C $. The radical axis is:\n  $$\n  y = (1 - \\sqrt{2})x + \\frac{1}{2}\n  $$\n\n- **Line $ FM $** passes through $ F $ and $ M $. Its slope is:\n  $$\n  m = \\frac{y_M - y_F}{x_M - x_F} = \\frac{\\frac{\\sqrt{2}}{4} - \\frac{\\sqrt{2} - 1}{2}}{\\frac{2 + \\sqrt{2}}{4} - \\frac{\\sqrt{2} - 1}{2}} = \\frac{3 - \\sqrt{2}}{7}\n  $$\n  Using point-slope form, the equation is:\n  $$\n  y = \\frac{3 - \\sqrt{2}}{7}(x - \\frac{\\sqrt{2} - 1}{2}) + \\frac{\\sqrt{2} - 1}{2}\n  $$\n\n---\n\n### Step 4: Finding the Intersection Point of $ CO $ and $ ZE $\n\nSet the two equations equal:\n$$\n(\\sqrt{2} + 1)x - 1 = (1 - \\sqrt{2})x + \\frac{1}{2}\n$$\nSolving for $ x $:\n$$\n[(\\sqrt{2} + 1) - (1 - \\sqrt{2})]x = \\frac{3}{2} \\Rightarrow 2\\sqrt{2}x = \\frac{3}{2} \\Rightarrow x = \\frac{3\\sqrt{2}}{8}\n$$\nSubstitute into either equation to find $ y $:\n$$\ny = (\\sqrt{2} + 1)\\cdot \\frac{3\\sqrt{2}}{8} - 1 = \\frac{3\\sqrt{2} - 2}{8}\n$$\nSo the intersection point $ P $ is:\n$$\nP = \\left( \\frac{3\\sqrt{2}}{8}, \\frac{3\\sqrt{2} - 2}{8} \\right)\n$$\n\n---\n\n### Step 5: Verifying $ P $ Lies on $ FM $\n\nSubstitute $ x = \\frac{3\\sqrt{2}}{8} $ into the equation of $ FM $:\n$$\ny = \\frac{3 - \\sqrt{2}}{7} \\left( \\frac{3\\sqrt{2}}{8} - \\frac{\\sqrt{2} - 1}{2} \\right) + \\frac{\\sqrt{2} - 1}{2}\n$$\nSimplify the expression and verify it equals $ \\frac{3\\sqrt{2} - 2}{8} $, which it does.\n\nThus, point $ P $ lies on all three lines $ ZE $, $ CO $, and $ FM $, proving their concurrency.\n\n---\n\n### Final Conclusion\n\nAll three lines $ ZE $, $ CO $, and $ FM $ intersect at the common point $ P $, and therefore are concurrent.\n\n$$\n\\boxed{P}\n$$",
+            "cost": {
+                "cost": 0.0068928,
+                "input_tokens": 498,
+                "output_tokens": 11322
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:47:54.348131",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof uses a coordinate geometry approach: it places A, B, C at concrete coordinates, computes M, D, F and the circumcenter O, writes equations for lines CO, the radical axis ZE of the two circles, and FM, finds their intersection P = CO \u2229 ZE by solving the line equations, and finally verifies by substitution that P lies on FM, concluding the three lines are concurrent.",
+                    "issues": [
+                        {
+                            "location": "Step 2: determination of F",
+                            "text": "F = \\left( \\frac{\\sqrt{2} - 1}{2}, \\frac{\\sqrt{2} - 1}{2} \\right)",
+                            "description": "The proof asserts the coordinates of F without solving the system given by the circle centered at C and the line AC or justifying the choice of the correct intersection point on segment AC.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1456,
+                            "end_index": 1520
+                        },
+                        {
+                            "location": "Step 2: determination of O",
+                            "text": "O = \\left( \\frac{1}{2}, \\frac{\\sqrt{2} - 1}{2} \\right)",
+                            "description": "The proof states the circumcenter O without showing the perpendicular bisector constructions or algebraic steps used to compute its coordinates.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1667,
+                            "end_index": 1720
+                        },
+                        {
+                            "location": "Step 3: equation of line ZE",
+                            "text": "y = (1 - \\sqrt{2})x + \\frac{1}{2}",
+                            "description": "The proof claims this is the equation of the radical axis of the two circles but does not derive it from subtracting their equations or explain why the radical axis coincides with line ZE.",
+                            "category": "Oversimplification",
+                            "start_index": 2254,
+                            "end_index": 2287
+                        },
+                        {
+                            "location": "Step 5: verification that P lies on FM",
+                            "text": "Simplify the expression and verify it equals \\frac{3\\sqrt{2} - 2}{8}, which it does.",
+                            "description": "The proof omits the detailed algebraic simplification and substitution needed to confirm that the intersection point P satisfies the equation of FM.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3438,
+                            "end_index": 3526
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:24:29.649921"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "To prove that the lines \\(ZE\\), \\(CO\\), and \\(FM\\) are concurrent in the given isosceles triangle \\(\\triangle ABC\\) with \\(AB = AC\\) and \\(\\angle A = 45^\\circ\\), the circumcircle \\((c)\\) with center \\(O\\), \\(M\\) the midpoint of \\(BC\\), \\(D\\) the foot of the perpendicular from \\(C\\) to \\(AB\\), and a circle centered at \\(C\\) with radius \\(CD\\) intersecting \\(AC\\) internally at \\(F\\) and the circumcircle at \\(Z\\) and \\(E\\) (with \\(Z\\) on the small arc \\(\\overparen{BC}\\) and \\(E\\) on the small arc \\(\\overparen{AC}\\)), a coordinate system is used to establish the concurrency.\n\nPlace the triangle in the coordinate plane with \\(M\\) at the origin \\((0, 0)\\), \\(B\\) at \\((-b, 0)\\), \\(C\\) at \\((b, 0)\\), and \\(A\\) at \\((0, a)\\) for some \\(a > 0\\) and \\(b > 0\\), ensuring \\(AB = AC\\). Given \\(\\angle A = 45^\\circ\\), the relationship \\(a = b(1 + \\sqrt{2})\\) is derived from the angle condition.\n\nThe circumcenter \\(O\\) is found at \\((0, b)\\). The foot \\(D\\) of the perpendicular from \\(C\\) to \\(AB\\) has coordinates \\(\\left(-\\frac{b \\sqrt{2}}{2}, \\frac{b \\sqrt{2}}{2}\\right)\\). The radius \\(CD = b \\sqrt{2 + \\sqrt{2}}\\), and the point \\(F\\) on \\(AC\\) such that \\(CF = CD\\) is at \\(\\left(\\frac{b (2 - \\sqrt{2})}{2}, \\frac{b (2 + \\sqrt{2})}{2}\\right)\\).\n\nThe equations of the lines are:\n- \\(FM\\): passing through \\(M(0, 0)\\) and \\(F\\), given by \\(y = (3 + 2 \\sqrt{2}) x\\).\n- \\(CO\\): passing through \\(C(b, 0)\\) and \\(O(0, b)\\), given by \\(y = -x + b\\).\n- \\(ZE\\): the common chord of the circumcircle and the circle centered at \\(C\\) with radius \\(CD\\), given by \\(y - x = \\frac{b \\sqrt{2}}{2}\\).\n\nThe intersection of \\(CO\\) and \\(FM\\) is found by solving:\n\\[\n-x + b = (3 + 2 \\sqrt{2}) x\n\\]\n\\[\nb = x (4 + 2 \\sqrt{2})\n\\]\n\\[\nx = \\frac{b}{4 + 2 \\sqrt{2}} = \\frac{b (2 - \\sqrt{2})}{4}\n\\]\n\\[\ny = -x + b = \\frac{b (2 + \\sqrt{2})}{4}\n\\]\nThis point \\(\\left( \\frac{b (2 - \\sqrt{2})}{4}, \\frac{b (2 + \\sqrt{2})}{4} \\right)\\) satisfies the equation of \\(ZE\\), \\(y - x = \\frac{b \\sqrt{2}}{2}\\), confirming that all three lines pass through this common point.\n\nThus, the lines \\(ZE\\), \\(CO\\), and \\(FM\\) are concurrent.\n\n\\[\n\\boxed{\\text{The lines } ZE, CO, \\text{ and } FM \\text{ are concurrent.}}\n\\]",
+            "cost": {
+                "cost": 0.007865800000000001,
+                "input_tokens": 471,
+                "output_tokens": 15449
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:15:13.178762",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof uses analytic geometry by placing M at the origin and B=(\u2212b,0), C=(b,0), A=(0,a). From \u2220A=45\u00b0 it asserts a=b(1+\u221a2). It then gives coordinates for the circumcenter O=(0,b), the foot D of C onto AB, and the point F on AC with CF=CD. It writes equations for lines FM, CO, and for the common chord ZE via the radical axis, solves for the intersection of FM and CO, and checks this point lies on ZE, concluding the three lines concur.",
+                    "issues": [
+                        {
+                            "location": "Determination of a and b",
+                            "text": "Given \u2220A = 45\u00b0, the relationship a = b(1 + \u221a2) is derived from the angle condition.",
+                            "description": "The proof asserts the formula \\(a = b(1+\\sqrt2)\\) without showing the derivation from the condition \\(\\angle A=45^\\circ\\), omitting the necessary computation (e.g. via the law of cosines or dot-product).",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 790,
+                            "end_index": 890
+                        },
+                        {
+                            "location": "Coordinates of the circumcenter",
+                            "text": "The circumcenter O is found at (0, b).",
+                            "description": "No justification is given for locating O at \\((0,b)\\); the perpendicular bisector calculations for sides BC and AB are omitted.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 892,
+                            "end_index": 935
+                        },
+                        {
+                            "location": "Coordinates of D and F",
+                            "text": "The foot D of the perpendicular from C to AB has coordinates \\((\u2212b\\sqrt2/2,\\;b\\sqrt2/2)\\) and the point F on AC such that CF = CD is at \\((b(2\u2212\\sqrt2)/2,\\;b(2+\\sqrt2)/2)\\).",
+                            "description": "The proof states the coordinates of D and F without showing how they were computed (e.g. using the foot-of-perpendicular formula or solving the circle\u2013line intersection), skipping nontrivial algebraic steps.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 939,
+                            "end_index": 1110
+                        },
+                        {
+                            "location": "Equation of ZE (common chord)",
+                            "text": "ZE: the common chord of the circumcircle and the circle centered at C with radius CD, given by y \u2212 x = b\u221a2/2.",
+                            "description": "The equation of the radical axis is asserted without deriving it from the equations of the two circles or explaining why it coincides with line ZE.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1453,
+                            "end_index": 1564
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:23:54.716284"
+            }
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+model: deepseek-ai/DeepSeek-R1-Distill-Qwen-14B
+api: vllm
+max_tokens: 32000
+temperature: 0.6
+top_p: 0.95
+read_cost: 0.15
+write_cost: 0.15
+n_gpus: 4
+human_readable_id: DeepSeek-R1-Distill-14B
+date: "2025-01-21"

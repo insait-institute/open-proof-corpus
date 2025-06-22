@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2021
+    },
+    "problem": "In an exotic country, the National Bank issues coins that can take any value in the interval \\([0,1]\\). Find the smallest constant \\(c>0\\) such that the following holds, no matter the situation in that country:\n\nAny citizen of the exotic country that has a finite number of coins, with a total value of no more than 1000, can split those coins into 100 boxes, such that the total value inside each box is at most \\(c\\).",
+    "problem_id": "BMOSL_2021_13",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution 1. The answer is $c=\\frac{1000}{91}=11-\\frac{11}{1001}$. Clearly, if $c^{\\prime}$ works, so does any $c>c^{\\prime}$. First we prove that $c=11-\\frac{11}{1001}$ is good.\n\nWe start with $100$ empty boxes. First, we consider only the coins that individually value more than $\\frac{1000}{1001}$. As their sum cannot overpass 1000, we deduce that there are at most $1000$ such coins. Thus we are able to put (at most) $10$ such coins in each of the $100$ boxes. Everything so far is all right: $10 \\cdot \\frac{1000}{1001}<10<c=11-\\frac{11}{1001}$.\n\nNext, step by step, we take one of the remaining coins and prove there is a box where it can be added. Suppose that at some point this algorithm fails. It would mean that at a certain point the total sums in the $100$ boxes would be $x_{1}, x_{2}, \\ldots, x_{100}$ and no matter how we would add the coin $x$, where $x \\leqslant \\frac{1000}{1001}$, in any of the boxes, that box would be overflowed, i.e., it would have a total sum of more than $11-\\frac{11}{1001}$. Therefore,\n\n$$\nx_{i}+x>11-\\frac{11}{1001}\n$$\nfor all $i=1,2, \\ldots, 100$. Then\n$$\nx_{1}+x_{2}+\\cdots+x_{100}+100 x>100 \\cdot\\left(11-\\frac{11}{1001}\\right) .\n$$\n\nBut since $1000 \\geqslant x_{1}+x_{2}+\\cdots+x_{100}+x$ and $\\frac{1000}{1001} \\geqslant x$ we obtain the contradiction\n\n$$\n1000+99 \\cdot \\frac{1000}{1001}>100 \\cdot\\left(11-\\frac{11}{1001}\\right) \\Longleftrightarrow 1000 \\cdot \\frac{1100}{1001}>100 \\cdot 11 \\cdot \\frac{1000}{1001} .\n$$\n\nThus the algorithm does not fail and since we have finitely many coins, we will eventually reach to a happy end.\n\nNow we show that $c=11-11 \\alpha$, with $1>\\alpha>\\frac{1}{1001}$ does not work.\nTake $r \\in\\left[\\frac{1}{1001}, \\alpha\\right)$ and let $n=\\left\\lfloor\\frac{1000}{1-r}\\right\\rfloor$. Since $r \\geqslant \\frac{1}{1001}$, then $\\frac{1000}{1-r} \\geqslant 1001$, therefore $n \\geqslant 1001$.\nNow take $n$ coins each of value $1-r$. Their sum is $n(1-r) \\leqslant \\frac{1000}{1-r} \\cdot(1-r)=1000$. Now, no matter how we place them in $100$ boxes, as $n \\geqslant 1001$, there exist $11$ coins in the same box. But $11(1-r)=11-11 r>11-11 \\alpha$, so the constant $c=11-11 \\alpha$ indeed does not work.\n\nSolution $2$ (for the upper bound). Amongst all possible arrangements into boxes, pick one where the maximum value inside a box is as small as possible. If there are several arrangements achieving this smallest maximum value, pick one where the number of boxes achieving this value is as small as possible.\n\nSay that the boxes have total values equal to $10+x_{1} \\geqslant 10+x_{2} \\geqslant \\cdots \\geqslant 10+x_{100}$. respectively. We must have $x_{1}+\\cdots+x_{100} \\leqslant 0$. In particular, $0 \\geqslant x_{1}+99 x_{100}$.\n\nAssume for contradiction that $x_{1}>\\frac{990}{1001}=\\frac{90}{91}$. Remove the coin of smallest denomination from the first box and add it into the 100-th box. Since the total value in the first box is greater than 10, the first box has at least $11$ coins and therefore it has a coin of value at most $\\frac{10+x_{1}}{11}$. The total new value in the last box is at most\n\n$$\n10+x_{100}+\\frac{10+x_{1}}{11} \\leqslant 10-\\frac{x_{1}}{99}+\\frac{10+x_{1}}{11}=10+x_{1}+\\frac{90-91 x_{1}}{99}<10+x_{1}\n$$\n\nRemark. If we replace $[0,1]$ with $[0, v]$, the total sum with $s$, and the number of available boxes with $n$, then the answer to the problem is\n\n$$\nc=v+\\frac{s}{n}-\\left(\\frac{s}{n}+1\\right) \\cdot \\frac{1}{s+1}=v+\\frac{s^{2}-n}{n(s+1)}\n$$",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

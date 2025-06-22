@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta property="og:title" content="Grading Tool"/>
+  <meta property="og:description" content="Grading Tool for Human Grading of LLM Generated Proofs"/>
+  <meta property="description" content="Grading Tool for Human Grading of LLM Generated Proofs"/>
+
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="keywords" content="Math, LLM, Olympiads, Competitions, Leaderboards, AI, Machine Learning, Grading"/>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Grading Tool</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/data.css') }}">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/instructions.css') }}">
+
+</head>
+<body>
+
+  <section class="instructions-section">
+    <div class="instructions-container">
+      
+      <header class="instructions-header">
+        <h1>How to Use the Grading Tool</h1>
+        <p class="lead">A step-by-step guide to effectively grade LLM generated proofs.</p>
+      </header>
+
+      <article class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h2 class="step-title">Accessing the Grading Interface</h2>
+        </div>
+        <div class="step-content">
+          <p>
+            To begin, navigate to the <a href="/">main page</a>. Once there, enter your Judge ID given by the organizers and click "Start Grading".
+          </p>
+          <div class="screenshot-container">
+            <img src="{{ url_for('static', filename='images/instructions_1.png') }}" alt="Screenshot of accessing the grading interface" class="img-fluid step-screenshot-small">
+            <small class="screenshot-caption">Fig 1: Main dashboard with "Start Grading".</small>
+          </div>
+        </div>
+      </article>
+
+      <!-- <article class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h2 class="step-title">Understanding the Layout</h2>
+        </div>
+        <div class="step-content">
+          <p>
+            Once logged in, you will see the grading interface. 
+          </p>
+          <ul>
+            <li><strong>File Directory (2a):</strong> Shows your assigned questions. Clicking on any question will guide you to problem and model attempts</li>
+            <li><strong>Problem (2a):</strong> The problem statement with some additional metadata</li>
+            <li><strong>Ground-truth solution (2a):</strong> If available, we give you a ground-truth solution to the problem. Note that this solution is not always optimal quality, so be careful with its interpretation. Metadata here indicates the source of the solution. This solution can guide you in understanding the problem, but note that there are always multiple ways to prove something, all of which should be counted as correct.</li>
+            <li><strong>Model Outputs (2b):</strong> By far the most important part of the interface is the model solution. This part repeats both the problem statement and solution for easier reference, and also contains a form for giving your judgment. Note that there are multiple answers for each question, each of which needs to be separately graded.</li>
+          </ul>
+          <div class="screenshot-container">
+            <img src="{{ url_for('static', filename='images/instructions_2.png') }}" alt="Screenshot of the grading interface layout" class="img-fluid step-screenshot">
+            <small class="screenshot-caption">Fig 2a: Overview of the grading interface components (no model outputs).</small>
+          </div>
+           <div class="screenshot-container mt-3"> <img src="{{ url_for('static', filename='images/instructions_3.png') }}" alt="Detailed view of the rubric" class="img-fluid step-screenshot">
+            <small class="screenshot-caption">Fig 2b: Overview of the grading interface for model outputs (form continues when scrolling down).</small>
+          </div>
+        </div>
+      </article> -->
+
+      <article class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h2 class="step-title">Navigate to a problem</h2>
+        </div>
+        <div class="step-content">
+          <p>
+            Once logged in, you will see a navigation bar on the left side. This shows your assigned questions.
+            Note that your assigned questions will change on a daily basis. Do not worry if you cannot judge all questions you got assigned in one day.
+            Clicking on any question will guide you to the problem and model attempts. Note that to see all your questions, you have to navigate the sidebar (e.g., by clicking "<- All Competitions")
+          </p>
+          <p>
+            The navigation bar indicates how much you progressed on each question (each of which has multiple model attempts). The color coding is as follows:
+          </p>
+          <ul>
+            <li>❌: Model attempt has not been graded yet.</li>
+            <li>⏳: Partial progress on the model attempt has been made. For example, a score was given without comment.</li>
+            <li>✅: The model attempt has been graded.</li>
+          </ul>
+          <p>
+            While not required, we highly recommend (and hugely prefer) that you evaluate all model attempts for a question before progressing to the next question. Feel free, however, to grade the assigned questions in any order you prefer.
+          </p>
+          <div class="screenshot-container">
+            <img src="{{ url_for('static', filename='images/instructions_4.png') }}" alt="Screenshot file directory" class="img-fluid step-screenshot-small">
+            <small class="screenshot-caption">Fig 2: File Directory</small>
+          </div>
+        </div>
+      </article>
+      
+      <article class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h2 class="step-title">Read problem</h2>
+        </div>
+        <div class="step-content">
+          <p>
+            At the top of the page, you will see the problem statement with some additional metadata. Read the problem carefully. If you believe the problem statement is faulty, please follow these instructions: 
+          </p>
+          <ul>
+            <li>Mark the checkbox "The problem statement is incorrect or incomplete"</li>
+            <li>Fill out the feedback form by describing the problem</li>
+            <li>Submit the issue by pressing "Save"</li>
+          </ul>
+          <p>
+            If you reconsider after submitting the issue, you can always uncheck the checkbox (this will automatically save the change). If another judge has submitted an issue, you will see this as a red box above the problem statement.
+          </p>
+          <div class="screenshot-container">
+            <img src="{{ url_for('static', filename='images/instructions_5.png') }}" alt="Screenshot of submitting a grade and feedback" class="img-fluid step-screenshot">
+            <small class="screenshot-caption">Fig 3: Problem statement interface.</small>
+          </div>
+        </div>
+      </article>
+
+      <article class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <h2 class="step-title">Read solution</h2>
+        </div>
+        <div class="step-content">
+          <p>
+            For your reference, we also provide a ground-truth solution if possible. Note that these (automatically extracted) solutions can contain mistakes, so be careful with its interpretation. The solution can guide you in understanding the problem, but there are always multiple ways to prove something, all of which should be counted as correct. If you believe the ground-truth solution is faulty, you can follow the same instructions as above to indicate this.
+            However, for ground-truth solutions, this is not required, as they are solely for your reference and it is expected that some provided solutions will contain mistakes. If another judge has submitted an issue, you will see this as a red box above the solution.
+          </p>
+          <div class="screenshot-container">
+            <img src="{{ url_for('static', filename='images/instructions_6.png') }}" alt="Screenshot of submitting a grade and feedback" class="img-fluid step-screenshot">
+            <small class="screenshot-caption">Fig 4: Ground-truth solution interface.</small>
+          </div>
+        </div>
+      </article>
+
+      <article class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">5</div>
+          <h2 class="step-title">Read model attempt</h2>
+        </div>
+        <div class="step-content">
+          <p>
+            For each problem, you will grade multiple attempts. In this interface, you can navigate between attempts by selecting "Run 1", "Run 2", etc. At the top of each solution, you will see 
+          </p>
+          <ul>
+            <li>problem statement (top)</li>
+            <li>model attempt (bottom left)</li>
+            <li>LLM Judge (bottom right, if available)</li>
+          </ul>
+          <p>
+            The LLM judgment contains a summary of the proof along with at most four issues the judge found in the proof. Some notes about this:
+            <ul>
+              <li><strong>Incorrect: </strong> Do not rely on the output of the model alone to judge a proof.</li>
+              <li><strong>No issues != correct proof: </strong>The model could have missed important issues.</li>
+              <li><strong>Optional: </strong>Feel free to completely ignore the LLM judgment.</li>
+              <li><strong>Cautious: </strong>The model was prompted to be very cautious, likely leading to overreporting small issues.</li>
+              <li><strong>Clicking Cited Text: </strong>You can click the cited text to navigate to that part of the proof. The algorithm behind this is not 100% fool-proof, so might scroll you down to a wrong point sometimes.</li>
+            </ul>
+          </p>
+          <p>  
+            There is a divider between the model attempt and LLM judgment that allows you to make one of them larger.
+          </p>
+          <div class="screenshot-container">
+            <img src="{{ url_for('static', filename='images/instructions_7.png') }}" alt="Screenshot of submitting a grade and feedback" class="img-fluid step-screenshot">
+            <small class="screenshot-caption">Fig 5: Model outputs interface.</small>
+          </div>
+        </div>
+      </article>
+
+      <article class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">6</div>
+          <h2 class="step-title">Grade the solution</h2>
+        </div>
+        <div class="step-content">
+          <p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: 
+            <ul>
+              <li>Makes a small computational mistake that can be easily fixed</li>
+              <li>Misses an edge case which can be easily proven/disproven</li>
+              <li>Skips over a step that follows without much reasoning or manual work</li>
+            </ul> A solution should be marked as incorrect if: <ul>
+              <li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li>
+              <li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li>
+              <li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li>
+              <li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li>
+            </ul> 
+            The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>
+        </div>
+      </article>
+
+      <article class="instruction-step">
+        <div class="step-header">
+          <div class="step-number">7</div>
+          <h2 class="step-title">Fill in the grading form</h2>
+        </div>
+        <div class="step-content">
+          <p>
+            You will grade whether the model attempt is correct (score=1) or incorrect (score=0). Small errors in the model attempt that can be easily fixed (e.g. typos, small oversights) should be graded as correct.
+            You are required to provide a score and feedback, describing the reasoning behind your score. You can additionally add the following:
+          </p>
+          <ul>
+            <li><strong>Annotation: </strong> To add an annotation, select any text in the model attempt and press "+ Add annotation". Describe your annotation (e.g., first mistake, arithmetic error, ...) in the box that appears. By pressing "Save" the annotation will be stored. You can delete annotations afterwards by clicking "❌" in the box.</li>
+            <li><strong>Indicate uncertainty: </strong> In the case that you are not sure about your grade, you can check the checkbox. Please explain in your feedback why you are doubting in this case.
+            <ul>
+              <li><strong>Good Example: </strong> The model makes a mistake that is borderline. You believe that the mistake is small enough to award a full grade, but are not 100% sure.</li>
+              <li><strong>Bad Example: </strong> You did not read fully through the model solution, and on first check everything looked fine, but you could have missed something.</li>
+            </ul>
+            </li>
+            <li><strong>Indicate Out-of-Depth: </strong>In the case the solution uses or requires knowledge that you do not possess or understand, you can mark this checkbox. The problem will then be assigned to another judge. <strong>You do not have to grade the solution.</strong>
+              <ul>
+                <li><strong>Good Example: </strong> You were assigned a problem that requires nuanced understanding of continuity under limits, but you do know the rigorous definitions of this topic. Studying it would take too long.</li>
+                <li><strong>Bad Example: </strong> The model uses a well-known theorem you did not know. You did not check on Google/Wikipedia what the statement says.</li>
+              </ul>
+            </li>
+            <li><strong>Indicate Tedious / Very Long Solution:</strong> Models sometimes produce very long and very tedious solutions. In this case, try your best to grade the solution, but we trust in your judgment to indicate when a solution is too long or tedious to grade. The solution will not be assigned to another judge. <strong>You do not have to grade the solution.</strong>
+              <ul>
+                <li><strong>Good Example: </strong> The model tries to perform a solution using dynamic programming that contains dozens of lines of convoluted computations.</li>
+                <li><strong>Bad Example: </strong> The model solves a geometric problem by coordinate bashing the solution. The calculations are long, but with some effort, you can disentangle the solution.</li>
+              </ul>
+            </li>
+            
+          </ul>
+          <p>
+            <strong>Press "Save" after you have made your grade. This will store your grading.</strong> Since we go for as many problems as possible, only add annotations if you think they are needed or useful, and easy to create.
+          </p>
+          <div class="screenshot-container">
+            <img src="{{ url_for('static', filename='images/instructions_8.png') }}" alt="Screenshot of submitting a grade and feedback" class="img-fluid step-screenshot">
+            <small class="screenshot-caption">Fig 6: Form interface.</small>
+          </div>
+        </div>
+      </article>
+
+      </div>
+  </section>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="static/js/sidebar.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="static/js/data.js"></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Ensure KaTeX rendering is explicitly called after DOM is ready,
+      // especially if content is dynamically loaded or not immediately visible.
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

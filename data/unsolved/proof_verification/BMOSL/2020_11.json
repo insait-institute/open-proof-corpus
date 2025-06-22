@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.05,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2020
+    },
+    "problem": "Let \\( \\triangle ABC \\) be a triangle. On the sides \\( BC, CA, AB \\) of the triangle, construct outwardly three squares with centers \\( O_a, O_b, O_c \\) respectively. Let \\( \\omega \\) be the circumcircle of \\( \\triangle O_a O_b O_c \\).\n\nGiven that \\( A \\) lies on \\( \\omega \\), prove that the center of \\( \\omega \\) lies on the perimeter of \\( \\triangle ABC \\).",
+    "problem_id": "BMOSL_2020_11",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Let the vertices of the squares be $A C_{1} C_{2} B, B A_{1} A_{2} C, C B_{1} B_{2} A$.\nLemma: $B B_{2}=C C_{1}$ and $B B_{2} \\perp C C_{1}$.\nProof: Notice that by rotating $\\triangle A C_{1} C$ by $90^{\\circ}$ we get $\\triangle A B B_{2}$ proving the lemma.\nClaim: $A O_{a} \\perp O_{b} O_{c}$\nProof: Let $M$ be the midpoint of $A B$. By our lemma applied at vertex $C$ we get $A A_{2}=B B_{1}$ and they are perpendicular. By homothety of factor $2$ at $A$ and then $B$ we get:\n\n$$\nM O_{b}=\\frac{1}{2} B B_{1}=\\frac{1}{2} A A_{2}=M O_{a} \\quad \\text { and } \\quad M O_{b}\\left\\|B B_{1}, M O_{a}\\right\\| A A_{2}\n$$\n\nHence $M O_{a}, M O_{b}$ are also perpendicular so in fact $\\triangle O_{b} M O_{a}$ is an isosceles right triangle. This is also trivially the case for $\\triangle A M O_{c}$. Now applying our lemma to $\\triangle A M O_{b}$ at vertex $M$ we get $O_{b} O_{c}$ and $A O_{a}$ are perpendicular which is exactly what we wanted.\n\nSimilarly we get $B O_{b} \\perp O_{a} O_{c}$ and $C O_{c} \\perp O_{a} O_{b}$ so lines $A O_{a}, B O_{b}, C O_{c}$ concur at $H$, the orthocentre of $\\triangle O_{a} O_{b} O_{c}$. As $A$ lies on $\\omega$ and on $O_{a} H$ it follows $A$ is the reflection of $H$ in line $O_{b} O_{c}$.\n\nClaim: $H=B$ or $H=C$\nProof: Assume not. By the previous observations we get $O_{c} H=O_{c} A=O_{c} B$. Hence as $O_{c} O_{a} \\perp B H$ and $B \\neq H$ this means $B$ is the reflection of $H$ in $O_{c} O_{a}$ so $B$ lies on $\\omega$.\n\nSimilarly, $C$ lies on $\\omega$. But then we get:\n\n$$\n\\angle A C B=180^{\\circ}-\\angle B O_{c} A=90^{\\circ} \\quad \\text { and } \\quad \\angle C B A=180^{\\circ}-\\angle A O_{b} C=90^{\\circ}\n$$\nso $\\angle A C B+\\angle C B A=180^{\\circ}$ which is absurd so in fact one of $B, C$ is equal to $H$.\nWLOG $B=H$. As $A, H, O_{a}$ and $C, H, O_{c}$ are collinear this means in fact $B$ lies on these lines. Hence:\n$$\n\\angle A O_{c} C=\\angle A O_{c} B=90^{\\circ}\n$$\n\nAlso $\\angle A O_{b} C=90^{\\circ}$ hence $C$ also lies on $\\omega$ and $\\omega$ in fact has diameter $A C$ and so its circumcentre is the midpoint of $A C$ which lies on the perimeter of $\\triangle A B C$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

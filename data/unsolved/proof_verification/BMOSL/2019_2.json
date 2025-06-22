@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.01,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2019
+    },
+    "problem": "Find all functions \\( f: \\mathbb{R} \\rightarrow \\mathbb{R} \\) such that:\n\n\\[\nf(x y) = y f(x) + x + f(f(y) - f(x))\n\\]\n\nfor all \\( x, y \\in \\mathbb{R} \\).",
+    "problem_id": "BMOSL_2019_2",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Firstly, considering $(x, y)=(1,1)$ we get $f(0)=-1$.\nThen, setting $y=1$, we see that $-x=f(f(1)-f(x))$, so $f$ must be surjective.\nNow let $(x, y)=(a, 0)$ and $(0, a)$ to get\n$$\n-1=a+f(-1-f(a)) \\quad \\text { and } \\quad-1=-a+f(f(a)+1)\n$$\n\nSince $f$ is surjective, for any real $z$ we may write $z=f(a)+1$ and then adding these two results gives $f(z)+f(-z)=-2$.\n\nLetting $(x, y)=(a, 1)$ and $(1, a)$ we get\n\n$$\n-a=f(f(1)-f(a)) \\quad \\text { and } \\quad f(a)=a f(1)+1+f(f(a)-f(1)) .\n$$\n\nAdding these, and using the previous result with $z=f(a)-f(1)$ gives\n\n$$\nf(a)=a f(1)+a-1 .\n$$\n\nSo $f(x)=k x-1$ for all $x$, for some fixed $k$. Substituting back into the original equation we see that $1$ and $-1$ are the only possibilities for $k$ and that both of these values do give a function that works.\n\nAlternative solution. We prove that $f(x)=x-1$ and $f(x)=-x-1$ are the only solutions. Let $x=y=1$; this gives $f(1)=f(1)+1+f(0)$, so $f(0)=-1$. Then let $(x, y)=(0, a+1),(-a-1,0)$, and $(-a, 1)$ to give the three equalities\n\n$$\n\\begin{aligned}\nf(0)=(a+1) f(0)+f(f(a+1)-f(0)) & \\Rightarrow a=f(f(a+1)+1) \\\\\nf(0)=-a-1+f(f(0)-f(-a-1)) & \\Rightarrow a=f(-f(-a-1)-1) \\\\\nf(-a)=f(-a)-a+f(f(1)-f(a)) & \\Rightarrow a=f(f(1)-f(-a)) .\n\\end{aligned}\n$$\n\nThe last of these three implies $f$ is bijective, hence we have\n\n$$\nf(a+1)+1=-f(-a-1)-1=f(1)-f(-a)\n$$\n\nFrom the second of these equalities we can deduce the recurrence relation $f(x)=$ $f(x-1)+f(1)+1$, so if $c=f(1)+1$, we have $f(x)=c x-1$ for all $x \\in \\mathbb{Z}$. Substituting into the original equation we see that $c^{2}=1$, so $f(x)=x-1$ or $f(x)=-x-1$ for $x \\in \\mathbb{Z}$.\n\nIn the first case, let $x=1$. Then $f(y)=1+f(f(y))$, which implies $f(x)=x-1$ for all $x$ as $f$ is surjective. In the second case, set $x=-1$, so $f(-y)=-1+f(f(y))$. However from above we have $f(a+1)+f(-a-1)=2$, so $f(f(y))-1=f(-y)=-f(y)-2$, and we have $f(x)=-x-1$ by surjectivity.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

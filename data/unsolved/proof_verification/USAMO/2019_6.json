@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.38,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2019
+    },
+    "problem": "Find all polynomials \\( P \\) with real coefficients such that\n\\[\n\\frac{P(x)}{yz} + \\frac{P(y)}{zx} + \\frac{P(z)}{xy} = P(x-y) + P(y-z) + P(z-x)\n\\]\nfor all nonzero real numbers \\( x, y, z \\) obeying \\( 2xyz = x+y+z \\).",
+    "problem_id": "USAMO_2019_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nFind all polynomials $P$ with real coefficients such that\n\n$$\n\\frac{P(x)}{y z}+\\frac{P(y)}{z x}+\\frac{P(z)}{x y}=P(x-y)+P(y-z)+P(z-x)\n$$\nfor all nonzero real numbers $x, y, z$ obeying $2 x y z=x+y+z$.\n\nThe given can be rewritten as saying that\n\n$$\n\\begin{aligned}\nQ(x, y, z) & :=x P(x)+y P(y)+z P(z) \\\\\n& -x y z(P(x-y)+P(y-z)+P(z-x))\n\\end{aligned}\n$$\n\nis a polynomial vanishing whenever $x y z \\neq 0$ and $2 x y z=x+y+z$, for real numbers $x, y$, $z$.\n\nClaim - This means $Q(x, y, z)$ vanishes also for any complex numbers $x, y, z$ obeying $2 x y z=x+y+z$.\n\nProof. Indeed, this means that the rational function\n\n$$\nR(x, y):=Q\\left(x, y, \\frac{x+y}{2 x y-1}\\right)\n$$\nvanishes for any real numbers $x$ and $y$ such that $x y \\neq \\frac{1}{2}, x \\neq 0, y \\neq 0, x+y \\neq 0$. This can only occur if $R$ is identically zero as a rational function with real coefficients. If we then regard $R$ as having complex coefficients, the conclusion then follows.\n\nRemark (Algebraic geometry digression on real dimension). Note here we use in an essential way that $z$ can be solved for in terms of $x$ and $y$. If $s(x, y, z)=2 x y z-(x+y+z)$ is replaced with some general condition, the result may become false; e.g. we would certainly not expect the result to hold when $s(x, y, z)=x^{2}+y^{2}+z^{2}-(x y+y z+z x)$ since for real numbers $s=0$ only when $x=y=z$ !\n\nThe general condition we need here is that $s(x, y, z)=0$ should have \"real dimension two\". Here is a proof using this language, in our situation.\n\nLet $M \\subset \\mathbb{R}^{3}$ be the surface $s=0$. We first contend $M$ is two-dimensional manifold. Indeed, the gradient $\\nabla s=\\langle 2 y z-1,2 z x-1,2 x y-1\\rangle$ vanishes only at the points $( \\pm 1 / \\sqrt{2}, \\pm 1 / \\sqrt{2}, \\pm 1 / \\sqrt{2}$ ) where the $\\pm$ signs are all taken to be the same. These points do not lie on $M$, so the result follows by the regular value theorem. In particular the topological closure of points on $M$ with $x y z \\neq 0$ is all of $M$ itself; so $Q$ vanishes on all of $M$.\n\nIf we now identify $M$ with the semi-algebraic set consisting of maximal ideals ( $x-a, y-$ $b, z-c)$ in Spec $\\mathbb{R}[x, y, z]$ satisfying $2 a b c=a+b+c$, then we have real dimension two, and thus the Zariski closure of $M$ is a two-dimensional closed subset of $\\operatorname{Spec} \\mathbb{R}[x, y, z]$. Thus it must be $Z=\\mathcal{V}(2 x y z-(x+y+z))$, since this $Z$ is an irreducible two-dimensional closed subset (say, by Krull's principal ideal theorem) containing $M$. Now $Q$ is a global section vanishing on all of $Z$, therefore $Q$ is contained in the (radical, principal) ideal $(2 x y z-(x+y+z))$ as needed. So it is actually divisible by $2 x y z-(x+y+z)$ as desired.\n\nNow we regard $P$ and $Q$ as complex polynomials instead. First, note that substituting $(x, y, z)=(t,-t, 0)$ implies $P$ is even. We then substitute\n\n$$\n(x, y, z)=\\left(x, \\frac{i}{\\sqrt{2}}, \\frac{-i}{\\sqrt{2}}\\right)\n$$\nto get\n\\$\\$\\begin{aligned}\n\n\\& x P(x)+\\frac{i}{\\sqrt{2}}\\left(P\\left(\\frac{i}{\\sqrt{2}}\\right)-P\\left(\\frac{-i}{\\sqrt{2}}\\right)\\right) <br>\n= \\& \\frac{1}{2} x(P(x-i / \\sqrt{2})+P(x+i / \\sqrt{2})+P(\\sqrt{2} i))\n\n\\end{aligned}$$\nwhich in particular implies that\n$$P\\left(x+\\frac{i}{\\sqrt{2}}\\right)+P\\left(x-\\frac{i}{\\sqrt{2}}\\right)-2 P(x) \\equiv P(\\sqrt{2} i)\\$\\$\n\nidentically in $x$. The left-hand side is a second-order finite difference in $x$ (up to scaling the argument), and the right-hand side is constant, so this implies $\\operatorname{deg} P \\leq 2$.\n\nSince $P$ is even and $\\operatorname{deg} P \\leq 2$, we must have $P(x)=c x^{2}+d$ for some real numbers $c$ and $d$. A quick check now gives the answer $P(x)=c\\left(x^{2}+3\\right)$ which all work.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2021
+    },
+    "problem": "Let \\( n \\) be a positive integer. Determine, in terms of \\( n \\), the greatest integer which divides every number of the form \\( p+1 \\), where \\( p \\equiv 2 \\pmod{3} \\) is a prime number which does not divide \\( n \\).",
+    "problem_id": "BMOSL_2021_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Let $k$ be the greatest such integer. We will show that $k=3$ when $n$ is odd and $k=6$ when $n$ is even.\n\nWe will say that a number $p$ is nice if $p$ is a prime number of the form $2 \\bmod 3$ which does not divide $N$.\n\nNote first that if $3 \\mid p+1$ for every nice number $p$ and so $k$ is a multiple of $3$.\nIf $n$ is odd, then $p=2$ is nice, so we must have $k \\mid 3$. From the previous paragraph we get that $k=3$.\n\nIf $n$ is even, then $p=2$ is not nice, therefore every nice $p$ is of the form $5 \\bmod 6$. So in this case $6 \\mid p+1$ for every nice number $p$.\n\nIt remains to show that (if $n$ is even then)\n(i) There is a nice $p$ such that $4 \\nmid p+1$.\n(ii) There is a nice $p$ such that $9 \\nmid p+1$.\n(iii) There is a nice $p$ such that for every prime $q \\neq 2,3$ we have that $q \\nmid p+1$.\n\nFor (i), by Dirichlet's theorem on arithmetic progressions, there are infinitely many primes of the form $p \\equiv 5 \\bmod 12$. Any one of them which is larger than $n$ will do.\n\nFor (ii), by Dirichlet's theorem on arithmetic progressions, there are infinitely many primes of the form $p \\equiv 2 \\bmod 9$. Any one of them which is larger than $n$ will do.\n\nFor (iii), by Dirichlet's theorem on arithmetic progressions, there are infinitely many primes of the form $p \\equiv 2 \\bmod 3 q$. Any one of them which is larger than $n$ will do.\n\nRemark. In the proposal, the statement of Dirichlet's theorem on Arithmetic Progressions was given as known. Even though this makes the problem fairer we omitted it because we feel that it also makes it easier.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

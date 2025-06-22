@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.05,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2020
+    },
+    "problem": "Given an integer \\( k \\geq 2 \\), determine all functions \\( f \\) from the positive integers into themselves such that \\( f(x_1)! + f(x_2)! + \\cdots + f(x_k)! \\) is divisible by \\( x_1! + x_2! + \\cdots + x_k! \\) for all positive integers \\( x_1, x_2, \\ldots, x_k \\).",
+    "problem_id": "BMOSL_2020_16",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. The identity is the only function satisfying the condition in the statement. Begin by letting the $x$ 's be all equal to $n$ to infer that $f(n)$ ! is divisible by $n$ !, so $f(n) \\geqslant n$ for all positive integers $n$.\n\nClaim. $f(p-1)=p-1$ for all but finitely many primes $p$.\nAssume the Claim for the moment to proceed as follows: Fix any positive integer $n$, and let $p$ be a large enough prime, e. g., $p>f(n)!-n$. Then let one of the $x$ 's be equal to $1$ and the remaining $k-1$ be all equal to $p-1$, and use the Claim to infer that the number\n\n$$\n(f(n)!-n!)+(n!+(k-1)(p-1)!)=f(n)!+(k-1) f(p-1)!\n$$\nis divisible by $n!+(k-1)(p-1)$ !, and hence so is $f(n)!-n$ !. Since $p$ is large enough, this forces $f(n)!=n!$, and since $f(n) \\geqslant n$, it follows that $f(n)=n$, as desired.\nProof of the Claim. If $k$ is even, let $p>f(1)!$, and let half of the $x$ 's be all equal to $1$ and the other half be all equal to $p-1$, to infer that $f(p-1)!+f(1)$ ! is divisible by $(p-1)!+1$. By Wilson's theorem, the latter is divisible by $p$, and hence so is the former. Since $p>f(1)$ !, the number $f(1)$ ! is not divisible by $p$, so $f(p-1)$ ! is not divisible by $p$ either, forcing $f(p-1) \\leqslant p-1$. Recall now that $f(p-1) \\geqslant p-1$, to conclude that $f(p-1)=p-1$.\n\nIf $k$ is odd, let $p>f(2)!+\\frac{1}{2}(k-3) f(1)$ !, let $\\frac{1}{2}(k+1)$ of the $x$ 's be all equal to $p-1$, let one of the $x$ 's be equal to $2$, and let the remaining ones (if any) be all equal to $1$, to infer that $\\frac{1}{2}(k+1) f(p-1)!+f(2)!+\\frac{1}{2}(k-3) f(1)!$ is divisible by $\\frac{1}{2}(k+1)(p-1)!+2+\\frac{1}{2}(k-3)=$ $\\frac{1}{2}(k+1)((p-1)!+1)$. By Wilson's theorem, the latter is divisible by $p$, and hence so is the former. Since $p>f(2)!+\\frac{1}{2}(k-3) f(1)$ !, the number $f(2)!+\\frac{1}{2}(k-3) f(1)!$ is not divisible by $p$, so $\\frac{1}{2}(k+1) f(p-1)$ ! is not divisible by $p$ either, forcing $f(p-1) \\leqslant p-1$. Recall again that $f(p-1) \\geqslant p-1$, to conclude that $f(p-1)=p-1$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

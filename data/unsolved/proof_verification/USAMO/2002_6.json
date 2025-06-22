@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.04,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2002
+    },
+    "problem": "I have an \\(n \\times n\\) sheet of stamps, from which I've been asked to tear out blocks of three adjacent stamps in a single row or column. (I can only tear along the perforations separating adjacent stamps, and each block must come out of the sheet in one piece.) Let \\(b(n)\\) be the smallest number of blocks I can tear out and make it impossible to tear out any more blocks. Prove that there are real constants \\(c\\) and \\(d\\) such that\n\n\\[\n\\frac{1}{7} n^{2}-c n \\leq b(n) \\leq \\frac{1}{5} n^{2}+d n\n\\]\n\nfor all \\(n>0\\).",
+    "problem_id": "USAMO_2002_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "I have an $n \\times n$ sheet of stamps, from which I've been asked to tear out blocks of three adjacent stamps in a single row or column. (I can only tear along the perforations separating adjacent stamps, and each block must come out of the sheet in one piece.) Let $b(n)$ be the smallest number of blocks I can tear out and make it impossible to tear out any more blocks. Prove that there are real constants $c$ and $d$ such that\n\n$$\n\\frac{1}{7} n^{2}-c n \\leq b(n) \\leq \\frac{1}{5} n^{2}+d n\n$$\nfor all $n>0$.\n\nFor the lower bound: there are $2 n(n-2)$ places one could put a block. Note that each block eliminates at most $14$ such places.\n\nFor the upper bound, the construction of $\\frac{1}{5}$ is easy to build. Here is an illustration of one possible construction for $n=9$ which generalizes readily, using only vertical blocks.\n\n$$\n\\left[\\begin{array}{lllllllll}\nA & & E & & I & L & & P & \\\\\nA & & E & G & & L & & P & R \\\\\nA & C & & G & & L & N & & R \\\\\n& C & & G & J & & N & & R \\\\\n& C & F & & J & & N & Q & \\\\\nB & & F & & J & M & & Q & \\\\\nB & & F & H & & M & & Q & S \\\\\nB & D & & H & & M & O & & S \\\\\n& D & & H & K & & O & & S\n\\end{array}\\right]\n$$\n\nActually, for the lower bound, one may improve $1 / 7$ to $1 / 6$. Count the number $A$ of pairs of adjacent squares one of which is torn out and the other which is not:\n\n- For every deleted block, there are eight neighboring squares, at least two on each long edge which have been deleted too. Hence $N \\leq 6 b(n)$.\n- For every block still alive and not on the border, there are four neighboring squares, and clearly at least two are deleted. Hence $N \\geq 2\\left((n-2)^{2}-3 b(n)\\right)$.\n\nCollating these solves the problem.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

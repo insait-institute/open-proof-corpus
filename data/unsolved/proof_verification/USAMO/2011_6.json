@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.22,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2011
+    },
+    "problem": "Let \\( A \\) be a set with \\(|A|=225\\), meaning that \\( A \\) has 225 elements. Suppose further that there are eleven subsets \\( A_{1}, \\ldots, A_{11} \\) of \\( A \\) such that \\(\\left|A_{i}\\right|=45\\) for \\(1 \\leq i \\leq 11\\) and \\(\\left|A_{i} \\cap A_{j}\\right|=9\\) for \\(1 \\leq i<j \\leq 11\\). Prove that \\(\\left|A_{1} \\cup A_{2} \\cup \\cdots \\cup A_{11}\\right| \\geq 165\\), and give an example for which equality holds.",
+    "problem_id": "USAMO_2011_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nLet $A$ be a set with $|A|=225$, meaning that $A$ has $225$ elements. Suppose further that there are eleven subsets $A_{1}, \\ldots, A_{11}$ of $A$ such that $\\left|A_{i}\\right|=45$ for $1 \\leq i \\leq 11$ and $\\left|A_{i} \\cap A_{j}\\right|=9$ for $1 \\leq i<j \\leq 11$. Prove that $\\left|A_{1} \\cup A_{2} \\cup \\cdots \\cup A_{11}\\right| \\geq 165$, and give an example for which equality holds.\n\nIgnore the $225$ - it is irrelevant.\nDenote the elements of $A_{1} \\cup \\cdots \\cup A_{11}$ by $a_{1}, \\ldots, a_{n}$, and suppose that $a_{i}$ appears $x_{i}$ times among $A_{i}$ for each $1 \\leq i \\leq n$ (so $1 \\leq x_{i} \\leq 11$ ). Then we have\n\n$$\n\\sum_{i=1}^{11} x_{i}=\\sum_{i=1}^{11}\\left|A_{i}\\right|=45 \\cdot 11\n$$\nand\n$$\n\\sum_{i=1}^{11}\\binom{x_{i}}{2}=\\sum_{1 \\leq i<j \\leq 11}\\left|A_{i} \\cap A_{j}\\right|=\\binom{11}{2} \\cdot 9 .\n$$\n\nTherefore, we deduce that $\\sum x_{i}=495$ and $\\sum_{i} x_{i}^{2}=1485$. Now, by Cauchy Schwarz\n\n$$\nn\\left(\\sum_{i} x_{i}^{2}\\right) \\geq\\left(\\sum x_{i}\\right)^{2}\n$$\nwhich implies $n \\geq \\frac{495^{2}}{1485}=165$.\nEquality occurs if we let $A$ consist of the $165$ three-element subsets of $\\{1, \\ldots, 11\\}$ (plus $60$ of your favorite reptiles if you really insist $|A|=225$ ). Then we let $A_{i}$ denote those subsets containing $i$, of which there are $\\binom{10}{2}=45$, and so that $\\left|A_{i} \\cap A_{j}\\right|=\\binom{9}{1}=9$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

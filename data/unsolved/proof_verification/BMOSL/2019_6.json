@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.01,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2019
+    },
+    "problem": "Let \\(ABCD\\) be a square with center \\(O\\) and let \\(M\\) be the symmetric of the point \\(B\\) with respect to the point \\(A\\). Let \\(E\\) be the intersection of \\(CM\\) and \\(BD\\), and let \\(S\\) be the intersection of \\(MO\\) and \\(AE\\). Show that \\(SO\\) is the angle bisector of \\(\\angle ESB\\).",
+    "problem_id": "BMOSL_2019_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. We have\n\n$$\n\\left\\{\\begin{array}{l}\nD C \\equiv D A \\\\\n\\angle E D C \\equiv \\angle E D A \\quad \\Rightarrow \\triangle D E C \\equiv \\triangle D E A \\Rightarrow \\angle D A E \\equiv \\angle D C E(*) . \\\\\nD E \\equiv D E\n\\end{array}\\right.\n$$\n\nLet $C M \\cap A D=\\{P\\}$, then follows $\\triangle C D P \\equiv \\triangle B A P$ and $\\angle P C D \\equiv \\angle P B A(* *)$.\n\nFigure 1: G1\nFrom (*) and (**) follows $\\angle D C P \\equiv \\angle D A E \\equiv \\angle P B A$.\nNow, let $S^{\\prime}=A E \\cap P B$.\nIn the triangle $S^{\\prime} A B$ we have\n\n$$\nm\\left(\\angle S^{\\prime} A B\\right)+m\\left(\\angle S^{\\prime} B A\\right)=m\\left(\\angle S^{\\prime} A B\\right)+m\\left(\\angle P A S^{\\prime}\\right)=m(\\angle P A B)=90^{\\circ},\n$$\nso $m\\left(\\angle B S^{\\prime} A\\right)=90^{\\circ}$.\nWe show that $A E, B P$ and $M O$ are concurrent.\nIn the triangle $\\triangle E M B$ we apply the Ceva theorem, so\n$$\n\\frac{E P}{P M} \\cdot \\frac{M A}{A B} \\cdot \\frac{B O}{O E}=1 \\Leftrightarrow \\frac{E P}{P M}=\\frac{O E}{B O}\n$$\n\nis true because $P O$ is a midsegment in the triangle $D A B(P O \\| A B)$.\nAccording to the Thales theorem in the triangle $E M B, \\frac{E P}{P M}=\\frac{E O}{O B}$ and $A E, B P$, $M O$ are concurrent in $S^{\\prime}$, which is in fact $S$.\n\nLet $P B \\cap C A=\\{N\\}$. Because ESNO has $m(\\angle E O N)+m(\\angle E S N)=180^{\\circ}$, it follows $E S N O$ cyclic and $m(\\angle E S O)=m(\\angle E N O)=m(\\angle D A O)=45^{\\circ}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

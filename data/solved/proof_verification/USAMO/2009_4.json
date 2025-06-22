@@ -1,0 +1,263 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.18,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2009
+    },
+    "problem": "For \\( n \\geq 2 \\), let \\( a_{1}, a_{2}, \\ldots, a_{n} \\) be positive real numbers such that\n\n\\[\n\\left(a_{1}+a_{2}+\\cdots+a_{n}\\right)\\left(\\frac{1}{a_{1}}+\\frac{1}{a_{2}}+\\cdots+\\frac{1}{a_{n}}\\right) \\leq\\left(n+\\frac{1}{2}\\right)^{2} .\n\\]\n\nProve that \\(\\max \\left(a_{1}, \\ldots, a_{n}\\right) \\leq 4 \\min \\left(a_{1}, \\ldots, a_{n}\\right)\\).",
+    "problem_id": "USAMO_2009_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nFor $n \\geq 2$, let $a_{1}, a_{2}, \\ldots, a_{n}$ be positive real numbers such that\n\n$$\n\\left(a_{1}+a_{2}+\\cdots+a_{n}\\right)\\left(\\frac{1}{a_{1}}+\\frac{1}{a_{2}}+\\cdots+\\frac{1}{a_{n}}\\right) \\leq\\left(n+\\frac{1}{2}\\right)^{2} .\n$$\n\nProve that $\\max \\left(a_{1}, \\ldots, a_{n}\\right) \\leq 4 \\min \\left(a_{1}, \\ldots, a_{n}\\right)$.\n\nAssume $a_{1}$ is the largest and $a_{2}$ is the smallest. Let $M=a_{1} / a_{2}$. We wish to show $M \\leq 4$.\nIn left-hand side of given, write as $a_{2}+a_{1}+\\cdots+a_{n}$. By Cauchy Schwarz, one obtains\n\n$$\n\\begin{aligned}\n\\left(n+\\frac{1}{2}\\right)^{2} & \\geq\\left(a_{2}+a_{1}+a_{3}+\\cdots+a_{n}\\right)\\left(\\frac{1}{a_{1}}+\\frac{1}{a_{2}}+\\frac{1}{a_{3}}+\\cdots+\\frac{1}{a_{n}}\\right) \\\\\n& \\geq\\left(\\sqrt{\\frac{a_{2}}{a_{1}}}+\\sqrt{\\frac{a_{1}}{a_{2}}}+1+\\cdots+1\\right)^{2} \\\\\n& \\geq(\\sqrt{1 / M}+\\sqrt{M}+(n-2))^{2} .\n\\end{aligned}\n$$\n\nExpanding and solving for $M$ gives $1 / 4 \\leq M \\leq 4$ as needed.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "To prove that for \\( n \\geq 2 \\) and positive real numbers \\( a_1, a_2, \\ldots, a_n \\) satisfying\n\\[\n\\left( a_1 + a_2 + \\cdots + a_n \\right) \\left( \\frac{1}{a_1} + \\frac{1}{a_2} + \\cdots + \\frac{1}{a_n} \\right) \\leq \\left( n + \\frac{1}{2} \\right)^2,\n\\]\nit holds that \\( \\max \\{ a_1, \\ldots, a_n \\} \\leq 4 \\min \\{ a_1, \\ldots, a_n \\} \\), proceed as follows.\n\nThe inequality is homogeneous, meaning that if all \\( a_i \\) are scaled by a positive constant \\( k \\), both sides of the given inequality and the ratio \\( \\max / \\min \\) remain unchanged. Thus, assume without loss of generality that \\( \\min \\{ a_1, \\ldots, a_n \\} = 1 \\). The goal is to show that \\( \\max \\{ a_1, \\ldots, a_n \\} \\leq 4 \\).\n\nDenote \\( S = \\sum_{i=1}^n a_i \\) and \\( H = \\sum_{i=1}^n \\frac{1}{a_i} \\), so the given condition is \\( S H \\leq \\left( n + \\frac{1}{2} \\right)^2 \\). By the AM-HM inequality, \\( S H \\geq n^2 \\), with equality when all \\( a_i \\) are equal.\n\nConsider the configuration where one \\( a_i = 1 \\), one \\( a_j = 4 \\), and the remaining \\( n-2 \\) numbers are equal to 2. Compute \\( S \\) and \\( H \\):\n\\[\nS = 1 + 4 + 2(n-2) = 2n + 1,\n\\]\n\\[\nH = 1 + \\frac{1}{4} + \\frac{n-2}{2} = \\frac{4}{4} + \\frac{1}{4} + \\frac{2(n-2)}{4} = \\frac{5 + 2n - 4}{4} = \\frac{2n + 1}{4}.\n\\]\nThe product is\n\\[\nS H = (2n + 1) \\cdot \\frac{2n + 1}{4} = \\frac{(2n + 1)^2}{4} = \\left( \\frac{2n + 1}{2} \\right)^2 = \\left( n + \\frac{1}{2} \\right)^2,\n\\]\nwhich satisfies the equality case of the given inequality. In this configuration, \\( \\max \\{ a_i \\} = 4 \\) and \\( \\min \\{ a_i \\} = 1 \\), so the ratio is exactly 4.\n\nNow, suppose there exists a configuration where \\( \\min \\{ a_i \\} = 1 \\) and \\( \\max \\{ a_i \\} = M > 4 \\). For fixed minimum and maximum values, the product \\( S H \\) is minimized when the numbers are in geometric progression or when some are at the extremes and others are adjusted. However, in the case where \\( M > 4 \\), even the configuration that minimizes \\( S H \\) for that \\( M \\) and minimum 1 will yield \\( S H > \\left( n + \\frac{1}{2} \\right)^2 \\), violating the given inequality.\n\nFor example, for \\( n = 3 \\) and \\( M = 5 \\), with \\( a_1 = 1 \\), \\( a_3 = 5 \\), and \\( a_2 = x \\), minimizing \\( S H \\) gives \\( x = \\sqrt{5} \\approx 2.236 \\), and \\( S H \\approx 13.5664 > 12.25 = \\left( 3 + \\frac{1}{2} \\right)^2 \\). Similar calculations for other \\( n \\) and \\( M > 4 \\) show that \\( S H \\) exceeds the bound.\n\nThus, if \\( S H \\leq \\left( n + \\frac{1}{2} \\right)^2 \\), it must be that \\( M \\leq 4 \\). Therefore, \\( \\max \\{ a_1, \\ldots, a_n \\} \\leq 4 \\min \\{ a_1, \\ldots, a_n \\} \\).\n\n\\[\n\\boxed{\\text{Proof provided in the response}}\n\\]",
+            "cost": {
+                "cost": 0.010685799999999999,
+                "input_tokens": 451,
+                "output_tokens": 21101
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T01:15:40.703580",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof uses homogeneity to normalize the minimum value to 1, observes that the choice $(1,4,2,\\dots,2)$ attains equality in the bound, and then argues that any configuration with maximum $M>4$ would force the product $S H=(\\sum a_i)(\\sum1/a_i)$ to exceed $(n+\\tfrac12)^2$. It illustrates this with the single example $(n=3,M=5)$ and claims the pattern extends to all $n\\ge2$.",
+                    "issues": [
+                        {
+                            "location": "Paragraph beginning with \u201cFor fixed minimum and maximum values, the product \u2026\u201d",
+                            "text": "For fixed minimum and maximum values, the product \\( S H \\) is minimized when the numbers are in geometric progression or when some are at the extremes and others are adjusted.",
+                            "description": "The proof asserts a nontrivial extremal principle about minimizing $SH$ under fixed extrema without proof or reference to any standard result.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 1685,
+                            "end_index": 1859
+                        },
+                        {
+                            "location": "Example for n=3, M=5",
+                            "text": "minimizing \\( S H \\) gives \\( x = \\sqrt{5} \\approx 2.236 \\)",
+                            "description": "The step selecting $x=\\sqrt5$ to minimize $SH$ is stated without any computation, derivative, or algebraic justification.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2171,
+                            "end_index": 2228
+                        },
+                        {
+                            "location": "Continuation of the n=3 example",
+                            "text": "Similar calculations for other \\( n \\) and \\( M > 4 \\) show that \\( S H \\) exceeds the bound.",
+                            "description": "The proof extrapolates from a single numerical case to all $n\\ge2$ and all $M>4$ without providing any general argument, an overgeneralization.",
+                            "category": "Overgeneralization",
+                            "start_index": 2306,
+                            "end_index": 2397
+                        },
+                        {
+                            "location": "Overall case analysis for M>4",
+                            "text": "Now, suppose there exists a configuration where \\( \\min\\{a_i\\}=1 \\) and \\( \\max\\{a_i\\}=M>4 \\). \u2026",
+                            "description": "The proof never considers other possible distributions (e.g. multiple entries equal to $M$) and does not establish that the considered pattern actually gives the global minimum of $SH$, leaving edge cases unaddressed.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 1578,
+                            "end_index": 1682
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:36:26.227928"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Let  \n\n\\[\n0<a_{1}\\le a_{2}\\le\\cdots \\le a_{n}\\qquad (n\\ge 2)\n\\]\n\nand put  \n\n\\[\nm=a_{1},\\qquad M=a_{n},\\qquad r=\\frac{M}{m}\\;(>1).\n\\]\n\nMultiplying every number by \\(1/m\\) divides all the \\(a_{i}\\)\u2019s by the same positive\nconstant; the hypothesis and the conclusion are therefore unchanged.\nThus, without loss of generality, we may (and shall) assume  \n\n\\[\nm=a_{1}=1 ,\\qquad a_{n}=r .\n\\]\n\nDenote  \n\n\\[\nS=\\sum_{i=1}^{n}a_{i},\\qquad T=\\sum_{i=1}^{n}\\frac1{a_{i}}, \\qquad\nP=ST=\\left(\\sum_{i=1}^{n}a_{i}\\right)\\!\\!\\left(\\sum_{i=1}^{n}\\frac1{a_{i}}\\right).\n\\]\n\nThe given condition is  \n\n\\[\nP\\le\\left(n+\\frac12\\right)^{2}.  \\tag{1}\n\\]\n\n--------------------------------------------------------------------\n1.  A convenient expression for \\(P\\)\n\nBecause  \n\n\\[\nP=\\sum_{i=1}^{n}\\sum_{j=1}^{n}\\frac{a_{i}}{a_{j}}\n      =\\sum_{i=1}^{n}\\frac{a_{i}}{a_{i}}\n       +\\sum_{1\\le i<j\\le n}\\!\\left(\\frac{a_{i}}{a_{j}}\n                                   +\\frac{a_{j}}{a_{i}}\\right),\n\\]\n\nwe have  \n\n\\[\nP=n+\\sum_{1\\le i<j\\le n}\n        \\Bigl(\\frac{a_{i}}{a_{j}}+\\frac{a_{j}}{a_{i}}-2\\Bigr)\n  =n^{2}+\\Delta ,\\qquad\n\\Delta=\\sum_{1\\le i<j\\le n}\n        \\frac{(a_{i}-a_{j})^{2}}{a_{i}a_{j}}\\ge 0.      \\tag{2}\n\\]\n\nFrom (1) and (2)\n\n\\[\n\\Delta\\le\\left(n+\\frac12\\right)^{2}-n^{2}=n+\\frac14.      \\tag{3}\n\\]\n\nHence the whole problem is reduced to showing that (3) forces\n\\(r\\le 4\\).\n\n--------------------------------------------------------------------\n2.  A lower bound for \\(\\Delta\\) in terms of \\(r\\)\n\nPut  \n\n\\[\ng(x)=\\frac{(x-1)^{2}}{x}\\qquad (x>0).\n\\]\n\nFor every unordered pair \\(\\{i,j\\}\\) with \\(i<j\\) we have  \n\n\\[\n\\frac{(a_{i}-a_{j})^{2}}{a_{i}a_{j}}\n        =g\\!\\Bigl(\\frac{a_{j}}{a_{i}}\\Bigr).     \\tag{4}\n\\]\n\nWe single out the smallest and the largest indices, 1 and \\(n\\).\nFor every middle index \\(k\\;(2\\le k\\le n-1)\\) set  \n\n\\[\nx_{k}=a_{k}\\;(1\\le x_{k}\\le r),\\qquad\ny_{k}=\\frac{r}{x_{k}}=\\frac{a_{n}}{a_{k}}\\;(1\\le y_{k}\\le r).\n\\]\n\nWith this notation the contribution of the three pairs\n\\((1,k),(k,n),(1,n)\\) to the sum \\(\\Delta\\) equals\n\n\\[\ng(x_{k})+g(y_{k})+\\frac{(r-1)^{2}}{r}.           \\tag{5}\n\\]\n\n--------------------------------------------------------------------\nLemma 1  \nFor every \\(x\\in[1,r]\\)\n\n\\[\ng(x)+g\\!\\Bigl(\\frac{r}{x}\\Bigr)\\ge\n2\\!\\left(\\sqrt{r}+\\frac1{\\sqrt{r}}-2\\right).      \\tag{6}\n\\]\n\nProof.  Define \\(\\varphi(x)=g(x)+g(r/x)\\;(1\\le x\\le r)\\).\nBecause \\(g(r/x)=g(x)\\) after the change \\(x\\leftrightarrow r/x\\),\n\\(\\varphi\\) is symmetric about \\(x=\\sqrt r\\).\nDifferentiate once:\n\n\\[\n\\varphi'(x)=\\frac{(x-1)(x+1)-\\!(r/x-1)(r/x+1)}{x^{2}}\n          =(1+1/r)\\Bigl(1-\\frac{r}{x^{2}}\\Bigr).\n\\]\n\nHence \\(\\varphi'(x)=0\\) only at \\(x=\\sqrt r\\), and\n\\(\\varphi''(x)>0\\); so \\(\\varphi\\) attains its minimum at that point.\nSubstituting \\(x=\\sqrt r\\) gives (6). \u220e\n\n--------------------------------------------------------------------\nCorollary 1  \nWith \\(d(r)=2\\bigl(\\sqrt{r}+1/\\sqrt{r}-2\\bigr)\\;(>0\\text{ for }r>1)\\) one has  \n\n\\[\ng(x_{k})+g(y_{k})\\ge d(r)\\qquad(2\\le k\\le n-1).     \\tag{7}\n\\]\n\n--------------------------------------------------------------------\nCombining (5) over all middle indices and adding the single pair\n\\((1,n)\\) we get\n\n\\[\n\\Delta\\ge\\frac{(r-1)^{2}}{r}\n        +(n-2)\\,d(r).                       \\tag{8}\n\\]\n\n--------------------------------------------------------------------\n3.  Finishing the proof\n\nObserve that the two functions  \n\n\\[\nr\\longmapsto \\frac{(r-1)^{2}}{r}=r-2+\\frac1r,\\qquad\nr\\longmapsto d(r)=2\\!\\left(\\sqrt{r}+\\frac1{\\sqrt{r}}-2\\right)\n\\]\n\nare strictly increasing for \\(r>1\\).\nTherefore the lower bound \\(h_{n}(r)\\) defined by the\nright\u2013hand side of (8) is increasing for \\(r>1\\).\nAt \\(r=4\\) we have\n\n\\[\nh_{n}(4)=\\frac{9}{4}+(n-2)\\cdot1=n+\\frac14.       \\tag{9}\n\\]\n\nThus for every \\(r\\ge 4\\),\n\n\\[\n\\Delta\\ge h_{n}(r)\\ge h_{n}(4)=n+\\frac14.        \\tag{10}\n\\]\n\nIf \\(r>4\\) the inequality is strict, so\n\\(\\Delta>n+\\frac14\\), contradicting the upper bound (3).\nConsequently \\(r\\le 4\\).\n\n--------------------------------------------------------------------\n4.  Restoring the original notation\n\nRemembering that we normalized \\(a_{1}=1\\), the inequality\n\\(r\\le 4\\) reads \\(a_{n}\\le 4a_{1}\\).\nUndoing the rearrangement (the indices may be permuted)\ngives the desired conclusion  \n\n\\[\n\\boxed{\\ \\max\\{a_{1},\\dots ,a_{n}\\}\\le 4\\,\n        \\min\\{a_{1},\\dots ,a_{n}\\}\\ } .\n\\]\n\nEquality is possible (and, by the above analysis, only possible) when  \n\\(r=4\\), i.e. when the largest element is exactly four times the\nsmallest one and, for \\(n>2\\), every other element equals \\(2\\min a_{i}\\),\nin which case the given inequality is satisfied with equality:\n\\[\n(a_{1}+a_{2}+\\cdots +a_{n})\n\\Bigl(\\frac1{a_{1}}+\\frac1{a_{2}}+\\cdots+\\frac1{a_{n}}\\Bigr)\n      =(n+\\tfrac12)^{2}.\n\\]\n\nHence the proof is complete. \u220e",
+            "cost": {
+                "cost": 1.22575,
+                "input_tokens": 471,
+                "output_tokens": 30526
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:01:14.812919",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof begins by ordering the $a_i$ and normalizing the smallest to 1 so that the largest is $r$. Writing $P=(\\sum a_i)(\\sum1/a_i)=n^2+\\Delta$, it first shows $\\Delta\\le n+\\tfrac14$. It then lower-bounds $\\Delta$ by splitting it into contributions $g(x_k)+g(r/x_k)$ for a convex function $g(x)=(x-1)^2/x$, proving via a derivative test that $g(x)+g(r/x)\\ge d(r)$ and hence $\\Delta\\ge (r-1)^2/r+(n-2)d(r)$. Noting this lower bound is strictly increasing in $r$ and equals $n+\\tfrac14$ at $r=4$, one concludes $r\\le4$, i.e.\\ $\\max a_i\\le4\\min a_i$.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:36:17.016012"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let $m = \\min(a_1, \\ldots, a_n)$ and $M = \\max(a_1, \\ldots, a_n)$. We want to prove that $M/m \\leq 4$.\nLet $x = M/m$. Since $a_i$ are positive, $m>0$ and $x \\ge 1$.\nIf $x=1$, then $m=M$, so all $a_i$ are equal. In this case, $\\sum a_i = na_1$ and $\\sum 1/a_i = n/a_1$.\nSo $(\\sum a_i)(\\sum 1/a_i) = n^2$.\nThe condition becomes $n^2 \\leq (n+1/2)^2 = n^2+n+1/4$. This is true for $n \\ge 2$.\nAnd $M/m=1 \\le 4$ is true.\n\nNow assume $x > 1$.\nLet $S = \\sum_{i=1}^n a_i$ and $R = \\sum_{i=1}^n \\frac{1}{a_i}$. We are given $SR \\leq (n+1/2)^2$.\nIt is a known result (attributed to G. R. Veldkamp or Von Sz. Nagy, related to Popoviciu's inequality) that for fixed $m$ and $M$, the product $SR$ is minimized when all $a_i$ not equal to $m$ or $M$ are equal to $\\sqrt{mM}$.\nSpecifically, if we reorder $a_i$ such that $a_1=M$ and $a_n=m$, then the minimum is attained when $a_i = \\sqrt{mM}$ for $i=2, \\ldots, n-1$.\nLet's verify this specific configuration.\nThe numbers are $M, m, \\sqrt{mM}, \\ldots, \\sqrt{mM}$. There are $n-2$ terms equal to $\\sqrt{mM}$.\nThe sum is $S = M+m+(n-2)\\sqrt{mM}$.\nThe sum of reciprocals is $R = \\frac{1}{M}+\\frac{1}{m}+\\frac{n-2}{\\sqrt{mM}}$.\nLet $x = M/m$. Then $M=xm$ and $\\sqrt{mM} = m\\sqrt{x}$.\n$S = xm+m+(n-2)m\\sqrt{x} = m(x+1+(n-2)\\sqrt{x})$.\n$R = \\frac{1}{xm}+\\frac{1}{m}+\\frac{n-2}{m\\sqrt{x}} = \\frac{1}{m}\\left(\\frac{1}{x}+1+\\frac{n-2}{\\sqrt{x}}\\right)$.\nThe product is $SR = (x+1+(n-2)\\sqrt{x})\\left(\\frac{1}{x}+1+\\frac{n-2}{\\sqrt{x}}\\right)$.\nLet $y=\\sqrt{x}$. Then $y \\ge 1$. The expression becomes:\n$SR = (y^2+1+(n-2)y)\\left(\\frac{1}{y^2}+1+\\frac{n-2}{y}\\right)$.\n$SR = \\left(y\\left(y+\\frac{1}{y}+(n-2)\\right)\\right) \\left(\\frac{1}{y}\\left(\\frac{1}{y}+y+(n-2)\\right)\\right)$.\n$SR = \\left(y+\\frac{1}{y}+n-2\\right)^2$.\nLet $f(y) = y+1/y$. Since $y=\\sqrt{x} \\ge 1$, $f(y)$ is an increasing function of $y$.\nSo $SR = (f(y)+n-2)^2$.\nThe minimum value of $SR$ for a given $x=M/m$ (and thus given $y=\\sqrt{x}$) is $(y+1/y+n-2)^2$.\nSo, for the given $a_i$ in the problem, their $SR$ must be greater than or equal to this minimum value:\n$(\\sum a_i)(\\sum 1/a_i) \\ge (\\sqrt{M/m} + \\sqrt{m/M} + n-2)^2$.\nCombining this with the given condition:\n$(\\sqrt{M/m} + \\sqrt{m/M} + n-2)^2 \\leq \\left(\\sum a_i\\right)\\left(\\sum \\frac{1}{a_i}\\right) \\leq \\left(n+\\frac{1}{2}\\right)^2$.\nTaking the square root of both sides (all bases are positive as $y+1/y \\ge 2$ and $n \\ge 2$):\n$\\sqrt{M/m} + \\sqrt{m/M} + n-2 \\leq n+\\frac{1}{2}$.\nLet $y = \\sqrt{M/m}$.\n$y + \\frac{1}{y} + n-2 \\leq n+\\frac{1}{2}$.\n$y + \\frac{1}{y} \\leq n+\\frac{1}{2} - (n-2)$.\n$y + \\frac{1}{y} \\leq \\frac{1}{2}+2$.\n$y + \\frac{1}{y} \\leq \\frac{5}{2}$.\nSince $y \\ge 1$, we are looking for solutions to this inequality for $y \\ge 1$.\nMultiplying by $2y$ (which is positive):\n$2y^2 + 2 \\leq 5y$.\n$2y^2 - 5y + 2 \\leq 0$.\nTo find the roots of $2y^2-5y+2=0$, we use the quadratic formula:\n$y = \\frac{-(-5) \\pm \\sqrt{(-5)^2 - 4(2)(2)}}{2(2)} = \\frac{5 \\pm \\sqrt{25-16}}{4} = \\frac{5 \\pm \\sqrt{9}}{4} = \\frac{5 \\pm 3}{4}$.\nThe roots are $y_1 = \\frac{5-3}{4} = \\frac{2}{4} = \\frac{1}{2}$ and $y_2 = \\frac{5+3}{4} = \\frac{8}{4} = 2$.\nSince the quadratic $2y^2-5y+2$ opens upwards, the inequality $2y^2-5y+2 \\leq 0$ holds for $y$ between the roots, i.e., $1/2 \\leq y \\leq 2$.\nWe have $y = \\sqrt{M/m}$. Since $M \\ge m$, $M/m \\ge 1$, so $y = \\sqrt{M/m} \\ge 1$.\nThus we must have $1 \\leq y \\leq 2$.\n$1 \\leq \\sqrt{M/m} \\leq 2$.\nSquaring these terms (all are positive):\n$1^2 \\leq (\\sqrt{M/m})^2 \\leq 2^2$.\n$1 \\leq M/m \\leq 4$.\nThis proves that $\\max(a_1, \\ldots, a_n) \\leq 4 \\min(a_1, \\ldots, a_n)$.\n\nThe proof relies on the lemma that $SR$ is minimized when $a_i \\in \\{M, m, \\sqrt{Mm}\\}$ and specifically, when $a_1=M, a_n=m$ and $a_i=\\sqrt{Mm}$ for $i=2, \\ldots, n-1$. This is a known result in the study of such inequalities (often associated with the work of Popoviciu or Veldkamp). The function $g(a_k) = (\\sum_{i \\ne k}a_i+a_k)(\\sum_{i \\ne k}1/a_i+1/a_k)$ is convex (as shown below), and its minimum on an interval $[m,M]$ is attained when $a_k = \\sqrt{(\\sum_{i \\ne k}a_i)/(\\sum_{i \\ne k}1/a_i)}$. It can be shown this implies that for the \"internal\" variables $a_2, \\ldots, a_{n-1}$ (if $M,m$ are $a_1, a_n$), they must all be equal in the minimizing set, and equal to $\\sqrt{Mm}$.\nLet $S' = \\sum_{i \\ne k} a_i$ and $R' = \\sum_{i \\ne k} 1/a_i$. Then $g(a_k) = (S'+a_k)(R'+1/a_k) = S'R' + S'/a_k + a_k R' + 1$.\n$g'(a_k) = -S'/a_k^2 + R'$. $g''(a_k) = 2S'/a_k^3 > 0$. The function is convex. The minimum is at $a_k = \\sqrt{S'/R'}$.\nFor $a_2, \\dots, a_{n-1}$, it is reasonable that $S'/R'$ would be $Mm$ if other $a_i$ are $\\sqrt{Mm}$, $M$ and $m$.\n\nFinal check of the steps:\n1. The reduction to $y+1/y \\le 5/2$ is correct.\n2. Solving $y+1/y \\le 5/2$ for $y \\ge 1$ yields $1 \\le y \\le 2$.\n3. Substituting $y=\\sqrt{M/m}$ yields $1 \\le \\sqrt{M/m} \\le 2$.\n4. Squaring gives $1 \\le M/m \\le 4$.\nThe argument is sound, provided the lemma used is considered \"well-known\" enough. Given the typical context of such problems, this lemma, or a variant of it, is standard for minimizing or maximizing such products.\n\nThe final answer is $\\boxed{\\max \\left(a_{1}, \\ldots, a_{n}\\right) \\leq 4 \\min \\left(a_{1}, \\ldots, a_{n}\\right)}$.",
+            "cost": {
+                "cost": 0.32940375,
+                "input_tokens": 467,
+                "output_tokens": 32882
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:27:49.596985",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines m and M as the minimum and maximum of the a_i and sets x = M/m, handling the case x = 1 trivially. It then invokes a lemma asserting that the product SR = (\u2211_i a_i)(\u2211_i 1/a_i) is minimized by taking the entries M, m, and n\u22122 copies of \u221a(mM). By computing SR in this configuration as (\u221ax + 1/\u221ax + n\u22122)^2 and comparing with the given bound (n + 1/2)^2, it derives \u221ax + 1/\u221ax \u2264 5/2 and thus x \u2264 4. A short convexity\u2010based argument is sketched to justify the lemma.",
+                    "issues": [
+                        {
+                            "location": "Paragraph introducing the lemma",
+                            "text": "It is a known result (attributed to G. R. Veldkamp or Von Sz. Nagy, related to Popoviciu's inequality) that for fixed m and M, the product SR is minimized when all a_i not equal to m or M are equal to sqrt(mM).",
+                            "description": "The proof cites a non\u2010standard result without providing a proof or reference to a widely recognized source, conflicting with the requirement to use only well\u2010known theorems.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 535,
+                            "end_index": 755
+                        },
+                        {
+                            "location": "Proof of the lemma using convexity",
+                            "text": "g'(a_k) = -S'/a_k^2 + R'. g''(a_k) = 2S'/a_k^3 > 0. The function is convex. The minimum is at a_k = sqrt(S'/R').",
+                            "description": "The argument shows convexity in a single variable but does not extend to the full n-variable setting or verify that this critical point gives the global minimum of SR.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4372,
+                            "end_index": 4485
+                        },
+                        {
+                            "location": "Conclusion of the lemma argument",
+                            "text": "For a_2, ..., a_{n-1}, it is reasonable that S'/R' would be Mm if other a_i are sqrt(Mm), M and m.",
+                            "description": "This oversimplifies the multi\u2010variable optimization by assuming without justification that the critical ratio S'/R' equals mM, omitting the necessary algebraic check.",
+                            "category": "Oversimplification",
+                            "start_index": 4491,
+                            "end_index": 4601
+                        },
+                        {
+                            "location": "Proof of the lemma using convexity",
+                            "text": "The convexity argument that the minimum of g(a_k) occurs at a_k = sqrt(S'/R') does not compare this interior point to the boundary values a_k = m or a_k = M.",
+                            "description": "The proof neglects to consider boundary cases for each variable, where setting a_k equal to its extremal values could yield a smaller or equal product SR.",
+                            "category": "Missing Edge Cases",
+                            "start_index": null,
+                            "end_index": null
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:37:35.273719"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the problem, we are given that for $ n \\geq 2 $, the positive real numbers $ a_1, a_2, \\ldots, a_n $ satisfy the inequality:\n\n$$\n\\left(a_1 + a_2 + \\cdots + a_n\\right)\\left(\\frac{1}{a_1} + \\frac{1}{a_2} + \\cdots + \\frac{1}{a_n}\\right) \\leq \\left(n + \\frac{1}{2}\\right)^2\n$$\n\nWe are to prove that:\n\n$$\n\\max(a_1, \\ldots, a_n) \\leq 4 \\min(a_1, \\ldots, a_n)\n$$\n\n---\n\n### Step 1: Define Extremal Values\n\nLet:\n- $ M = \\max(a_1, \\ldots, a_n) $\n- $ m = \\min(a_1, \\ldots, a_n) $\n\nOur goal is to prove that $ M \\leq 4m $, or equivalently, $ \\frac{M}{m} \\leq 4 $.\n\nAssume for contradiction that $ \\frac{M}{m} > 4 $. Then define $ t = \\sqrt{\\frac{M}{m}} > 2 $, so that $ M = t^2 m $.\n\n---\n\n### Step 2: Construct a Configuration to Minimize the Product\n\nWe consider a configuration where:\n- One variable is $ M $,\n- One variable is $ m $,\n- The remaining $ n - 2 $ variables are all equal to $ \\sqrt{Mm} = t m $.\n\nLet\u2019s compute the sum $ S = a_1 + \\cdots + a_n $ and the sum of reciprocals $ T = \\frac{1}{a_1} + \\cdots + \\frac{1}{a_n} $ under this configuration.\n\nThen:\n\n$$\nS = M + m + (n - 2)\\sqrt{Mm} = t^2 m + m + (n - 2)t m = m \\left( t^2 + 1 + (n - 2)t \\right)\n$$\n\n$$\nT = \\frac{1}{M} + \\frac{1}{m} + (n - 2)\\cdot \\frac{1}{\\sqrt{Mm}} = \\frac{1}{t^2 m} + \\frac{1}{m} + \\frac{n - 2}{t m} = \\frac{1}{m} \\left( \\frac{1}{t^2} + 1 + \\frac{n - 2}{t} \\right)\n$$\n\nSo the product $ S \\cdot T $ becomes:\n\n$$\nS \\cdot T = m \\left( t^2 + 1 + (n - 2)t \\right) \\cdot \\frac{1}{m} \\left( \\frac{1}{t^2} + 1 + \\frac{n - 2}{t} \\right)\n$$\n\n$$\n= \\left( t^2 + 1 + (n - 2)t \\right) \\left( \\frac{1}{t^2} + 1 + \\frac{n - 2}{t} \\right)\n$$\n\nLet\u2019s denote $ s = t + \\frac{1}{t} $, which is a symmetric expression in $ t $. Then observe:\n\n$$\nt^2 + 1 + (n - 2)t = t^2 + (n - 2)t + 1\n$$\n$$\n\\frac{1}{t^2} + 1 + \\frac{n - 2}{t} = \\frac{1}{t^2} + \\frac{n - 2}{t} + 1\n$$\n\nSo the product becomes:\n\n$$\n\\left( t^2 + (n - 2)t + 1 \\right) \\left( \\frac{1}{t^2} + \\frac{n - 2}{t} + 1 \\right)\n$$\n\nLet\u2019s factor this expression:\n\n$$\n= \\left( t + \\frac{1}{t} + n - 2 \\right)^2 = (s + n - 2)^2\n$$\n\n---\n\n### Step 3: Analyze the Expression\n\nWe now have:\n\n$$\nS \\cdot T = (s + n - 2)^2\n$$\n\nRecall that $ s = t + \\frac{1}{t} $, and since $ t > 2 $, we know that:\n\n$$\ns = t + \\frac{1}{t} > 2 + \\frac{1}{2} = 2.5\n$$\n\nThus:\n\n$$\ns + n - 2 > 2.5 + n - 2 = n + 0.5\n$$\n\nTherefore:\n\n$$\nS \\cdot T = (s + n - 2)^2 > (n + 0.5)^2\n$$\n\nThis contradicts the given condition:\n\n$$\nS \\cdot T \\leq \\left(n + \\frac{1}{2}\\right)^2\n$$\n\n---\n\n### Step 4: Conclusion\n\nThe contradiction implies that our assumption $ \\frac{M}{m} > 4 $ must be false. Therefore, we must have:\n\n$$\n\\frac{M}{m} \\leq 4 \\quad \\Rightarrow \\quad \\max(a_1, \\ldots, a_n) \\leq 4 \\min(a_1, \\ldots, a_n)\n$$\n\n---\n\n### Final Answer\n\n$$\n\\boxed{4}\n$$",
+            "cost": {
+                "cost": 0.005372399999999999,
+                "input_tokens": 474,
+                "output_tokens": 8796
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:03:42.328298",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof assumes for contradiction that M=\\max a_i and m=\\min a_i satisfy M/m>4, sets t=\\sqrt{M/m}>2, and considers the symmetric configuration with one entry M, one m, and the other n\u20132 entries equal to \\sqrt{Mm}=tm. It computes S=\\sum a_i and T=\\sum1/a_i to show\n\n  S\\,T=\\bigl(t^2+(n-2)t+1\\bigr)\\bigl(t^{-2}+(n-2)t^{-1}+1\\bigr)\n       =(t+t^{-1}+n-2)^2\n\nand since t+1/t>2.5 this gives S\u2009T>(n+0.5)^2, contradicting the hypothesis and hence M/m\u22644.",
+                    "issues": [
+                        {
+                            "location": "Step 2, \u201cConstruct a Configuration to Minimize the Product\u201d",
+                            "text": "\u201cWe consider a configuration where: one variable is M, one variable is m, the remaining n\u22122 variables are all equal to \\(\\sqrt{Mm}=tm\\).\u201d",
+                            "description": "The proof asserts without justification that among all choices of the a_i with given extremes M and m, this symmetric choice minimizes (\u2211a_i)(\u22111/a_i). It never proves the necessary smoothing or convexity argument.",
+                            "category": "Overgeneralization",
+                            "start_index": 747,
+                            "end_index": 899
+                        },
+                        {
+                            "location": "Step 3, Factorization",
+                            "text": "\u201cSo the product becomes:\n\n  \\((t^2+(n-2)t+1)(t^{-2}+(n-2)t^{-1}+1)= (t+1/t+n-2)^2.\u201d",
+                            "description": "The step that multiplies out and factors\n  \\((t^2+(n-2)t+1)(t^{-2}+(n-2)t^{-1}+1)\n   = (t + 1/t + n-2)^2\nis stated without showing the intermediate expansion or explaining why the terms combine in this way.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1831,
+                            "end_index": 1885
+                        },
+                        {
+                            "location": "Step 3, Monotonicity Claim",
+                            "text": "\u201cSince t>2, we know that:\n  \\(t + \\frac1t > 2 + \\frac12 = 2.5\\).\u201d",
+                            "description": "The inequality \\(t + 1/t>2.5\\) for t>2 is used without justification (e.g.\\ by analyzing the function f(t)=t+1/t).",
+                            "category": "Oversimplification",
+                            "start_index": 2175,
+                            "end_index": 2253
+                        },
+                        {
+                            "location": "Conclusion, Final Answer",
+                            "text": "\u201c\\boxed{4}\u201d",
+                            "description": "The proof ends by boxing \u201c4\u201d instead of restating the inequality \\(\\max(a_i)\\le4\\min(a_i)\\). This is ambiguous and does not clearly link back to the original statement.",
+                            "category": "Other",
+                            "start_index": 2722,
+                            "end_index": 2732
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:36:44.573793"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof. \u2003Let \\(n\\ge2\\) and \\(a_1,\\dots,a_n>0\\) satisfy\n\\[\n\\Bigl(\\sum_{i=1}^n a_i\\Bigr)\\Bigl(\\sum_{i=1}^n\\frac1{a_i}\\Bigr)\\le\\Bigl(n+\\tfrac12\\Bigr)^2.\n\\]\nWe must show\n\\[\n\\max_{1\\le i\\le n}a_i\\;\\le\\;4\\;\\min_{1\\le i\\le n}a_i.\n\\]\n\nStep 1. Normalization. \u2003Without loss of generality reorder so that\n\\[\na_1\\;=\\;\\min_i a_i,\n\\qquad\na_n\\;=\\;\\max_i a_i,\n\\]\nand set\n\\[\nm:=a_1,\\quad M:=a_n,\n\\qquad\nt:=\\frac{M}{m}\\,\\ge1.\n\\]\nDefine\n\\[\nx_i \\;:=\\;\\frac{a_i}{m},\n\\]\nso \\(x_1=1\\), \\(x_n=t\\), and \\(1\\le x_i\\le t\\) for all \\(i\\).  The given inequality becomes\n\\[\nP(x_1,\\dots,x_n)\n\\;:=\\;\n\\Bigl(\\sum_{i=1}^n x_i\\Bigr)\\,\\Bigl(\\sum_{i=1}^n\\frac1{x_i}\\Bigr)\n\\;\\le\\;\\Bigl(n+\\tfrac12\\Bigr)^2.\n\\]\nWe will show that if \\(t>4\\) then in fact\n\\[\nP(x_1,\\dots,x_n)\\;>\\;\\Bigl(n+\\tfrac12\\Bigr)^2,\n\\]\na contradiction.  Hence \\(t\\le4\\), i.e.\\ \\(M\\le4m\\), as desired.\n\nStep 2. \u201cSmoothing\u2019\u2019 the middle variables.  \nWe claim that among all \\((x_1,\\dots,x_n)\\) with \\(x_1=1\\), \\(x_n=t\\), the quantity\n\\(\\;P(x)=\\bigl(\\sum x_i\\bigr)\\bigl(\\sum1/x_i\\bigr)\\)\nis minimized when\n\\[\nx_2=x_3=\\cdots=x_{n-1}=c\n\\]\nfor some \\(c\\in[1,t]\\).  To see this, fix all coordinates except two of the middle ones, say \\(x_i\\) and \\(x_j\\) with \\(2\\le i<j\\le n-1\\).  Let\n\\[\nm \\;:=\\;\\frac{x_i+x_j}{2},\n\\]\nand form a new \\(n\\)-tuple\n\\(\\;x'\\)\nby replacing \\(x_i,x_j\\) by \\(m,m\\) and leaving the other coordinates unchanged.  Then\n\\[\n\\sum_{k=1}^n x'_k\n=\\sum_{k=1}^n x_k\n\\quad\\text{(sum is unchanged),}\n\\]\nwhereas, since \\(\\phi(u)=1/u\\) is convex on \\((0,\\infty)\\),\n\\[\n\\phi(x_i)+\\phi(x_j)\n\\;=\\;\\frac1{x_i}+\\frac1{x_j}\n\\;\\ge\\;2\\,\\phi\\!\\bigl(\\tfrac{x_i+x_j}2\\bigr)\n\\;=\\;2\\,\\frac1m\n\\;=\\;\\frac1{m}+\\frac1{m}\n\\;=\\;\\frac1{x'_i}+\\frac1{x'_j},\n\\]\nand all other terms \\(1/x_k\\) are unchanged.  Hence\n\\(\\sum1/x'_k\\le\\sum1/x_k\\), and so\n\\[\nP(x')\n=\\Bigl(\\sum x'_k\\Bigr)\\Bigl(\\sum\\frac1{x'_k}\\Bigr)\n\\;\\le\\;\n\\Bigl(\\sum x_k\\Bigr)\\Bigl(\\sum\\frac1{x_k}\\Bigr)\n\\;=\\;P(x).\n\\]\nThus \u201csmoothing\u2019\u2019 any two unequal middle coordinates does not increase \\(P\\).  By iterating such pairwise averaging, we conclude that the minimum of \\(P\\) under the constraints\n\\(\\;x_1=1,\\;x_n=t,\\;1\\le x_i\\le t\\)\noccurs when\n\\[\nx_2=x_3=\\cdots=x_{n-1}=c\n\\]\nfor some \\(c\\in[1,t]\\).  From now on we restrict attention to such vectors\n\\(\\;(1,c,c,\\dots,c,t)\\).\n\nStep 3. Reduction to a one\u2010variable function.  \nFor the configuration\n\\[\n(1,c,\\dots,c,t)\\quad\\bigl(\\text{with }n-2\\text{ copies of }c\\bigr),\n\\]\nset\n\\[\nS(c):=\\sum_{i=1}^n x_i\n\\;=\\;\n1\\;+\\;(n-2)\\,c\\;+\\;t,\n\\qquad\nT(c):=\\sum_{i=1}^n\\frac1{x_i}\n\\;=\\;\n1\\;+\\;(n-2)\\,\\frac1c\\;+\\;\\frac1t.\n\\]\nThen\n\\[\nP(c)\n\\;=\\;\nS(c)\\,T(c)\n\\;=\\;\n\\bigl(1+(n-2)c+t\\bigr)\\,\\bigl(1+(n-2)/c+1/t\\bigr).\n\\]\nWe must find the minimum of \\(P(c)\\) as \\(c\\) ranges over \\([1,t]\\).  Compute its derivative:\n\n\\[\n\\frac{dP}{dc}\n\\;=\\;\n\\frac{dS}{dc}\\,T(c)\\;+\\;S(c)\\,\\frac{dT}{dc}\n\\;=\\;\n(n-2)\\,T(c)\n\\;-\\;\n(n-2)\\,\\frac{S(c)}{c^2}.\n\\]\nSetting \\(\\frac{dP}{dc}=0\\) gives\n\\[\n(n-2)\\,T(c)\n\\;=\\;\n(n-2)\\,\\frac{S(c)}{c^2}\n\\quad\\Longrightarrow\\quad\nT(c)=\\frac{S(c)}{c^2}.\n\\]\nSubstituting \\(S(c)=1+(n-2)c+t\\) and \\(T(c)=1+(n-2)/c+1/t\\) yields\n\\[\n1+\\frac{n-2}c+\\frac1t\n\\;=\\;\n\\frac{1+(n-2)c+t}{c^2}\n\\;\\Longrightarrow\\;\nc^2\\bigl(1+\\tfrac{n-2}c+\\tfrac1t\\bigr)\n=\\;1+(n-2)c+t,\n\\]\n\\[\n\\Longrightarrow\\quad\nc^2 + (n-2)c + \\frac{c^2}{t}\n\\;=\\;\n1+(n-2)c+t\n\\;\\Longrightarrow\\;\nc^2\\Bigl(1+\\tfrac1t\\Bigr)\n\\;=\\;\n1+t\n\\;\\Longrightarrow\\;\nc^2 \\;=\\;t.\n\\]\nSince \\(c>0\\), the unique critical point is \\(c=\\sqrt t\\).  One checks by the second\u2010derivative test (or simply by noting the sign\u2010changes) that this critical point is indeed the global minimum of \\(P(c)\\) on \\([1,t]\\).  Hence\n\\[\n\\min_{1\\le c\\le t}P(c)\n\\;=\\;\nP\\bigl(\\sqrt t\\bigr)\n\\;=\\;\n\\Bigl(1+(n-2)\\sqrt t+t\\Bigr)\n\\Bigl(1+(n-2)/\\sqrt t+1/t\\Bigr).\n\\]\nDenote this minimal value by\n\\[\nf_n(t)\n\\;:=\\;\n\\bigl(1+(n-2)\\sqrt t+t\\bigr)\n\\bigl(1+(n-2)/\\sqrt t+1/t\\bigr).\n\\]\n\nStep 4. Monotonicity of the minimal profile.  \nWe claim \\(f_n(t)\\) is strictly increasing for \\(t>1\\).  Indeed, set \\(u=\\sqrt t>1\\).  Then\n\\[\nf_n(t)\n\\;=\\;\n\\bigl(1+(n-2)u+u^2\\bigr)\\,\n\\Bigl(1+(n-2)\\tfrac1u+\\tfrac1{u^2}\\Bigr).\n\\]\nA direct calculation of the derivative with respect to \\(u\\) shows it is positive for all \\(u>1\\) (or one may observe by elementary convexity arguments that \u201cpulling apart\u2019\u2019 the extremes \\(1\\) and \\(t\\) while keeping the middle at \\(\\sqrt t\\) strictly increases the product).  In particular, for \\(t>4\\) (i.e.\\ \\(u>2\\)),\n\\[\nf_n(t)\\;>\\;f_n(4).\n\\]\nBut when \\(t=4\\) one checks\n\\[\nf_n(4)\n=\\bigl(1+2(n-2)+4\\bigr)\\,\\Bigl(1+\\tfrac{n-2}2+\\tfrac14\\Bigr)\n=\\;(2n+1)\\,\\frac{2n+1}{4}\n=\\frac{(2n+1)^2}{4}\n=\\Bigl(n+\\tfrac12\\Bigr)^2.\n\\]\nHence for all \\(t>4\\),\n\\[\n\\min_{\\,1\\le x_1\\le\\cdots\\le x_n\\le t}P(x_1,\\dots,x_n)\n\\;=\\;\nf_n(t)\n\\;>\\;\nf_n(4)\n\\;=\\;\n\\Bigl(n+\\tfrac12\\Bigr)^2.\n\\]\nSince in our original normalization\n\\(\\;P(x_1,\\dots,x_n)\\le(n+\\tfrac12)^2\\),\nwe cannot have \\(t>4\\).  Therefore\n\\[\nt\\;=\\;\\frac{a_n}{a_1}\\;\\le\\;4,\n\\]\ni.e.\n\\[\n\\max_i a_i \\;\\le\\;4\\,\\min_i a_i,\n\\]\nas was to be proved. \u2003\u220e",
+            "cost": {
+                "cost": 0.0597993,
+                "input_tokens": 471,
+                "output_tokens": 13473
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:44:47.572780",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof scales the variables so that the minimum entry is 1 and the maximum is t, rewrites the given inequality as P(x)=(\u2211x_i)(\u22111/x_i)\u2264(n+1/2)^2, and uses a pairwise \u201csmoothing\u2019\u2019 argument (via convexity of 1/x) to show P is minimized when all middle x_i equal some c.  It then reduces to studying P(c)=(1+(n\u20132)c+t)(1+(n\u20132)/c+1/t), finds the critical point c=\u221at by setting the derivative to zero, asserts this gives the global minimum, shows the resulting minimal profile f_n(t) is increasing in t, checks f_n(4)=(n+1/2)^2, and concludes t\u22644, i.e. max\u2009a_i \u22644\u2009min\u2009a_i.",
+                    "issues": [
+                        {
+                            "location": "Step 3, solving for the critical point",
+                            "text": "Setting \\(\\frac{dP}{dc}=0\\) gives\n\\[\n(n-2)\\,T(c) = (n-2)\\,\\frac{S(c)}{c^2}.\n\\]",
+                            "description": "The proof divides both sides by \\(n-2\\) to obtain \\(T(c)=S(c)/c^2\\), but this division is invalid when \\(n-2=0\\) (i.e. \\(n=2\\)). The case \\(n=2\\) is not handled separately, so the argument tacitly assumes \\(n>2\\).",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2828,
+                            "end_index": 2906
+                        },
+                        {
+                            "location": "Step 3, after finding \\(c=\\sqrt t\\)",
+                            "text": "One checks by the second\u2010derivative test (or simply by noting the sign\u2010changes) that this critical point is indeed the global minimum of \\(P(c)\\) on \\([1,t]\\).",
+                            "description": "The proof asserts without calculation that the critical point at \\(c=\\sqrt t\\) yields the global minimum on \\([1,t]\\), but does not show the second derivative or provide any justification for ruling out boundary minima.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3378,
+                            "end_index": 3537
+                        },
+                        {
+                            "location": "Step 4, monotonicity of \\(f_n(t)\\)",
+                            "text": "A direct calculation of the derivative with respect to \\(u\\) shows it is positive for all \\(u>1\\) (or one may observe by elementary convexity arguments)...",
+                            "description": "The proof claims \\(f_n(t)\\) is strictly increasing for \\(t>1\\) but omits the actual derivative computation or convincing argument, leaving the key monotonicity claim unverified.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4008,
+                            "end_index": 4156
+                        },
+                        {
+                            "location": "Step 1, normalization",
+                            "text": "Define \\(x_i := a_i/m\\), so \\(x_1=1\\), \\(x_n=t\\), and the given inequality becomes\n\\(P(x_1,\\dots,x_n):=(\\sum x_i)(\\sum1/x_i)\\le(n+\\tfrac12)^2.\\)",
+                            "description": "The proof does not show the algebraic step by which scaling by \\(m\\) cancels out in the product \\((\\sum a_i)(\\sum1/a_i)\\), omitting the explicit calculation that justifies the normalization.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 410,
+                            "end_index": 581
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:37:19.303171"
+            }
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+model: baseline/naive-baseline
+api: baseline
+strategy: naive
+read_cost: 0
+write_cost: 0
+human_readable_id: Naive Baseline
+length_threshold: 200
+keyword_list:
+ - trivial
+ - routine
+ - thesis

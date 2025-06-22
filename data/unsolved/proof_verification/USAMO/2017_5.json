@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.34,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2017
+    },
+    "problem": "Find all real numbers \\( c > 0 \\) such that there exists a labeling of the lattice points in \\(\\mathbb{Z}^{2}\\) with positive integers for which:\n\n- only finitely many distinct labels occur, and\n- for each label \\( i \\), the distance between any two points labeled \\( i \\) is at least \\( c^{i} \\).",
+    "problem_id": "USAMO_2017_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nFind all real numbers $c>0$ such that there exists a labeling of the lattice points in $\\mathbb{Z}^{2}$ with positive integers for which:\n\n- only finitely many distinct labels occur, and\n- for each label $i$, the distance between any two points labeled $i$ is at least $c^{i}$.\n\nThe answer is $c<\\sqrt{2}$. Here is a solution with Calvin Deng.\nThe construction for any $c<\\sqrt{2}$ can be done as follows. Checkerboard color the lattice points and label the black ones with $1$. The white points then form a copy of $\\mathbb{Z}^{2}$ again scaled up by $\\sqrt{2}$ so we can repeat the procedure with $2$ on half the resulting points. Continue this dyadic construction until a large $N$ for which $c^{N}<2^{\\frac{1}{2}(N-1)}$, at which point we can just label all the points with $N$.\n\nI'll now prove that $c=\\sqrt{2}$ (and hence $c \\geq \\sqrt{2}$ ) can't be done.\nClaim - It is impossible to fill a $2^{n} \\times 2^{n}$ square with labels not exceeding $2 n$.\nThe case $n=1$ is clear. So now assume it's true up to $n-1$; and assume for contradiction a $2^{n} \\times 2^{n}$ square $S$ only contains labels up to $2 n$. (Of course every $2^{n-1} \\times 2^{n-1}$ square contains an instance of a label at least $2 n-1$.)\n\n\nNow, we contend there are fewer than four copies of $2 n$ :\n\n## Lemma\n\nIn a unit square, among any four points, two of these points have distance $\\leq 1$ apart.\n\nProof. Look at the four rays emanating from the origin and note that two of them have included angle $\\leq 90^{\\circ}$.\n\nSo WLOG the northwest quadrant has no $2 n$ 's. Take a $2 n-1$ in the northwest and draw a square of size $2^{n-1} \\times 2^{n-1}$ directly right of it (with its top edge coinciding with the top of $S$ ). Then $A$ can't contain $2 n-1$, so it must contain a $2 n$ label; that $2 n$ label must be in the northeast quadrant.\n\nThen we define a square $B$ of size $2^{n-1} \\times 2^{n-1}$ as follows. If $2 n-1$ is at least as high $2 n$, let $B$ be a $2^{n-1} \\times 2^{n-1}$ square which touches $2 n-1$ north and is bounded east by $2 n$. Otherwise let $B$ be the square that touches $2 n-1$ west and is bounded north by $2 n$. We then observe $B$ can neither have $2 n-1$ nor $2 n$ in it, contradiction.\n\nRemark. To my knowledge, essentially all density arguments fail because of hexagonal lattice packing.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

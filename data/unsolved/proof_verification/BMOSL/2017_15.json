@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2017
+    },
+    "problem": "The acute-angled triangle \\(ABC\\) with circumcenter \\(O\\) is given. The midpoints of the sides \\(BC\\), \\(CA\\), and \\(AB\\) are \\(D\\), \\(E\\), and \\(F\\) respectively. An arbitrary point \\(M\\) on the side \\(BC\\), different from \\(D\\), is chosen. The straight lines \\(AM\\) and \\(EF\\) intersect at the point \\(N\\), and the straight line \\(ON\\) cuts again the circumscribed circle of the triangle \\(ODM\\) at the point \\(P\\). Prove that the reflection of the point \\(M\\) with respect to the midpoint of the segment \\(DP\\) belongs to the nine-point circle of the triangle \\(ABC\\).",
+    "problem_id": "BMOSL_2017_15",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "The straight lines $D O, E O$ and $F O$ are the perpendicular bisectors of the sides $B C, C A$ and $A B$ respectively. It follows that $[O M]$ is the diameter of the circumscribed circle of the triangle $O D M$ and $M P \\perp O N$. The point $O$ is the ortocenter of the triangle $D E F$ (see the picture)\nLet $O_{1}$ be the circumcenter of the triangle $D E F$ and $H$ be the diametrically opposite point of $D$. The circumscribed circle of the triangle $D E F$ is the nine points circle of the triangle $A B C$. It follows that $E H \\perp D E, F H \\perp F D$ and $E D\\|A F, D F\\| A E$. So, the point $H$ is the ortocenter of the triangle $A E F$.\n\nLet $A D \\cap E F=\\{I\\}$ and $R$ is the reflection of the point N with respect to the point $I$, i.e. $R \\in(E F), N I=R I$. The point $I$ is the simmetry center of the parallelogram $A E D F$. It follows that the point $I$ is the midpoint of the segment $[O H]$ and the quadrilaterals $A E D F$, $A N D R, H N O R$ are all parallelograms.\n\nLet $Q$ be the reflection of the point $M$ with respect to the midpoint of the segment $D P$. It follows that the quadrilaterals $P Q D M$ and $M N R D$ are the parallelograms, which imply that the quadrilateral $P Q R N$ is a parallelogram. So, $N O\\|H R, N P\\| R Q$, which imply that the points $H, R$ and $Q$ are collinear. We obtain that $m(\\angle D Q H)=90^{\\circ}$, i.e. the point $Q$ belongs on the nine points circle of the triangle $A B C$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

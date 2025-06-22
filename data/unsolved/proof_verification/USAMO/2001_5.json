@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.02,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2001
+    },
+    "problem": "Let \\( S \\subseteq \\mathbb{Z} \\) be such that:\n(a) there exist \\( a, b \\in S \\) with \\(\\operatorname{gcd}(a, b) = \\operatorname{gcd}(a-2, b-2) = 1\\);\n(b) if \\( x \\) and \\( y \\) are elements of \\( S \\) (possibly equal), then \\( x^{2} - y \\) also belongs to \\( S \\).\n\nProve that \\( S = \\mathbb{Z} \\).",
+    "problem_id": "USAMO_2001_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nLet $S \\subseteq \\mathbb{Z}$ be such that:\n(a) there exist $a, b \\in S$ with $\\operatorname{gcd}(a, b)=\\operatorname{gcd}(a-2, b-2)=1$;\n(b) if $x$ and $y$ are elements of $S$ (possibly equal), then $x^{2}-y$ also belongs to $S$.\n\nProve that $S=\\mathbb{Z}$.\n\nCall an integer $d>0$ shifty if $S=S+d$ (meaning $S$ is invariant under shifting by $d$ ).\nFirst, note that if $u, v \\in S$, then for any $x \\in S$,\n\n$$\nv^{2}-\\left(u^{2}-x\\right)=\\left(v^{2}-u^{2}\\right)+x \\in S .\n$$\n\nSince we can easily check that $|S|>1$ and $S \\neq\\{n,-n\\}$ we conclude there exists a shifty integer.\n\nWe claim $1$ is shifty, which implies the problem. Assume for contradiction that $1$ is not shifty. Then for GCD reasons the set of shifty integers must be $d \\mathbb{Z}$ for some $d \\geq 2$.\n\nClaim - We have $S \\subseteq\\left\\{x: x^{2} \\equiv m(\\bmod d)\\right\\}$ for some fixed $m$.\nProof. Otherwise if we take any $p, q \\in S$ with distinct squares modulo $d$, then $q^{2}-p^{2} \\not \\equiv 0$ $(\\bmod d)$ is shifty, which is impossible.\n\nNow take $a, b \\in S$ as in (a). In that case we need to have\n\n$$\na^{2} \\equiv b^{2} \\equiv\\left(a^{2}-a\\right)^{2} \\equiv\\left(b^{2}-b\\right)^{2} \\quad(\\bmod d)\n$$\n\nPassing to a prime $p \\mid d$, we have the following:\n\n- Since $a^{2} \\equiv\\left(a^{2}-a\\right)^{2}(\\bmod p)$ or equivalently $a^{3}(a-2) \\equiv 0(\\bmod p)$, either $a \\equiv 0$ $(\\bmod p)$ or $a \\equiv 2(\\bmod p)$.\n- Similarly, either $b \\equiv 0(\\bmod p)$ or $b \\equiv 2(\\bmod p)$.\n- Since $a^{2} \\equiv b^{2}(\\bmod p)$, or $a \\equiv \\pm b(\\bmod p)$, we find either $a \\equiv b \\equiv 0(\\bmod p)$ or $a \\equiv b \\equiv 2(\\bmod p)($ even if $p=2)$.\n\nThis is a contradiction.\nRemark. The condition (a) cannot be dropped, since otherwise we may take $S=\\{2(\\bmod p)\\}$ or $S=\\{0(\\bmod p)\\}$, say.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

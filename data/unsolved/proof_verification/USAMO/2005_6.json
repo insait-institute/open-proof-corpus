@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.1,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2005
+    },
+    "problem": "For a positive integer \\( m \\), let \\( s(m) \\) denote the sum of the decimal digits of \\( m \\). A set \\( S \\) of positive integers is \\( k \\)-stable if \\( s\\left(\\sum_{x \\in X} x\\right) = k \\) for any nonempty subset \\( X \\subseteq S \\). For each integer \\( n \\geq 2 \\), let \\( f(n) \\) be the minimal \\( k \\) for which there exists a \\( k \\)-stable set with \\( n \\) integers. Prove that there are constants \\( 0 < C_{1} < C_{2} \\) with\n\n\\[\nC_{1} \\log_{10} n \\leq f(n) \\leq C_{2} \\log_{10} n\n\\]",
+    "problem_id": "USAMO_2005_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "For a positive integer $m$, let $s(m)$ denote the sum of the decimal digits of $m$. A set $S$ positive integers is $k$-stable if $s\\left(\\sum_{x \\in X} x\\right)=k$ for any nonempty subset $X \\subseteq S$.\nFor each integer $n \\geq 2$ let $f(n)$ be the minimal $k$ for which there exists a $k$-stable set with $n$ integers. Prove that there are constants $0<C_{1}<C_{2}$ with\n\n$$\nC_{1} \\log _{10} n \\leq f(n) \\leq C_{2} \\log _{10} n .\n$$\n\nConstruction showing $f(n) \\leq 9\\left\\lceil\\log _{10}\\binom{n+1}{2}\\right\\rceil$. Let $n \\geq 1$ and $e \\geq 1$ be integers satisfying $1+2+\\cdots+n<10^{e}$. Consider the set\n\n$$\nS=\\left\\{10^{e}-1,2\\left(10^{e}-1\\right), \\ldots, n\\left(10^{e}-1\\right)\\right\\}\n$$\n\nFor example, if $n=6$ and $e=3$, we have $S=\\{999,1998,2997,3996,4995,5994\\}$.\nThe set $S$ here is easily seen to be $9 e$-stable. Thus $f(n) \\leq 9\\left\\lceil\\log _{10}\\binom{n+1}{2}\\right\\rceil$, proving one direction.\n\nRemark. I think the problem is actually more natural with a multiset $S$ rather than a vanilla set, in which case $S=\\left\\{10^{e}-1,10^{e}-1, \\ldots, 10^{e}-1\\right\\}$ works fine, and is easier to think of.\n\nIn some sense the actual construction is obtained by starting with this one, and then pushing together the terms together in order to get the terms to be distinct, hence the $1+2+\\cdots+n$ appearance.\n\nProof that $f(n) \\geq \\log _{12} n$. We are going to prove the following, which obviously sufficient.\n\nClaim - Let $k$ be a positive integer. In any (multi)set $S$ of more than $12^{k}$ integers, there exists a subset whose sum of decimal digits exceeds $k$.\n\nProof. Imagine writing entries of $S$ on a blackboard, while keeping a running sum $\\Sigma$ initially set to zero. For $i=1,2, \\ldots$ we will have a process such that at the end of the $i$ th step all entries on the board are divisible by $10^{i}$. It goes as follows:\n\n- If the $i$ th digit from the right of $\\Sigma$ is nonzero, then arbitrarily partition the numbers on the board into groups of $10$, erasing any leftover numbers. Within each group of $10$, we can find a nonempty subset with sum $0 \\bmod 10^{i}$; we then erase each group and replace it with that sum.\n- If the $i$ th digit from the right of $\\Sigma$ is zero, but some entry on the board is not divisible by $10^{i}$, then we erase that entry and add it to $\\Sigma$. Then we do the grouping as in the previous step.\n- If the $i$ th digit from the right of $\\Sigma$ is zero, and all entries on the board are divisible by $10^{i}$, we do nothing and move on to the next step.\n\nThis process ends when no numbers remain on the blackboard. The first and second cases occur at least $k+1$ times (the number of entries decreases by a factor of at most $12$ each step), and each time $\\Sigma$ gets some nonzero digit, which is never changed at later steps. Therefore $\\Sigma$ has sum of digits at least $k+1$ as needed.\n\nRemark. The official solutions contain a slicker proof: it turns out that any multiple of $10^{e}-1$ has sum of decimal digits at least $9 e$. However, if one does not know this lemma it seems nontrivial to imagine coming up with it.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

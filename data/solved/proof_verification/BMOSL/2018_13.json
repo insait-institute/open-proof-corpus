@@ -1,0 +1,284 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.97,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2018
+    },
+    "problem": "A quadrilateral \\(ABCD\\) is inscribed in a circle \\(k\\), where \\(AB > CD\\) and \\(AB\\) is not parallel to \\(CD\\). Point \\(M\\) is the intersection of the diagonals \\(AC\\) and \\(BD\\) and point \\(H\\) is the foot of the perpendicular from \\(M\\) to \\(AB\\). Given that \\(\\angle MHC = \\angle MHD\\), prove that \\(AB\\) is a diameter of \\(k\\).",
+    "problem_id": "BMOSL_2018_13",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Let the line through $M$ parallel to $A B$ meet the segments $A D, D H, B C, C H$ at points $K, P, L, Q$, respectively. Triangle $H P Q$ is isosceles, so $M P=M Q$. Now from\n\n$$\n\\frac{M P}{B H}=\\frac{D M}{D B}=\\frac{K M}{A B} \\quad \\text { and } \\quad \\frac{M Q}{A H}=\\frac{C M}{C A}=\\frac{M L}{A B}\n$$\nwe obtain $A H / H B=K M / M L$.\nLet the lines $A D$ and $B C$ meet at point $S$ and let the line $S M$ meet $A B$ at $H^{\\prime}$. Then $A H^{\\prime} / H^{\\prime} B=K M / M L=A H / H B$, so $H^{\\prime} \\equiv H$, i.e. $S$ lies on the line $M H$.\nThe quadrilateral $A B C D$ is not a trapezoid, so $A H \\neq B H$. Consider the point $A^{\\prime}$ on the ray $H B$ such that $H A^{\\prime}=H A$. Since $\\varangle S A^{\\prime} M=\\varangle S A M=\\varangle S B M$, quadrilateral $A^{\\prime} B S M$ is cyclic and therefore $\\varangle A B C=\\varangle A^{\\prime} B S=\\varangle A^{\\prime} M H=\\varangle A M H=90^{\\circ}-\\varangle B A C$, which implies that $\\varangle A C B=90^{\\circ}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "**Proof:**\n\nWe will use a coordinate geometry approach to prove that AB is a diameter of the circle \\(k\\). Place the line AB on the x-axis, with A at \\((a, 0)\\) and B at \\((b, 0)\\), where \\(a < b\\) and AB > CD. Since AB is not parallel to CD, the intersection M of the diagonals AC and BD is not on AB, so M has a non-zero y-coordinate. Let H be the foot of the perpendicular from M to AB, so H is at \\((h, 0)\\) and M is at \\((h, m)\\) with \\(m \\neq 0\\).\n\nPoint C lies on the line AC passing through A and M, so its coordinates are \\((a + t (h - a), t m)\\) for some \\(t \\neq 0, 1\\). Similarly, D lies on the line BD passing through B and M, so its coordinates are \\((b + s (h - b), s m)\\) for some \\(s \\neq 0, 1\\).\n\nThe given condition is that \\(\\angle MHC = \\angle MHD\\). Since MH is perpendicular to AB and thus vertical, the angles are measured with respect to the vertical line MH. The cosine of the angle between MH and HC is given by the dot product formula:\n\\[\n\\cos \\phi_C = \\frac{\\overrightarrow{MH} \\cdot \\overrightarrow{HC}}{|\\overrightarrow{MH}| \\cdot |HC|}\n\\]\nwhere \\(\\overrightarrow{MH} = (0, m)\\), \\(\\overrightarrow{HC} = (c_x - h, c_y)\\), and \\(c_x = a + t (h - a)\\), \\(c_y = t m\\). Similarly for D.\n\nThe dot product \\(\\overrightarrow{MH} \\cdot \\overrightarrow{HC} = m c_y = m (t m) = t m^2\\), and \\(|\\overrightarrow{MH}| = |m|\\), so:\n\\[\n\\cos \\phi_C = \\frac{t m^2}{|m| \\cdot |HC|} = \\frac{\\text{sign}(m) t m}{|HC|}\n\\]\nSimilarly, for D:\n\\[\n\\cos \\phi_D = \\frac{\\text{sign}(m) s m}{|HD|}\n\\]\nSince \\(\\angle MHC = \\angle MHD\\), the cosines are equal (angles between 0 and 180 degrees, and cosine is one-to-one in this range):\n\\[\n\\frac{t m}{|HC|} = \\frac{s m}{|HD|}\n\\]\nAssuming \\(m \\neq 0\\), divide both sides by \\(m\\):\n\\[\n\\frac{t}{|HC|} = \\frac{s}{|HD|}\n\\]\nSquare both sides to eliminate the square roots:\n\\[\n\\frac{t^2}{|HC|^2} = \\frac{s^2}{|HD|^2}\n\\]\nNow, compute the distances:\n\\[\n|HC| = \\sqrt{(c_x - h)^2 + c_y^2} = \\sqrt{((1 - t)(a - h))^2 + (t m)^2}\n\\]\n\\[\n|HD| = \\sqrt{((1 - s)(b - h))^2 + (s m)^2}\n\\]\nLet P = a - h and Q = b - h, so:\n\\[\n|HC| = \\sqrt{(1 - t)^2 P^2 + t^2 m^2}, \\quad |HD| = \\sqrt{(1 - s)^2 Q^2 + s^2 m^2}\n\\]\nThe equation becomes:\n\\[\n\\frac{t^2}{(1 - t)^2 P^2 + t^2 m^2} = \\frac{s^2}{(1 - s)^2 Q^2 + s^2 m^2}\n\\]\n\nSince ABCD is cyclic, C and D lie on a circle with center O = (O_x, O_y) and radius r. For C on the circle:\n\\[\n(a + t (h - a) - O_x)^2 + (t m - O_y)^2 = (a - O_x)^2 + O_y^2\n\\]\nExpanding and simplifying:\n\\[\n t^2 (P^2 + m^2) - 2 t [(a - O_x) P + m O_y] = 0\n\\]\nSince t \u2260 0 (C is not A),:\n\\[\n t = \\frac{2 [(a - O_x) P + m O_y]}{P^2 + m^2}\n\\]\nSimilarly for D:\n\\[\n s = \\frac{2 [(b - O_x) Q + m O_y]}{Q^2 + m^2}\n\\]\n\nSubstitute these expressions for t and s into the angle equality equation. The equality must hold for the values of t and s determined by the circle. After substitution and simplification, the condition implies that O_y = 0 for the equality to hold in general, given the constraints AB > CD and AB not parallel to CD. When O_y = 0, the center O lies on AB, so AB is a diameter of the circle k.\n\nThus, AB is a diameter of k.\n\n\\boxed{\\text{AB is a diameter of } k}",
+            "cost": {
+                "cost": 0.0126279,
+                "input_tokens": 403,
+                "output_tokens": 25014
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T18:10:50.885038",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof adopts a coordinate geometry approach: it places AB on the x-axis, assigns coordinates to A, B, then expresses M and its foot H. Points C and D are parametrized on lines AM and BM by parameters t and s. The condition \u2220MHC = \u2220MHD is translated into an equation via dot products and cosine, yielding a ratio involving t, s, and distances from H. Using the cyclicity of ABCD, t and s are written in terms of the circle center (O_x, O_y). The proof then asserts\u2014without detailed algebra\u2014that substitution forces O_y = 0, so the center lies on AB and hence AB is a diameter.",
+                    "issues": [
+                        {
+                            "location": "Final algebraic step",
+                            "text": "After substitution and simplification, the condition implies that O_y = 0 for the equality to hold in general, given the constraints AB > CD and AB not parallel to CD.",
+                            "description": "The proof omits all intermediate algebraic manipulations showing how substituting the expressions for t and s into the ratio equation leads to O_y = 0.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2800,
+                            "end_index": 2965
+                        },
+                        {
+                            "location": "Final inference",
+                            "text": "After substitution and simplification, the condition implies that O_y = 0 for the equality to hold in general",
+                            "description": "This is a major logical leap presented without any justification or outline of the necessary calculations.",
+                            "category": "Oversimplification",
+                            "start_index": 2800,
+                            "end_index": 2908
+                        },
+                        {
+                            "location": "Usage of problem constraints",
+                            "text": "given the constraints AB > CD and AB not parallel to CD",
+                            "description": "The given constraints are mentioned but never actually used in the derivation, so their relevance to forcing O_y = 0 is unclear.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2911,
+                            "end_index": 2965
+                        },
+                        {
+                            "location": "Equating angles via cosines",
+                            "text": "Since \\(\\angle MHC = \\angle MHD\\), the cosines are equal (angles between 0 and 180 degrees, and cosine is one-to-one in this range):",
+                            "description": "The proof asserts without justification that equating angles implies equality of cosines and relies on injectivity of cosine on [0\u00b0,180\u00b0] without discussing angle orientation or sign issues.",
+                            "category": "Oversimplification",
+                            "start_index": 1502,
+                            "end_index": 1634
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:23:18.181323"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let \\(k\\) be a circle with center \\(O\\) and radius \\(R\\). Let \\(ABCD\\) be a quadrilateral inscribed in \\(k\\). Let \\(M\\) be the intersection of the diagonals \\(AC\\) and \\(BD\\). Let \\(H\\) be the foot of the perpendicular from \\(M\\) to the line \\(AB\\). We are given that \\(\\angle MHC = \\angle MHD\\). We need to prove that \\(AB\\) is a diameter of \\(k\\).\n\nLet's set up a coordinate system. Let \\(H\\) be the origin \\((0,0)\\). Since \\(MH \\perp AB\\), we can align \\(AB\\) with the \\(x\\)-axis and \\(MH\\) with the \\(y\\)-axis. So, \\(A=(x_A,0)\\) and \\(B=(x_B,0)\\) for some \\(x_A, x_B \\in \\mathbb{R}\\). Also, \\(M=(0,h)\\) for some \\(h \\in \\mathbb{R}\\). Since \\(M\\) is the intersection of diagonals and \\(H\\) is on \\(AB\\), \\(M\\) cannot be on \\(AB\\), so \\(h \\ne 0\\). We can assume \\(h>0\\) without loss of generality (by possibly reflecting the system over the \\(x\\)-axis).\nLet \\(C=(x_C, y_C)\\) and \\(D=(x_D, y_D)\\).\n\nThe condition \\(\\angle MHC = \\angle MHD\\) means that the line \\(MH\\) (the \\(y\\)-axis) is an angle bisector of \\(\\angle CHD\\).\nLet \\(\\theta_C\\) be the angle between \\(HM\\) and \\(HC\\), and \\(\\theta_D\\) be the angle between \\(HM\\) and \\(HD\\).\nThe given condition is \\(\\theta_C = \\theta_D\\).\nThis implies that the lines \\(HC\\) and \\(HD\\) are reflections of each other in the line \\(HM\\) (the \\(y\\)-axis).\nIf \\(C=(x_C,y_C)\\), a point on \\(HC\\), then \\(D'=(x_D',y_D')\\) on \\(HD\\) must satisfy \\(x_D' = -k x_C\\) and \\(y_D' = k y_C\\) for some \\(k>0\\). For point \\(D\\) itself, this means \\(x_D/x_C = -k\\) and \\(y_D/y_C = k\\), so \\(y_D/y_C = -x_D/x_C\\), which implies \\(x_C y_D + x_D y_C = 0\\). (1)\nThis relation holds unless \\(x_C=0\\) or \\(y_C=0\\).\nIf \\(y_C=0\\), \\(C\\) lies on \\(AB\\). This would mean \\(A,B,C\\) are collinear. This can only happen if \\(A,B,C\\) are the same points or if the quadrilateral is degenerate. We assume it's non-degenerate.\nIf \\(x_C=0\\), then \\(C\\) lies on \\(MH\\). From (1), \\(x_D y_C = 0\\). Since \\(y_C \\ne 0\\) (else \\(C=H\\)), we have \\(x_D=0\\). So \\(D\\) also lies on \\(MH\\).\nIf \\(C,D,M,H\\) are all on the \\(y\\)-axis: \\(M\\) is the intersection of \\(AC\\) and \\(BD\\). So \\(A\\) must lie on line \\(CMH\\), and \\(B\\) must lie on line \\(DMH\\). This means \\(A\\) and \\(B\\) are \\(H=(0,0)\\). So \\(A=B=H\\). This is impossible for a quadrilateral.\nSo we must have \\(x_C \\ne 0\\), \\(y_C \\ne 0\\), \\(x_D \\ne 0\\), \\(y_D \\ne 0\\).\nThe relation \\(x_C y_D + x_D y_C = 0\\) implies \\(y_D/x_D = -y_C/x_C\\). So the slopes of \\(HD\\) and \\(HC\\) are opposite. Let \\(S=y_C/x_C\\), then \\(y_D=-S x_D\\).\nThe points \\(C\\) and \\(D\\) must be on opposite sides of \\(MH\\) (e.g. \\(x_C > 0\\) and \\(x_D < 0\\)) for \\(MH\\) to be an internal bisector of \\(\\angle CHD\\). If they are on the same side, \\(MH\\) being an external bisector implies \\(C, D, M\\) are collinear, but \\(H\\) is the vertex of \\(\\angle CHD\\), so this does not make sense unless \\(H,C,D\\) are collinear, which is not possible. So \\(x_C x_D < 0\\).\n\nPoints \\(A,M,C\\) are collinear. \\(A=(x_A,0)\\), \\(M=(0,h)\\), \\(C=(x_C,y_C)\\).\nThe slope of \\(AM\\) is \\(\\frac{h-0}{0-x_A} = -\\frac{h}{x_A}\\). The slope of \\(MC\\) is \\(\\frac{y_C-h}{x_C-0} = \\frac{y_C-h}{x_C}\\).\nSo \\(-\\frac{h}{x_A} = \\frac{y_C-h}{x_C} \\implies -h x_C = x_A(y_C-h) = x_A y_C - x_A h\\).\nSo \\(h(x_A-x_C) = x_A y_C\\). (2)\nPoints \\(B,M,D\\) are collinear. \\(B=(x_B,0)\\), \\(M=(0,h)\\), \\(D=(x_D,y_D)\\).\nSimilarly, \\(h(x_B-x_D) = x_B y_D\\). (3)\nPoints \\(C,M,D\\) are collinear. \\(C=(x_C,y_C)\\), \\(M=(0,h)\\), \\(D=(x_D,y_D)\\).\nThe slope of \\(CM\\) is \\(\\frac{h-y_C}{0-x_C} = \\frac{y_C-h}{x_C}\\). The slope of \\(MD\\) is \\(\\frac{y_D-h}{x_D-0} = \\frac{y_D-h}{x_D}\\).\nSo \\(\\frac{y_C-h}{x_C} = \\frac{y_D-h}{x_D} \\implies x_D(y_C-h) = x_C(y_D-h)\\).\n\\(x_D y_C - x_D h = x_C y_D - x_C h \\implies h(x_C-x_D) = x_C y_D - x_D y_C\\).\nUsing (1), \\(x_C y_D = -x_D y_C\\):\n\\(h(x_C-x_D) = -x_D y_C - x_D y_C = -2x_D y_C\\).\nSo \\(h = \\frac{-2x_D y_C}{x_C-x_D} = \\frac{2x_D y_C}{x_D-x_C}\\). (4) (Note: since \\(x_C x_D < 0\\), let \\(x_C>0, x_D<0\\). Then \\(x_D-x_C < 0\\). Since \\(y_C>0\\), \\(h = \\frac{2(\\text{neg})(\\text{pos})}{\\text{neg}} > 0\\), which is consistent.)\n\nNow we use these relations. Assume \\(y_C \\ne 0\\).\nFrom (2) and (4): \\(\\frac{x_A y_C}{x_A-x_C} = \\frac{2x_D y_C}{x_D-x_C}\\).\nSince \\(y_C \\ne 0\\), \\(\\frac{x_A}{x_A-x_C} = \\frac{2x_D}{x_D-x_C}\\).\n\\(x_A(x_D-x_C) = 2x_D(x_A-x_C)\\). This requires \\(x_A-x_C \\ne 0\\) and \\(x_D-x_C \\ne 0\\).\n\\(x_A x_D - x_A x_C = 2x_A x_D - 2x_C x_D\\).\n\\(x_A x_D + x_A x_C - 2x_C x_D = 0 \\implies x_A(x_C+x_D) = 2x_C x_D\\). (P)\n\nFrom (3) and (4): \\(y_D = -x_D y_C/x_C\\). So \\(h(x_B-x_D) = x_B (-x_D y_C/x_C)\\).\n\\(\\frac{2x_D y_C}{x_D-x_C} = \\frac{-x_B x_D y_C}{x_C(x_B-x_D)}\\). Assume \\(x_D \\ne 0\\).\n\\(\\frac{2}{x_D-x_C} = \\frac{-x_B}{x_C(x_B-x_D)}\\).\n\\(2x_C(x_B-x_D) = -x_B(x_D-x_C)\\). This requires \\(x_B-x_D \\ne 0\\).\n\\(2x_B x_C - 2x_C x_D = -x_B x_D + x_B x_C\\).\n\\(x_B x_C + x_B x_D - 2x_C x_D = 0 \\implies x_B(x_C+x_D) = 2x_C x_D\\). (Q)\n\nFrom (P) and (Q):\nIf \\(x_C+x_D \\ne 0\\), then \\(x_A = \\frac{2x_C x_D}{x_C+x_D}\\) and \\(x_B = \\frac{2x_C x_D}{x_C+x_D}\\).\nThis implies \\(x_A=x_B\\). Since \\(A=(x_A,0)\\) and \\(B=(x_B,0)\\), this means \\(A=B\\). This is impossible for a quadrilateral.\nThis contradiction indicates that one of the assumptions made to derive \\(x_A=x_B\\) must be false. The assumptions are:\n(i) Non-degeneracy: \\(y_C \\ne 0\\), \\(x_D \\ne 0\\). (Discussed earlier, these are fine).\n(ii) Denominators are non-zero: \\(x_A-x_C \\ne 0\\), \\(x_D-x_C \\ne 0\\), \\(x_B-x_D \\ne 0\\).\n(iii) \\(x_C+x_D \\ne 0\\).\n\nLet the center of the circle \\(k\\) be \\(O=(x_o, y_o)\\).\nPoints \\(A,B,C,D\\) lie on \\(k\\). So \\((x-x_o)^2+(y-y_o)^2=R^2\\).\nFor \\(A=(x_A,0)\\) and \\(B=(x_B,0)\\): \\((x_A-x_o)^2+y_o^2 = R^2\\) and \\((x_B-x_o)^2+y_o^2 = R^2\\).\nThis implies \\((x_A-x_o)^2 = (x_B-x_o)^2\\). Since \\(x_A \\ne x_B\\), \\(x_A-x_o = -(x_B-x_o)\\), which gives \\(x_o = (x_A+x_B)/2\\).\nWe want to prove that \\(AB\\) is a diameter. This means the center \\(O\\) lies on the line \\(AB\\) (the \\(x\\)-axis). So we need to prove \\(y_o=0\\).\n\nLet's analyze the conditions that avoid the contradiction \\(A=B\\):\n1. Case \\(x_D-x_C=0\\): So \\(x_D=x_C\\).\n   From \\(x_C y_D + x_D y_C = 0\\), we get \\(x_C y_D + x_C y_C = 0 \\implies x_C(y_D+y_C)=0\\).\n   Since \\(x_C \\ne 0\\), we have \\(y_D=-y_C\\).\n   So \\(C=(x_C,y_C)\\) and \\(D=(x_C,-y_C)\\). These points are symmetric with respect to the \\(x\\)-axis (\\(AB\\)).\n   The circle passes through \\(C\\) and \\(D\\):\n   \\((x_C-x_o)^2+(y_C-y_o)^2=R^2\\)\n   \\((x_C-x_o)^2+(-y_C-y_o)^2=R^2\\)\n   So \\((y_C-y_o)^2 = (-y_C-y_o)^2 = (y_C+y_o)^2\\).\n   \\(y_C^2-2y_C y_o+y_o^2 = y_C^2+2y_C y_o+y_o^2\\).\n   This implies \\(-2y_C y_o = 2y_C y_o\\), so \\(4y_C y_o = 0\\).\n   Since \\(y_C \\ne 0\\), we must have \\(y_o=0\\).\n   Thus, if \\(x_C=x_D\\), then \\(AB\\) is a diameter.\n\n2. Case \\(x_A-x_C=0\\): So \\(x_A=x_C\\).\n   Then equation (P) \\(x_A(x_C+x_D) = 2x_C x_D\\) becomes \\(x_C(x_C+x_D) = 2x_C x_D\\).\n   Since \\(x_C \\ne 0\\), \\(x_C+x_D=2x_D \\implies x_C=x_D\\). This reduces to Case 1, so \\(y_o=0\\).\n\n3. Case \\(x_B-x_D=0\\): So \\(x_B=x_D\\).\n   Then equation (Q) \\(x_B(x_C+x_D) = 2x_C x_D\\) becomes \\(x_D(x_C+x_D) = 2x_C x_D\\).\n   Since \\(x_D \\ne 0\\), \\(x_C+x_D=2x_C \\implies x_D=x_C\\). This reduces to Case 1, so \\(y_o=0\\).\n\n4. Case \\(x_C+x_D=0\\): So \\(x_D=-x_C\\).\n   From \\(x_C y_D + x_D y_C = 0\\), we get \\(x_C y_D - x_C y_C = 0 \\implies x_C(y_D-y_C)=0\\).\n   Since \\(x_C \\ne 0\\), we have \\(y_D=y_C\\).\n   So \\(C=(x_C,y_C)\\) and \\(D=(-x_C,y_C)\\). The line \\(CD\\) is horizontal (\\(y=y_C\\)).\n   Since \\(AB\\) is on the \\(x\\)-axis, \\(CD\\) is parallel to \\(AB\\).\n   This case is disallowed by the problem statement \"AB is not parallel to CD\".\n   (Note: If it were allowed, \\(y_D=y_C\\) means the perpendicular bisector of \\(CD\\) is \\(x=0\\) (the line \\(MH\\)). So \\(O\\) must lie on \\(MH\\), so \\(x_o=0\\). This means \\(x_A+x_B=0\\), so \\(H\\) is the midpoint of \\(AB\\). This doesn't directly force \\(y_o=0\\).)\n\nAll specific cases where denominators become zero lead to \\(y_o=0\\) or a disallowed configuration.\nThe only remaining possibility is that the derivation \\(x_A=x_B\\) is valid, which means \\(A=B\\). This is the final contradiction.\nThis means that the initial assumptions and given conditions, within the framework of coordinate geometry, necessitate that \\(y_o=0\\). The problem describes a valid geometric configuration, so a contradiction like \\(A=B\\) cannot be the outcome. The only way to avoid the contradiction \\(A=B\\) is for one of these special cases to apply. All applicable special cases lead to \\(y_o=0\\).\n\nTo be more direct: The geometric conditions (collinearities and angle condition) lead to equations (P) and (Q).\n(P): \\(x_A(x_C+x_D) = 2x_Cx_D\\)\n(Q): \\(x_B(x_C+x_D) = 2x_Cx_D\\)\nThese equations hold, assuming the denominators in their derivation are not zero. As shown above, if any of those denominators are zero, it implies \\(y_o=0\\) or the configuration is disallowed.\nIf \\(x_C+x_D \\ne 0\\) and \\(x_Cx_D \\ne 0\\), then (P) and (Q) imply \\(x_A = x_B = \\frac{2x_Cx_D}{x_C+x_D}\\).\nThis means that the points \\(A\\) and \\(B\\) coincide, which is impossible for a quadrilateral.\nThis means that such a configuration is impossible under the assumption that \\(y_o \\ne 0\\).\nIf \\(y_o=0\\), then the points \\(A,B,C,D\\) must satisfy this condition.\nThe coordinates of \\(A,B,C,D\\) are related by equations (1)-(4), (P), (Q) and the circle equations.\nThe fact that (P) and (Q) imply \\(x_A=x_B\\) (a contradiction) means that the premise (that such a quadrilateral exists and satisfies the given conditions) must force one of the conditions that were 'divided through'.\nAll such conditions were shown to imply \\(y_o=0\\) or were disallowed by the problem statement.\nTherefore, for the described quadrilateral to exist, it must be true that \\(y_o=0\\).\nWhen \\(y_o=0\\), the center of the circle \\(O=(x_o,0)\\) lies on the line \\(AB\\) (the \\(x\\)-axis). Therefore, \\(AB\\) is a diameter of the circle \\(k\\).\n\nThe problem also states \\(AB > CD\\). This condition might be used to prevent some degenerate cases or alternative configurations, but was not explicitly used in the coordinate algebra. It's possible it ensures that \\(C\\) and \\(D\\) are not on the same \"side\" of \\(M\\) along respective diagonals, or ensures \\(M\\) is indeed intersection of diagonals, not ex-intersection. However, the setup here is standard.\n\nSummary of argument:\n1. Set up coordinates such that \\(H=(0,0)\\), \\(AB\\) is on \\(x\\)-axis, \\(MH\\) is on \\(y\\)-axis, \\(M=(0,h)\\) with \\(h>0\\).\n2. The condition \\(\\angle MHC = \\angle MHD\\) implies \\(x_C y_D + x_D y_C = 0\\). (1)\n3. Collinearity of \\(A,M,C\\), \\(B,M,D\\), and \\(C,M,D\\) along with (1) leads to two equations:\n   \\(x_A(x_C+x_D) = 2x_C x_D\\) (P)\n   \\(x_B(x_C+x_D) = 2x_C x_D\\) (Q)\n   This derivation assumes certain quantities are non-zero.\n4. If any of these quantities are zero, we analyze these special cases:\n   a. \\(x_C=x_D\\): This leads to \\(y_o=0\\).\n   b. \\(x_A=x_C\\) (or \\(x_A-x_C=0\\)): Leads to \\(x_C=x_D\\), hence \\(y_o=0\\).\n   c. \\(x_B=x_D\\) (or \\(x_B-x_D=0\\)): Leads to \\(x_C=x_D\\), hence \\(y_o=0\\).\n   d. Other cases like \\(x_C=0\\) or \\(y_C=0\\) lead to degenerate quadrilaterals.\n5. If none of the special conditions in (4) hold, then (P) and (Q) imply \\(x_A=x_B\\), provided \\(x_C+x_D \\ne 0\\).\n   If \\(x_C+x_D=0\\), this implies \\(CD\\) is parallel to \\(AB\\) (using (1)), which is disallowed.\n6. So, if the configuration is non-degenerate and not disallowed, we must have \\(x_A=x_B\\). This means \\(A=B\\), which contradicts \\(ABCD\\) being a quadrilateral.\n7. This means that the initial assumption (that such a quadrilateral exists satisfying the given conditions) is only tenable if at least one of the special cases (which are not disallowed degenerate configurations) occurs. All such applicable cases lead to \\(y_o=0\\).\n8. Therefore, \\(y_o=0\\), meaning the center of the circle lies on \\(AB\\), so \\(AB\\) is a diameter.\n\nThe final answer is $\\boxed{AB \\text{ is a diameter of } k}$.",
+            "cost": {
+                "cost": 0.32929375,
+                "input_tokens": 411,
+                "output_tokens": 32878
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:54:48.286943",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof places H at the origin, aligns AB with the x-axis and MH with the y-axis, and assigns coordinates to A, B, C, D, and M. It translates the condition \\(\\angle MHC=\\angle MHD\\) into the relation \\(x_Cy_D+x_Dy_C=0\\) and uses collinearity of A, M, C and B, M, D (and erroneously C, M, D) to derive algebraic equations relating the coordinates. Combining these yields two key equations (P) and (Q) that force either a contradiction (\\(A=B\\)) or special cases, and the special cases are shown to place the circle\u2019s center on AB, concluding that AB is a diameter.",
+                    "issues": [
+                        {
+                            "location": "Derivation of equation (4)",
+                            "text": "Points \\(C,M,D\\) are collinear.",
+                            "description": "The proof incorrectly assumes that points C, M, and D are collinear, even though M is the intersection of diagonals AC and BD, so C, M, D are not collinear.",
+                            "category": "Other",
+                            "start_index": 3339,
+                            "end_index": 3368
+                        },
+                        {
+                            "location": "Throughout the proof",
+                            "text": "",
+                            "description": "The proof never uses the given condition \\(AB>CD\\), which may be needed to ensure that the angle bisector is the internal bisector and to prevent degenerate or ambiguous cases.",
+                            "category": "Missing Edge Cases"
+                        },
+                        {
+                            "location": "Derivation of equation (P) from equations (2) and (4)",
+                            "text": "From (2) and (4): \\(\\frac{x_A}{x_A-x_C}=\\frac{2x_D}{x_D-x_C}\\), which leads to \\(x_A(x_C+x_D)=2x_Cx_D\\).",
+                            "description": "The proof skips intermediate algebraic steps in combining equations (2) and (4) to derive (P), making it difficult to verify the correctness of the manipulation.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4087,
+                            "end_index": 4171
+                        },
+                        {
+                            "location": "Discussion of relation (1)",
+                            "text": "This relation holds unless \\(x_C=0\\) or \\(y_C=0\\). If \\(y_C=0\\), C lies on AB\u2026 If \\(x_C=0\\), then D also lies on MH\u2026",
+                            "description": "The proof asserts that \\(x_C=0\\) or \\(y_C=0\\) lead to degenerate quadrilaterals without justification or exploration of possibly valid configurations.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 1589,
+                            "end_index": 1679
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:24:06.641613"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Solution Sketch\n\nBecause of time constraints the assistant could not finish a complete, fully detailed and rigorously justified proof that fulfils all requirements of the task.",
+            "cost": {
+                "cost": 1.82586,
+                "input_tokens": 422,
+                "output_tokens": 45541
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:52:41.385144",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The provided proof is merely a placeholder sketch stating that the assistant could not complete a fully detailed proof; no actual logical steps or arguments toward showing that AB is a diameter are given.",
+                    "issues": [
+                        {
+                            "location": "Entire proof",
+                            "text": "Solution Sketch\n\nBecause of time constraints the assistant could not finish a complete, fully detailed and rigorously justified proof that fulfils all requirements of the task.",
+                            "description": "The proof is incomplete and only a placeholder sketch is provided, without any argument or progression toward the conclusion.",
+                            "category": "Other",
+                            "start_index": 0,
+                            "end_index": 174
+                        },
+                        {
+                            "location": "Entire proof",
+                            "text": "",
+                            "description": "All computations and reasoning steps are omitted; there is no justification of intermediate results or use of known theorems.",
+                            "category": "Skipping Computation Steps"
+                        },
+                        {
+                            "location": "Entire proof",
+                            "text": "",
+                            "description": "No LaTeX notation is used for any mathematical expressions, in violation of the formatting requirements.",
+                            "category": "Other"
+                        },
+                        {
+                            "location": "Entire proof",
+                            "text": "",
+                            "description": "The proof does not consider any specific or general cases (e.g.\\ nonparallel sides, ordering of points), nor does it address potential edge scenarios.",
+                            "category": "Missing Edge Cases"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:22:58.684161"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To prove that $ AB $ is a diameter of the circle $ k $, we are given the following geometric configuration:\n\n- $ ABCD $ is a cyclic quadrilateral inscribed in a circle $ k $.\n- $ AB > CD $ and $ AB $ is not parallel to $ CD $.\n- Diagonals $ AC $ and $ BD $ intersect at point $ M $.\n- Point $ H $ is the foot of the perpendicular from $ M $ to $ AB $.\n- It is given that $ \\angle MHC = \\angle MHD $.\n\nWe are to prove that $ AB $ is a **diameter** of the circle $ k $.\n\n---\n\n### Step 1: Use of Power of a Point\n\nSince $ H $ lies on the chord $ AB $, the **Power of Point Theorem** applies:\n\n$$\nHA \\cdot HB = HC \\cdot HD\n$$\n\nThis equation is crucial and will be used in conjunction with the angle condition.\n\n---\n\n### Step 2: Use of the Angle Bisector Theorem\n\nGiven $ \\angle MHC = \\angle MHD $, the line $ HM $ is the **angle bisector** of $ \\angle CHD $. By the **Angle Bisector Theorem** in triangle $ CHD $, we have:\n\n$$\n\\frac{HC}{HD} = \\frac{CM}{DM}\n$$\n\n---\n\n### Step 3: Use of the Intersecting Chords Theorem\n\nFrom the **Intersecting Chords Theorem** applied at point $ M $, we know:\n\n$$\nAM \\cdot MC = BM \\cdot MD \\Rightarrow \\frac{CM}{DM} = \\frac{BM}{AM}\n$$\n\nCombining this with the result from Step 2:\n\n$$\n\\frac{HC}{HD} = \\frac{CM}{DM} = \\frac{BM}{AM}\n$$\n\nSo we now have:\n\n$$\n\\frac{HC}{HD} = \\frac{BM}{AM}\n$$\n\n---\n\n### Step 4: Combine with Power of a Point\n\nFrom Step 1, we have:\n\n$$\nHA \\cdot HB = HC \\cdot HD\n$$\n\nLet us denote $ \\frac{BM}{AM} = k $, so that $ \\frac{HC}{HD} = k $. Then:\n\n$$\nHC = k \\cdot HD\n$$\n\nSubstituting into the power of point equation:\n\n$$\nHA \\cdot HB = HC \\cdot HD = k \\cdot HD^2\n$$\n\nSo:\n\n$$\nHD^2 = \\frac{HA \\cdot HB}{k}\n$$\n\nSimilarly, since $ HC = k \\cdot HD $, we also have:\n\n$$\nHC^2 = k^2 \\cdot HD^2 = k^2 \\cdot \\frac{HA \\cdot HB}{k} = k \\cdot HA \\cdot HB\n$$\n\n---\n\n### Step 5: Consider the Geometry of the Configuration\n\nNow consider the right triangles $ \\triangle HMA $ and $ \\triangle HMB $, both having $ HM $ as a common leg and right angles at $ H $:\n\n$$\nAM^2 = AH^2 + HM^2, \\quad BM^2 = BH^2 + HM^2\n$$\n\nSubtracting the two equations:\n\n$$\nAM^2 - BM^2 = AH^2 - BH^2\n$$\n\nThis implies:\n\n$$\n(AM - BM)(AM + BM) = (AH - BH)(AH + BH)\n$$\n\nThis equation shows that the difference of the squares of the lengths of the segments of the diagonals is equal to the difference of the squares of the segments of the chord $ AB $.\n\n---\n\n### Step 6: Deduce that $ H $ is the Midpoint of $ AB $\n\nFrom the above, if we assume that $ AM = BM $, then the left-hand side becomes zero, and so must the right-hand side. That implies $ AH = BH $, i.e., $ H $ is the **midpoint** of $ AB $.\n\nThis is a key conclusion. If $ AM = BM $, then $ H $ is the midpoint of $ AB $, and the perpendicular from $ M $ to $ AB $ passes through the midpoint of $ AB $, which implies that $ M $ lies on the **perpendicular bisector** of $ AB $.\n\nIn a circle, the **perpendicular bisector of a chord** passes through the **center** of the circle. Therefore, the center $ O $ of the circle $ k $ lies on the line $ HM $, which is the perpendicular bisector of $ AB $.\n\n---\n\n### Step 7: Conclude that $ AB $ is a Diameter\n\nSince $ H $ is the midpoint of $ AB $, and $ HM $ is the perpendicular bisector of $ AB $, the **center $ O $** of the circle must lie on $ HM $.\n\nBut the only point on both $ HM $ and $ AB $ is $ H $, because $ HM $ is perpendicular to $ AB $ at $ H $. Therefore, the **center $ O $** must be at $ H $, the midpoint of $ AB $.\n\nThus, $ AB $ is a **diameter** of the circle $ k $, with its **center at the midpoint $ H $**.\n\n---\n\n### Final Conclusion\n\nWe have shown that the given condition $ \\angle MHC = \\angle MHD $, combined with the properties of cyclic quadrilaterals, the Power of a Point Theorem, and the Angle Bisector Theorem, leads to the conclusion that $ H $ is the midpoint of $ AB $, and the center of the circle lies on the perpendicular bisector of $ AB $, which intersects $ AB $ only at its midpoint.\n\nTherefore, the only way this can happen is if $ AB $ is a **diameter** of the circle $ k $.\n\n$$\n\\boxed{AB \\text{ is a diameter of } k}\n$$",
+            "cost": {
+                "cost": 0.009802,
+                "input_tokens": 413,
+                "output_tokens": 16199
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:50:34.304938",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof begins by applying the Power of a Point at H to assert $HA\\cdot HB=HC\\cdot HD$, then uses the given equality $\\angle MHC=\\angle MHD$ to claim $HM$ bisects $\\angle CHD$ and invokes the Angle Bisector Theorem to obtain $HC/HD=CM/DM$. Next it applies the Intersecting Chords Theorem at M to relate $CM/DM=BM/AM$, sets $k=BM/AM$ to express $HC$ and $HD$ in terms of $HA,HB,k$, and considers right triangles $HMA$ and $HMB$ to derive $AM^2-BM^2=AH^2-BH^2$. Finally, by assuming $AM=BM$, it concludes $AH=BH$, so $H$ is the midpoint of $AB$, making $HM$ the perpendicular bisector and hence $AB$ a diameter of $k$.",
+                    "issues": [
+                        {
+                            "location": "Step 2",
+                            "text": "By the Angle Bisector Theorem in triangle $CHD$, we have: $$\\\\frac{HC}{HD}=\\\\frac{CM}{DM}$$",
+                            "description": "Misapplication of the Angle Bisector Theorem: $M$ lies at the intersection of the diagonals, not on segment $CD$, so $HM$ does not bisect side $CD$ and the ratio $CM/DM$ is unrelated to $HC/HD$.",
+                            "category": "Other",
+                            "start_index": 855,
+                            "end_index": 952
+                        },
+                        {
+                            "location": "Step 1",
+                            "text": "$$HA\\\\cdot HB = HC\\\\cdot HD$$",
+                            "description": "Incorrect use of the Power of a Point Theorem: $H$ is not on chord $CD$, so one cannot form the product $HC\\cdot HD$ by intersecting chords through $H$.",
+                            "category": "Other",
+                            "start_index": 591,
+                            "end_index": 619
+                        },
+                        {
+                            "location": "Step 6",
+                            "text": "\"From the above, if we assume that $AM=BM$, then ... $AH=BH$.\"",
+                            "description": "The proof assumes $AM=BM$ without justification, effectively proving the result only under that special condition rather than deriving it from earlier steps.",
+                            "category": "Overgeneralization",
+                            "start_index": 2413,
+                            "end_index": 2467
+                        },
+                        {
+                            "location": "Throughout the proof",
+                            "text": "",
+                            "description": "The given conditions $AB>CD$ and that $AB$ is not parallel to $CD$ are never invoked, so important hypotheses are unused.",
+                            "category": "Missing Edge Cases"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:23:35.757320"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof.   Denote by k the given circle and by \\(O\\) its center.  Let \\(M=AC\\cap BD\\) and let \\(H\\) be the foot of the perpendicular from \\(M\\) to \\(AB\\).  We are given\n\n\\[\n\\angle MHC \\;=\\;\\angle MHD.\n\\]\n\n1.  \u200b\u200b\u201cPoints \\(M,H,C,D\\) are concyclic.\u201d  \nIndeed, consider the (unique) circle \\(\\gamma\\) through \\(M,H,C\\).  On \\(\\gamma\\), the inscribed angle \\(\\angle MHC\\) intercepts the arc \\(\\widehat{MC}\\).  Since \\(\\angle MHD=\\angle MHC\\), point \\(D\\) must lie on the same arc of \\(\\gamma\\) that subtends angle \\(\\angle MHC\\).  Hence \\(D\\in\\gamma\\), i.e.\\ \\(M,H,C,D\\) are concyclic.\n\n2.  \u200b\u200b\u201c\\(MC=MD\\).\u201d  \nIn the cyclic quadrilateral \\(MCHD\\) we have\n\\[\n\\angle MDC=\\angle MHC\n\\quad\\text{and}\\quad\n\\angle MCD=\\angle MHD,\n\\]\nby the Inscribed-Angle Theorem.  But \\(\\angle MHC=\\angle MHD\\) by hypothesis, so\n\\[\n\\angle MDC=\\angle MCD.\n\\]\nHence triangle \\(MCD\\) is isosceles at \\(M\\), i.e.\\ \\(MC=MD\\).\n\n3.  \u200b\u200b\u201c\\(MA=MB\\).\u201d  \nIn circle \\(k\\), the chords \\(AC\\) and \\(BD\\) meet at \\(M\\), so by the Intersecting-Chords Theorem\n\\[\nMA\\cdot MC \\;=\\; MB\\cdot MD.\n\\]\nSince \\(MC=MD\\), it follows that\n\\[\nMA=MB.\n\\]\nThus \\(M\\) is equidistant from \\(A\\) and \\(B\\), so \\(M\\) lies on the perpendicular bisector of chord \\(AB\\).\n\n4.  \u200b\u200b\u201c\\(M=O\\) and \\(AB\\) is a diameter.\u201d  \nSimilarly, from \\(MC=MD\\) we see that \\(M\\) lies on the perpendicular bisector of chord \\(CD\\).  But \\(AB\\) is not parallel to \\(CD\\) (by hypothesis), so the two perpendicular bisectors meet in exactly one point, namely the center \\(O\\) of \\(k\\).  Hence \\(M=O\\).  In particular \\(O\\) lies on the line \\(AB\\), so \\(AB\\) passes through the center of \\(k\\) and is therefore a diameter, as claimed. \u2003\u220e",
+            "cost": {
+                "cost": 0.14644300000000002,
+                "input_tokens": 422,
+                "output_tokens": 33177
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:38:49.404308",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof first uses the given angle equality \\(\\angle MHC=\\angle MHD\\) to assert that points M, H, C, D are concyclic. It then applies the Inscribed-Angle Theorem in that circle to deduce \\(MC=MD\\). By the Intersecting-Chords Theorem in the original circle, it follows that \\(MA=MB\\), so M lies on the perpendicular bisector of \\(AB\\); similarly, \\(MC=MD\\) places M on the perpendicular bisector of \\(CD\\). Since \\(AB\\) is not parallel to \\(CD\\), these bisectors meet at the center \\(O\\), giving \\(M=O\\) and hence \\(AB\\) is a diameter.",
+                    "issues": [
+                        {
+                            "location": "Step 1",
+                            "text": "Points \\(M,H,C,D\\) are concyclic.",
+                            "description": "The proof\u2019s justification for cyclicity is incomplete and misapplies the given angle equality: it equates the inscribed angles at H without verifying that they intercept the same arc, so it does not validly conclude that D lies on the circle through M, H, and C.",
+                            "category": "Oversimplification",
+                            "start_index": 210,
+                            "end_index": 243
+                        },
+                        {
+                            "location": "Definition of H",
+                            "text": "foot of the perpendicular from \\(M\\) to \\(AB\\)",
+                            "description": "The proof never uses that \\(MH\\) is perpendicular to \\(AB\\); the perpendicular condition is introduced but then not employed in any argument.",
+                            "category": "Other",
+                            "start_index": 105,
+                            "end_index": 150
+                        },
+                        {
+                            "location": "Global",
+                            "text": "",
+                            "description": "The hypothesis \\(AB>CD\\) is never used in the proof.",
+                            "category": "Other"
+                        },
+                        {
+                            "location": "Step 3",
+                            "text": "MA\\cdot MC = MB\\cdot MD",
+                            "description": "The proof invokes the Intersecting-Chords Theorem without justifying that the diagonals actually intersect inside the circle (i.e.\\ that the quadrilateral is convex), which is needed for the standard form of the theorem.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 1015,
+                            "end_index": 1042
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:23:49.398780"
+            }
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2021
+    },
+    "problem": "Let \\( K \\) and \\( N > K \\) be fixed positive integers. Let \\( n \\) be a positive integer and let \\( a_{1}, a_{2}, \\ldots, a_{n} \\) be distinct integers. Suppose that whenever \\( m_{1}, m_{2}, \\ldots, m_{n} \\) are integers, not all equal to \\( 0 \\), such that \\( \\left|m_{i}\\right| \\leq K \\) for each \\( i \\), then the sum\n\n\\[\n\\sum_{i=1}^{n} m_{i} a_{i}\n\\]\n\nis not divisible by \\( N \\). What is the largest possible value of \\( n \\)?",
+    "problem_id": "BMOSL_2021_12",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. The answer is $n=\\left\\lfloor\\log _{K+1} N\\right\\rfloor$.\nNote first that for $n \\leqslant\\left\\lfloor\\log _{K+1} N\\right\\rfloor$, taking $a_{i}=(K+1)^{i-1}$ works. Indeed let $r$ be maximal such that $m_{r} \\neq 0$. Then on the one hand we have\n\n$$\n\\left|\\sum_{i=1}^{n} m_{i} a_{i}\\right| \\leqslant \\sum_{i=1}^{n} K(K+1)^{i-1}=(K+1)^{n}-1<N\n$$\n\nOn the other hand we have\n\n$$\n\\left|\\sum_{i=1}^{n} m_{i} a_{i}\\right| \\geqslant\\left|m_{r} a_{r}\\right|-\\left|\\sum_{i=1}^{r-1} m_{i} a_{i}\\right| \\geqslant(K+1)^{r-1}-\\sum_{i=1}^{r-1} K(K+1)^{i-1}=1>0\n$$\n\nSo the sum is indeed not divisible by $n$.\nAssume now that $n \\geqslant\\left\\lfloor\\log _{K+1} N\\right\\rfloor$ and look at all $n$-tuples of the form $\\left(t_{1}, \\ldots, t_{n}\\right)$ where each $t_{i}$ is a non-negative integer with $t_{i} \\leqslant K$. There are $(K+1)^{n}>N$ such tuples so there are two of them, say $\\left(t_{1}, \\ldots, t_{n}\\right)$ and $\\left(t_{1}^{\\prime}, \\ldots, t_{n}^{\\prime}\\right)$ such that\n\n$$\n\\sum_{i=1}^{n} t_{i} a_{i} \\equiv \\sum_{i=1}^{n} t_{i}^{\\prime} a_{i} \\bmod N\n$$\n\nNow taking $m_{i}=t_{i}-t_{i}^{\\prime}$ for each $i$ satisfies the requirements on the $m_{i}$ 's but $N$ divides the sum\n\n$$\n\\sum_{i=1}^{n} m_{i} a_{i}\n$$\na contradiction.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

@@ -1,0 +1,9 @@
+name: "Checking if best-of-n can work with o4-mini"
+slug: "best_of_n"
+admins:
+  - "6-442464cd"
+  - "10-e40c0f23"
+
+model_configs:
+  - "openai/o4-mini--high"
+

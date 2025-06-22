@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.28,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2014
+    },
+    "problem": "Find all \\( f: \\mathbb{Z} \\rightarrow \\mathbb{Z} \\) such that\n\n\\[\nx f(2 f(y)-x) + y^{2} f(2 x-f(y)) = \\frac{f(x)^{2}}{x} + f(y f(y))\n\\]\n\nfor all \\( x, y \\in \\mathbb{Z} \\) such that \\( x \\neq 0 \\).",
+    "problem_id": "USAMO_2014_2",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nFind all $f: \\mathbb{Z} \\rightarrow \\mathbb{Z}$ such that\n\n$$\nx f(2 f(y)-x)+y^{2} f(2 x-f(y))=\\frac{f(x)^{2}}{x}+f(y f(y))\n$$\nfor all $x, y \\in \\mathbb{Z}$ such that $x \\neq 0$.\n\nThe answer is $f(x) \\equiv 0$ and $f(x) \\equiv x^{2}$. Check that these work.\nNow let's prove these are the only solutions. Put $y=0$ to obtain\n\n$$\nx f(2 f(0)-x)=\\frac{f(x)^{2}}{x}+f(0) .\n$$\n\nThe nicest part of the problem is the following step:\nClaim - We have $f(0)=0$.\n\nProof. If not, select a prime $p \\nmid f(0)$ and put $x=p \\neq 0$. In the above, we find that $p \\mid f(p)^{2}$, so $p \\mid f(p)$ and hence $p \\left\\lvert\\, \\frac{f(p)^{2}}{p}\\right.$. From here we derive $p \\mid f(0)$, contradiction. Hence\n\n$$\nf(0)=0 .\n$$\n\nClaim - We have $f(x) \\in\\left\\{0, x^{2}\\right\\}$ for each individual $x$.\nProof. The above then implies that\n\n$$\nx^{2} f(-x)=f(x)^{2}\n$$\nholds for all nonzero $x$, but also for $x=0$. Let us now check that $f$ is an even function. In the above, we may also derive $f(-x)^{2}=x^{2} f(x)$. If $f(x) \\neq f(-x)$ (and hence $x \\neq 0$ ), then subtracting the above and factoring implies that $f(x)+f(-x)=-x^{2}$; we can then obtain by substituting the relation\n$$\n\\left[f(x)+\\frac{1}{2} x^{2}\\right]^{2}=-\\frac{3}{4} x^{4}<0\n$$\n\nwhich is impossible. This means $f(x)^{2}=x^{2} f(x)$, thus\n\n$$\nf(x) \\in\\left\\{0, x^{2}\\right\\} \\quad \\forall x .\n$$\n\nNow suppose there exists a nonzero integer $t$ with $f(t)=0$. We will prove that $f(x) \\equiv 0$. Put $y=t$ in the given to obtain that\n\n$$\nt^{2} f(2 x)=0\n$$\nfor any integer $x \\neq 0$, and hence conclude that $f(2 \\mathbb{Z}) \\equiv 0$. Then selecting $x=2 k \\neq 0$ in the given implies that\n$$\ny^{2} f(4 k-f(y))=f(y f(y))\n$$\n\nAssume for contradiction that $f(m)=m^{2}$ now for some odd $m \\neq 0$. Evidently\n\n$$\nm^{2} f\\left(4 k-m^{2}\\right)=f\\left(m^{3}\\right)\n$$\n\nIf $f\\left(m^{3}\\right) \\neq 0$ this forces $f\\left(4 k-m^{2}\\right) \\neq 0$, and hence $m^{2}\\left(4 k-m^{2}\\right)^{2}=m^{6}$ for arbitrary $k \\neq 0$, which is clearly absurd. That means\n\n$$\nf\\left(4 k-m^{2}\\right)=f\\left(m^{2}-4 k\\right)=f\\left(m^{3}\\right)=0\n$$\nfor each $k \\neq 0$. Since $m$ is odd, $m^{2} \\equiv 1(\\bmod 4)$, and so $f(n)=0$ for all $n$ other than $\\pm m^{2}$ (since we cannot select $\\left.k=0\\right)$.\n\nNow $f(m)=m^{2}$ means that $m= \\pm 1$. Hence either $f(x) \\equiv 0$ or\n\n$$\nf(x)= \\begin{cases}1 & x= \\pm 1 \\\\ 0 & \\text { otherwise }\\end{cases}\n$$\n\nTo show that the latter fails, we simply take $x=5$ and $y=1$ in the given.\nHence, the only solutions are $f(x) \\equiv 0$ and $f(x) \\equiv x^{2}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

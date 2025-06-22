@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.16,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2008
+    },
+    "problem": "Three nonnegative real numbers \\( r_{1}, r_{2}, r_{3} \\) are written on a blackboard. These numbers have the property that there exist integers \\( a_{1}, a_{2}, a_{3} \\), not all zero, satisfying \\( a_{1} r_{1} + a_{2} r_{2} + a_{3} r_{3} = 0 \\). We are permitted to perform the following operation: find two numbers \\( x, y \\) on the blackboard with \\( x \\leq y \\), then erase \\( y \\) and write \\( y-x \\) in its place. Prove that after a finite number of such operations, we can end up with at least one \\( 0 \\) on the blackboard.",
+    "problem_id": "USAMO_2008_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "We first show we can decrease the quantity $\\left|a_{1}\\right|+\\left|a_{2}\\right|+\\left|a_{3}\\right|$ as long as $0 \\notin\\left\\{a_{1}, a_{2}, a_{3}\\right\\}$. Assume $a_{1}>0$ and $r_{1}>r_{2}>r_{3}$ without loss of generality and consider two cases.\n\n- Suppose $a_{2}>0$ or $a_{3}>0$; these cases are identical. (One cannot have both $a_{2}>0$ and $a_{3}>0$.) If $a_{2}>0$ then $a_{3}<0$ and get\n\n$$\n0=a_{1} r_{1}+a_{2} r_{2}+a_{3} r_{3}>a_{1} r_{3}+a_{3} r_{3} \\Longrightarrow a_{1}+a_{3}<0\n$$\nso $\\left|a_{1}+a_{3}\\right|<\\left|a_{3}\\right|$, and hence we perform $\\left(r_{1}, r_{2}, r_{3}\\right) \\mapsto\\left(r_{1}-r_{3}, r_{2}, r_{3}\\right)$.\n\n- Both $a_{2}<0$ and $a_{3}<0$. Assume for contradiction that $\\left|a_{1}+a_{2}\\right| \\geq-a_{2}$ and $\\left|a_{1}+a_{3}\\right| \\geq-a_{3}$ both hold (if either fails then we use $\\left(r_{1}, r_{2}, r_{3}\\right) \\mapsto\\left(r_{1}-r_{2}, r_{2}, r_{3}\\right)$ and $\\left(r_{1}, r_{2}, r_{3}\\right) \\mapsto\\left(r_{1}-r_{3}, r_{2}, r_{3}\\right)$, respectively). Clearly $a_{1}+a_{2}$ and $a_{1}+a_{3}$ are both positive in this case, so we get $a_{1}+2 a_{2}$ and $a_{1}+2 a_{3} \\geq 0$; adding gives $a_{1}+a_{2}+a_{3} \\geq 0$. But\n\n$$\n\\begin{aligned}\n0 & =a_{1} r_{1}+a_{2} r_{2}+a_{3} r_{3} \\\\\n& >a_{1} r_{2}+a_{2} r_{2}+a_{3} r_{2} \\\\\n& =r_{2}\\left(a_{1}+a_{2}+a_{3}\\right) \\\\\n\\Longrightarrow 0 & <a_{1}+a_{2}+a_{3} .\n\\end{aligned}\n$$\n\nSince this covers all cases, we see that we can always decrease $\\left|a_{1}\\right|+\\left|a_{2}\\right|+\\left|a_{3}\\right|$ whenever $0 \\notin\\left\\{a_{1}, a_{2}, a_{3}\\right\\}$. Because the $a_{i}$ are integers this cannot occur indefinitely, so eventually one of the $a_{i}$ 's is zero. At this point we can just apply the Euclidean Algorithm, so we're done.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

@@ -1,0 +1,9 @@
+model: gpt-4.1
+api: openai
+max_tokens: 16000
+read_cost: 2
+write_cost: 8
+human_readable_id: gpt-4.1
+batch_processing: true
+openai_responses: true
+date: "2025-04-14"

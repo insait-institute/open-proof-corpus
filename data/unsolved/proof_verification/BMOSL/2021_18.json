@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2021
+    },
+    "problem": "Let \\( I \\) and \\( O \\) be the incenter and the circumcenter of a triangle \\( ABC \\), respectively, and let \\( s_a \\) be the exterior bisector of angle \\(\\angle BAC\\). The line through \\( I \\) perpendicular to \\( IO \\) meets the lines \\( BC \\) and \\( s_a \\) at points \\( P \\) and \\( Q \\), respectively. Prove that \\( IQ = 2 IP \\).",
+    "problem_id": "BMOSL_2021_18",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Denote by $I_{b}$ and $I_{c}$ the respective excenters opposite to $B$ and $C$. Also denote the midpoint of side $B C$ by $D$, the midpoint of the arc $B A C$ by $M$, and the midpoint of segment $A M$ by $N$. Recall that $M$ is on the perpendicular bisector of $B C$, i.e. on line $O D$. Points $I, O, D, P$ lie on the circle with diameter $O P$, whereas points $I, O, Q, N$ lie on the circle with diameter $O Q$. Thus $\\angle I O P=\\angle I D P$ and $\\angle I O Q=180^{\\circ}-\\angle I N Q=\\angle I N A$. So the triangles $I A N$ and $Q I O$ are similar.\n\n\nOn the other hand, points $B, C, I_{b}, I_{c}$ are on the circle with diameter $I_{b} I_{c}$, so the triangles $I B C$ and $I I_{c} I_{b}$ are similar. We have $\\angle I I_{c} A=\\angle C I_{c} I_{b}=\\angle C B I_{b}=\\frac{1}{2} \\beta$. Since also $\\angle I B A=$ $\\frac{1}{2} \\beta=\\angle I I_{c} A$ then we deduce (the known fact) that $I_{c}, A, I, B$ are concyclic. Thus $\\angle B I_{c} A=$ $180^{\\circ}-A I B=\\frac{1}{2}(\\alpha+\\beta)$. Since also $I_{c} M B=A M B=A C B=\\gamma$, then we also have that $\\angle I_{c} B M=\\angle B I_{c} A=\\frac{1}{2}(\\alpha+\\beta)$. We deduce that $I_{c} M=M B=M C=I_{b} M$, i.e. $M$ is the midpoint of $I_{b} I_{c}$.\n\nIt follows that the triangles $I B D$ and $I I_{c} M$ are similar, so $\\angle I O P=\\angle I D P=\\angle I M A$. Thus the triangles $O I P$ and $M A I$ are similar. Therefore\n\n$$\n\\frac{I Q}{I O}=\\frac{I A}{A N}=\\frac{2 I A}{A M}=\\frac{2 I P}{I O} .\n$$\n\nThus $I Q=2 I P$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

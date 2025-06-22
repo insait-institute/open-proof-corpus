@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.89,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2016
+    },
+    "problem": "Prove that there is no function from positive real numbers to itself, \\( f:(0,+\\infty) \\rightarrow(0,+\\infty) \\) such that:\n\n\\[\nf(f(x)+y)=f(x)+3x+yf(y) \\quad \\text{for every} \\quad x, y \\in(0,+\\infty)\n\\]",
+    "problem_id": "BMOSL_2016_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. First we prove that $f(x) \\geq x$ for all $x>0$.\nIndeed, if there is an $a>0$ with $f(a)<a$ then from the initial for $x=a$ and $y=a-f(a)>0$ we get that $3 a+(a-f(a)) f(a-f(a))=0$. This is absurd since $3 a+(a-f(a)) f(a-f(a))>0$.\nSo we have that\n\n$$\nf(x) \\geq x \\quad \\text {,for all } \\quad x>0\n$$\n\nThen using (1) we have that $f(x)+3 x+y f(x)=f(f(x)+y) \\geq f(x)+y$, so\n\n$$\n3 x+y f(y) \\geq y \\quad, \\text { all } \\quad x, y>0\n$$\n\nSuppose that $y f(y)<y$ for a $y>0$ and let $-y f(y)=b>0$ then for $x=\\frac{b}{4}$ we get $\\frac{3 b}{4}-b \\geq 0$ so $b \\leq 0$, absurd. So we have that $y f(y) \\geq y$, for all $y>0$, and so\n\n$$\nf(y) \\geq 1 \\quad \\text {,for all } \\quad y>0\n$$\n\nSubstituting $y$ with $f(y)$ at the initial we have that\n\n$$\nf(x)+3 x+f(y) f(f(y))=f(f(x)+f(y))\n$$\nand changing the roles of $x, y$ we have that:\n$$\nf(y)+3 y+f(x) f(f(x))=f(f(x)+f(x))\n$$\n\nSo we have $f(x) f(f(x))-f(x)-3 x=f(y) f(f(y))-f(y)-3 y$, which means that the function $f(x) f(f(x))-$ $f(x)-3 x$ is constant. That means that there exist a constant $c$ such that\n\n$$\nf(x) f(f(x))=f(x)+3 x+c \\quad \\text {,for all } \\quad x>0\n$$\n\nSo we can write (6) in the form $f(x)(f(f(x))-1)=3 x+c$ and since $f(f(x))>1$ we have that $3 x+c \\geq 0$, for all $x>0$. if $c<0$ then for $x=-\\frac{c}{4}>0$ we get that $c>0$ which is absurd. So $c \\geq 0$.\nWe write (6) in the form\n\n$$\nf(f(x))=1+\\frac{3 x}{f(x)}+\\frac{c}{f(x)}\n$$\n\nSince $c \\geq 0$ then from (7) with the help of (1) and (3) we have that $f(f(x)) \\leq 4+c$.\nBut from (1) we have that $f(f(x)) \\geq f(x) \\geq x$, for all $x \\geq 0$, and so\n\n$$\n4+c \\geq f(f(x)) \\geq x \\quad \\text {,for all } \\quad x>0\n$$\n\nTaking $x=5+c$ we get that the last one cannot hold. So there is no such a function.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

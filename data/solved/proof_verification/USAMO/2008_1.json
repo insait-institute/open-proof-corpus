@@ -1,0 +1,248 @@
+{
+    "problem_id": "USAMO_2008_1",
+    "metadata": {
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "category": [],
+        "level": "high_school",
+        "difficulty": 7.16,
+        "year": 2008,
+        "competition": "usamo"
+    },
+    "problem": "Prove that for each positive integer $n$, there are pairwise relatively prime integers $k_{0}, \\ldots, k_{n}$, all strictly greater than $1$, such that $k_{0} k_{1} \\ldots k_{n}-1$ is the product of two consecutive integers.",
+    "solutions": [
+        {
+            "solution": "In other words, if we let\n\n$$\nP(x)=x(x+1)+1\n$$\nthen we would like there to be infinitely many primes dividing some $P(t)$ for some integer $t$.\n\nIn fact, this result is true in much greater generality. We first state:\n\n## Theorem $1.1$ (Schur's theorem)\n\nIf $P(x) \\in \\mathbb{Z}[x]$ is nonconstant and $P(0)=1$, then there are infinitely many primes which divide $P(t)$ for some integer $t$.\n\nProof. If $P(0)=0$, this is clear. So assume $P(0)=c \\neq 0$.  \nLet $S$ be any finite set of prime numbers. Consider then the value\n\n$$\nP\\left(k \\prod_{p \\in S} p\\right)\n$$\nfor some integer $k$. It is $1(\\bmod p)$ for each prime $p$, and if $k$ is large enough it should not be equal to $1$ (because $P$ is not constant). Therefore, it has a prime divisor not in $S$.\n\nRemark. In fact the result holds without the assumption $P(0) \\neq 1$. The proof requires only small modifications, and a good exercise would be to write down a similar proof that works first for $P(0)=20$, and then for any $P(0) \\neq 0$. (The $P(0)=0$ case is vacuous, since then $P(x)$ is divisible by $x$.)\n\nTo finish the proof, let $p_{1}, \\ldots, p_{n}$ be primes and $x_{i}$ be integers such that\n\n$$\n\\begin{aligned}\nP\\left(x_{1}\\right) & \\equiv 0 \\quad\\left(\\bmod p_{1}\\right) \\\\\nP\\left(x_{2}\\right) & \\equiv 0 \\quad\\left(\\bmod p_{2}\\right) \\\\\n\\vdots & \\\\\nP\\left(x_{n}\\right) & \\equiv 0 \\quad\\left(\\bmod p_{n}\\right)\n\\end{aligned}\n$$\n\nas promised by Schur's theorem. Then, by Chinese remainder theorem, we can find $x$ such that $x \\equiv x_{i}\\left(\\bmod p_{i}\\right)$ for each $i$, whence $P(x)$ has at least $n$ prime factor.",
+            "author": "Human",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "To prove that for each positive integer \\(n\\), there exist pairwise relatively prime integers \\(k_0, \\ldots, k_n\\), all strictly greater than 1, such that \\(k_0 k_1 \\cdots k_n - 1\\) is the product of two consecutive integers, proceed as follows.\n\nThe goal is to find integers \\(k_0, \\ldots, k_n\\) such that their product equals \\(m^2 + m + 1\\) for some integer \\(m\\), because then the product minus one is \\(m(m+1)\\), which is the product of two consecutive integers \\(m\\) and \\(m+1\\).\n\nChoose \\(n+1\\) distinct prime numbers \\(q_0, q_1, \\ldots, q_n\\) such that for each \\(q_i\\), the equation \\(x^2 + x + 1 \\equiv 0 \\pmod{q_i}\\) has a solution. This condition holds for \\(q_i = 3\\) or \\(q_i \\equiv 1 \\pmod{3}\\). Since there are infinitely many primes congruent to 1 modulo 3 by Dirichlet's theorem on arithmetic progressions, and including the prime 3, such a set of \\(n+1\\) primes exists for any \\(n\\).\n\nFor each prime \\(q_i\\), let \\(a_i\\) be a solution to \\(x^2 + x + 1 \\equiv 0 \\pmod{q_i}\\). (Note that there may be one or two solutions modulo \\(q_i\\), and any choice is valid.) Since the \\(q_i\\) are distinct primes, the Chinese Remainder Theorem guarantees the existence of an integer \\(m\\) such that\n\\[\nm \\equiv a_i \\pmod{q_i} \\quad \\text{for each} \\quad i = 0, 1, \\ldots, n.\n\\]\n\nFor this \\(m\\), \\(m^2 + m + 1 \\equiv 0 \\pmod{q_i}\\) for each \\(i\\), so each \\(q_i\\) divides \\(m^2 + m + 1\\). Let \\(P = m^2 + m + 1\\). Then \\(P\\) is divisible by each \\(q_i\\), and thus by their product \\(Q = \\prod_{i=0}^n q_i\\). Write the prime factorization of \\(P\\) as\n\\[\nP = \\prod_{i=0}^n q_i^{e_i} \\cdot S,\n\\]\nwhere \\(e_i \\geq 1\\) for each \\(i\\) (since each \\(q_i\\) divides \\(P\\)) and \\(S\\) is an integer coprime to all \\(q_i\\) (possibly \\(S = 1\\)).\n\nDefine the integers \\(k_i\\) as follows:\n- For \\(i = 0, 1, \\ldots, n-1\\), set \\(k_i = q_i^{e_i}\\).\n- For \\(i = n\\), set \\(k_n = q_n^{e_n} \\cdot S\\).\n\nFirst, verify that each \\(k_i > 1\\). Since \\(q_i \\geq 3 > 1\\) (as the primes are at least 3, given that primes congruent to 1 modulo 3 or 3 itself are considered), and \\(e_i \\geq 1\\), it follows that \\(k_i = q_i^{e_i} \\geq q_i \\geq 3 > 1\\) for \\(i = 0, \\ldots, n-1\\). For \\(k_n = q_n^{e_n} \\cdot S\\), since \\(q_n^{e_n} \\geq q_n \\geq 3 > 1\\) and \\(S \\geq 1\\), it follows that \\(k_n \\geq 3 > 1\\).\n\nNext, the product of the \\(k_i\\) is\n\\[\n\\prod_{i=0}^n k_i = \\left( \\prod_{i=0}^{n-1} q_i^{e_i} \\right) \\cdot (q_n^{e_n} \\cdot S) = \\left( \\prod_{i=0}^n q_i^{e_i} \\right) \\cdot S = P.\n\\]\nThus, \\(P - 1 = m^2 + m + 1 - 1 = m(m+1)\\), which is the product of two consecutive integers.\n\nNow, prove that the \\(k_i\\) are pairwise relatively prime, meaning \\(\\gcd(k_i, k_j) = 1\\) for all \\(i \\neq j\\) with \\(0 \\leq i, j \\leq n\\).\n\n- If both \\(i\\) and \\(j\\) are in \\(\\{0, 1, \\ldots, n-1\\}\\) and \\(i \\neq j\\), then \\(k_i = q_i^{e_i}\\) and \\(k_j = q_j^{e_j}\\). Since \\(q_i\\) and \\(q_j\\) are distinct primes, \\(\\gcd(k_i, k_j) = 1\\).\n- If \\(i < n\\) and \\(j = n\\), then \\(k_i = q_i^{e_i}\\) and \\(k_j = k_n = q_n^{e_n} \\cdot S\\). Here, \\(q_i\\) and \\(q_n\\) are distinct primes, so they share no common factors. Additionally, \\(S\\) is coprime to all \\(q_i\\) by definition, so \\(S\\) shares no common prime factors with \\(q_i\\). Thus, \\(\\gcd(k_i, k_n) = 1\\).\n\nSince these cases cover all pairs of distinct indices, the \\(k_i\\) are pairwise relatively prime.\n\nTherefore, for each positive integer \\(n\\), the constructed integers \\(k_0, \\ldots, k_n\\) are pairwise relatively prime, all greater than 1, and their product minus one is the product of two consecutive integers.\n\n\\[\n\\boxed{\\text{Proof provided}}\n\\]",
+            "cost": {
+                "cost": 0.0103524,
+                "input_tokens": 153,
+                "output_tokens": 20613
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T11:09:04.219300",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof selects n+1 distinct primes q\u2080,\u2026,q\u2099 each equal to 3 or congruent to 1 mod 3 so that x\u00b2+x+1\u22610 mod q\u1d62 has a solution a\u1d62, uses the Chinese Remainder Theorem to find m with m\u2261a\u1d62 (mod q\u1d62), and sets P=m\u00b2+m+1.  Since each q\u1d62 divides P, one writes P=\u220f\u1d62q\u1d62^{e\u1d62}\u00b7S, defines k\u1d62=q\u1d62^{e\u1d62} for i<n and k\u2099=q\u2099^{e\u2099}\u00b7S, and checks that \u220fk\u1d62=P so that \u220fk\u1d62\u22121=m(m+1), and that the k\u1d62 are pairwise coprime and >1.",
+                    "issues": [
+                        {
+                            "location": "Paragraph on choosing primes",
+                            "text": "Since there are infinitely many primes congruent to 1 modulo 3 by Dirichlet's theorem on arithmetic progressions, and including the prime 3, such a set of n+1 primes exists for any n.",
+                            "description": "Relies on Dirichlet's theorem, a deep analytic result not typically proved in elementary number theory or high-school/low-level bachelor courses, without justification or indication that it may be beyond the intended toolkit.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 711,
+                            "end_index": 892
+                        },
+                        {
+                            "location": "Sentence asserting solvability of the congruence",
+                            "text": "This condition holds for q_i = 3 or q_i \u2261 1 mod 3.",
+                            "description": "States the criterion for existence of a solution to x\u00b2+x+1\u22610 mod q\u1d62 without justification (e.g.\\ via discriminant or quadratic reciprocity), oversimplifying a nontrivial number-theoretic fact.",
+                            "category": "Oversimplification",
+                            "start_index": 644,
+                            "end_index": 689
+                        },
+                        {
+                            "location": "Definition of S",
+                            "text": "where e_i \\ge 1 for each i (since each q_i divides P) and S is an integer coprime to all q_i (possibly S = 1).",
+                            "description": "Asserts that the cofactor S in the prime factorization of P is coprime to all the q_i without explaining how S is constructed or why no q_i divides S (i.e.\\ skips the factorization argument).",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1598,
+                            "end_index": 1731
+                        },
+                        {
+                            "location": "Application of the Chinese Remainder Theorem",
+                            "text": "Since the q_i are distinct primes, the Chinese Remainder Theorem guarantees the existence of an integer m such that m \\equiv a_i \\pmod{q_i} for each i.",
+                            "description": "Invokes the Chinese Remainder Theorem without explicitly verifying the necessary hypothesis of pairwise coprime moduli or outlining the theorem, leaving a gap in justification.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1081,
+                            "end_index": 1229
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:33:28.044627"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Here is a classical construction using primes \u2261 1 (mod 3) and the Chinese remainder theorem.\n\nProof.  Fix a positive integer \\(n\\).  We will produce \\(n+1\\) integers\n\\[\nk_0,k_1,\\dots,k_{n}\n\\]\nall \\(>1\\) and pairwise coprime, and an integer \\(m\\), such that\n\\[\nk_0k_1\\cdots k_{n}\\;-\\;1 \\;=\\;m(m+1).\n\\]\n\n1.  Choose \\(n\\) distinct primes\n\\[\np_0,p_1,\\dots,p_{n-1}\n\\]\nall congruent to \\(1\\pmod3\\).  (There are infinitely many such primes, by Dirichlet\u2019s theorem on primes in arithmetic progressions.)\n\n2.  For each \\(i=0,1,\\dots,n-1\\), consider the quadratic congruence\n\\[\nx^2 + x + 1 \\;\\equiv\\;0\\pmod{p_i}.\n\\]\nIts discriminant is\n\\[\n\\Delta \\;=\\;1^2 -4\\cdot1\\cdot1 \\;=\\;-3,\n\\]\nand since \\(\\bigl(\\tfrac{-3}{p_i}\\bigr)=1\\) whenever \\(p_i\\equiv1\\pmod3\\), this congruence has two solutions modulo \\(p_i\\).  Pick one solution and call it \\(s_i\\).  Thus\n\\[\ns_i^2 + s_i + 1 \\;\\equiv\\;0\\pmod{p_i}.\n\\]\n\n3.  By the Chinese remainder theorem, there is an integer \\(s\\) such that\n\\[\ns\\;\\equiv\\;s_i\\pmod{p_i}\n\\quad(i=0,1,\\dots,n-1).\n\\]\nLet\n\\[\nP \\;=\\;p_0\\,p_1\\cdots p_{n-1}.\n\\]\nThen for each \\(i\\),\n\\[\ns^2+s+1 \\;\\equiv\\;s_i^2+s_i+1\\equiv0\\pmod{p_i},\n\\]\nso \\(P\\) divides \\(s^2+s+1\\).  In particular\n\\[\ns^2+s+1 \\;=\\;P\\cdot K\n\\]\nfor some integer \\(K\\).\n\n4.  We now replace \\(s\\) by a large integer of the same residue class: choose\n\\[\nm \\;=\\;s + tP\n\\]\nwith \\(t\\) so large that\n\\[\nm\\ge P.\n\\]\nThen\n\\[\nm^2 + m + 1 \\;=\\;(s+tP)^2 + (s+tP) +1\n             \\;=\\;s^2+s+1 \\;+\\;P\\cdot(\\dots)\n             \\;=\\;P\\cdot K'\n\\]\nfor some integer \\(K'>0\\).  Moreover \\(m^2+m+1>P^2\\) (since \\(m\\ge P\\)), so \\(K'\\ge P>1\\).\n\n5.  Finally set\n\\[\nk_i = p_i\\quad(i=0,1,\\dots,n-1),\n\\qquad\nk_{n} = K'.\n\\]\nThen each \\(k_i>1\\), and for \\(0\\le i<j\\le n-1\\),\n\\[\n\\gcd(k_i,k_j)=\\gcd(p_i,p_j)=1\n\\]\nsince the \\(p_i\\) are distinct.  Also for \\(0\\le i\\le n-1\\),\n\\[\n\\gcd(k_i,k_n)\n=\\gcd\\bigl(p_i,\\;K'\\bigr)\n=1,\n\\]\nbecause \\(p_i\\) divides \\(m^2+m+1\\) exactly once but was already \u201cused up\u2019\u2019 in the factor \\(P\\), so it cannot divide the co-factor \\(K'\\).  Hence all the \\(k_i\\) are pairwise coprime.\n\n6.  On the other hand\n\\[\nk_0k_1\\cdots k_n\n\\;=\\;\n(p_0p_1\\cdots p_{n-1})\\;K'\n\\;=\\;\nP\\;K'\n\\;=\\;\nm^2 + m + 1,\n\\]\nand therefore\n\\[\nk_0k_1\\cdots k_n \\;-\\;1\n\\;=\\;\nm^2+m\n\\;=\\;\nm(m+1),\n\\]\nthe product of two consecutive integers.  This completes the proof.\u220e",
+            "cost": {
+                "cost": 0.0173162,
+                "input_tokens": 158,
+                "output_tokens": 3896
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T10:58:56.835837",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof selects n distinct primes p\u2080,\u2026,p_{n-1} \u22611 mod 3, solves x\u00b2+x+1\u22610 mod p_i to get residues s_i, and uses the Chinese remainder theorem to find s mod P=\u220fp_i with P\u2223(s\u00b2+s+1).  Setting m=s+tP for large t gives m\u00b2+m+1=P\u00b7K\u2032>P\u00b2, so defining k_i=p_i (i<n) and k_n=K\u2032 yields k\u2080\u22efk_n=m\u00b2+m+1 and hence k\u2080\u22efk_n\u22121=m(m+1), while pairwise coprimality is argued from the prime factors.  ",
+                    "issues": [
+                        {
+                            "location": "Step 1",
+                            "text": "\u201cThere are infinitely many such primes, by Dirichlet\u2019s theorem on primes in arithmetic progressions.\u201d",
+                            "description": "The proof invokes Dirichlet\u2019s theorem on primes in arithmetic progressions, an advanced analytic result not usually covered in high-school or elementary undergraduate courses, in violation of the instruction to use only standard, elementary results.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 394,
+                            "end_index": 494
+                        },
+                        {
+                            "location": "Step 2",
+                            "text": "\u201csince \\(\\bigl(\\tfrac{-3}{p_i}\\bigr)=1\\) whenever \\(p_i\\equiv1\\pmod3\\), this congruence has two solutions.\u201d",
+                            "description": "The proof asserts without justification that \\(-3\\) is a quadratic residue mod \\(p_i\\) and hence that the congruence has two solutions.  This relies on quadratic reciprocity and deserves at least a brief argument or citation of a standard lemma.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 675,
+                            "end_index": 779
+                        },
+                        {
+                            "location": "Step 5",
+                            "text": "\u201cbecause \\(p_i\\) divides \\(m^2+m+1\\) exactly once but was already \u201cused up\u2019\u2019 in the factor \\(P\\), so it cannot divide the co-factor \\(K'\\).\u201d",
+                            "description": "The proof claims each \\(p_i\\) divides \\(m^2+m+1\\) to the first power only, but does not show \\(p_i^2\\nmid m^2+m+1\\).  One needs to justify why the exponent of \\(p_i\\) in \\(m^2+m+1\\) is exactly one to conclude \\(\\gcd(p_i,K')=1\\).",
+                            "category": "Oversimplification",
+                            "start_index": 1853,
+                            "end_index": 1991
+                        },
+                        {
+                            "location": "Step 5",
+                            "text": "",
+                            "description": "The argument implicitly requires that the root \\(s_i\\) of \\(x^2+x+1\\equiv0\\pmod{p_i}\\) is simple (i.e.\\ \\(2s_i+1\\not\\equiv0\\pmod{p_i}\\)) so that Hensel\u2019s lemma guarantees no higher power of \\(p_i\\) divides \\(s_i^2+s_i+1\\).  This check is omitted.",
+                            "category": "Skipping Computation Steps"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:34:23.596219"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Let n \u2265 1 be given.  \nWe shall construct integers  \n\n\u2003\u2003k0 , k1 , \u2026 , kn \u2003(> 1 and pairwise coprime)\n\nand an integer m such that\n\n\u2003\u2003k0 k1 \u2026 kn  \u2013 1  =  m(m+1).\n\nThe construction uses only three classical facts.\n\n(A)  There are infinitely many primes in every arithmetic progression 3t+1  \n\u2003\u2003(Dirichlet).\n\n(B)  For an odd prime p the congruence x\u00b2+x+1 \u2261 0 (mod p) is solvable  \n\u2003\u2003iff p \u2261 1 (mod 3).  \n\u2003\u2003Indeed, 4x\u00b2+4x+4 \u2261 0 \u21d4 (2x+1)\u00b2 \u2261 \u20133;  \n\u2003\u2003by quadratic reciprocity (-3/p)=1 exactly when p\u22611 (mod 3).\n\n(C)  The Chinese Remainder Theorem (CRT).\n\n--------------------------------------------------------------------\n1.  Choosing suitable primes\n--------------------------------------------------------------------\nPick n distinct primes\n\n\u2003\u2003p1 , p2 , \u2026 , pn \u2003all of them \u2261 1 (mod 3).\n\n(Existence is guaranteed by (A).)  \nAdjoin the prime 3 and set\n\n\u2003\u2003P := 3\u00b7p1 p2 \u2026 pn .\n\n--------------------------------------------------------------------\n2.  Building an integer m with many prescribed divisors\n--------------------------------------------------------------------\n\u2022  For the prime 3 one checks directly that r3 = 1 satisfies  \n\u2003\u2003r3\u00b2 + r3 + 1 \u2261 0 (mod 3).\n\n\u2022  By (B) every pi (i \u2265 1) admits a root ri of x\u00b2+x+1 \u2261 0 (mod pi).\n\nNow apply the CRT to the system\n\n\u2003\u2003m \u2261 r3  (mod 3),                             (1)  \n\u2003\u2003m \u2261 ri  (mod pi)\u2003(i = 1,\u2026,n).                (2)\n\nBecause the moduli 3, p1,\u2026,pn are pairwise coprime, there exists an\ninteger m satisfying all congruences simultaneously.\n\nPut\n\n\u2003\u2003R := m\u00b2 + m + 1.                              (3)\n\nEquations (1)\u2013(2) imply\n\n\u2003\u20033 | R  and  pi | R  for each i,\n\nso R possesses at least n+1 distinct prime divisors, namely\n3, p1,\u2026,pn.\n\n--------------------------------------------------------------------\n3.  Splitting R into n+1 pairwise coprime factors\n--------------------------------------------------------------------\nFor i = 1,\u2026,n let\n\n\u2003\u2003ei := v_{pi}(R)\u2003(the exponent of pi in the factorisation of R)  \n\u2003\u2003ki := pi^{ei}   (>1).\n\nRemove these prime\u2013power factors from R and put\n\n\u2003\u2003k0 := R / (k1 k2 \u2026 kn).                      (4)\n\nBecause every occurrence of pi has been placed entirely inside ki,\nthe integer k0 is divisible by 3 but by none of the pi, hence\n\n\u2003\u2003gcd(k0, ki) = 1 = gcd(ki, kj)\u2003(i \u2260 j).\n\nThus k0 , \u2026 , kn are pairwise relatively prime and all exceed 1\n(k0 \u2265 3, each ki \u2265 pi \u2265 7).\n\nMoreover, by (4)\n\n\u2003\u2003k0 k1 \u2026 kn = R = m\u00b2 + m + 1.                (5)\n\n--------------------------------------------------------------------\n4.  Finishing the proof\n--------------------------------------------------------------------\nSubtract 1 from (5):\n\n\u2003\u2003k0 k1 \u2026 kn \u2013 1 = m\u00b2 + m = m(m+1),\n\nthe product of the consecutive integers m and m+1.\n\nTherefore, for every positive integer n we have produced\nn+1 pairwise coprime integers k0 , \u2026 , kn > 1 whose product minus 1\nis a product of two consecutive integers, as required. \u220e",
+            "cost": {
+                "cost": 0.50242,
+                "input_tokens": 158,
+                "output_tokens": 12521
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T11:01:48.620685",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof constructs, for a given n\u22651, n+1 pairwise coprime integers k\u2080,\u2026,k\u2099>1 whose product minus one is m(m+1). It picks n distinct primes p\u2081,\u2026,p\u2099\u22611(mod 3) (using Dirichlet), adjoins 3, and finds an integer m via the Chinese Remainder Theorem so that m\u00b2+m+1 is divisible by 3 and each p\u1d62. Writing R=m\u00b2+m+1, it factors out the exact p\u1d62-power factors to define k\u1d62=p\u1d62^{e\u1d62} and lets k\u2080=R/(k\u2081\u22efk\u2099), yielding k\u2080\u22efk\u2099=R and hence k\u2080\u22efk\u2099\u22121=m(m+1).",
+                    "issues": [
+                        {
+                            "location": "Step 1 (Choosing suitable primes)",
+                            "text": "\"There are infinitely many primes in every arithmetic progression 3t+1 (Dirichlet).\"",
+                            "description": "The proof appeals to Dirichlet's theorem on arithmetic progressions, which is a deep analytic result not typically covered in elementary or lower-division number theory courses.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 218,
+                            "end_index": 305
+                        },
+                        {
+                            "location": "Step 1 (Fact B)",
+                            "text": "\"By quadratic reciprocity (\u22123/p)=1 exactly when p\u22611(mod 3).\"",
+                            "description": "The proof invokes the Law of Quadratic Reciprocity and properties of the Legendre symbol without justification. While classical, this is a nontrivial theorem that ought to be at least sketched or cited with a clear statement.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 446,
+                            "end_index": 503
+                        },
+                        {
+                            "location": "Step 1 (Derivation of (2x+1)\u00b2\u2261\u22123)",
+                            "text": "\"4x\u00b2+4x+4 \u2261 0 \u21d4 (2x+1)\u00b2 \u2261 \u20133\"",
+                            "description": "This step implicitly divides by 4 modulo p (i.e.\\ uses that 4 is invertible mod p for odd p) without comment or justification of why this is allowed.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 412,
+                            "end_index": 440
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:33:14.428544"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "We want to prove that for each positive integer $n$, there exist pairwise relatively prime integers $k_0, \\ldots, k_n$, all strictly greater than 1, such that $k_0 k_1 \\ldots k_n - 1$ is the product of two consecutive integers.\n\nLet the product be $P = k_0 k_1 \\ldots k_n$. We require $P-1 = m(m+1)$ for some integer $m$. This means $P = m^2+m+1$.\n\nWe construct the integers $k_i$ using a sequence $m_i$.\nLet $m_0$ be an integer. We will set $m_0=1$.\nFor $i \\ge 0$, define $m_{i+1} = (m_i+1)^2$.\nSince $m_0=1$, we have $m_1 = (1+1)^2=4$, $m_2=(4+1)^2=25$, and so on. In general, $m_i \\ge 1$ for all $i \\ge 0$.\n\nNow, define a sequence $X_i$ associated with $m_i$:\nFor $i \\ge 0$, let $X_i = m_i^2+m_i+1$.\nSince $m_i \\ge 1$, $X_i = m_i(m_i+1)+1 \\ge 1(2)+1=3$.\n\nWe define the integers $k_0, \\ldots, k_n$ as follows:\nLet $k_0 = X_0 = m_0^2+m_0+1$.\nFor $1 \\le i \\le n$, let $k_i = \\frac{X_i}{X_{i-1}}$.\n\nWe need to show that $k_i$ defined this way are integers and satisfy the given conditions.\n\n1.  **Show that $k_i$ are integers for $i \\ge 1$.**\n    We need to show that $X_{i-1}$ divides $X_i$ for $i \\ge 1$.\n    The recurrence $m_i = (m_{i-1}+1)^2$ can be rewritten using $X_{i-1}$:\n    $m_i = m_{i-1}^2+2m_{i-1}+1 = (m_{i-1}^2+m_{i-1}+1) + m_{i-1} = X_{i-1}+m_{i-1}$.\n    So $m_i \\equiv m_{i-1} \\pmod{X_{i-1}}$.\n    Then $X_i = m_i^2+m_i+1 \\equiv m_{i-1}^2+m_{i-1}+1 \\pmod{X_{i-1}}$.\n    Since $X_{i-1} = m_{i-1}^2+m_{i-1}+1$, we have $X_i \\equiv X_{i-1} \\equiv 0 \\pmod{X_{i-1}}$.\n    Thus, $X_{i-1}$ divides $X_i$, so $k_i = X_i/X_{i-1}$ is an integer for $i \\ge 1$.\n\n    Let's find an explicit expression for $k_i$ for $i \\ge 1$:\n    $k_i = \\frac{X_i}{X_{i-1}} = \\frac{(X_{i-1}+m_{i-1})^2 + (X_{i-1}+m_{i-1}) + 1}{X_{i-1}}$\n    $k_i = \\frac{X_{i-1}^2 + 2X_{i-1}m_{i-1} + m_{i-1}^2 + X_{i-1} + m_{i-1} + 1}{X_{i-1}}$\n    $k_i = X_{i-1} + 2m_{i-1} + 1 + \\frac{m_{i-1}^2+m_{i-1}+1}{X_{i-1}}$\n    $k_i = X_{i-1} + 2m_{i-1} + 1 + \\frac{X_{i-1}}{X_{i-1}} = X_{i-1} + 2m_{i-1} + 2$.\n    Substituting $X_{i-1} = m_{i-1}^2+m_{i-1}+1$:\n    $k_i = (m_{i-1}^2+m_{i-1}+1) + 2m_{i-1} + 2 = m_{i-1}^2+3m_{i-1}+3$.\n\n2.  **Show that $k_i > 1$ for all $i=0, \\ldots, n$.**\n    We choose $m_0=1$.\n    Then $k_0 = m_0^2+m_0+1 = 1^2+1+1=3$. So $k_0>1$.\n    For $i \\ge 1$, $m_{i-1} \\ge m_0 = 1$.\n    Then $k_i = m_{i-1}^2+3m_{i-1}+3 \\ge 1^2+3(1)+3 = 7$. So $k_i>1$ for $i \\ge 1$.\n    All $k_i$ are strictly greater than 1.\n\n3.  **Show that $k_0, \\ldots, k_n$ are pairwise relatively prime.**\n    Let $P_j = k_0 k_1 \\ldots k_j$.\n    From the definition of $k_i$, we have:\n    $P_0 = k_0 = X_0$.\n    $P_1 = k_0 k_1 = X_0 (X_1/X_0) = X_1$.\n    In general, $P_j = k_0 k_1 \\ldots k_j = X_0 \\frac{X_1}{X_0} \\frac{X_2}{X_1} \\ldots \\frac{X_j}{X_{j-1}} = X_j$.\n    So $P_j = X_j = m_j^2+m_j+1$.\n\n    We need to show $\\gcd(k_j, k_l)=1$ for $j \\ne l$. Assume $j < l$.\n    $k_l = X_l/X_{l-1} = m_{l-1}^2+3m_{l-1}+3$.\n    $X_{l-1} = P_{l-1} = k_0 k_1 \\ldots k_{l-1}$.\n    Since $j \\le l-1$, $k_j$ is a factor of $X_{l-1}$.\n    Let $d = \\gcd(k_j, k_l)$.\n    Since $d|k_j$ and $k_j|X_{l-1}$, it follows that $d|X_{l-1}$.\n    Also, $d|k_l$ by definition of $d$.\n    So $d$ is a common divisor of $X_{l-1}$ and $k_l$.\n    Let's evaluate $\\gcd(X_{l-1}, k_l)$:\n    $X_{l-1} = m_{l-1}^2+m_{l-1}+1$.\n    $k_l = m_{l-1}^2+3m_{l-1}+3$.\n    Let $A = m_{l-1}^2+m_{l-1}+1$ and $B = m_{l-1}^2+3m_{l-1}+3$.\n    $\\gcd(A,B) = \\gcd(A, B-A)$.\n    $B-A = (m_{l-1}^2+3m_{l-1}+3) - (m_{l-1}^2+m_{l-1}+1) = 2m_{l-1}+2$.\n    So $\\gcd(X_{l-1}, k_l) = \\gcd(m_{l-1}^2+m_{l-1}+1, 2m_{l-1}+2)$.\n    Let $g = \\gcd(m_{l-1}^2+m_{l-1}+1, 2(m_{l-1}+1))$.\n    $g$ must divide any linear combination of these.\n    $2(m_{l-1}^2+m_{l-1}+1) - m_{l-1}(2(m_{l-1}+1)) = (2m_{l-1}^2+2m_{l-1}+2) - (2m_{l-1}^2+2m_{l-1}) = 2$.\n    So $g$ must divide 2. Thus $g=1$ or $g=2$.\n    However, $X_{l-1} = m_{l-1}^2+m_{l-1}+1 = m_{l-1}(m_{l-1}+1)+1$. Since $m_{l-1}(m_{l-1}+1)$ is always an even number, $X_{l-1}$ is always odd.\n    Since $X_{l-1}$ is odd, its divisor $g$ must also be odd. Therefore, $g=1$.\n    So $\\gcd(X_{l-1}, k_l)=1$.\n    Since $d$ is a common divisor of $X_{l-1}$ and $k_l$, $d$ must divide $g=1$. So $d=1$.\n    This proves that $k_j$ and $k_l$ are relatively prime for $j < l$.\n    Hence, the integers $k_0, \\ldots, k_n$ are pairwise relatively prime.\n\n4.  **Show that $k_0 k_1 \\ldots k_n - 1$ is the product of two consecutive integers.**\n    The product is $P = k_0 k_1 \\ldots k_n$.\n    As shown in step 3, $P = X_n$.\n    So $P = m_n^2+m_n+1$.\n    Then $P-1 = (m_n^2+m_n+1)-1 = m_n^2+m_n = m_n(m_n+1)$.\n    This is the product of the two consecutive integers $m_n$ and $m_n+1$.\n    Since $m_0=1$ and $m_i=(m_{i-1}+1)^2$, $m_n$ is a positive integer for $n \\ge 0$. Specifically $m_n \\ge 1$. (Actually $m_n \\ge 4$ for $n \\ge 1$).\n\nAll conditions have been satisfied. The construction provides the required set of integers.\n\nTo illustrate for $n=2$:\n$m_0=1$.\n$k_0 = m_0^2+m_0+1 = 1^2+1+1 = 3$.\n$m_1 = (m_0+1)^2 = (1+1)^2 = 4$.\n$k_1 = m_0^2+3m_0+3 = 1^2+3(1)+3 = 7$. (Alternatively $X_0=3$, $X_1=4^2+4+1=21$, so $k_1=X_1/X_0=21/3=7$)\n$m_2 = (m_1+1)^2 = (4+1)^2 = 25$.\n$k_2 = m_1^2+3m_1+3 = 4^2+3(4)+3 = 16+12+3 = 31$. (Alternatively $X_1=21$, $X_2=25^2+25+1=651$, so $k_2=X_2/X_1=651/21=31$)\nThe integers are $k_0=3, k_1=7, k_2=31$.\nThey are all greater than 1.\nThey are pairwise relatively prime: $\\gcd(3,7)=1, \\gcd(3,31)=1, \\gcd(7,31)=1$.\nTheir product is $k_0 k_1 k_2 = 3 \\times 7 \\times 31 = 651$.\n$k_0 k_1 k_2 - 1 = 651-1 = 650$.\nThis should be $m_2(m_2+1)$. $m_2=25$, so $m_2(m_2+1) = 25 \\times (25+1) = 25 \\times 26 = 650$.\nThe statement holds for $n=2$.\n\nThe proof is complete.\n\nFinal summary of the construction:\nGiven a positive integer $n$:\n1.  Define a sequence $m_0, m_1, \\ldots, m_n$ by $m_0=1$ and $m_{i+1}=(m_i+1)^2$ for $0 \\le i < n$.\n2.  Define the set of integers $\\{k_0, k_1, \\ldots, k_n\\}$ by $k_0=m_0^2+m_0+1$ and $k_i=m_{i-1}^2+3m_{i-1}+3$ for $1 \\le i \\le n$.\n3.  These $n+1$ integers $k_0, \\ldots, k_n$ are pairwise relatively prime, all strictly greater than 1.\n4.  Their product $P = k_0 k_1 \\ldots k_n$ equals $m_n^2+m_n+1$.\n5.  Therefore, $P-1 = m_n(m_n+1)$, which is the product of two consecutive integers.\n\nThe final answer is $\\boxed{For each positive integer $n$, there are pairwise relatively prime integers $k_{0}, \\ldots, k_{n}$, all strictly greater than $1$, such that $k_{0} k_{1} \\ldots k_{n}-1$ is the product of two consecutive integers.}$.",
+            "cost": {
+                "cost": 0.1678475,
+                "input_tokens": 150,
+                "output_tokens": 16766
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T11:00:49.327170",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines a sequence m\u2080=1 and m_{i+1}=(m_i+1)\u00b2, sets X_i=m_i\u00b2+m_i+1, then takes k\u2080=X\u2080 and for i\u22651, k_i=X_i/X_{i-1}. It shows by a congruence argument that X_{i-1}\u2223X_i so each k_i is an integer >1, proves pairwise coprimality of the k_i by computing gcd(X_{l-1},k_l)=1 via a linear combination yielding 2 and parity, and finally observes that the product k\u2080\u22efk_n=X_n, so k\u2080\u22efk_n\u22121=m_n(m_n+1).",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:33:14.334953"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To prove that for each positive integer $ n $, there exist pairwise relatively prime integers $ k_0, k_1, \\ldots, k_n $, all strictly greater than 1, such that $ k_0 k_1 \\cdots k_n - 1 $ is the product of two consecutive integers, we proceed by **mathematical induction**.\n\n---\n\n### **Base Case: $ n = 0 $**\n\nWe are to find a single integer $ k_0 > 1 $ such that $ k_0 - 1 $ is the product of two consecutive integers.\n\nLet $ k_0 = 3 $. Then:\n\n$$\nk_0 - 1 = 2 = 1 \\cdot 2\n$$\n\nSo $ k_0 = 3 $ satisfies the condition, and is clearly greater than 1 and trivially pairwise relatively prime (as it's the only one).\n\nThus, the base case holds.\n\n---\n\n### **Inductive Step: Assume true for $ n $, prove for $ n + 1 $**\n\nAssume that for some $ n \\geq 0 $, there exist pairwise relatively prime integers $ k_0, k_1, \\ldots, k_n $, all greater than 1, such that:\n\n$$\nP = k_0 k_1 \\cdots k_n = m(m + 1) + 1\n$$\n\nfor some integer $ m $. We need to construct an additional integer $ k_{n+1} > 1 $, coprime to all $ k_0, \\ldots, k_n $, such that:\n\n$$\nP \\cdot k_{n+1} = m'(m' + 1) + 1\n$$\n\nfor some integer $ m' $.\n\nLet us define $ P = k_0 k_1 \\cdots k_n $. Then, we want to find $ k_{n+1} $ such that:\n\n$$\nP \\cdot k_{n+1} = t^2 + t + 1\n$$\n\nfor some integer $ t $, since $ t^2 + t + 1 = m'(m' + 1) + 1 $.\n\nThis is equivalent to:\n\n$$\nk_{n+1} = \\frac{t^2 + t + 1}{P}\n$$\n\nWe now need to find an integer $ t $ such that $ P \\mid t^2 + t + 1 $, and $ k_{n+1} > 1 $, and $ \\gcd(k_{n+1}, P) = 1 $.\n\n---\n\n### **Existence of $ t $ such that $ P \\mid t^2 + t + 1 $**\n\nThis is a number-theoretic condition. We know that the polynomial $ t^2 + t + 1 $ has roots modulo primes $ p $ if and only if $ -3 $ is a quadratic residue modulo $ p $, which happens when $ p = 3 $ or $ p \\equiv 1 \\pmod{3} $. Since $ P $ is a product of pairwise relatively prime integers $ k_i > 1 $, and by inductive construction, each $ k_i $ is either 3 or a prime $ \\equiv 1 \\pmod{3} $, the equation $ t^2 + t + 1 \\equiv 0 \\pmod{P} $ has a solution.\n\nBy the **Chinese Remainder Theorem**, we can find such a $ t $ modulo $ P $, and hence, there are infinitely many such $ t $ satisfying this congruence.\n\nWe can choose $ t $ large enough so that $ k_{n+1} = \\frac{t^2 + t + 1}{P} > 1 $, which is always possible since $ t^2 + t + 1 $ grows quadratically, while $ P $ is fixed.\n\n---\n\n### **Ensuring $ \\gcd(k_{n+1}, P) = 1 $**\n\nSuppose a prime $ p $ divides both $ P $ and $ k_{n+1} $. Then $ p \\mid t^2 + t + 1 $, and since $ p \\mid P $, we must have $ p^{e+1} \\mid t^2 + t + 1 $, where $ e = \\nu_p(P) $. However, we can ensure this does not happen by choosing $ t $ such that the congruence $ t^2 + t + 1 \\equiv 0 \\pmod{p^{e+1}} $ does **not** hold, which is possible by **Hensel's Lemma** or by choosing $ t $ appropriately modulo $ P $.\n\nThus, we can ensure that $ \\gcd(k_{n+1}, P) = 1 $, and $ k_{n+1} > 1 $.\n\n---\n\n### **Conclusion of Inductive Step**\n\nWe have constructed a new integer $ k_{n+1} > 1 $, coprime to all previous $ k_i $, such that:\n\n$$\nP \\cdot k_{n+1} = t^2 + t + 1 = m'(m' + 1) + 1\n$$\n\nfor some integer $ m' $.\n\nTherefore, the inductive step holds.\n\n---\n\n### **Final Statement**\n\nBy the principle of mathematical induction, the statement holds for all positive integers $ n $. That is, for every positive integer $ n $, there exist pairwise relatively prime integers $ k_0, k_1, \\ldots, k_n $, all greater than 1, such that:\n\n$$\nk_0 k_1 \\cdots k_n - 1 = m(m + 1)\n$$\n\nfor some integer $ m $.\n\n---\n\n### **Final Answer**\n\n$$\n\\boxed{For each positive integer n, such pairwise relatively prime integers exist.}\n$$",
+            "cost": {
+                "cost": 0.008948,
+                "input_tokens": 157,
+                "output_tokens": 14861
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T11:11:22.581718",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof uses induction. For n=0 it takes k\u2080=3 so k\u2080\u22121=1\u00b72. Assuming k\u2080,\u2026,k\u2099 have product P with P\u22121=m(m+1), it seeks k\u2099\u208a\u2081>1 coprime to P by solving P\u00b7k\u2099\u208a\u2081=t\u00b2+t+1. It asserts roots of t\u00b2+t+1\u22610 mod P exist since each k\u1d62 is 3 or a prime \u22611 mod 3, picks t by CRT (and large enough so k\u2099\u208a\u2081>1), and avoids extra p-divisibility via Hensel\u2019s lemma to ensure gcd(k\u2099\u208a\u2081,P)=1.",
+                    "issues": [
+                        {
+                            "location": "Existence of t such that P divides t\u00b2+t+1",
+                            "text": "\u201cby inductive construction, each $k_i$ is either 3 or a prime $\\equiv1\\pmod{3}$, the equation $t^2+t+1\\equiv0\\pmod{P}$ has a solution.\u201d",
+                            "description": "The proof assumes without justification that all previously constructed $k_i$ are exactly 3 or primes \u22611 mod 3 and uses this to guarantee roots modulo $P$, but this property of the inductive step is never established.",
+                            "category": "Overgeneralization",
+                            "start_index": 1846,
+                            "end_index": 1992
+                        },
+                        {
+                            "location": "Ensuring gcd(k\u2099\u208a\u2081,P)=1",
+                            "text": "\u201cwe can ensure this does not happen by choosing $t$ such that the congruence $t^2+t+1\\equiv0\\pmod{p^{e+1}}$ does not hold, which is possible by Hensel\u2019s Lemma or by choosing $t$ appropriately modulo $P$.\u201d",
+                            "description": "The proof omits the concrete construction or simultaneous congruence argument showing how to avoid higher-power divisibilities for every prime divisor of $P$, skipping the necessary computations.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2557,
+                            "end_index": 2776
+                        },
+                        {
+                            "location": "Use of Hensel\u2019s Lemma",
+                            "text": "\u201cby Hensel\u2019s Lemma\u201d",
+                            "description": "Hensel\u2019s Lemma is a p-adic lifting result not typically taught in high-school or low-level undergraduate courses. Its invocation here is non-standard and lacks justification or a self-contained proof.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 2712,
+                            "end_index": 2730
+                        },
+                        {
+                            "location": "Application of Hensel\u2019s Lemma",
+                            "text": "\u201cwe can ensure this does not happen by choosing $t$ such that the congruence $t^2+t+1\\equiv0\\pmod{p^{e+1}}$ does not hold\u201d",
+                            "description": "The proof fails to consider the edge case when the derivative $f'(t)=2t+1$ vanishes modulo $p$, which invalidates the usual Hensel lift. No treatment of these cases is provided.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2557,
+                            "end_index": 2692
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:33:46.466084"
+            }
+        }
+    ]
+}

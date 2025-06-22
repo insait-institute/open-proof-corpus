@@ -1,0 +1,29 @@
+{
+    "problem_id": "USAMO_2008_1",
+    "metadata": {
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "category": [],
+        "level": "high_school",
+        "difficulty": 7.16,
+        "year": 2008,
+        "competition": "usamo"
+    },
+    "problem": "Prove that for each positive integer $n$, there are pairwise relatively prime integers $k_{0}, \\ldots, k_{n}$, all strictly greater than $1$, such that $k_{0} k_{1} \\ldots k_{n}-1$ is the product of two consecutive integers.",
+    "solutions": [
+        {
+            "solution": "In other words, if we let\n\n$$\nP(x)=x(x+1)+1\n$$\nthen we would like there to be infinitely many primes dividing some $P(t)$ for some integer $t$.\n\nIn fact, this result is true in much greater generality. We first state:\n\n## Theorem $1.1$ (Schur's theorem)\n\nIf $P(x) \\in \\mathbb{Z}[x]$ is nonconstant and $P(0)=1$, then there are infinitely many primes which divide $P(t)$ for some integer $t$.\n\nProof. If $P(0)=0$, this is clear. So assume $P(0)=c \\neq 0$.  \nLet $S$ be any finite set of prime numbers. Consider then the value\n\n$$\nP\\left(k \\prod_{p \\in S} p\\right)\n$$\nfor some integer $k$. It is $1(\\bmod p)$ for each prime $p$, and if $k$ is large enough it should not be equal to $1$ (because $P$ is not constant). Therefore, it has a prime divisor not in $S$.\n\nRemark. In fact the result holds without the assumption $P(0) \\neq 1$. The proof requires only small modifications, and a good exercise would be to write down a similar proof that works first for $P(0)=20$, and then for any $P(0) \\neq 0$. (The $P(0)=0$ case is vacuous, since then $P(x)$ is divisible by $x$.)\n\nTo finish the proof, let $p_{1}, \\ldots, p_{n}$ be primes and $x_{i}$ be integers such that\n\n$$\n\\begin{aligned}\nP\\left(x_{1}\\right) & \\equiv 0 \\quad\\left(\\bmod p_{1}\\right) \\\\\nP\\left(x_{2}\\right) & \\equiv 0 \\quad\\left(\\bmod p_{2}\\right) \\\\\n\\vdots & \\\\\nP\\left(x_{n}\\right) & \\equiv 0 \\quad\\left(\\bmod p_{n}\\right)\n\\end{aligned}\n$$\n\nas promised by Schur's theorem. Then, by Chinese remainder theorem, we can find $x$ such that $x \\equiv x_{i}\\left(\\bmod p_{i}\\right)$ for each $i$, whence $P(x)$ has at least $n$ prime factor.",
+            "author": "Human",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

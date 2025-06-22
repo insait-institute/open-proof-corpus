@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.04,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2002
+    },
+    "problem": "Let \\( S \\) be a set with 2002 elements, and let \\( N \\) be an integer with \\( 0 \\leq N \\leq 2^{2002} \\). Prove that it is possible to color every subset of \\( S \\) either black or white so that the following conditions hold:  \n(a) the union of any two white subsets is white;  \n(b) the union of any two black subsets is black;  \n(c) there are exactly \\( N \\) white subsets.",
+    "problem_id": "USAMO_2002_1",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Let $S$ be a set with $2002$ elements, and let $N$ be an integer with $0 \\leq N \\leq 2^{2002}$. Prove that it is possible to color every subset of $S$ either black or white so that the following conditions hold:  \n(a) the union of any two white subsets is white;  \n(b) the union of any two black subsets is black;  \n(c) there are exactly $N$ white subsets.\n\nWe will solve the problem with $2002$ replaced by an arbitrary integer $n \\geq 0$. In other words, we prove:\n\nClaim - For any nonnegative integers $n$ and $N$ with $0 \\leq N \\leq 2^{n}$, it is possible to color the $2^{n}$ subsets of $\\{1, \\ldots, n\\}$ black and white satisfying the conditions of the problem.\n\nThe proof is by induction on $n$. When $n=1$ the problem is easy to do by hand, so this gives us a base case.\n\nFor the inductive step, we divide into two cases:\n\n- If $N \\leq 2^{n-1}$, then we take a coloring of subsets of $\\{1, \\ldots, n-1\\}$ with $N$ white sets; then we color the remaining $2^{n-1}$ sets (which contain $n$ ) black.\n- If $N>2^{n-1}$, then we take a coloring of subsets of $\\{1, \\ldots, n-1\\}$ with $N-2^{n-1}$ white sets; then we color the remaining $2^{n-1}$ sets (which contain $n$ ) white.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

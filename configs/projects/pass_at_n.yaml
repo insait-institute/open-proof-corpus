@@ -1,0 +1,9 @@
+name: "Dataset and Benchmark for Proof Verification - Pass@n experiment"
+slug: "pass_at_n"
+admins:
+  - "6-442464cd"
+  - "10-e40c0f23"
+
+model_configs:
+  - "openai/o4-mini--high"
+

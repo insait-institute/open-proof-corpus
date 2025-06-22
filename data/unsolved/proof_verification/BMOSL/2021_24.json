@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2021
+    },
+    "problem": "Find all functions \\( f: \\mathbb{R}^{+} \\rightarrow \\mathbb{R}^{+} \\) such that\n\n\\[\nf(x+f(x)+f(y))=2 f(x)+y\n\\]\n\nholds for all \\( x, y \\in \\mathbb{R}^{+} \\).",
+    "problem_id": "BMOSL_2021_24",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution 1. We will show that $f(x)=x$ for every $x \\in \\mathbb{R}^{+}$. It is easy to check that this function satisfies the equation.\n\nWe write $P(x, y)$ for the assertion that $f(x+f(x)+f(y))=2 f(x)+y$.\nWe first show that $f$ is injective. So assume $f(a)=f(b)$. Now $P(1, a)$ and $P(1, b)$ show that\n\n$$\n2 f(1)+a=f(1+f(1)+f(a))=f(1+f(1)+f(b))=2 f(1)+b\n$$\nand therefore $a=b$.\nLet $A=\\left\\{x \\in \\mathbb{R}^{+}: f(x)=x\\right\\}$. It is enough to show that $A=\\mathbb{R}^{+}$.\n$P(x, x)$ shows that $x+2 f(x) \\in A$ for every $x \\in \\mathbb{R}^{+}$. Now $P(x, x+2 f(x))$ gives that\n$$\nf(2 x+3 f(x))=x+4 f(x)\n$$\n\nfor every $x \\in \\mathbb{R}^{+}$. Therefore $P(x, 2 x+3 f(x))$ gives that $2 x+5 f(x) \\in A$ for every $x \\in \\mathbb{R}^{+}$.\nSuppose $x, y \\in \\mathbb{R}^{+}$such that $x, 2 x+y \\in A$. Then $P(x, y)$ gives that\n\n$$\nf(2 x+f(y))=f(x+f(x)+f(y))=2 f(x)+y=2 x+y=f(2 x+y)\n$$\nand by the injectivity of $f$ we have that $2 x+f(y)=2 x+y$. We conlude that $y \\in A$ as well.\nNow since $x+2 f(x) \\in A$ and $2 x+5 f(x)=2(x+2 f(x))+f(x) \\in A$ we deduce that $f(x) \\in A$ for every $x \\in \\mathbb{R}^{+}$. I.e. $f(f(x))=f(x)$ for every $x \\in \\mathbb{R}^{+}$.\n\nBy injectivity of $f$ we now conclude that $f(x)=x$ for every $x \\in \\mathbb{R}^{+}$.\n\nSolution 2. As in Solution $1, f$ is injective. Furthermore, letting $m=2 f(1)$ we have that the image of $f$ contains $(m, \\infty)$. Indeed, if $t>m$, say $t=m+y$ for some $y>0$, then $P(1, y)$ shows that $f(1+f(1)+f(y))=t$.\n\nLet $a, b \\in \\mathbb{R}$. We will show that $f(a)-a=f(b)-b$. Define $c=2 f(a)-2 f(b)$ and $d=$ $a+f(a)-b-f(b)$. It is enough to show that $c=d$. By interchanging the roles of $a$ and $b$ in necessary, we may assume that $d \\geqslant 0$.\n\nFrom $P(a, y)$ and $P(b, y)$, after subtraction, we get\n\n$$\nf(a+f(a)+f(y))-f(b+f(b)+f(y))=2 f(a)-2 f(b)=c .\n$$\nso for any $t>m$ (picking $y$ such that $f(y)=t$ in (1)) we get\n$$\nf(a+f(a)+t)-f(b+f(b)+t)=2 f(a)-2 f(b)=c .\n$$\n\nNow for any $z>m+b+f(b)$, taking $t=z-b-f(b)$ in (2) we get\n\n$$\nf(z+d)-f(z)=c\n$$\n\nNow for any $x>m+b+f(b)$ from (3) we get that\n\n$$\n2 f(x+d)+y=2 f(x)+y+2 c .\n$$\n\nAlso, for any $x$ large enough, $(x>\\max \\{m+b+f(b), m+b+f(b)+c-d\\}$ will do), by repeated application of (3), we have\n\n$$\n\\begin{aligned}\nf(x+d+f(x+d)+f(y)) & =f(x+f(x+d)+y)+c \\\\\n& =f(x+f(x)+y+c)+c \\\\\n& =f(x+f(x)+y+c-d)+2 c .\n\\end{aligned}\n$$\n\n(In the first equality we applied (3) with $z=x+f(x+d)+y>x>m+b+f(b)$, in the second with $z=x>m+b+f(b)$ and in the third with $z=x+f(x)+y-c+d>x+c-d>m+b+f(b)$.\nIn particular, now $P(x+d, y)$ implies that\n\n$$\nf(x+f(x)+y+c-d)=2 f(x)+y=f(x+f(x)+y)\n$$\nfor every large enough $x$. By injectivity of $f$ we deduce that $x+f(x)+y+c-d=x+f(x)+y$ and therefore $c=d$ as required.\n\nIt now follows that $f(x)=x+k$ for every $x \\in \\mathbb{R}^{+}$and some fixed constant $k$. Substituting in the initial equation we get $k=0$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

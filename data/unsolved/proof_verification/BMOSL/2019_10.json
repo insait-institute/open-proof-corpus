@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.01,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2019
+    },
+    "problem": "Let \\( \\triangle ABC \\) be an acute triangle with circumcircle \\( k \\) centered at \\( O \\). The tangent to \\( k \\) at \\( C \\) intersects the line \\( AB \\) at the point \\( D \\). The circumcircles of triangles \\( BCD, OCD, \\) and \\( AOB \\) intersect the ray \\( CA \\) (beyond \\( A \\)) at the points \\( Q, P, \\) and \\( K \\), respectively, such that \\( P \\in (AK) \\) and \\( K \\in (PQ) \\). The line \\( PD \\) intersects the circumcircle of triangle \\( BKQ \\) at the point \\( T \\), so that \\( P \\) and \\( T \\) are in different half-planes with respect to \\( BQ \\). Prove that \\( TB = TQ \\).",
+    "problem_id": "BMOSL_2019_10",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. As $D C$ is tangent to $k$ at $C$ then $\\angle O C D=90^{\\circ}$. Denote by $X$ the midpoint of $A B$. Then $\\angle O X A=90^{\\circ}$ because of $O X$ is the perpendicular bisector of the side $A B$. The pentagon $P X O C D$ is inscribed in the circle with diameter $O D$, hence $\\angle P X A=$ $\\angle P X D=\\angle P C D=\\angle Q C D=\\angle Q B A$ (the latter is due to $Q B C D$ being cyclic). We deduce that $P X \\| Q B$ and that $P$ is the midpoint of $A Q$, so $A P=P Q$.\n\nFigure 5: G5\nNow let $T_{1}$ be the midpoint of the arc $B Q$, not containing $K$, from the circumcircle of $\\triangle B K Q$, then $T_{1} B=T_{1} Q$. Due to $\\angle D P O=90^{\\circ}$, it suffices to show that $\\angle O P T_{1}=90^{\\circ}$ - indeed, $T \\equiv T_{1}$ and $T B=T Q$ would follow.\n\nDenote by $Y$ the midpoint of $B Q$. Then $\\angle O X B=\\angle T_{1} Y B=90^{\\circ}$. The quadrilateral $Q K B T_{1}$ is inscribed in a circle, hence $\\angle B T_{1} Q=180-\\angle B K Q=\\angle A K B$. Then $\\angle X B O=$ $\\frac{1}{2} \\angle A K B=\\frac{1}{2} \\angle B T_{1} Q=\\angle B T_{1} Y$ and thus $\\triangle O X B \\sim \\triangle B Y T_{1}$. The quadrilaterals $P X B Y$\nand $A X Y P$ are paralellograms, since $X Y$ and $P Y$ are middle lines of the triangle $A Q B$. Consequently,\n\n$$\n\\frac{O X}{X P}=\\frac{O X}{B Y}=\\frac{X B}{T_{1} Y}=\\frac{P Y}{T_{1} Y}\n$$\nwhich along with $\\angle P X B=\\angle P Y B$ and $\\angle O X B=\\angle T_{1} Y B$ gives $\\angle O X P=\\angle P Y T_{1}$ and $\\triangle O X P \\sim \\triangle P Y T_{1}$. Thus $\\angle X P O=\\angle Y T_{1} P$ and $\\angle P O X=\\angle T_{1} P Y$.\n\nIn conclusion,\n\n$$\n\\angle O P T_{1}=\\angle X P Y+\\angle X P O+\\angle Y P T_{1}=\\angle P X A+\\angle X P O+\\angle X O P=90^{\\circ}\n$$",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

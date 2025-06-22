@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.46,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2023
+    },
+    "problem": "Let \\( n \\geq 3 \\) be an integer. We say that an arrangement of the numbers \\( 1, 2, \\ldots, n^2 \\) in an \\( n \\times n \\) table is row-valid if the numbers in each row can be permuted to form an arithmetic progression, and column-valid if the numbers in each column can be permuted to form an arithmetic progression.\n\nFor what values of \\( n \\) is it possible to transform any row-valid arrangement into a column-valid arrangement by permuting the numbers in each row?",
+    "problem_id": "USAMO_2023_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nLet $n \\geq 3$ be an integer. We say that an arrangement of the numbers $1,2, \\ldots, n^{2}$ in an $n \\times n$ table is row-valid if the numbers in each row can be permuted to form an arithmetic progression, and column-valid if the numbers in each column can be permuted to form an arithmetic progression.\n\nFor what values of $n$ is it possible to transform any row-valid arrangement into a column-valid arrangement by permuting the numbers in each row?\n\nAnswer: $n$ prime only.\n\u0433\u0402\u0452 Proof for $n$ prime. Suppose $n=p$. In an arithmetic progression with $p$ terms, it's easy to see that either every term has a different residue modulo $p$ (if the common difference is not a multiple of $p$ ), or all of the residues coincide (when the common difference is a multiple of $p$ ).\n\nSo, look at the multiples of $p$ in a row-valid table; there is either $1$ or $p$ per row. As there are $p$ such numbers total, there are two cases:\n\n- If all the multiples of $p$ are in the same row, then the common difference in each row is a multiple of $p$. In fact, it must be exactly $p$ for size reasons. In other words, up to permutation the rows are just the $k(\\bmod p)$ numbers in some order, and this is obviously column-valid because we can now permute such that the $k$ th column contains exactly $\\{(k-1) p+1,(k-1) p+2, \\ldots, k p\\}$.\n- If all the multiples of $p$ are in different rows, then it follows each row contains every residue modulo $p$ exactly once. So we can permute to a column-valid arrangement by ensuring the $k$ th column contains all the $k(\\bmod p)$ numbers.\n\n\u0433\u0402\u0452 Counterexample for $n$ composite (due to Anton Trygub). Let $p$ be any prime divisor of $n$. Construct the table as follows:\n\n- Row $1$ contains $1$ through $n$.\n- Rows $2$ through $p+1$ contain the numbers from $p+1$ to $n p+n$ partitioned into arithmetic progressions with common difference $p$.\n- The rest of the rows contain the remaining numbers in reading order.\n\nFor example, when $p=2$ and $n=10$, we get the following table:\n$\\left[\\begin{array}{cccccccccc}1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\\\ 11 & 13 & 15 & 17 & 19 & 21 & 23 & 25 & 27 & 29 \\\\ 12 & \\mathbf{1 4} & 16 & 18 & 20 & 22 & 24 & 26 & 28 & 30 \\\\ 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 & 40 \\\\ 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 50 \\\\ 51 & 52 & 53 & 54 & 55 & 56 & 57 & 58 & 59 & 60 \\\\ 61 & 62 & 63 & 64 & 65 & 66 & 67 & 68 & 69 & 70 \\\\ 71 & 72 & 73 & 74 & 75 & 76 & 77 & 78 & 79 & 80 \\\\ 81 & 82 & 83 & 84 & 85 & 86 & 87 & 88 & 89 & 90 \\\\ 91 & 92 & 93 & 94 & 95 & 96 & 97 & 98 & 99 & 100\\end{array}\\right]$\n\nWe claim this works fine. Assume for contradiction the rows may be permuted to obtain a column-valid arrangement. Then the $n$ columns should be arithmetic progressions whose smallest element is in $[1, n]$ and whose largest element is in $\\left[n^{2}-n+1, n^{2}\\right]$. These two elements must be congruent modulo $n-1$, so in particular the column containing $2$ must end with $n^{2}-n+2$.\n\nHence in that column, the common difference must in fact be exactly $n$. And yet $n+2$ and $2 n+2$ are in the same row, contradiction.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

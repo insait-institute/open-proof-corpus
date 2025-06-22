@@ -1,0 +1,8 @@
+model: claude-3-5-sonnet-20241022
+api: anthropic
+max_tokens: 8000
+concurrent_requests: 20
+read_cost: 3
+write_cost: 15
+human_readable_id: Claude-3.5-Sonnet
+date: "2024-10-22"

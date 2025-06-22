@@ -1,0 +1,15 @@
+[project]
+name = "grading-tool"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = " ", email = "anon@anon.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "flask>=3.1.0",
+    "gunicorn>=21.2.0",
+    "waitress>=3.0.2",
+    "filelock>=3.18.0"
+]

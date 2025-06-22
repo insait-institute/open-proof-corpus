@@ -1,0 +1,263 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.16,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2008
+    },
+    "problem": "At a certain mathematical conference, every pair of mathematicians are either friends or strangers. At mealtime, every participant eats in one of two large dining rooms. Each mathematician insists upon eating in a room which contains an even number of his or her friends. Prove that the number of ways that the mathematicians may be split between the two rooms is a power of two (i.e., is of the form \\(2^{k}\\) for some positive integer \\(k\\)).",
+    "problem_id": "USAMO_2008_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Take the obvious graph interpretation where we are trying to 2-color a graph. Let $A$ be the adjacency matrix of the graph over $\\mathbb{F}_{2}$, except the diagonal of $A \\operatorname{has} \\operatorname{deg} v(\\bmod 2)$ instead of zero. Then let $\\vec{d}$ be the main diagonal. Splittings then correspond to $A \\vec{v}=\\vec{d}$. It's then immediate that the number of ways is either zero or a power of two, since if it is nonempty it is a coset of $\\operatorname{ker} A$.\n\nThus we only need to show that:\n\n```\nClaim - At least one coloring exists.\n```\n\nProof. If not, consider a minimal counterexample G. Clearly there is at least one odd vertex $v$. Consider the graph with vertex set $G-v$, where all pairs of neighbors of $v$ have their edges complemented. By minimality, we have a good coloring here. One can check that this extends to a good coloring on $G$ by simply coloring $v$ with the color matching an even number of its neighbors. This breaks minimality of $G$, and hence all graphs $G$ have a coloring.\n\nIt's also possible to use linear algebra. We prove the following lemma:\n\n## Lemma (grobber)\n\nLet $V$ be a finite dimensional vector space, $T: V \\rightarrow V$ and $w \\in V$. Then $w$ is in the image of $T$ if and only if there are no $\\xi \\in V^{\\vee}$ for which $\\xi(w) \\neq 0$ and yet $\\xi \\circ T=0$.\n\nProof. Clearly if $T(v)=w$, then no $\\xi$ exists. Conversely, assume $w$ is not in the image of $T$. Then the image of $T$ is linearly independent from $w$. Take a basis $e_{1}, \\ldots, e_{m}$ for the image of $T$, add $w$, and then extend it to a basis for all of $V$. Then have $\\xi$ kill all $e_{i}$ but not $w$.\n\n## Corollary\n\nIn a symmetric matrix $A \\bmod 2$, there exists a vector $v$ such that $A v$ is a copy of the diagonal of $A$.\n\nProof. Let $\\xi$ be such that $\\xi \\circ T=0$. Look at $\\xi$ as a column vector $w^{\\top}$, and let $d$ be the diagonal. Then\n\n$$\n0=w^{\\top} \\cdot T \\cdot w=\\xi(d)\n$$\nbecause this extracts the sum of coefficients submatrix of $T$, and all the symmetric entries cancel off. Thus no $\\xi$ as in the previous lemma exists.\n\nThis corollary gives the desired proof.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "openai/o3",
+            "solution": "Let  \n\n\u2022 \\(V=\\{1,2,\\dots ,n\\}\\) be the set of mathematicians,  \n\u2022 \\(G=(V,E)\\) the (simple, undirected) \u201cfriendship graph\u2019\u2019 in which \\(\\{i,j\\}\\in E\\) iff \\(i\\) and \\(j\\) are friends,  \n\u2022 \\(\\deg (i)\\;(i\\in V)\\) the degree of vertex \\(i\\) in \\(G\\) (the number of friends of \\(i\\)).  \n\nWe write all equalities in the field  \n\n\\[\n\\mathbb F_{2}:=\\{0,1\\}\\qquad(\\text{addition = subtraction = \u201cparity\u2019\u2019}).\n\\]\n\n--------------------------------------------------------------------\n1.  Translating an arrangement into algebra\n--------------------------------------------------------------------\nNumber the two dining rooms \\(0\\) and \\(1\\).  \nFor an arrangement put  \n\n\\[\nx_i=\\begin{cases}\n0 & \\text{ if mathematician } i \\text{ eats in room }0,\\\\\n1 & \\text{ if mathematician } i \\text{ eats in room }1.\n\\end{cases}\n\\]\n\nThus every seating plan corresponds to a vector  \n\n\\[\nx=(x_1,\\dots ,x_n)\\in \\mathbb F_2^{\\,n}.\n\\]\n\n--------------------------------------------------------------------\n2.  The parity condition as a linear (affine) equation\n--------------------------------------------------------------------\nFor a fixed vertex \\(i\\) let us compute (mod 2) the number of friends of \\(i\\) who\nsit in the *same* room as \\(i\\).\n\nFor each friend \\(j\\) of \\(i\\) the indicator  \n\\[\n\\bigl[x_i=x_j\\bigr]\\equiv 1-(x_i+x_j)\\ (\\bmod 2)\n            =1+x_i+x_j\\ (\\bmod 2)\n\\]  \nequals \\(1\\) when \\(x_i=x_j\\) and \\(0\\) otherwise.\nAdding over all friends of \\(i\\) we obtain the parity wanted:\n\n\\[\n0=\\sum_{j:\\{i,j\\}\\in E}(1+x_i+x_j)\n  =\\deg(i)+\\deg(i)\\,x_i+\\sum_{j:\\{i,j\\}\\in E}x_j\\pmod 2.\n\\]\n\nRearranging gives the *linear* (in \\(x\\)) equation  \n\n\\[\n\\boxed{\\;\\deg(i)\\,x_i+\\sum_{j:\\{i,j\\}\\in E}x_j=\\deg(i)\\;}\\tag{1}\n\\]\nfor every vertex \\(i\\).\n\n--------------------------------------------------------------------\n3.  Matrix form\n--------------------------------------------------------------------\nLet  \n\n\u2022 \\(A=(a_{ij})\\) be the adjacency matrix of \\(G\\) over \\(\\mathbb F_2\\)\n  \\((a_{ij}=1\\) if \\(\\{i,j\\}\\in E\\), else \\(0)$,  \n\u2022 \\(D=\\operatorname{diag}\\bigl(\\deg(1),\\dots ,\\deg(n)\\bigr)\\) (taken mod 2),  \n\u2022 \\(b=(\\deg(1),\\dots ,\\deg(n))^{\\!T}\\) (also mod 2).\n\nWith these notations the whole system (1) is\n\n\\[\n(A+D)\\,x=b. \\tag{2}\n\\]\n\nPut \\(M:=A+D\\); \\(M\\) is an \\(n\\times n\\) symmetric matrix over \\(\\mathbb F_2\\).\n\n--------------------------------------------------------------------\n4.  The set of legal arrangements\n--------------------------------------------------------------------\nEquation (2) is an *affine* system.  \nIf it is solvable, the set of all solutions is a *coset*\nof the kernel of \\(M\\):\n\n\\[\n\\mathcal S=\\{x_0+u\\mid u\\in\\ker M\\},\n\\]\nwhere \\(x_0\\) is any particular solution.  \nHence  \n\n\\[\n|\\mathcal S|=\n\\begin{cases}\n0 & \\text{if (2) has no solution},\\\\[2mm]\n|\\ker M| = 2^{\\,\\dim\\ker M} & \\text{otherwise}.\n\\end{cases}\n\\tag{3}\n\\]\n\nEquation (3) shows that the desired number of arrangements\nis either \\(0\\) or a power of two.\nIt remains to prove that (2) *always* has at least one solution;\nthen the exponent in (3) will automatically be positive.\n\n--------------------------------------------------------------------\n5.  Showing that (2) is always solvable\n--------------------------------------------------------------------\nBecause \\(M\\) is symmetric, its row space equals its column space.\nConsequently (2) is solvable precisely when the constant vector \\(b\\)\nis orthogonal to every vector in \\(\\ker M\\).\nWe prove this orthogonality directly.\n\nLet \\(s=(s_1,\\dots ,s_n)\\in\\ker M\\) and put  \n\\(S=\\{i\\in V\\mid s_i=1\\}\\).  \nThe equality \\(M\\,s=0\\) gives, for each vertex \\(i\\),\n\n\\[\n\\deg(i)\\,s_i+\\sum_{j:\\{i,j\\}\\in E}s_j=0. \\tag{4}\n\\]\n\n(a)  If \\(i\\notin S\\;(s_i=0)\\), (4) says that \\(i\\) has an *even*\nnumber of neighbours inside \\(S\\).\n\n(b)  If \\(i\\in S\\;(s_i=1)\\), (4) becomes  \n\\[\n\\deg(i)=\\sum_{j:\\{i,j\\}\\in E}s_j\n\\]\nso that \\(\\deg(i)\\) equals, mod 2,\nthe number of neighbours of \\(i\\) that *also* lie in \\(S\\).\n\nAdd the equalities in (b) over all vertices in \\(S\\):\nthe left side is  \n\\[\n\\sum_{i\\in S}\\deg(i)=s^{T}b .\n\\]\nOn the right, every edge with *both* ends in \\(S\\)\nis counted twice (hence contributes \\(0\\) mod 2),\nwhereas every edge with *exactly one* end in \\(S\\)\nis counted once.\nTherefore  \n\n\\[\ns^{T}b \\equiv |E(S,V\\setminus S)| \\pmod 2. \\tag{5}\n\\]\n\nBut from (a) each vertex outside \\(S\\) is incident with an *even*\nnumber of such \u201ccrossing\u2019\u2019 edges; summing over all outside vertices\nshows that \\(|E(S,V\\setminus S)|\\) itself is even.\nHence the right side of (5) equals \\(0\\), and we have\n\n\\[\ns^{T}b=0 \\qquad\\text{for every }s\\in\\ker M. \\tag{6}\n\\]\n\nSo \\(b\\) is orthogonal to the kernel; equivalently, \\(b\\) lies in\nthe row (column) space of \\(M\\).  \nThus system (2) possesses at least one solution.\n\n--------------------------------------------------------------------\n6.  Finishing the proof\n--------------------------------------------------------------------\nBecause (2) is solvable, (3) gives\n\n\\[\n|\\mathcal S|=2^{\\,\\dim\\ker M}.\n\\]\n\nFinally, notice that the all-ones vector \\(\\mathbf 1=(1,1,\\dots ,1)^{T}\\)\nsatisfies \\(M\\mathbf 1=0\\) (each row of \\(M\\) sums to\n\\(\\deg(i)+\\deg(i)=0\\) mod 2), so \\(\\mathbf 1\\neq 0\\) lies in \\(\\ker M\\).\nHence \\(\\dim\\ker M\\ge 1\\) and\n\n\\[\n|\\mathcal S| = 2^{\\,k}\\quad\\text{for some positive integer }k.\n\\]\n\n--------------------------------------------------------------------\n7.  Conclusion\n--------------------------------------------------------------------\nThe number of ways in which the conference participants can be divided\nbetween the two dining rooms so that *every* mathematician finds an\neven number of friends in his or her room is always a (positive)\npower of two. \u220e",
+            "cost": {
+                "cost": 0.4273,
+                "input_tokens": 410,
+                "output_tokens": 10580
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:49:53.181525",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof encodes each seating arrangement as a vector x\u2208\ud835\udd3d\u2082\u207f and shows that the parity condition on friends sitting together becomes the linear system (A+D)x=b over \ud835\udd3d\u2082, where A is the adjacency matrix and D the degree-diagonal. It observes that the solution set is either empty or a coset of ker\u2009M (M=A+D), hence of size 2^{dim\u2009ker\u2009M}. To prove existence of a solution it shows b is orthogonal to every vector in ker\u2009M by a parity count of edges crossing a subset S; finally it notes the all-ones vector lies in ker\u2009M so dim\u2009ker\u2009M\u22651, giving a positive power of two solutions.",
+                    "issues": [
+                        {
+                            "location": "Section 2 (Parity indicator identity)",
+                            "text": "\u201cFor each friend j of i the indicator [x_i=x_j]\u22611\u2212(x_i+x_j) (mod 2)=1+x_i+x_j (mod 2)\u201d",
+                            "description": "The proof uses the identity [x_i=x_j]\u22611\u2212(x_i+x_j) mod 2 without justification. While elementary, it is non-trivial to readers unfamiliar with parity arithmetic and warrants a brief explanation.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1215,
+                            "end_index": 1341
+                        },
+                        {
+                            "location": "Section 5 (Row vs. column space)",
+                            "text": "\u201cBecause M is symmetric, its row space equals its column space.\u201d",
+                            "description": "The assertion that symmetry implies equality of row and column spaces is made without proof. A short justification (e.g. that for symmetric M each row vector equals the corresponding column) is needed for completeness.",
+                            "category": "Oversimplification",
+                            "start_index": 3216,
+                            "end_index": 3282
+                        },
+                        {
+                            "location": "Section 5 (Solvability criterion)",
+                            "text": "\u201cHence (2) is solvable precisely when the constant vector b is orthogonal to every vector in ker\u2009M.\u201d",
+                            "description": "The proof invokes the standard fact that Mx=b has a solution iff b lies in the column space of M, but does not state or justify this linear-algebraic criterion.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3290,
+                            "end_index": 3392
+                        },
+                        {
+                            "location": "Section 5(b) (Counting crossing edges)",
+                            "text": "\u201cOn the right, every edge with both ends in S is counted twice \u2026 whereas every edge with exactly one end in S is counted once.\u201d",
+                            "description": "The edge-counting argument is concise but omits an explicit explanation that summing degrees over S indeed counts internal edges twice and crossing edges once. A brief sketch would improve clarity.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4014,
+                            "end_index": 4181
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:32:50.071387"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let $n$ be the number of mathematicians. Let $V = \\{1, 2, \\dots, n\\}$ be the set of mathematicians.\nLet $A$ be the adjacency matrix of the friendship graph, where $A_{ij}=1$ if $i$ and $j$ are friends, and $A_{ij}=0$ otherwise. Since friendship is mutual, $A$ is a symmetric matrix ($A_{ij} = A_{ji}$). We assume $A_{ii}=0$ for all $i$ (a mathematician is not their own friend).\n\nLet $x_i$ be a variable associated with mathematician $i$, such that $x_i=0$ if $i$ is in room $R_1$ and $x_i=1$ if $i$ is in room $R_2$. A split of mathematicians is a vector $x = (x_1, \\dots, x_n) \\in \\{0,1\\}^n$.\n\nFor each mathematician $i$, let $F_i$ be the set of friends of $i$. The number of friends of $i$ is $d_i = |F_i|$.\nThe condition for mathematician $i$ is that the number of their friends in the room they are in must be even.\nLet $S_1 = \\{j \\in V \\mid x_j=0\\}$ be the set of mathematicians in $R_1$.\nLet $S_2 = \\{j \\in V \\mid x_j=1\\}$ be the set of mathematicians in $R_2$.\n\nIf mathematician $i$ is in $R_1$ (i.e., $x_i=0$), the number of their friends in $R_1$ is $\\sum_{j \\in F_i, x_j=0} 1$. This must be even.\nIn $\\mathbb{F}_2$ (the field with two elements $\\{0,1\\}$), this condition is $\\sum_{j=1}^n A_{ij}(1-x_j) = 0$.\nSince $1-x_j \\equiv 1+x_j \\pmod 2$, this is $\\sum_{j=1}^n A_{ij}(1+x_j) = 0$.\nExpanding this, we get $\\sum_{j=1}^n A_{ij} + \\sum_{j=1}^n A_{ij}x_j = 0$.\nLet $d_i = \\sum_{j=1}^n A_{ij}$ be the total number of friends of mathematician $i$ (the degree of vertex $i$ in the friendship graph). The elements $d_i$ are considered modulo 2.\nLet $(Ax)_i = \\sum_{j=1}^n A_{ij}x_j$. The condition becomes $d_i + (Ax)_i = 0$ in $\\mathbb{F}_2$.\n\nIf mathematician $i$ is in $R_2$ (i.e., $x_i=1$), the number of their friends in $R_2$ is $\\sum_{j \\in F_i, x_j=1} 1$. This must be even.\nIn $\\mathbb{F}_2$, this condition is $\\sum_{j=1}^n A_{ij}x_j = 0$. So $(Ax)_i = 0$.\n\nWe can combine these two conditions for each $i \\in V$. The condition for mathematician $i$ is:\n$(1-x_i)(d_i + (Ax)_i) + x_i((Ax)_i) = 0$ in $\\mathbb{F}_2$.\nThis equation holds if $x_i=0$ and $d_i + (Ax)_i=0$, or if $x_i=1$ and $(Ax)_i=0$.\nExpanding the equation:\n$d_i + (Ax)_i - x_i d_i - x_i (Ax)_i + x_i (Ax)_i = 0$\n$d_i + (Ax)_i - x_i d_i = 0$\nSince we are in $\\mathbb{F}_2$, $-1 \\equiv 1$. So, $d_i + (Ax)_i + x_i d_i = 0$.\n\nThis is a system of $n$ linear equations over $\\mathbb{F}_2$. Let $s$ be the column vector $(d_1, \\dots, d_n)^T$. Let $D$ be the diagonal matrix where $D_{ii} = d_i$ (all $d_i$ are taken modulo 2). The $i$-th equation is $(Ax)_i + D_{ii}x_i + d_i = 0$.\nSo the system can be written in matrix form as $Ax + Dx + s = 0$, or $(A+D)x = s$.\nLet $M = A+D$. Then the system is $Mx=s$.\nThe matrix $M$ has entries $M_{ij} = A_{ij}$ for $i \\ne j$, and $M_{ii} = A_{ii} + D_{ii} = 0 + d_i = d_i$. (Remember $d_i = \\sum_{j=1}^n A_{ij} \\pmod 2$).\n\nThe number of solutions to a linear system $Mx=s$ is either 0 (if $s$ is not in the column space of $M$) or $2^{n-\\text{rank}(M)}$ (if $s$ is in the column space of $M$). We need to show that this number is a power of $2$, specifically $2^k$ for some positive integer $k$.\n\nFirst, let's handle the $n=0$ case. If there are no mathematicians, there is 1 way to assign them (everyone to $R_1$, or $S_1=\\emptyset, S_2=\\emptyset$). The condition for every mathematician is vacuously satisfied. So there is $1=2^0$ way. The problem specifies $k$ must be a positive integer, so $k=0$ is not allowed. Thus, we must have $n > 0$. From now on, assume $n \\ge 1$.\n\nThe matrix $M$ is symmetric. This is because $A$ is symmetric ($A_{ij}=A_{ji}$) and $D$ is a diagonal matrix, so $M^T = (A+D)^T = A^T+D^T = A+D = M$.\n\nConsider the sum of entries in any row $i$ of $M$. This is $\\sum_{j=1}^n M_{ij}$.\n$\\sum_{j=1}^n M_{ij} = M_{ii} + \\sum_{j \\ne i} M_{ij}$.\nBy definition, $M_{ii} = d_i = \\sum_{l=1}^n A_{il} \\pmod 2$. Since $A_{ii}=0$, $d_i = \\sum_{l \\ne i} A_{il} \\pmod 2$.\nAlso, for $j \\ne i$, $M_{ij}=A_{ij}$.\nSo the sum of entries in row $i$ is $d_i + \\sum_{j \\ne i} A_{ij} = d_i + d_i = 2d_i \\equiv 0 \\pmod 2$.\nLet $\\mathbf{1}$ be the column vector of all ones, $\\mathbf{1} = (1, \\dots, 1)^T$. Then $M\\mathbf{1} = \\mathbf{0}$ (the zero vector).\nSince $n \\ge 1$, $\\mathbf{1} \\ne \\mathbf{0}$. Thus, $\\mathbf{1}$ is a non-zero vector in the null space of $M$ (denoted $\\ker(M)$).\nThis implies that $M$ is singular, so $\\text{rank}(M) \\le n-1$.\nThe dimension of the null space is $n-\\text{rank}(M) \\ge n-(n-1) = 1$.\nSo, if the system $Mx=s$ is consistent, the number of solutions will be $2^{n-\\text{rank}(M)}$ where $n-\\text{rank}(M) \\ge 1$. This ensures $k$ is a positive integer.\n\nNow we need to show that the system $Mx=s$ is consistent.\nA linear system $Mx=s$ is consistent if and only if $s$ is in the image (or column space) of $M$. This is true if and only if $s$ is orthogonal to every vector in the null space of $M^T$ (by the Fredholm alternative).\nSince $M$ is symmetric, $M^T=M$. So $Mx=s$ is consistent if and only if $y^T s = 0$ for all $y \\in \\ker(M)$.\nLet $y \\in \\ker(M)$. This means $My=0$. We want to show $y^T s = 0$.\nThe components of $s$ are $d_i$, and $M_{ii}=d_i$. So $y^T s = \\sum_{i=1}^n y_i d_i = \\sum_{i=1}^n y_i M_{ii}$.\nLet's consider the quadratic form $y^T M y$.\nSince $My=0$, we have $y^T M y = y^T \\mathbf{0} = 0$.\nLet's expand $y^T M y$:\n$y^T M y = \\sum_{i=1}^n \\sum_{j=1}^n y_i M_{ij} y_j$.\nThis can be written as $\\sum_{i=1}^n y_i M_{ii} y_i + \\sum_{i \\ne j} y_i M_{ij} y_j$.\nSince $y_i \\in \\{0,1\\}$, $y_i^2 = y_i$. So the first term is $\\sum_{i=1}^n y_i M_{ii}$.\nThe second term is $\\sum_{i < j} (y_i M_{ij} y_j + y_j M_{ji} y_i)$.\nSince $M$ is symmetric, $M_{ij}=M_{ji}$. So this becomes $\\sum_{i < j} (y_i M_{ij} y_j + y_j M_{ij} y_i)$.\nIn $\\mathbb{F}_2$, $a+a = 2a = 0$. So $y_i M_{ij} y_j + y_j M_{ij} y_i = (M_{ij}+M_{ij})y_i y_j = 0 \\cdot M_{ij} y_i y_j = 0$.\nThus, for any $y \\in \\{0,1\\}^n$ and symmetric $M$ over $\\mathbb{F}_2$, $y^T M y = \\sum_{i=1}^n M_{ii} y_i$.\nSo we have $y^T s = \\sum_{i=1}^n y_i d_i = \\sum_{i=1}^n y_i M_{ii} = y^T M y$.\nSince $y \\in \\ker(M)$, $My=0$, which implies $y^T M y = 0$.\nTherefore, $y^T s = 0$ for all $y \\in \\ker(M)$.\nThis shows that the system $Mx=s$ is consistent.\n\nThe number of solutions is $2^{n-\\text{rank}(M)}$.\nLet $k = n-\\text{rank}(M)$.\nAs shown earlier, if $n \\ge 1$, then $M\\mathbf{1}=\\mathbf{0}$ implies $\\mathbf{1} \\in \\ker(M)$, so $\\text{rank}(M) \\le n-1$.\nThus $k = n-\\text{rank}(M) \\ge 1$.\nSo the number of ways the mathematicians may be split between the two rooms is $2^k$ for some positive integer $k$, provided $n \\ge 1$.\nIf $n=0$, the number of ways is $1=2^0$. The problem's condition that $k$ is a positive integer implies $n \\ge 1$. Conferences usually have attendees. For $n=1$, $A=[0]$, $d_1=0$, so $D=[0]$, $s=[0]$. $M=[0]$. $Mx=s$ is $0x_1=0$. Solutions are $x_1=0$ and $x_1=1$. Number of ways is $2$. Here $k=1-\\mathrm{rank}([0]) = 1-0=1$, which is a positive integer.\n\nConclusion: The set of valid assignments of mathematicians to rooms is the set of solutions to the linear system $(A+D)x=s$ over $\\mathbb{F}_2$. This system is consistent, and its solution space is an affine subspace. The number of solutions is $2^k$ where $k = n-\\text{rank}(A+D)$. Given $n \\ge 1$, $k \\ge 1$. Thus, the number of ways is a power of two, $2^k$, for some positive integer $k$.\n\nThe final answer is $\\boxed{The number of ways that the mathematicians may be split between the two rooms is a power of two (i.e., is of the form \\(2^{k}\\) for some positive integer \\(k\\))}$",
+            "cost": {
+                "cost": 0.15958375,
+                "input_tokens": 411,
+                "output_tokens": 15907
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:15:46.339375",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof models room assignments by a vector x\\in\\{0,1\\}^n over \\(\\mathbb F_2\\), derives the parity conditions as the linear system \\((A+D)x=s\\) where \\(A\\) is the adjacency matrix and \\(D\\) the diagonal degree matrix mod 2, shows that the symmetric matrix \\(M=A+D\\) has nullspace containing the all-ones vector and that \\(s\\) is orthogonal to every \\(y\\in\\ker M\\), and concludes by linear\u2010algebraic rank\u2013nullity that the solution set is an affine subspace of size \\(2^{n-\\mathrm{rank}(M)}\\), hence a power of two.",
+                    "issues": [
+                        {
+                            "location": "Section on consistency of \\(Mx=s\\)",
+                            "text": "\u201cThis is true if and only if \\(s\\) is orthogonal to every vector in the null space of \\(M^T)\\) (by the Fredholm alternative).\u201d",
+                            "description": "Invokes the \u201cFredholm alternative\u201d for a finite-dimensional linear system over \\(\\mathbb F_2\\), a result not typically taught at this level and given without proof or reference. The Fredholm alternative is usually stated in functional analysis, not elementary finite-field linear algebra.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 4766,
+                            "end_index": 4885
+                        },
+                        {
+                            "location": "Derivation of the unified parity condition",
+                            "text": "\u201c$(1-x_i)(d_i + (Ax)_i) + x_i((Ax)_i) = 0$ in $\\mathbb F_2$.\nExpanding the equation:\n$d_i + (Ax)_i - x_i d_i - x_i (Ax)_i + x_i (Ax)_i = 0$\u201d",
+                            "description": "The proof compresses the piecewise cases $x_i=0$ and $x_i=1$ into one equation and its expansion in $\\mathbb F_2$ with minimal explanation, skipping intermediate algebraic steps and the justification that these manipulations correctly capture both cases.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2066,
+                            "end_index": 2192
+                        },
+                        {
+                            "location": "Argument that $s\\in\\mathrm{Im}(M)$ iff $y^T s=0$ for all $y\\in\\ker(M)$",
+                            "text": "\u201cA linear system $Mx=s$ is consistent if and only if $s$ is in the image of $M$. This is true if and only if $s$ is orthogonal to every vector in the null space of $M^T$.\u201d",
+                            "description": "Assumes without proof that for a symmetric matrix over $\\mathbb F_2$, the image equals the orthogonal complement of the null space under the standard dot product, and that row space = column space. These linear-algebraic facts are not justified in characteristic two.",
+                            "category": "Oversimplification",
+                            "start_index": 4668,
+                            "end_index": 4853
+                        },
+                        {
+                            "location": "Initial handling of $n=0$ and $n=1$ cases",
+                            "text": "\u201cFirst, let's handle the $n=0$ case.\u2026 The problem specifies $k$ must be a positive integer, so $k=0$ is not allowed. Thus, we must have $n>0$.\u2026 For $n=1$, \u2026 Number of ways is $2$. \u201d",
+                            "description": "The separate analysis of the trivial $n=0$ and $n=1$ cases is extraneous to the core linear-algebraic argument and distracts from the main proof; the requirement that $k$ be positive is addressed informally rather than integrated into the general argument.",
+                            "category": "Other",
+                            "start_index": 3315,
+                            "end_index": 3471
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:33:32.602582"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Here is a fully\u2010self\u2010contained proof.  All steps are carried out over the field \\(\\mathbf F_{2}=\\{0,1\\}\\) of two elements (addition and multiplication mod 2).\n\nProof.  \n\n1.  _Rephrase the problem as a parity\u2010system._  \n   Let \\(G=(V,E)\\) be the graph whose vertex set \\(V\\) is the set of all mathematicians and in which \\(uv\\in E\\) exactly when \\(u\\) and \\(v\\) are friends.  Write \\(|V|=n\\).  A \u201cway to split the mathematicians between the two rooms\u201d is just a map\n   \\[\n     f:V\\;\\longrightarrow\\;\\{0,1\\},\n   \\]\n   where, say, \\(f(v)=0\\) means \u201c\\(v\\) eats in Room 0\u201d and \\(f(v)=1\\) means \u201c\\(v\\) eats in Room 1.\u201d  \n   \n   The requirement is: for each \\(v\\in V\\), the number of \\(v\\)\u2019s friends who sit in the same room as \\(v\\) is even.  Equivalently,\n   \\[\n     \\sum_{\\substack{u\\in V\\\\uv\\in E}}\n       \\Bigl[\\,f(u)=f(v)\\Bigr]\\;\\equiv\\;0\n     \\quad(\\bmod\\,2),\n   \\]\n   where \\([\\,f(u)=f(v)\\,]\\) is the indicator of the event \u201c\\(f(u)=f(v)\\).\u201d  \n\n2.  _Rewrite each indicator in linear form._  \n   Over \\(\\mathbf F_2\\), one checks easily that\n   \\[\n     [\\,f(u)=f(v)\\,]\\;=\\;1\\;+\\;f(u)\\;+\\;f(v)\\,.\n   \\]\n   Hence, for each \\(v\\),\n   \\[\n     \\sum_{u:uv\\in E}\\bigl(1+f(u)+f(v)\\bigr)\n     \\;=\\;\n     \\underbrace{\\sum_{u:uv\\in E}1}_{=\\deg(v)}\\;+\\;\\sum_{u:uv\\in E}f(u)\\;+\\;\\bigl(\\deg(v)\\bigr)\\,f(v)\n     \\;\\equiv\\;0.\n   \\]\n   Write \\(d_v=\\deg(v)\\bmod2\\in\\{0,1\\}\\).  Then the above becomes, in \\(\\mathbf F_2\\),\n   \\begin{equation}\\label{eq:single}\n     d_v\\;+\\;\\sum_{u:uv\\in E}f(u)\\;+\\;d_v\\,f(v)\n     \\;=\\;0\\,.\n   \\end{equation}\n\n3.  _Matrix form of the system._  \n   Order \\(V=\\{1,2,\\dots,n\\}\\).  Let\n   \\[\n     A=(A_{v,u})_{v,u=1}^n,\n     \\quad\n     A_{v,u}=\\begin{cases}\n       1,&uv\\in E,\\\\\n       0,&\\text{otherwise},\n     \\end{cases}\n   \\]\n   be the adjacency matrix over \\(\\mathbf F_2\\), and let\n   \\[\n     D=\\diag(d_1,d_2,\\dots,d_n),\n     \\quad\n     f=\\begin{pmatrix}f(1)\\\\\\vdots\\\\f(n)\\end{pmatrix},\n     \\quad\n     d=\\begin{pmatrix}d_1\\\\\\vdots\\\\d_n\\end{pmatrix}.\n   \\]\n   Then each equation \\eqref{eq:single} is the \\(v\\)th line of\n   \\[\n     A\\,f\\;+\\;D\\,f\\;=\\;d,\n   \\]\n   or more compactly\n   \\[\n     (A+D)\\,f \\;=\\; d.\n   \\]\n   Write \\(M=A+D\\).  Notice that \\(M\\) is symmetric over \\(\\mathbf F_2\\).\n\n4.  _Counting solutions of a linear system over \\(\\mathbf F_2\\)._  \n   It is a standard fact of elementary linear algebra that a system\n   \\[\n     M\\,f = d,\\quad f\\in\\mathbf F_2^n\n   \\]\n   either has no solutions, or else its solution set is an _affine_ subspace of \\(\\mathbf F_2^n\\) of dimension\n   \\(\\;n-\\rank(M)\\).  In the latter (consistent) case there are exactly\n   \\[\n     2^{\\,n-\\rank(M)}\n   \\]\n   solutions.  In particular, _if_ the system is consistent then its number of solutions is a power of two.\n\n5.  _Verifying consistency._  \n   Over any field (here \\(\\mathbf F_2\\)), a system \\(M\\,f=d\\) is solvable if and only if\n   \\[\n     y^T\\,M=0\\quad\\Longrightarrow\\quad y^T\\,d=0.\n   \\]\n   Since \\(M\\) is symmetric, \u201cleft\u2010nullspace\u201d equals \u201cnullspace.\u201d  So let\n   \\(c\\in\\mathbf F_2^n\\) satisfy\n   \\[\n     M\\,c \\;=\\;0.\n   \\]\n   We must show \\(c^T\\,d=0\\).  Indeed,\n   \\[\n     0\n     \\;=\\;\n     c^T\\,(M\\,c)\n     \\;=\\;\n     c^T\\,(A\\,c)\\;+\\;c^T\\,(D\\,c).\n   \\]\n   But\n   \\[\n     c^T\\,A\\,c\n     \\;=\\;\n     \\sum_{i,j}c_i\\,A_{i,j}\\,c_j\n     \\;=\\;\n     2\\sum_{i<j}c_i\\,A_{i,j}\\,c_j\n     \\;=\\;0\n     \\quad(\\bmod2),\n   \\]\n   and\n   \\[\n     c^T\\,D\\,c\n     \\;=\\;\n     \\sum_{v}c_v\\,d_v\\,c_v\n     \\;=\\;\n     \\sum_{v}d_v\\,c_v\n     \\;=\\;\n     c^T\\,d.\n   \\]\n   Hence \\(c^T\\,d=0\\).  This shows no nontrivial linear combination of the rows of \\((M\\mid d)\\) can yield a contradiction \\(0=1\\).  Therefore the system\n   \\[\n     (A+D)\\,f \\;=\\; d\n   \\]\n   is _always_ consistent.\n\n6.  _Conclusion._  \n   Since the system is consistent, its set of solutions is an affine subspace of \\(\\mathbf F_2^n\\) of dimension \\(n-\\rank(A+D)\\).  Hence there are exactly\n   \\[\n     2^{\\,n-\\rank(A+D)}\n   \\]\n   assignments \\(f:V\\to\\{0,1\\}\\) satisfying the \u201ceven\u2010friends\u201d condition.  In particular, the number of ways to seat the mathematicians in the two rooms is a power of two, as claimed.  \n   \n\u25a1\n\n**Remark.**  All we used beyond elementary counting is the very classical fact that over \\(\\mathbf F_2\\) a consistent system of \\(n\\) linear equations in \\(n\\) unknowns has exactly \\(2^{n-\\rank(\\text{coefficient matrix})}\\) solutions.",
+            "cost": {
+                "cost": 0.0783838,
+                "input_tokens": 410,
+                "output_tokens": 17712
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:41:44.594023",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof encodes each seating assignment as a vector \\(f\\in\\mathbf F_2^n\\) and shows the \u2018even-friends\u2019 condition is equivalent to the linear system \\((A+D)f=d\\) over \\(\\mathbf F_2\\), where \\(A\\) is the adjacency matrix mod 2 and \\(D=\\mathrm{diag}(\\deg(v)\\bmod2)\\).  It then observes that a consistent linear system over \\(\\mathbf F_2\\) has exactly \\(2^{n-\\mathrm{rank}(A+D)}\\) solutions, and proves consistency by showing for any \\(c\\) with \\((A+D)c=0\\) one has \\(c^T d=0\\) via symmetry of \\(A\\), concluding the number of seatings is a power of two.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:32:46.346219"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "The problem involves a set of mathematicians where every pair is either friends or strangers, and we need to prove that the number of ways to assign them to two distinct dining rooms such that each mathematician has an even number of friends in the same room is a power of two. To solve this, model the situation as an undirected simple graph \\(G = (V, E)\\) with no self-loops, where the vertices \\(V\\) represent the mathematicians and the edges \\(E\\) represent friendships.\n\nConsider assignments of vertices to two rooms as functions \\(f: V \\to \\{0, 1\\}\\), where \\(f(v) = 0\\) or \\(1\\) indicates the room assignment for vertex \\(v\\). The condition requires that for each vertex \\(v\\), the number of neighbors (friends) \\(w\\) with \\(f(w) = f(v)\\) is even. This condition can be expressed using linear algebra over the finite field \\(\\text{GF}(2)\\).\n\nLet \\(A\\) be the adjacency matrix of \\(G\\) over \\(\\text{GF}(2)\\), and let \\(\\delta_v = \\deg(v) \\mod 2\\) for each vertex \\(v\\), which is the parity of the degree of \\(v\\). Define the diagonal matrix \\(D\\) with diagonal entries \\(D_{v,v} = \\delta_v\\). The vector \\(\\delta = (\\delta_v)\\) has components equal to the degree parities.\n\nThe condition that each vertex has an even number of friends in the same room translates to the system of linear equations over \\(\\text{GF}(2)\\):\n\\[\n(A + D) f = \\delta,\n\\]\nwhere \\(f\\) is the vector of room assignments.\n\nThis system always has solutions because for any vector \\(y\\) in the kernel of \\(A + D\\), the dot product \\(y^T \\delta = 0\\), ensuring consistency. The number of solutions is \\(2^{\\dim \\ker(A + D)}\\), which is a power of two. Since the kernel of \\(A + D\\) always contains the all-one vector (corresponding to all vertices in the same room or the other room), its dimension is at least 1, so the number of solutions is at least 2 and is of the form \\(2^k\\) for some positive integer \\(k\\).\n\nThus, the number of ways to assign the mathematicians to the two rooms satisfying the condition is a power of two.\n\n\\[\n\\boxed{2^{k} \\text{ for some integer } k \\geq 0}\n\\]",
+            "cost": {
+                "cost": 0.0068509,
+                "input_tokens": 403,
+                "output_tokens": 13460
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:47:01.635298",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof translates the assignment problem into a linear system over GF(2), namely (A+D)f=\u03b4 where A is the adjacency matrix mod 2 and D is the diagonal matrix of degree parities. It then claims \u03b4 lies in the image of A+D so the system is consistent, deduces the solution set is an affine space of dimension dim\u2009ker(A+D) and hence of size 2^{dim\u2009ker(A+D)}, a power of two, and remarks that the all-ones vector lies in ker(A+D) so the dimension is at least 1.",
+                    "issues": [
+                        {
+                            "location": "Setup of the linear system",
+                            "text": "(A + D) f = \\\\delta",
+                            "description": "The proof asserts this linear equation without showing how the parity-of-friends condition leads to \\\\( (A+D)f=\\\\delta \\\\) over GF(2). The derivation of the coefficients and the constant term is skipped.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1329,
+                            "end_index": 1347
+                        },
+                        {
+                            "location": "Existence of solutions",
+                            "text": "for any vector y in the kernel of A + D, the dot product y^T \\\\delta = 0",
+                            "description": "The proof claims that \\\\( y^T\\\\delta=0\\\\) for every \\\\(y\\\\in\\\\ker(A+D)\\\\) without proving why \\\\(\\\\delta\\\\) is orthogonal to the kernel (i.e.\\ why \\\\(\\\\delta\\\\) \u2208 im(A+D)).",
+                            "category": "Oversimplification",
+                            "start_index": 1441,
+                            "end_index": 1521
+                        },
+                        {
+                            "location": "Kernel contains the all-ones vector",
+                            "text": "ker(A + D) always contains the all-one vector",
+                            "description": "It is stated without justification that \\\\( (A+D)\\\\mathbf{1} = 0\\\\), i.e.\\ that the all-ones vector lies in ker(A+D).",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1645,
+                            "end_index": 1689
+                        },
+                        {
+                            "location": "Final answer statement",
+                            "text": "k \\\\geq 0",
+                            "description": "The proof concludes the number of solutions is \\\\(2^k\\\\) with \\\\(k\\\\ge0\\\\), but earlier it was argued that ker(A+D) has dimension \u22651, so one should have \\\\(k\\\\ge1\\\\).",
+                            "category": "Wrong Final Answer",
+                            "start_index": 2048,
+                            "end_index": 2056
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:33:48.432515"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the problem, we model the situation using graph theory and linear algebra over the field $ \\mathbb{F}_2 $ (the field with two elements, 0 and 1). Here's a structured, detailed proof:\n\n---\n\n### **Modeling the Problem**\n\nLet the mathematicians be represented as vertices of a graph $ G = (V, E) $, where an edge between two vertices indicates that the corresponding mathematicians are friends. A room assignment is a function $ f: V \\to \\{0, 1\\} $, where $ f(v) = 0 $ means the mathematician is in room A, and $ f(v) = 1 $ means in room B.\n\nWe are to count the number of such functions $ f $ such that **each mathematician has an even number of friends in the room they are in**.\n\n---\n\n### **Restating the Condition Algebraically**\n\nLet $ x_v = f(v) \\in \\{0, 1\\} $, and define the degree $ d_v $ of vertex $ v $ as the number of its neighbors (friends). The condition that the number of friends of $ v $ in the same room is even can be translated into a linear equation over $ \\mathbb{F}_2 $:\n\n$$\n\\sum_{u \\sim v} x_u + (d_v \\bmod 2) x_v \\equiv d_v \\bmod 2 \\pmod{2}\n$$\n\nThis equation is derived from considering the parity of the number of friends in the same room. The term $ \\sum_{u \\sim v} x_u $ counts the number of friends in room B if $ x_v = 1 $, and in room A if $ x_v = 0 $, and the additional term $ (d_v \\bmod 2) x_v $ adjusts for the parity of the total degree.\n\n---\n\n### **System of Linear Equations**\n\nWe can now write a system of linear equations over $ \\mathbb{F}_2 $, one for each vertex $ v \\in V $:\n\n$$\n\\sum_{u \\sim v} x_u + (d_v \\bmod 2) x_v = d_v \\bmod 2\n$$\n\nThis system can be written in matrix form as $ Mx = b $, where:\n\n- $ x \\in \\mathbb{F}_2^n $ is the vector of variables $ x_v $,\n- $ M $ is an $ n \\times n $ matrix over $ \\mathbb{F}_2 $,\n- $ b \\in \\mathbb{F}_2^n $ is the vector of constants on the right-hand side.\n\n---\n\n### **Solution Space of the System**\n\nThe set of solutions to a system of linear equations over $ \\mathbb{F}_2 $ forms an **affine subspace** of $ \\mathbb{F}_2^n $, which is either empty or has size $ 2^k $ for some non-negative integer $ k $. This is a fundamental result in linear algebra over finite fields.\n\nThus, if the system is **consistent** (i.e., has at least one solution), then the number of solutions is a power of two.\n\n---\n\n### **Consistency of the System**\n\nTo ensure the system is consistent, we consider the **sum of all equations**:\n\n$$\n\\sum_{v \\in V} \\left( \\sum_{u \\sim v} x_u + (d_v \\bmod 2) x_v \\right) \\equiv \\sum_{v \\in V} (d_v \\bmod 2) \\pmod{2}\n$$\n\nThe left-hand side simplifies as follows:\n\n- Each edge $ (u, v) $ contributes $ x_u + x_v $, and each vertex $ v $ contributes $ (d_v \\bmod 2) x_v $.\n- Since each edge is counted twice (once for $ u $ and once for $ v $), the total sum becomes:\n\n$$\n\\sum_{(u,v) \\in E} (x_u + x_v) + \\sum_{v \\in V} (d_v \\bmod 2) x_v\n$$\n\nThis simplifies to:\n\n$$\n\\sum_{v \\in V} d_v x_v + \\sum_{v \\in V} (d_v \\bmod 2) x_v\n$$\n\nBut $ d_v \\equiv d_v \\bmod 2 \\pmod{2} $, so this is:\n\n$$\n\\sum_{v \\in V} (d_v \\bmod 2) x_v\n$$\n\nThe right-hand side of the sum of all equations is:\n\n$$\n\\sum_{v \\in V} (d_v \\bmod 2)\n$$\n\nSince the total degree of a graph is always even (by the Handshaking Lemma), this sum is $ 0 \\mod 2 $. Therefore, the sum of all equations becomes:\n\n$$\n\\sum_{v \\in V} (d_v \\bmod 2) x_v \\equiv 0 \\pmod{2}\n$$\n\nThis condition is **always satisfied** by any solution to the system, because the left-hand side is exactly what the system implies. Therefore, the system is **consistent**.\n\n---\n\n### **Conclusion**\n\nSince the system of equations is consistent and over $ \\mathbb{F}_2 $, the solution space is a non-empty affine subspace of $ \\mathbb{F}_2^n $, and hence has size $ 2^k $ for some non-negative integer $ k $. Therefore, the number of valid room assignments is a **power of two**.\n\n---\n\n### **Final Answer**\n\n$$\n\\boxed{2^k}\n$$",
+            "cost": {
+                "cost": 0.007686599999999999,
+                "input_tokens": 411,
+                "output_tokens": 12674
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:01:31.040763",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof encodes room assignments as a vector x in \\(\\mathbb{F}_2^n\\) satisfying a linear system \\(Mx=b\\), where off-diagonal entries of \\(M\\) record adjacency and diagonal entries record \\(d_v\\bmod2\\), and \\(b_v=d_v\\bmod2\\). It observes that any consistent system over \\(\\mathbb{F}_2\\) has either zero or \\(2^k\\) solutions, and then attempts to prove consistency by summing all equations to obtain a trivial identity, concluding that there is at least one solution and hence exactly \\(2^k\\) valid assignments.",
+                    "issues": [
+                        {
+                            "location": "Consistency of the System section",
+                            "text": "Therefore, the system is consistent.",
+                            "description": "The proof only checks that the sum of all equations yields the trivial identity 0=0, which is a necessary condition but does not guarantee the existence of any solution. It never shows that the vector b lies in the column space of M, so consistency (and hence nonemptiness of the solution set) is not actually proven.",
+                            "category": "Other",
+                            "start_index": 3460,
+                            "end_index": 3495
+                        },
+                        {
+                            "location": "Restating the Condition Algebraically",
+                            "text": "sum_{u ~ v} x_u + (d_v mod 2) x_v \u2261 d_v mod 2",
+                            "description": "The equation translating the parity condition is introduced without derivation or justification. In particular, the term \\((d_v\\bmod2)x_v\\) appears without explaining how it arises from the combinatorial requirement.",
+                            "category": "Oversimplification",
+                            "start_index": 1529,
+                            "end_index": 1579
+                        },
+                        {
+                            "location": "Consistency of the System section, summation of equations",
+                            "text": "Since each edge is counted twice ... This simplifies to: sum_v d_v x_v + sum_v (d_v mod 2) x_v",
+                            "description": "The algebraic steps in summing all equations are sketched but key details (such as how edges double-count and how terms combine) are omitted, making it unclear why the simplification holds.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2825,
+                            "end_index": 2931
+                        },
+                        {
+                            "location": "System of Linear Equations formulation",
+                            "text": "This system can be written in matrix form as Mx = b, where: ... M is an n \u00d7 n matrix over F2",
+                            "description": "The proof never explicitly defines the entries of the matrix M (i.e.\\, how M_{v,u} and M_{v,v} are determined), leaving the matrix formulation ambiguous.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1586,
+                            "end_index": 1657
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:33:12.037046"
+            }
+        }
+    ]
+}

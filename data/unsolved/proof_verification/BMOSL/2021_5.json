@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2021
+    },
+    "problem": "Denote by \\(\\ell(n)\\) the largest prime divisor of \\(n\\). Let \\(a_{n+1}=a_{n}+\\ell\\left(a_{n}\\right)\\) be a recursively defined sequence of integers with \\(a_{1}=2\\). Determine all natural numbers \\(m\\) such that there exists some \\(i \\in \\mathbb{N}\\) with \\(a_{i}=m^{2}\\).",
+    "problem_id": "BMOSL_2021_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. We will show that all such numbers are exactly the prime numbers.\nLet $p_{1}, p_{2}, \\ldots$ be the sequence of prime numbers. We will prove the following:\nClaim: Assume $a_{n}=p_{i} p_{i+1}$. Then for each $k=1,2, \\ldots, p_{i+2}-p_{i}$ we have that $a_{n+k}=$ $\\left(p_{i}+k\\right) p_{i+1}$.\nProof. By induction on $k$. Since $\\ell\\left(a_{n}\\right)=p_{i+1}$, then $a_{n+1}=p_{i} p_{i+1}+p_{i+1}=\\left(p_{i}+1\\right) p_{i+1}$. Assume now that $a_{n+r}=\\left(p_{i}+r\\right) p_{i+1}$ for some $r<p_{i+2}-p_{i}$. For the inductive step, it is enough to show that $\\ell\\left(a_{n+r}\\right)=p_{i+1}$ as then we would have $a_{n+r}=\\left(p_{i}+r\\right) p_{i+1}+p_{i+1}=\\left(p_{i}+r+1\\right) p_{i+1}$. Assume for contradiction that $\\ell\\left(a_{n+r}\\right) \\neq p_{i+1}$. Since $p_{i+1} \\mid a_{n+r}$, then we must have that $\\ell\\left(a_{n+r}\\right)>p_{i+1}$. Since also $a_{n+r}=\\left(p_{i}+r\\right) p_{i+1}$, then $\\ell\\left(p_{i}+r\\right)>p_{i+1}$ and therefore $\\ell\\left(p_{i}+r\\right) \\geqslant p_{i+2}$. This is impossible as $p_{i}+r<p_{i+2}$.\n\nSince $a_{1}=2, a_{2}=4, a_{3}=6=2 \\cdot 3=p_{1} p_{2}$, from the above claim, by induction, we can break up the sequence into pieces of the form $p_{i} p_{i+1},\\left(p_{i}+1\\right) p_{i+1}, \\ldots, p_{i+2} p_{i+1}$ for $i=1,2, \\ldots$, together with the initial piece $2,4$.\n\nWe immediately see that for each prime $p$, the number $p^{2}$ appears in the sequence. It remains to show that no other square number appears in the sequence.\nAssume for contradiction that another square appears in $p_{i} p_{i+1},\\left(p_{i}+1\\right) p_{i+1}, \\ldots, p_{i+2} p_{i+1}$ for some $i$. Since all elements of this piece are multiples of $p_{i+1}$, if a square appears in this sequence, it must be a multiple of $p_{i+1}^{2}$. So the smallest possible square different from $p_{i+1}^{2}$ is $4 p_{i+1}^{2}$. It is enough to show that $4 p_{i+1}^{2}>p_{i+2} p_{i+1}$. This is equivalent to showing that $p_{i+2}<4 p_{i+1}$ which follows from Bertrand's postulate.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

@@ -1,0 +1,255 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2000
+    },
+    "problem": "Call a real-valued function \\( f \\) very convex if\n\n\\[\n\\frac{f(x)+f(y)}{2} \\geq f\\left(\\frac{x+y}{2}\\right)+|x-y|\n\\]\n\nholds for all real numbers \\( x \\) and \\( y \\). Prove that no very convex function exists.",
+    "problem_id": "USAMO_2000_1",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nCall a real-valued function $f$ very convex if\n\n$$\n\\frac{f(x)+f(y)}{2} \\geq f\\left(\\frac{x+y}{2}\\right)+|x-y|\n$$\nholds for all real numbers $x$ and $y$. Prove that no very convex function exists.\n\nFor $C \\geq 0$, we say a function $f$ is $C$-convex\n\n$$\n\\frac{f(x)+f(y)}{2} \\geq f\\left(\\frac{x+y}{2}\\right)+C|x-y| .\n$$\n\nSuppose $f$ is $C$-convex. Let $a<b<c<d<e$ be any arithmetic progression, such that $t=|e-a|$. Observe that\n\n$$\n\\begin{aligned}\n& f(a)+f(c) \\geq 2 f(b)+C \\cdot \\frac{1}{2} t \\\\\n& f(c)+f(e) \\geq 2 f(d)+C \\cdot \\frac{1}{2} t \\\\\n& f(b)+f(d) \\geq 2 f(c)+C \\cdot \\frac{1}{2} t\n\\end{aligned}\n$$\n\nAdding the first two to twice the third gives\n\n$$\nf(a)+f(e) \\geq 2 f(c)+2 C \\cdot t\n$$\n\nSo we conclude $C$-convex function is also $2 C$-convex. This is clearly not okay for $C>0$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "To prove that no very convex function exists, assume for the sake of contradiction that such a function \\( f \\) exists. A very convex function satisfies the inequality\n\\[\n\\frac{f(x) + f(y)}{2} \\geq f\\left(\\frac{x + y}{2}\\right) + |x - y|\n\\]\nfor all real numbers \\( x \\) and \\( y \\).\n\nFirst, observe that the inequality implies standard convexity. Since \\( |x - y| \\geq 0 \\), it follows that\n\\[\n\\frac{f(x) + f(y)}{2} \\geq f\\left(\\frac{x + y}{2}\\right) + |x - y| \\geq f\\left(\\frac{x + y}{2}\\right),\n\\]\nso \\( f \\) is convex. On the real line, convex functions are continuous (a well-known result that can be found in standard calculus or real analysis texts). Therefore, \\( f \\) must be continuous everywhere.\n\nNow, since \\( f \\) is continuous, fix a point \\( p \\) and define \\( g(x) = f(x) - f(p) \\), so \\( g(p) = 0 \\). The very convex inequality with \\( x = p \\) and \\( y = p + d \\) for \\( d > 0 \\) gives\n\\[\n\\frac{f(p) + f(p + d)}{2} \\geq f\\left(p + \\frac{d}{2}\\right) + d,\n\\]\nwhich simplifies to\n\\[\nf(p) + f(p + d) \\geq 2 f\\left(p + \\frac{d}{2}\\right) + 2d.\n\\]\nSubstituting \\( f(x) = g(x) + f(p) \\), this becomes\n\\[\ng(p + d) + 2 f(p) \\geq 2 \\left( g\\left(p + \\frac{d}{2}\\right) + f(p) \\right) + 2d,\n\\]\nso\n\\[\ng(p + d) \\geq 2 g\\left(p + \\frac{d}{2}\\right) + 2d.\n\\]\nIterating this inequality, for any positive integer \\( n \\),\n\\[\ng(p + d) \\geq 2^n g\\left(p + \\frac{d}{2^n}\\right) + 2n d.\n\\]\nAs \\( n \\to \\infty \\), \\( p + \\frac{d}{2^n} \\to p \\), and since \\( g \\) is continuous at \\( p \\) (because \\( f \\) is continuous), \\( g\\left(p + \\frac{d}{2^n}\\right) \\to g(p) = 0 \\). Therefore,\n\\[\ng(p + d) \\geq 2^n \\cdot 0 + 2n d = 2n d\n\\]\nfor all \\( n \\). For \\( d > 0 \\), \\( 2n d \\to \\infty \\) as \\( n \\to \\infty \\), which implies that \\( g(p + d) \\) must be greater than or equal to arbitrarily large numbers, a contradiction because \\( g(p + d) \\) is a real number and thus finite. A similar argument holds for \\( d < 0 \\) by symmetry.\n\nThus, the assumption that a very convex function exists leads to a contradiction. Therefore, no such function exists.\n\n\\[\n\\boxed{\\text{No very convex function exists.}}\n\\]",
+            "cost": {
+                "cost": 0.0148644,
+                "input_tokens": 373,
+                "output_tokens": 29505
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T18:39:59.672264",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof assumes for contradiction that a very convex function f exists, observes that the defining inequality implies standard convexity and hence continuity, then fixes a point p and sets g(x)=f(x)\u2212f(p). Applying the very convex inequality at x=p, y=p+d yields g(p+d)\u22652g(p+d/2)+2d, which the proof iterates to g(p+d)\u22652\u207fg(p+d/2\u207f)+2nd. It then claims that continuity forces the first term to vanish as n\u2192\u221e, yielding g(p+d)\u22652nd for all n and thus a contradiction.",
+                    "issues": [
+                        {
+                            "location": "Step concluding the limit as n\u2192\u221e",
+                            "text": "",
+                            "description": "The proof assumes that because g(p+d/2\u207f)\u21920, the product 2\u207f\u00b7g(p+d/2\u207f) also tends to 0. Continuity alone does not guarantee this\u2014an exponentially growing factor can dominate a vanishing term\u2014so this step is unjustified.",
+                            "category": "Skipping Computation Steps"
+                        },
+                        {
+                            "location": "Iterating the inequality for general n",
+                            "text": "",
+                            "description": "The proof asserts the iterated bound g(p+d)\u22652\u207fg(p+d/2\u207f)+2nd without showing the inductive step or base case. The derivation of this general inequality is omitted.",
+                            "category": "Skipping Computation Steps"
+                        },
+                        {
+                            "location": "Handling the case d<0",
+                            "text": "",
+                            "description": "The proof states that the argument for d<0 follows \u201cby symmetry\u201d but does not explain how the original inequality\u2019s symmetry yields the same contradiction for negative d, thus skipping an edge\u2010case analysis.",
+                            "category": "Missing Edge Cases"
+                        },
+                        {
+                            "location": "Use of convexity implying continuity",
+                            "text": "",
+                            "description": "While convex functions on an open interval are indeed continuous, the proof invokes this fact without citation or conditions. Moreover, the argument actually requires a stronger local Lipschitz property (to control g(p+d/2\u207f) quantitatively), which is not established.",
+                            "category": "Oversimplification"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:36:12.120164"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let the given condition be\n\\[ \\frac{f(x)+f(y)}{2} \\geq f\\left(\\frac{x+y}{2}\\right)+|x-y| \\quad (*). \\]\nThis must hold for all \\(x, y \\in \\mathbb{R}\\).\n\nStep 1: Show that \\(f\\) is a convex function.\nA function \\(g: \\mathbb{R} \\to \\mathbb{R}\\) is convex if for all \\(x,y \\in \\mathbb{R}\\) and \\(t \\in [0,1]\\), \\(g(tx+(1-t)y) \\leq tg(x)+(1-t)g(y)\\).\nSetting \\(t=1/2\\) in the definition of convexity, we get \\(g\\left(\\frac{x+y}{2}\\right) \\leq \\frac{g(x)+g(y)}{2}\\).\nThe condition \\((*)\\) can be rewritten as \\(f\\left(\\frac{x+y}{2}\\right) \\leq \\frac{f(x)+f(y)}{2} - |x-y|\\).\nSince \\(|x-y| \\geq 0\\) for all \\(x,y \\in \\mathbb{R}\\), we have \\(f\\left(\\frac{x+y}{2}\\right) \\leq \\frac{f(x)+f(y)}{2} - |x-y| \\leq \\frac{f(x)+f(y)}{2}\\).\nThus, \\(f\\left(\\frac{x+y}{2}\\right) \\leq \\frac{f(x)+f(y)}{2}\\) for all \\(x,y \\in \\mathbb{R}\\). This means \\(f\\) is convex (by Jensen's criterion for midpoint convexity, and since \\(f\\) is real-valued on \\(\\mathbb{R}\\), this implies convexity. For example, a real-valued function satisfying midpoint convexity is continuous if it is bounded on an interval, and convex functions are continuous in the interior of their domain. The condition \\((*)\\) actually forces \\(f\\) to be continuous, as shown by Roberts and Varberg in \"Convex Functions\", page 75, Theorem C).\nAs a convex function on \\(\\mathbb{R}\\), \\(f\\) is continuous everywhere. Furthermore, at every point \\(x \\in \\mathbb{R}\\), the left-hand derivative \\(f'_-(x)\\) and the right-hand derivative \\(f'_+(x)\\) exist and are finite. Also, for any \\(x_1 < x_2\\), we have \\(f'_+(x_1) \\leq f'_-(x_2)\\). This implies that \\(f'_-(x_2) - f'_+(x_1) \\geq 0\\) and is a finite value.\n\nStep 2: Derive an inequality for second differences of \\(f\\).\nLet \\(x \\in \\mathbb{R}\\) and \\(h \\in \\mathbb{R}\\), \\(h \\neq 0\\).\nIn \\((*)\\), set \\(x_0 = x\\), \\(y_0 = x+2h\\).\nThen \\(\\frac{x_0+y_0}{2} = x+h\\) and \\(|x_0-y_0|=|-2h|=2|h|\\).\nSubstituting these into \\((*)\\):\n\\[ \\frac{f(x)+f(x+2h)}{2} \\geq f(x+h)+2|h| \\]\nMultiplying by 2 and rearranging, we get\n\\[ f(x+2h) - 2f(x+h) + f(x) \\geq 4|h| \\quad (**). \\]\nThis inequality holds for all \\(x \\in \\mathbb{R}\\) and \\(h \\neq 0\\). If \\(h=0\\), it becomes \\(0 \\geq 0\\). We will use it for \\(h>0\\).\n\nStep 3: Apply the difference inequality over an interval.\nLet \\(a, b \\in \\mathbb{R}\\) with \\(a < b\\). Let \\(n\\) be a positive integer (\\(n \\geq 1\\)).\nDefine \\(h = \\frac{b-a}{2n}\\). Since \\(b>a\\) and \\(n \\geq 1\\), we have \\(h>0\\).\nLet \\(x_k = a+kh\\) for \\(k=0, 1, \\ldots, 2n\\).\nThen \\(x_0 = a\\) and \\(x_{2n} = a+2n\\left(\\frac{b-a}{2n}\\right) = b\\).\nLet \\(d_k = f(x_{k+1})-f(x_k)\\) for \\(k=0, 1, \\ldots, 2n-1\\).\nApplying \\((**)\\) for \\(x=x_k\\) and \\(h>0\\), we have:\n\\(f(x_k+2h) - 2f(x_k+h) + f(x_k) \\geq 4h\\).\nThis can be written as \\(f(x_{k+2}) - 2f(x_{k+1}) + f(x_k) \\geq 4h\\).\nIn terms of the differences \\(d_k\\), this is \\((f(x_{k+2})-f(x_{k+1})) - (f(x_{k+1})-f(x_k)) \\geq 4h\\), which means\n\\[ d_{k+1} - d_k \\geq 4h \\]\nfor \\(k=0, 1, \\ldots, 2n-2\\).\n\nStep 4: Lower bound for \\(f(b)-f(a)\\).\nFrom \\(d_{j+1} - d_j \\geq 4h\\), we can show by induction that \\(d_j \\geq d_0 + 4jh\\) for \\(j=0, 1, \\ldots, 2n-1\\).\nBase case \\(j=0\\): \\(d_0 \\geq d_0 + 0\\), which is true.\nInductive step: Assume \\(d_j \\geq d_0 + 4jh\\). Then \\(d_{j+1} \\geq d_j + 4h \\geq (d_0+4jh)+4h = d_0+4(j+1)h\\).\nNow, we can express \\(f(b)-f(a)\\) as a sum of these differences:\n\\[ f(b)-f(a) = f(x_{2n})-f(x_0) = \\sum_{j=0}^{2n-1} (f(x_{j+1})-f(x_j)) = \\sum_{j=0}^{2n-1} d_j. \\]\nUsing the inequality \\(d_j \\geq d_0 + 4jh\\):\n\\[ f(b)-f(a) \\geq \\sum_{j=0}^{2n-1} (d_0+4jh) = 2nd_0 + 4h \\sum_{j=0}^{2n-1} j. \\]\nThe sum of the first \\(2n-1\\) non-negative integers is \\(\\frac{(2n-1)(2n)}{2} = n(2n-1)\\).\nSo, \\(f(b)-f(a) \\geq 2nd_0 + 4hn(2n-1)\\).\nSubstitute \\(d_0 = f(x_1)-f(x_0) = f(a+h)-f(a)\\) and \\(h=\\frac{b-a}{2n}\\):\n\\[ f(b)-f(a) \\geq 2n(f(a+h)-f(a)) + 4\\left(\\frac{b-a}{2n}\\right)n(2n-1). \\]\n\\[ f(b)-f(a) \\geq 2n(f(a+h)-f(a)) + 2(b-a)(2n-1) \\quad (L). \\]\n\nStep 5: Upper bound for \\(f(b)-f(a)\\).\nFrom \\(d_{j+1} - d_j \\geq 4h\\), we also have \\(d_j \\leq d_{j+1} - 4h\\).\nBy a similar induction (decreasing from \\(j=2n-1\\)), we get \\(d_j \\leq d_{2n-1} - 4(2n-1-j)h\\) for \\(j=0, 1, \\ldots, 2n-1\\).\nThen,\n\\[ f(b)-f(a) = \\sum_{j=0}^{2n-1} d_j \\leq \\sum_{j=0}^{2n-1} (d_{2n-1} - 4(2n-1-j)h). \\]\nThis sum is \\(2nd_{2n-1} - 4h \\sum_{j=0}^{2n-1} (2n-1-j)\\).\nLet \\(m=2n-1-j\\). As \\(j\\) goes from \\(0\\) to \\(2n-1\\), \\(m\\) goes from \\(2n-1\\) to \\(0\\).\nSo \\(\\sum_{j=0}^{2n-1} (2n-1-j) = \\sum_{m=0}^{2n-1} m = n(2n-1)\\).\nThus, \\(f(b)-f(a) \\leq 2nd_{2n-1} - 4hn(2n-1)\\).\nSubstitute \\(d_{2n-1} = f(x_{2n})-f(x_{2n-1}) = f(b)-f(b-h)\\) and \\(h=\\frac{b-a}{2n}\\):\n\\[ f(b)-f(a) \\leq 2n(f(b)-f(b-h)) - 4\\left(\\frac{b-a}{2n}\\right)n(2n-1). \\]\n\\[ f(b)-f(a) \\leq 2n(f(b)-f(b-h)) - 2(b-a)(2n-1) \\quad (U). \\]\n\nStep 6: Combine bounds and take the limit.\nFrom \\((L)\\) and \\((U)\\), we have:\n\\[ 2n(f(a+h)-f(a)) + 2(b-a)(2n-1) \\leq f(b)-f(a) \\leq 2n(f(b)-f(b-h)) - 2(b-a)(2n-1). \\]\nThis implies that\n\\[ 2n(f(a+h)-f(a)) + 2(b-a)(2n-1) \\leq 2n(f(b)-f(b-h)) - 2(b-a)(2n-1). \\]\nRearranging the terms to isolate those involving \\(f\\):\n\\[ 2n(f(b)-f(b-h)) - 2n(f(a+h)-f(a)) \\geq 2(b-a)(2n-1) + 2(b-a)(2n-1). \\]\n\\[ 2n[(f(b)-f(b-h)) - (f(a+h)-f(a))] \\geq 4(b-a)(2n-1). \\]\nDivide by \\(2n\\) (which is positive as \\(n \\geq 1\\)):\n\\[ (f(b)-f(b-h)) - (f(a+h)-f(a)) \\geq \\frac{4(b-a)(2n-1)}{2n}. \\]\n\\[ (f(b)-f(b-h)) - (f(a+h)-f(a)) \\geq 2(b-a)\\left(2-\\frac{1}{n}\\right) \\quad (***). \\]\nRecall that \\(h = \\frac{b-a}{2n}\\). We take the limit as \\(n \\to \\infty\\). As \\(n \\to \\infty\\), \\(h \\to 0^+\\).\nThe right-hand side of \\((***)\\) tends to \\(2(b-a)(2) = 4(b-a)\\).\nFor the left-hand side, we use the properties of convex functions. As \\(h \\to 0^+\\):\n\\[ \\frac{f(a+h)-f(a)}{h} \\to f'_+(a) \\quad (\\text{the right-hand derivative at } a). \\]\n\\[ \\frac{f(b)-f(b-h)}{h} \\to f'_-(b) \\quad (\\text{the left-hand derivative at } b). \\]\nThese one-sided derivatives exist and are finite for any convex function on \\(\\mathbb{R}\\).\nMultiply \\((***)\\) by \\( \\frac{1}{h} = \\frac{2n}{b-a} \\):\n\\[ \\frac{f(b)-f(b-h)}{h} - \\frac{f(a+h)-f(a)}{h} \\geq \\frac{2(b-a)(2-1/n)}{h} = \\frac{2(b-a)(2-1/n)}{(b-a)/(2n)}. \\]\n\\[ \\frac{f(b)-f(b-h)}{h} - \\frac{f(a+h)-f(a)}{h} \\geq 4n(2-1/n) = 4(2n-1). \\]\nLet \\(n \\to \\infty\\). The left side approaches \\(f'_-(b) - f'_+(a)\\). The right side \\(4(2n-1) \\to \\infty\\).\nSo we must have \\(f'_-(b) - f'_+(a) = \\infty\\).\nHowever, as stated in Step 1, \\(f\\) is convex on \\(\\mathbb{R}\\). For any \\(a < b\\), \\(f'_+(a)\\) and \\(f'_-(b)\\) are finite real numbers. Furthermore, \\(f'_+(a) \\leq f'_-(b)\\). Therefore, their difference, \\(f'_-(b) - f'_+(a)\\), must be a finite non-negative real number.\nA finite number cannot be equal to \\(\\infty\\). This is a contradiction.\n\nAlternatively, using inequality \\((***)\\): \\( (f(b)-f(b-h)) - (f(a+h)-f(a)) \\geq 2(b-a)(2-1/n) \\).\nLet \\(LHS_n = (f(b)-f(b-h_n)) - (f(a+h_n)-f(a))\\), where \\(h_n=(b-a)/(2n)\\).\n\\(LHS_n = h_n \\left( \\frac{f(b)-f(b-h_n)}{h_n} - \\frac{f(a+h_n)-f(a)}{h_n} \\right)\\).\nAs \\(n \\to \\infty\\), \\(h_n \\to 0\\).\nThe term \\( \\left( \\frac{f(b)-f(b-h_n)}{h_n} - \\frac{f(a+h_n)-f(a)}{h_n} \\right) \\to f'_-(b) - f'_+(a) \\).\nLet \\(C = f'_-(b) - f'_+(a)\\). As shown earlier, \\(C\\) is a finite non-negative real number.\nSo, \\( \\lim_{n \\to \\infty} LHS_n = \\lim_{n \\to \\infty} h_n \\cdot C = 0 \\cdot C = 0 \\).\nThe right-hand side of \\((***)\\) is \\(RHS_n = 2(b-a)(2-1/n)\\).\nAs \\(n \\to \\infty\\), \\(RHS_n \\to 2(b-a)(2) = 4(b-a)\\).\nSo, taking the limit of \\((***)\\) as \\(n \\to \\infty\\), we get \\(0 \\geq 4(b-a)\\).\nSince we chose \\(a<b\\), \\(b-a>0\\), so \\(4(b-a)>0\\).\nThus, \\(0 \\geq \\text{a positive number}\\), which is a contradiction.\n\nStep 7: Conclusion.\nThe assumption that such a function \\(f\\) exists leads to a contradiction. Therefore, no very convex function exists.\n\nFinal check: The argument requires \\(a \\neq b\\). If \\(a=b\\), then \\(h=0\\), and the construction is not valid. However, the problem definition holds for all \\(x,y\\). If \\(x=y\\), then \\( \\frac{f(x)+f(x)}{2} \\geq f(\\frac{x+x}{2}) + |x-x| \\), so \\(f(x) \\geq f(x)\\), which is trivial. The contradiction arises when considering distinct points \\(a\\) and \\(b\\). If \\(b<a\\), then \\(h=\\frac{b-a}{2n}<0\\). We should use \\(|h|\\) in \\((**)\\), i.e., \\(f(x+2h)-2f(x+h)+f(x) \\geq 4|h|\\). If \\(h<0\\), let \\(h'=-h>0\\). The inequality is \\(f(x-2h')-2f(x-h')+f(x) \\geq 4h'\\). This can be rewritten by letting \\(z=x-2h'\\) as \\(f(z+2h')-2f(z+h')+f(z) \\geq 4h'\\). This is the same form. The argument follows by swapping \\(a\\) and \\(b\\), leading to \\(0 \\geq 4(a-b)\\), which is again a contradiction since \\(a-b>0\\).\n\nThe proof is complete.\n\nThe final answer is $\\boxed{No very convex function exists}$.",
+            "cost": {
+                "cost": 0.2096375,
+                "input_tokens": 390,
+                "output_tokens": 20915
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:24:31.556111",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof begins by observing that (*) implies midpoint convexity and, by appealing to an external continuity result, concludes that f is convex. It then shows the second\u2010difference bound f(x+2h)\u22122f(x+h)+f(x)\u22654|h|, partitions the interval [a,b] into 2n subintervals to derive linear growth of the first differences d_k, and combines these bounds to force the difference quotient (f(b)\u2212f(b\u2212h))/h \u2212 (f(a+h)\u2212f(a))/h to grow without bound, contradicting the finiteness of one\u2010sided derivatives of a convex function. A brief discussion of the trivial x=y case and the reversed\u2010order case is given at the end.",
+                    "issues": [
+                        {
+                            "location": "Step 1",
+                            "text": "\u201cthe condition (*) actually forces f to be continuous, as shown by Roberts and Varberg in \"Convex Functions\", page 75, Theorem C\u201d",
+                            "description": "The proof relies on a theorem from Roberts and Varberg, a source not typically taught at the high\u2010school or basic undergraduate level, to assert continuity of f. No elementary justification or proof is provided, violating the requirement to only use well\u2010known results.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 1149,
+                            "end_index": 1282
+                        },
+                        {
+                            "location": "Step 1",
+                            "text": "\u201cThus, f((x+y)/2) \u2264 (f(x)+f(y))/2 \u2026 This means f is convex (by Jensen\u2019s criterion for midpoint convexity\u2026)\u201d",
+                            "description": "The passage from midpoint convexity to full convexity is asserted without proving the necessary boundedness or continuity conditions; the invocation of Jensen\u2019s criterion is oversimplified and lacks the required justification.",
+                            "category": "Oversimplification",
+                            "start_index": 784,
+                            "end_index": 889
+                        },
+                        {
+                            "location": "Step 6",
+                            "text": "\u201cSo we must have f'_-(b)\u2212f'_+(a)=\u221e.\u201d",
+                            "description": "The statement that a finite difference of one\u2010sided derivatives \u201cequals \u221e\u201d is mathematically sloppy; one should say the inequality forces the expression to be unbounded, not literally infinite, before deriving a contradiction.",
+                            "category": "Other",
+                            "start_index": 6279,
+                            "end_index": 6314
+                        },
+                        {
+                            "location": "Step 7",
+                            "text": "\u201cIf b<a, then h=(b-a)/(2n)<0. We should use |h| in (**)\u2026 The argument follows by swapping a and b\u2026\u201d",
+                            "description": "The handling of the case b<a is presented as an afterthought, with a convoluted rewrite using |h| and variable swaps rather than integrating it cleanly into the main argument; this step is unclear and under\u2010justified.",
+                            "category": "Oversimplification",
+                            "start_index": 8358,
+                            "end_index": 8427
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:36:24.534700"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Here is a self\u2013contained proof that no \u201cvery convex\u2019\u2019 function can exist.  We follow the convention that all functions \\(f\\colon\\Bbb R\\to\\Bbb R\\) are real-valued (never \\(+\\infty\\) or \\(-\\infty\\)).  \n\n**Definition.**  We call \\(f\\) *very convex* if for all \\(x,y\\in\\Bbb R\\),\n\\[\n\\frac{f(x)+f(y)}{2}\\;\\ge\\;f\\!\\Bigl(\\frac{x+y}{2}\\Bigr)\\;+\\;|x-y|\\,.\n\\tag{V}\n\\]\n\nWe shall assume, for sake of contradiction, that there *is* a very-convex \\(f\\), and deduce an impossibility.\n\n---\n\n**1. Midpoint\u2010convexity and continuity.**  \n\nFrom \\((V)\\) we immediately get the usual midpoint\u2010convex inequality\n\\[\nf\\!\\Bigl(\\frac{x+y}{2}\\Bigr)\\;\\le\\;\\frac{f(x)+f(y)}{2},\n\\]\nso \\(f\\) is midpoint\u2010convex.  A standard fact in real analysis is\n\n\u2003\u2022 A midpoint\u2010convex function \\(f\\colon\\Bbb R\\to\\Bbb R\\) which is continuous at one point is in fact convex on all of \\(\\Bbb R\\).  \n\nWe will prove continuity of \\(f\\) at an arbitrary point \\(x_0\\), thus showing \\(f\\) is truly convex.\n\nFix any \\(x_0\\in\\Bbb R\\) and any \\(\\varepsilon>0\\).  Define\n\\[\n\\delta_k \\;=\\;\\frac\\varepsilon{2^k},\n\\quad\ns_k \\;=\\;\\frac{f(x_0+\\delta_k)\\;-\\;f(x_0)}{\\delta_k}\n\\quad(k=0,1,2,\\dots).\n\\]\nWe first show \\(s_k\\to0\\) in such a way that \\(f(x_0+\\delta_k)\\to f(x_0)\\).\n\nApply the very\u2010convexity \\((V)\\) with\n\\[\nx=x_0+\\delta_k,\\quad y=x_0+2\\,\\delta_k.\n\\]\nThen \\(\\tfrac{x+y}{2}=x_0+\\delta_k\\), \\(|x-y|=2\\delta_k\\), and\n\\[\n\\frac{f(x_0+\\delta_k)+f(x_0+2\\delta_k)}{2}\n\\;\\ge\\;\nf\\!\\bigl(x_0+\\delta_k\\bigr)\\;+\\;2\\delta_k.\n\\]\nRearrange:\n\\[\nf(x_0+2\\delta_k)\\;-\\;f(x_0+\\delta_k)\n\\;\\ge\\;2\\,\\bigl(\\,f(x_0+\\delta_k)-f(x_0)\\bigr)\n\\;+\\;4\\,\\delta_k.\n\\]\nDivide through by \\(2\\delta_k\\):\n\\[\n\\frac{f(x_0+2\\delta_k)-f(x_0+\\delta_k)}{2\\delta_k}\n\\;\\ge\\;\n\\frac{f(x_0+\\delta_k)-f(x_0)}{\\delta_k}\\;+\\;2\n\\;\\Longrightarrow\\;\ns_{\\,k+1}\\;\\le\\;s_k\\;-\\;2.\n\\]\nBy induction,\n\\[\ns_k\\;\\le\\;s_0\\;-\\;2k,\n\\qquad k=0,1,2,\\dots\n\\]\nHence\n\\[\n0\\;\\le\\;f(x_0+\\delta_k)-f(x_0)\n\\;=\\;\\delta_k\\,s_k\n\\;\\le\\;\n\\delta_k\\bigl(s_0-2k\\bigr)\n\\;=\\;\n\\frac\\varepsilon{2^k}\\,(s_0-2k).\n\\]\nBut \\(\\tfrac\\varepsilon{2^k}(s_0-2k)\\to0\\) as \\(k\\to\\infty\\).  Thus\n\\[\nf(x_0+\\delta_k)\\;\\longrightarrow\\;f(x_0).\n\\]\nA completely analogous argument on the left shows\n\\(f(x_0-\\delta_k)\\to f(x_0)\\).  Therefore \\(f\\) is continuous at \\(x_0\\).  Since \\(x_0\\) was arbitrary, \\(f\\) is continuous everywhere.\n\nBy the standard theorem (e.g.\\ in any real\u2010analysis text) that a continuous midpoint\u2010convex function on \\(\\Bbb R\\) is in fact convex, we conclude\n\n\u2003\u2022 **\\(f\\) is convex on \\(\\Bbb R\\).**\n\n---\n\n**2. Secant\u2010slopes of a convex function are bounded.**  \n\nFor a convex function \\(f\\) and any fixed \\(x\\), define the *secant slope*\n\\[\ns(h)\\;=\\;\\frac{f(x+h)-f(x)}{h},\n\\qquad h>0.\n\\]\nIt is well\u2010known and elementary that for convex \\(f\\),\n\n(i)  if \\(0<h'<h\\), then\n\\[\n\\frac{f(x+h')-f(x)}{h'}\\;\\le\\;\\frac{f(x+h)-f(x)}{h},\n\\]\nso \\(h\\mapsto s(h)\\) is nonincreasing;\n\n(ii) for any fixed \\(H>0\\),\n\\(\ns(h)\\le \\frac{f(x+H)-f(x)}{H}\n\\)\nfor all \\(0<h\\le H\\), and\n\\(\ns(h)\\ge \\frac{f(x)-f(x-H)}{H}\n\\)\nfor all \\(0<h\\le H\\).\nHence on \\(0<h\\le H\\), \\(s(h)\\) is trapped between two finite bounds and therefore\n\\[\n\\lim_{h\\to0^+}s(h)\n\\]\nexists *and is finite*.  That limit is nothing but the right\u2010derivative \\(f'_+(x)\\).\n\n---\n\n**3. The final contradiction.**  \n\nOn the other hand, from the very\u2010convexity hypothesis \\((V)\\) applied to\n\\[\nx\\mapsto x,\n\\quad\ny\\mapsto x+2h,\n\\]\none obtains exactly as above\n\\[\ns(h/2)\\;\\le\\;s(h)\\;-\\;2,\n\\qquad\\forall\\,h>0.\n\\]\nBut convexity forces \\(s(h/2)\\ge s(h)\\).  Hence\n\\[\ns(h)\\;\\le\\;s(h)\\;-\\;2\n\\quad\\Longrightarrow\\quad\n0\\le -2,\n\\]\na manifest contradiction.\n\n---\n\nSince the sole assumption\u2014that \\(f\\) satisfies the \u201cvery convex\u2019\u2019 inequality \\((V)\\)\u2014leads to an impossibility, **no** real\u2010valued function can satisfy \\((V)\\) for *every* \\(x,y\\in\\Bbb R\\).  This completes the proof.  \u220e",
+            "cost": {
+                "cost": 0.0849035,
+                "input_tokens": 385,
+                "output_tokens": 19200
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:45:22.537235",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof assumes for contradiction that a very convex function f exists, observes that (V) implies midpoint\u2010convexity, and attempts to prove f is continuous at an arbitrary point x\u2080 by defining \u03b4\u2096=\u03b5/2\u1d4f and secant slopes s\u2096. It uses the very\u2010convexity inequality to derive a recurrence s\u2096\u208a\u2081\u2264s\u2096\u22122, claims f(x\u2080+\u03b4\u2096)\u2192f(x\u2080) and hence continuity, then invokes the standard result that continuous midpoint\u2010convex functions are convex. Finally it applies (V) again to show secant slopes both increase and decrease, yielding 0\u2264\u22122, a contradiction.",
+                    "issues": [
+                        {
+                            "location": "Step 1, application of (V)",
+                            "text": "Apply the very\u2010convexity (V) with\nx=x\u2080+\u03b4\u2096, y=x\u2080+2\u03b4\u2096.\nThen (x+y)/2=x\u2080+\u03b4\u2096, |x\u2212y|=2\u03b4\u2096",
+                            "description": "The midpoint calculation is wrong: if x=x\u2080+\u03b4\u2096 and y=x\u2080+2\u03b4\u2096 then (x+y)/2=x\u2080+1.5\u03b4\u2096, not x\u2080+\u03b4\u2096. This misapplication invalidates the ensuing inequality.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1213,
+                            "end_index": 1321
+                        },
+                        {
+                            "location": "Step 1, sign assumption",
+                            "text": "Hence\n0\u2264f(x\u2080+\u03b4\u2096)\u2212f(x\u2080)=\u03b4\u2096 s\u2096",
+                            "description": "The proof asserts without justification that f(x\u2080+\u03b4\u2096)\u2212f(x\u2080)\u22650 (i.e. s\u2096\u22650). There is no prior argument that f is nondecreasing or that these differences are nonnegative.",
+                            "category": "Oversimplification",
+                            "start_index": null,
+                            "end_index": null
+                        },
+                        {
+                            "location": "Step 1, conclusion of continuity",
+                            "text": "\u03b4\u2096(s\u2080\u22122k)=\u03b5/2\u1d4f\u22c5(s\u2080\u22122k)\u21920, thus f(x\u2080+\u03b4\u2096)\u2192f(x\u2080).",
+                            "description": "The proof only obtains an upper bound tending to zero for f(x\u2080+\u03b4\u2096)\u2212f(x\u2080), but no corresponding lower bound. Without showing |f(x\u2080+\u03b4\u2096)\u2212f(x\u2080)|\u21920, continuity cannot be concluded.",
+                            "category": "Missing Edge Cases",
+                            "start_index": null,
+                            "end_index": null
+                        },
+                        {
+                            "location": "Step 2, convex slope properties",
+                            "text": "It is well\u2010known and elementary that for convex f,\n(i) if 0<h\u2032<h then (f(x+h\u2032)\u2212f(x))/h\u2032\u2264(f(x+h)\u2212f(x))/h,\n(ii) for any fixed H>0, \u2026",
+                            "description": "The proof invokes monotonicity and boundedness of secant slopes for convex f as \"well\u2010known and elementary\" without proof or reference, skipping nontrivial justification.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2646,
+                            "end_index": 2787
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:36:25.700331"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Assume, for the sake of contradiction, that a real-valued function  \n\n\\[\nf:\\mathbb R\\longrightarrow\\mathbb R\n\\]\n\nsatisfies  \n\\[\n\\frac{f(x)+f(y)}{2}\\;\\ge\\;f\\!\\left(\\frac{x+y}{2}\\right)+|x-y|\n\\qquad\\text{for all }x,y\\in\\mathbb R.\n\\tag{1}\n\\]\n\nThroughout the proof we shall use the equivalent form obtained from (1) by multiplying by \\(2\\):\n\n\\[\nf(x)+f(y)\\;\\ge\\;2f\\!\\left(\\frac{x+y}{2}\\right)+2|x-y|.\n\\tag{2}\n\\]\n\n--------------------------------------------------------------------\nStep 1.  Three inequalities involving the points \\(-1,0,1\\).\n\nChoose in (2)\n\n\u2022 \\(x=1,\\;y=-1\\).  \nThen \\(\\dfrac{x+y}{2}=0\\) and \\(|x-y|=2\\); hence  \n\\[\nf(1)+f(-1)\\;\\ge\\;2f(0)+4.\n\\tag{3}\n\\]\n\n\u2022 \\(x=1,\\;y=0\\).  \nThen \\(\\dfrac{x+y}{2}=\\tfrac12\\) and \\(|x-y|=1\\); hence  \n\\[\nf(1)+f(0)\\;\\ge\\;2f\\!\\left(\\frac12\\right)+2.\n\\tag{4}\n\\]\n\n\u2022 \\(x=0,\\;y=-1\\).  \nThen \\(\\dfrac{x+y}{2}=-\\tfrac12\\) and \\(|x-y|=1\\); hence  \n\\[\nf(0)+f(-1)\\;\\ge\\;2f\\!\\left(-\\frac12\\right)+2.\n\\tag{5}\n\\]\n\n--------------------------------------------------------------------\nStep 2.  A bound for \\(f\\!\\left(\\tfrac12\\right)+f\\!\\left(-\\tfrac12\\right)\\).\n\nAdd (4) and (5):\n\n\\[\nf(1)+2f(0)+f(-1)\\;\\ge\\;2f\\!\\left(\\frac12\\right)+2f\\!\\left(-\\frac12\\right)+4.\n\\tag{6}\n\\]\n\nNow subtract (3) from (6); on the left-hand side the terms \\(f(1)+f(-1)\\) cancel, leaving \\(2f(0)\\):\n\n\\[\n2f(0)\\;\\ge\\;2f\\!\\left(\\frac12\\right)+2f\\!\\left(-\\frac12\\right)-2f(0).\n\\]\n\nDivide by \\(2\\):\n\n\\[\n2f(0)\\;\\ge\\;f\\!\\left(\\tfrac12\\right)+f\\!\\left(-\\tfrac12\\right).\n\\tag{7}\n\\]\n\n--------------------------------------------------------------------\nStep 3.  A contradictory reverse inequality.\n\nApply (2) once more with \\(x=\\tfrac12,\\;y=-\\tfrac12\\).\nHere \\(\\dfrac{x+y}{2}=0\\) and \\(|x-y|=1\\); therefore\n\n\\[\nf\\!\\left(\\tfrac12\\right)+f\\!\\left(-\\tfrac12\\right)\\;\\ge\\;2f(0)+2.\n\\tag{8}\n\\]\n\n--------------------------------------------------------------------\nStep 4.  Contradiction.\n\nInequalities (7) and (8) give\n\n\\[\n2f(0)\\;\\ge\\;f\\!\\left(\\tfrac12\\right)+f\\!\\left(-\\tfrac12\\right)\\;\\ge\\;2f(0)+2,\n\\]\n\nwhich is impossible.  Hence our initial assumption was false.\n\n--------------------------------------------------------------------\nConclusion.  \nNo real-valued function can satisfy (1); in other words, a \u201cvery convex\u2019\u2019 function does not exist.",
+            "cost": {
+                "cost": 0.95909,
+                "input_tokens": 385,
+                "output_tokens": 23881
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:58:08.672117",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof assumes, for contradiction, that a very convex function f exists and rewrites the defining inequality in an equivalent doubled form. It then applies this inequality to the point pairs (1,\u20131), (1,0), and (0,\u20131) to derive three inequalities (3), (4), and (5). By combining (4)+(5) and subtracting (3), it obtains the upper bound 2f(0) \u2265 f(\u00bd)+f(\u2013\u00bd). Finally, applying the inequality to (\u00bd,\u2013\u00bd) yields f(\u00bd)+f(\u2013\u00bd) \u2265 2f(0)+2, leading to the contradiction 2f(0) \u2265 2f(0)+2. Hence no very convex function can exist.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:35:36.254271"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To prove that **no very convex function exists**, we begin by analyzing the inequality that defines such a function:\n\n$$\n\\frac{f(x) + f(y)}{2} \\geq f\\left(\\frac{x + y}{2}\\right) + |x - y| \\quad \\text{for all } x, y \\in \\mathbb{R}.\n$$\n\nThis inequality is stronger than the standard definition of convexity, which requires:\n\n$$\n\\frac{f(x) + f(y)}{2} \\geq f\\left(\\frac{x + y}{2}\\right).\n$$\n\nHere, the right-hand side includes an additional term $ |x - y| $, making the inequality more restrictive. Our goal is to show that **no real-valued function** can satisfy this inequality for all real $ x $ and $ y $.\n\n---\n\n### Step 1: Reformulating the Inequality\n\nLet us define a new variable $ z = \\frac{x + y}{2} $, and let $ t = \\frac{|x - y|}{2} $. Then we can write:\n\n$$\nx = z - t, \\quad y = z + t.\n$$\n\nSubstituting into the inequality, we get:\n\n$$\n\\frac{f(z - t) + f(z + t)}{2} \\geq f(z) + 2t.\n$$\n\nMultiplying both sides by 2:\n\n$$\nf(z - t) + f(z + t) - 2f(z) \\geq 4t.\n$$\n\nDefine the function:\n\n$$\n\\psi(t) = f(z - t) + f(z + t) - 2f(z).\n$$\n\nThen the inequality becomes:\n\n$$\n\\psi(t) \\geq 4t \\quad \\text{for all } t \\geq 0.\n$$\n\nThis must hold for **all real numbers** $ z $ and $ t \\geq 0 $.\n\n---\n\n### Step 2: Recursive Application of the Inequality\n\nWe now analyze the behavior of $ \\psi(t) $ by applying the inequality recursively. Consider:\n\n$$\n\\psi(t) = f(z - t) + f(z + t) - 2f(z).\n$$\n\nWe can apply the same inequality to $ t/2 $:\n\n$$\n\\psi(t/2) \\geq 4 \\cdot \\frac{t}{2} = 2t.\n$$\n\nNow, consider the inequality for $ t $ and $ t/2 $:\n\nFrom the original inequality:\n\n$$\n\\frac{f(z) + f(z + t)}{2} \\geq f(z + t/2) + t,\n$$\n$$\n\\frac{f(z) + f(z - t)}{2} \\geq f(z - t/2) + t.\n$$\n\nAdding both inequalities:\n\n$$\n\\frac{f(z + t) + f(z - t) + 2f(z)}{2} \\geq f(z + t/2) + f(z - t/2) + 2t.\n$$\n\nRewriting:\n\n$$\nf(z + t) + f(z - t) \\geq 2f(z) + 2f(z + t/2) + 2f(z - t/2) + 4t.\n$$\n\nSubtracting $ 2f(z) $ from both sides:\n\n$$\n\\psi(t) \\geq \\psi(t/2) + 4t.\n$$\n\nThis is a **recursive inequality**. Using this, we can derive a sequence of lower bounds for $ \\psi(t) $:\n\n- From the original inequality: $ \\psi(t) \\geq 4t $\n- From the recursion: $ \\psi(t) \\geq \\psi(t/2) + 4t \\geq 4 \\cdot \\frac{t}{2} + 4t = 6t $\n- Applying again: $ \\psi(t) \\geq \\psi(t/4) + 4t \\geq 4 \\cdot \\frac{t}{4} + 4t = 5t $\n- Continuing this process, we find that $ \\psi(t) \\geq 4(n + 1)t $ for all $ n \\in \\mathbb{N} $\n\n---\n\n### Step 3: Deriving a Contradiction\n\nFrom the recursive inequality, we see that for any fixed $ t > 0 $, the lower bound on $ \\psi(t) $ increases without bound as $ n \\to \\infty $. That is:\n\n$$\n\\psi(t) \\geq 4(n + 1)t \\quad \\text{for all } n \\in \\mathbb{N}.\n$$\n\nThis implies that $ \\psi(t) $ must be **infinite** for all $ t > 0 $, which is a contradiction because $ \\psi(t) = f(z - t) + f(z + t) - 2f(z) $ is a finite expression for any real-valued function $ f $.\n\n---\n\n### Conclusion\n\nThe recursive application of the inequality leads to an unbounded lower bound on $ \\psi(t) $, which contradicts the assumption that $ f $ is a real-valued function. Therefore, **no function** $ f: \\mathbb{R} \\to \\mathbb{R} $ can satisfy the inequality:\n\n$$\n\\frac{f(x) + f(y)}{2} \\geq f\\left(\\frac{x + y}{2}\\right) + |x - y| \\quad \\text{for all } x, y \\in \\mathbb{R}.\n$$\n\n---\n\n### Final Answer\n\n$$\n\\boxed{\\text{No such very convex function exists.}}\n$$",
+            "cost": {
+                "cost": 0.004945,
+                "input_tokens": 386,
+                "output_tokens": 8113
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:04:19.941344",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof rewrites the very convexity condition by setting $z=(x+y)/2$, $t=|x-y|/2$ and defining $\\psi(t)=f(z-t)+f(z+t)-2f(z)$ to obtain $\\psi(t)\\ge4t$. It then attempts to derive a recursive inequality $\\psi(t)\\ge\\psi(t/2)+4t$, iterates this bound to claim $\\psi(t)\\to\\infty$ as the number of iterations grows, and concludes that no real-valued function can satisfy the original inequality.",
+                    "issues": [
+                        {
+                            "location": "Step 2, derivation of the recursive inequality",
+                            "text": "$\\psi(t) \\geq \\psi(t/2) + 4t$",
+                            "description": "The proof drops extra terms arising from combining the two midpoint inequalities (namely contributions of $f(z)$) and does not show the algebraic steps needed to isolate $\\psi(t/2)$, making the derivation invalid.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1902,
+                            "end_index": 1930
+                        },
+                        {
+                            "location": "Sequence of lower bounds",
+                            "text": "\u201cApplying again: $ \\psi(t) \\geq \\psi(t/4) + 4t \\geq 4 \\cdot \\frac{t}{4} + 4t = 5t$\u201d",
+                            "description": "The numeric bounds are inconsistent (it first yields $6t$ then $5t$) and contradict the claimed general growth, indicating arithmetic and logical errors in iterating the recursion.",
+                            "category": "Other",
+                            "start_index": 2185,
+                            "end_index": 2267
+                        },
+                        {
+                            "location": "Iteration to general $n$",
+                            "text": "\u201cContinuing this process, we find that $ \\psi(t) \\geq 4(n + 1)t $ for all $ n \\in \\mathbb{N} $\u201d",
+                            "description": "The proof asserts a general bound without any induction or justification that the recursive step holds uniformly at each iteration, overgeneralizing from a single (flawed) step.",
+                            "category": "Overgeneralization",
+                            "start_index": 2270,
+                            "end_index": 2363
+                        },
+                        {
+                            "location": "Step 3, conclusion of unboundedness",
+                            "text": "\u201cThis implies that $ \\psi(t) $ must be **infinite** for all $ t > 0 $\u201d",
+                            "description": "There is no argument that $\\psi(t/(2^n))\\to0$ or that $\\psi$ is bounded near zero; the proof omits the base case $\\psi(0)=0$ and any continuity or finiteness condition on $f$, so the claimed divergence is unsubstantiated.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2631,
+                            "end_index": 2699
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:35:52.306757"
+            }
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2021
+    },
+    "problem": "Let \\( n \\geq 3 \\) be an integer and let\n\n\\[\nM=\\left\\{\\frac{a_{1}+a_{2}+\\cdots+a_{k}}{k}: 1 \\leq k \\leq n \\text{ and } 1 \\leq a_{1}<\\cdots<a_{k} \\leq n\\right\\}\n\\]\n\nbe the set of the arithmetic means of the elements of all non-empty subsets of \\(\\{1,2, \\ldots, n\\}\\). Find \\(\\min \\{|a-b|: a, b \\in M \\text{ with } a \\neq b\\}\\).",
+    "problem_id": "BMOSL_2021_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. We observe that $M$ is composed by rational numbers of the form $a=\\frac{x}{k}$, where $1 \\leqslant k \\leqslant n$. As the arithmetic mean of $1, \\ldots, n$ is $\\frac{n+1}{2}$, if we look at these rational numbers in their irreducible form, we can say that $1 \\leqslant k \\leqslant n-1$.\n\nA non-zero difference $|a-b|$ with $a, b \\in M$ is then of form\n\n$$\n\\left|\\frac{x}{k}-\\frac{y}{p}\\right|=\\frac{\\left|p_{0} x-k_{0} y\\right|}{[k, p]}\n$$\nwhere $[k, p]$ is the l.c.m. of $k, p$, and $k_{0}=\\frac{[k, p]}{k}, p_{0}=\\frac{[k, p]}{p}$. Then $|a-b| \\geqslant \\frac{1}{[k, p]}$, as $\\left|p_{0} x-k_{0} y\\right|$ is a non-zero integer. As\n$$\n\\max \\{[k, p] \\mid 1 \\leqslant k<p \\leqslant n-1\\}=(n-1)(n-2),\n$$\n\nwe can say that $m=\\min _{\\substack{a, b \\in M \\\\ a \\neq b}}|a-b| \\geqslant \\frac{1}{(n-1)(n-2)}$.\nTo reach this minimum, we seek $x \\in\\{3,4, \\ldots, 2 n-1\\}$ and $y \\in\\{1,2, \\ldots, n\\}$ for which\n\n$$\n\\left|\\frac{\\frac{n(n+1)}{2}-x}{n-2}-\\frac{\\frac{n(n+1)}{2}-y}{n-1}\\right|=\\frac{1}{(n-1)(n-2)},\n$$\nmeaning\n$$\n\\left|\\frac{n(n+1)}{2}-(n-1) x+(n-2) y\\right|=1 .\n$$\n\nIf $n=2 k$, we can choose $x=k+3$ and $y=2$ and if $n=2 k+1$ we can choose $x=n=2 k+1$ and $y=k$. Therefore, the required minimum is $\\frac{1}{(n-1)(n-2)}$.\n\nComment. For $n \\geqslant 5$, the only other possibilities are to take $x=3 k-1, y=2 k-1$ if $n=2 k$ and to take $x=2 k+3, y=k+2$ if $n=2 k+1$. (For $n=3,4$ there are also examples where one of the sets is of size $n$.)",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

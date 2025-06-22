@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.97,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2018
+    },
+    "problem": "An open necklace can contain rubies, emeralds, and sapphires. At every step, we can perform any of the following operations:\n1. Replace two consecutive rubies with an emerald and a sapphire, where the emerald is on the left of the sapphire.\n2. Replace three consecutive emeralds with a sapphire and a ruby, where the sapphire is on the left of the ruby.\n3. If we find two consecutive sapphires, we can remove them.\n4. If we find consecutively and in this order a ruby, an emerald, and a sapphire, we can remove them.\n\nFurthermore, we can also reverse all of the above operations. For example, by reversing operation 3, we can put two consecutive sapphires in any position we wish. Initially, the necklace has one sapphire (and no other precious stones). Decide, with proof, whether there is a finite sequence of steps such that at the end of this sequence the necklace contains one emerald (and no other precious stones).\n\nRemark: A necklace is open if its precious stones are on a line from left to right. We are not allowed to move a precious stone from the rightmost position to the leftmost as we would be able to do if the necklace was closed.",
+    "problem_id": "BMOSL_2018_9",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "For each precious stone on the necklace, we define its value as $(-1)^{r} \\cdot s$, where $r$ denotes the number of emeralds and sapphires preceding it, and $s$ equals $-2,1$ or $-1$ for a ruby, emerald or sapphire, respectively.\nThe value of the necklace is equal to the sum of the values of its precious stones. We claim that the value of the necklace is invariant modulo $6$.\nSuppose for example that we remove two consecutive rubies, and suppose there is an even number of emeralds and sapphires preceding them. The value of each ruby is $-2$ so by removing them we increase the value of the necklace by $4$. The emerald that we add had an even number of emeralds and sapphires preceding it, so its value is $1$. The sapphire that we add has an odd number of emeralds and sapphires preceding it (accounting for the added emerald), so its value is $1$. No other precious stone changes value, so the total increase of the value of the necklace is $6$.\nSimilarly we can check that all of the other operations and their inverses also leave the value of the necklace invariant modulo $6$.\nSince the necklace containing just one sapphire has value $-1$, whereas the necklace containing just one emerald has value $1$, there is no desired sequence of steps.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

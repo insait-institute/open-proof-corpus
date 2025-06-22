@@ -1,0 +1,10 @@
+model: deepseek-ai/DeepSeek-R1-0528-Qwen3-8B
+api: vllm
+max_tokens: 32000
+temperature: 0.6
+top_p: 0.95
+read_cost: 0.05
+write_cost: 0.10
+n_gpus: 4
+human_readable_id: DeepSeek-R1-Qwen3-8B
+date: "2025-01-21"

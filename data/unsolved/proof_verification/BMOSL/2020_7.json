@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.05,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2020
+    },
+    "problem": "Odin and Evelyn are playing a game, Odin going first. There are initially \\(3k\\) empty boxes, for some given positive integer \\(k\\). On each player's turn, they can write a non-negative integer in an empty box, or erase a number in a box and replace it with a strictly smaller non-negative integer. However, Odin is only ever allowed to write odd numbers, and Evelyn is only allowed to write even numbers. The game ends when either one of the players cannot move, in which case the other player wins; or there are exactly \\(k\\) boxes with the number 0, in which case Evelyn wins if all other boxes contain the number 1, and Odin wins otherwise. Who has a winning strategy?",
+    "problem_id": "BMOSL_2020_7",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Evelyn has a winning strategy. Begin by noticing that any legal move by Odin involves writing an odd number $n$, so Evelyn is allowed to replace it with the even number $n-1$. In particular, the game cannot end because Evelyn is unable to move.\n\nEvelyn's strategy is described in terms of the following valuation: Collect the numbers in all non-empty boxes to form $\\mathbf{a}=\\left(a_{1}, \\ldots, a_{\\ell}\\right)$, where $\\ell \\leqslant 3 k$, and define the valuation of a by\n\n$$\nV(\\mathbf{a})=\\sum_{i=1}^{\\ell}(-1 / 2)^{a_{i}} .\n$$\n\nNotice that when Odin makes a move, the valuation strictly decreases; and when Evelyn makes a move, the valuation strictly increases.\n\nSince the boxes are initially all empty, the game starts with a zero valuation, and after the first move (by Odin) the valuation is strictly negative. Evelyn's strategy consists in making the valuation at most zero after each of her moves. Consequently, after each legal move by Odin, the valuation is strictly negative.\n\nTo show that Evelyn can always achieve this, distinguish the two possible cases below.\nCase 1: There is at least one empty box, and the current valuation is $-v$ for some strictly positive $v$. Then Evelyn should choose any even number $n$ making $2^{n} v \\geqslant 1$, and write $n$ in an empty box.\nCase 2: There are no empty boxes, so $3 k$ numbers contributing to the evaluation. Then $V(\\mathbf{a}) \\equiv 0(\\bmod 3)$, since $(-1 / 2)^{a} \\equiv 1(\\bmod 3)$. It is not possible that all numbers be zero, for otherwise the game would already have come to an end. Letting $n$ be the largest entry of the current a, it then follows that $V(\\mathbf{a}) \\leqslant-3 / 2^{n}$, since $V(\\mathbf{a})$ is strictly negative and congruent to zero modulo $3$.\n\nIf $n$ is odd, respectively even, then replacing $n$ by $n-1$, respectively $n-2$, increases the valuation by $3 / 2^{n}$. Consequently, in either case, Evelyn can make a move to yield a valuation that does not exceed zero.\n\nTo prove Evelyn's strategy winning, notice that she can ensure that the game ends either with Odin unable to move, or with $k$ zeroes and a valuation $V\\left(\\mathbf{a}_{\\mathrm{end}}\\right) \\leqslant 0$. In the latter case, notice that the contribution of each non-zero number to the valuation is at least $-1 / 2$, so\n\n$$\nV\\left(\\mathbf{a}_{\\mathrm{end}}\\right) \\geqslant k+(\\underbrace{-1 / 2-1 / 2-\\cdots-1 / 2}_{2 k})=0,\n$$\nforcing the non-zero numbers to be all equal to 1. Consequently, Evelyn's strategy is indeed winning.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

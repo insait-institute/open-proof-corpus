@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.02,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2001
+    },
+    "problem": "Let \\(a, b, c\\) be nonnegative real numbers such that \\(a^{2}+b^{2}+c^{2}+abc=4\\). Show that\n\n\\[\n0 \\leq ab+bc+ca-abc \\leq 2\n\\]",
+    "problem_id": "USAMO_2001_3",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nLet $a, b, c$ be nonnegative real numbers such that $a^{2}+b^{2}+c^{2}+a b c=4$. Show that\n\n$$\n0 \\leq a b+b c+c a-a b c \\leq 2\n$$\n\nThe left-hand side of the inequality is trivial; just note that $\\min \\{a, b, c\\} \\leq 1$. Hence, we focus on the right side. We use Lagrange Multipliers.\n\nDefine\n\n$$\nU=\\left\\{(a, b, c) \\mid a, b, c>0 \\text { and } a^{2}+b^{2}+c^{2}<1000\\right\\} .\n$$\n\nThis is an intersection of open sets, so it is open. Its closure is\n\n$$\n\\bar{U}=\\left\\{(a, b, c) \\mid a, b, c \\geq 0 \\text { and } a^{2}+b^{2}+c^{2} \\leq 1000\\right\\} .\n$$\n\nHence the constraint set\n\n$$\n\\bar{S}=\\{\\mathbf{x} \\in \\bar{U}: g(\\bar{x})=4\\}\n$$\nis compact, where $g(a, b, c)=a^{2}+b^{2}+c^{2}+a b c$.\nDefine\n$$\nf(a, b, c)=a^{2}+b^{2}+c^{2}+a b+b c+c a\n$$\n\nIt's equivalent to show that $f \\leq 6$ subject to $g$. Over $\\bar{S}$, it must achieve a global maximum. Now we consider two cases.\n\nIf $\\mathbf{x}$ lies on the boundary, that means one of the components is zero (since $a^{2}+b^{2}+c^{2}=$ $1000$ is clearly impossible). WLOG $c=0$, then we wish to show $a^{2}+b^{2}+a b \\leq 6$ for $a^{2}+b^{2}=4$, which is trivial.\n\nNow for the interior $U$, we may use the method of Lagrange Multipliers. Consider a local maximum $\\mathbf{x} \\in U$. Compute\n\n$$\n\\nabla f=\\langle 2 a+b+c, 2 b+c+a, 2 c+a+b\\rangle\n$$\nand\n$$\n\\nabla g=\\langle 2 a+b c, 2 b+c a, 2 c+a b\\rangle\n$$\n\nOf course, $\\nabla g \\neq \\mathbf{0}$ everywhere, so introducing our multiplier yields\n\n$$\n\\langle 2 a+b+c, a+2 b+c, a+b+2 c\\rangle=\\lambda\\langle 2 a+b c, 2 b+c a, 2 c+a b\\rangle .\n$$\n\nNote that $\\lambda \\neq 0$ since $a, b, c>0$. Subtracting $2 a+b+c=\\lambda(2 a+b c)$ from $a+2 b+c=$ $\\lambda(2 b+c a)$ implies that\n\n$$\n(a-b)([2 \\lambda-1]-\\lambda c)=0 .\n$$\n\nWe can derive similar equations for the others. Hence, we have three cases.\n\n1. If $a=b=c$, then $a=b=c=1$, and this satisfies $f(1,1,1) \\leq 6$.\n2. If $a, b, c$ are pairwise distinct, then we derive $a=b=c=2-\\lambda^{-1}$, contradiction.\n3. Now suppose that $a=b \\neq c$.\n\nMeanwhile, the constraint (with $a=b$ ) reads\n\n$$\n\\begin{aligned}\na^{2}+b^{2}+c^{2}+a b c=4 & \\Longleftrightarrow c^{2}+a^{2} c+\\left(2 a^{2}-4\\right)=0 \\\\\n& \\Longleftrightarrow(c+2)\\left(c-\\left(2-a^{2}\\right)\\right)=0\n\\end{aligned}\n$$\n\nwhich since $c>0$ gives $c=2-a^{2}$.\nNoah Walsh points out that at this point, we don't need to calculate the critical point; we just directly substitute $a=b$ and $c=2-a^{2}$ into the desired inequality:\n\n$$\na^{2}+2 a(2-a)^{2}-a^{2}(2-a)^{2}=2-(a-1)^{2}\\left(a^{2}-4 a+2\\right) \\leq 0\n$$\n\nSo any point here satisfies the inequality anyways.\n\nRemark. It can actually be shown that the critical point in the third case we skipped is pretty close: it is given by\n\n$$\na=b=\\frac{1+\\sqrt{17}}{4} \\quad c=\\frac{1}{8}(7-\\sqrt{17}) .\n$$\n\nThis satisfies\n\n$$\nf(a, b, c)=3 a^{2}+2 a c+c^{2}=\\frac{1}{32}(121+17 \\sqrt{17}) \\approx 5.97165\n$$\nwhich is just a bit less than $6$.\n\nRemark. Equality holds for the upper bound if $(a, b, c)=(1,1,1)$ or $(a, b, c)=(\\sqrt{2}, \\sqrt{2}, 0)$ and permutations. The lower bound is achieved if $(a, b, c)=(2,0,0)$ and permutations.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

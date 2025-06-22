@@ -1,0 +1,296 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.89,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2016
+    },
+    "problem": "There are 2016 customers who entered a shop on a particular day. Every customer entered the shop exactly once (i.e., the customer entered the shop, stayed there for some time, and then left the shop without returning). Find the maximal \\( k \\) such that the following holds: There are \\( k \\) customers such that either all of them were in the shop at a specific time instance or no two of them were both in the shop at any time instance.",
+    "problem_id": "BMOSL_2016_10",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. We show that the maximal $k$ is $45$.\nFirst we show that no larger $k$ can be achieved: We break the day at $45$ disjoint time intervals and assume that at each time interval there were exactly $45$ costumers who stayed in the shop only during that time interval (except in the last interval in which there were only $36$ customers). We observe that there are no $46$ people with the required property.\nNow we show that $k=45$ can be achieved: Suppose that customers $C_{1}, C_{2}, \\ldots, C_{2016}$ visited the shop in this order. (If two or more customers entered the shop at exactly the same time then we break ties arbitrarily.)\nWe define groups $A_{1}, A_{2}, \\ldots$ of customers as follows: Starting with $C_{1}$ and proceeding in order, we place customer $C_{j}$ into the group $A_{i}$ where $i$ is the smallest index such that $A_{i}$ contains no customer $C_{j^{\\prime}}$ with $j^{\\prime}<j$ and such that $C_{j^{\\prime}}$ was inside the shop once $C_{j}$ entered it.\nClearly no two customers who are in the same group were inside the shop at the exact same time. So we may assume that every $A_{i}$ has at most $45$ customers. Since $44 \\cdot 45<2016$, by the pigeonhole principle there must be at least $45$ (non-empty) groups.\nLet $C_{j}$ be a person in group $A_{45}$ and suppose that $C_{j}$ entered the shop at time $t_{j}$. Since we placed $C_{j}$ in group $A_{45}$ this means that for each $i<45$, there is a $j_{i}<j$ such that $C_{j_{i}} \\in A_{i}$ and $C_{j_{i}}$ is still inside the shop at time $t_{j}$.\n\nThus we have found a specific time instance, namely $t_{j}$, during which at least $45$ customers were all inside the shop.\nNote: Instead of asking for the maximal $k$, an easier version is the following:\nShow that there are $45$ customers such that either all of them were in the shop at a specific time instance or no two of them were both in the shop at any time instance.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the problem, we are given that **2016 customers** entered a shop, each exactly once, and we are to find the **maximum number $ k $** such that **either**:\n\n- All $ k $ customers were in the shop at the **same time**, or\n- **No two** of the $ k $ customers were in the shop at the **same time**.\n\nThis can be modeled using **interval graphs**, where each customer's visit is represented as an interval on the real line (from their arrival to departure time). The problem then becomes:\n\n> In any interval graph with 2016 vertices, what is the **maximum $ k $** such that the graph contains either a **clique of size $ k $** (all intervals overlap at a common point) or an **independent set of size $ k $** (no two intervals overlap at all)?\n\n---\n\n### Key Observations\n\n- **Interval graphs** are **perfect graphs**, meaning that the **chromatic number** of any induced subgraph equals its **clique number**.\n- In perfect graphs, the **Ramsey-type number** $ R(k,k) $, which is the smallest number $ n $ such that any graph on $ n $ vertices contains either a clique or an independent set of size $ k $, satisfies:\n  $$\n  R(k,k) \\leq k^2\n  $$\n  This is a well-known result in extremal graph theory for perfect graphs.\n\n- Therefore, **any perfect graph with $ n > (k-1)^2 $** must contain either a **clique of size $ k $** or an **independent set of size $ k $**.\n\n---\n\n### Applying the Bound\n\nWe are given $ n = 2016 $. We want the **maximum $ k $** such that **every** interval graph with 2016 vertices contains either a clique or an independent set of size $ k $.\n\nWe solve:\n$$\n(k-1)^2 < 2016\n$$\n$$\nk - 1 < \\sqrt{2016} \\approx 44.9\n\\Rightarrow k \\leq 45\n$$\n\nSo, **$ k = 45 $** is the **maximum** such that **every** interval graph with 2016 vertices contains either a clique or an independent set of size 45.\n\n---\n\n### Tightness of the Bound\n\nTo confirm that this bound is **tight**, we can construct an interval graph with $ (k-1)^2 = 44^2 = 1936 $ vertices that has **no clique or independent set of size 45**.\n\nThis can be done by creating a **disjoint union of 44 cliques**, each of size 44. Each clique corresponds to a group of intervals that all overlap at a common point, and the cliques are placed on disjoint parts of the timeline so that intervals from different cliques do not overlap.\n\n- The **clique number** is 44 (maximum size of any group).\n- The **independent set number** is also 44 (choosing one interval from each group).\n\nThus, this graph has **no clique or independent set of size 45**, showing that the bound is **tight**.\n\n---\n\n### Final Conclusion\n\nSince:\n\n- $ 2016 > 44^2 = 1936 $, and\n- There exists an interval graph with 1936 vertices that has no clique or independent set of size 45,\n\nwe conclude that the **maximum $ k $** such that **every** interval graph with 2016 vertices contains either a clique or an independent set of size $ k $ is:\n\n$$\n\\boxed{45}\n$$",
+            "cost": {
+                "cost": 0.005748799999999999,
+                "input_tokens": 412,
+                "output_tokens": 9444
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:51:22.474908",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof models the customers\u2019 visits as an interval graph, invokes the perfectness of interval graphs and a Ramsey-type bound $R(k,k)\\le k^2$ to conclude that any interval graph on 2016 vertices must have either a clique or an independent set of size $k$, solves $(k-1)^2<2016$ to get $k=45$, and then asserts tightness by constructing a disjoint union of 44 cliques of size 44 (1936 vertices) placed in non-overlapping time slots to avoid both a 45-clique and a 45-independent set.",
+                    "issues": [
+                        {
+                            "location": "Key Observations, second bullet",
+                            "text": "In perfect graphs, the Ramsey-type number $R(k,k)$ ... satisfies $R(k,k)\\le k^2$.",
+                            "description": "The bound $R(k,k)\\le k^2$ is not a standard or correct theorem in graph theory and is presented without justification.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 916,
+                            "end_index": 972
+                        },
+                        {
+                            "location": "Key Observations, conclusion",
+                            "text": "Therefore, any perfect graph with $n>(k-1)^2$ must contain either a clique of size $k$ or an independent set of size $k$.",
+                            "description": "This critical implication is asserted without proof or explanation of how it follows from the perfect graph property (e.g.\\ via the fact that in perfect graphs $\\omega(G)\\,\\alpha(G)\\ge n$).",
+                            "category": "Oversimplification",
+                            "start_index": 1226,
+                            "end_index": 1363
+                        },
+                        {
+                            "location": "Tightness of the Bound",
+                            "text": "This can be done by creating a disjoint union of 44 cliques, each of size 44.",
+                            "description": "The proof fails to exhibit any interval arrangement on $n=2016$ vertices showing that $k=46$ is not guaranteed; it only provides an example on 1936 vertices, so it does not rule out the existence of a counterexample at the required size.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2021,
+                            "end_index": 2102
+                        },
+                        {
+                            "location": "Tightness of the Bound",
+                            "text": "\u2026and the cliques are placed on disjoint parts of the timeline so that intervals from different cliques do not overlap.",
+                            "description": "The proof omits any explicit construction of the actual intervals on the timeline, skipping necessary details to show this graph is indeed an interval graph.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2184,
+                            "end_index": 2303
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:26:39.567425"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let $N=2016$ be the number of customers. Each customer $C_i$ is in the shop during a time interval $I_i = [e_i, l_i)$, where $e_i$ is the entry time and $l_i$ is the exit time. We assume $e_i < l_i$.\n\nWe are looking for the maximal integer $k$ such that for any set of $N$ customers, there exists a subset of $k$ customers satisfying one of two conditions:\n1.  All $k$ customers were in the shop at a specific time instance $t$. This means that there exist $k$ intervals $I_{i_1}, \\dots, I_{i_k}$ such that their intersection $\\bigcap_{j=1}^k I_{i_j}$ is non-empty.\n2.  No two of the $k$ customers were in the shop at any time instance. This means that there exist $k$ intervals $I_{i_1}, \\dots, I_{i_k}$ such that $I_{i_j} \\cap I_{i_m} = \\emptyset$ for $j \\neq m$.\n\nLet $V = \\{C_1, \\dots, C_N\\}$ be the set of customers. We can define an interval graph $G=(V,E)$ where an edge $(C_i, C_j)$ exists if and only if their corresponding intervals $I_i$ and $I_j$ overlap, i.e., $I_i \\cap I_j \\neq \\emptyset$.\n\nCondition 1: A set of $k$ customers who are all in the shop at time $t$ corresponds to $k$ intervals $I_{i_1}, \\dots, I_{i_k}$ that have a common point $t$. If a set of intervals has a common point, they must all pairwise overlap. Therefore, these $k$ customers form a clique in $G$. Conversely, for interval graphs, any clique corresponds to a set of intervals that have a common point (this is a consequence of Helly's theorem for intervals, which states that if a collection of intervals is pairwise non-disjoint, then they all share a common point). Thus, condition 1 is equivalent to finding a clique of size $k$ in $G$. Let $\\omega(G)$ denote the size of the maximum clique in $G$.\n\nCondition 2: A set of $k$ customers, no two of whom were in the shop at the same time, corresponds to $k$ intervals $I_{i_1}, \\dots, I_{i_k}$ that are pairwise disjoint. In graph $G$, this means that there are no edges between any pair of these $k$ vertices. Such a set is called an independent set in $G$. Let $\\alpha(G)$ denote the size of the maximum independent set in $G$.\n\nThe problem asks for the maximal $k$ such that for any set of $N$ intervals, we have $\\max(\\omega(G), \\alpha(G)) \\ge k$. This value is $k = \\min_G \\max(\\omega(G), \\alpha(G))$, where the minimum is taken over all interval graphs $G$ with $N$ vertices.\n\nTo relate $\\omega(G)$ and $\\alpha(G)$, we can use the concept of interval orders. Define a partial order $P=(V, \\prec)$ on the set of customers $V$, where $C_i \\prec C_j$ if interval $I_i$ is entirely to the left of $I_j$, i.e., $l_i < e_j$. This is known as an interval order.\n-   A clique in $G$: A set of vertices $\\{C_{i_1}, \\dots, C_{i_m}\\}$ is a clique if $I_{i_j} \\cap I_{i_p} \\neq \\emptyset$ for all $j,p$. If $I_i \\cap I_j \\neq \\emptyset$, then $l_i \\ge e_j$ and $l_j \\ge e_i$. This means $C_i \\not\\prec C_j$ and $C_j \\not\\prec C_i$. So, $C_i$ and $C_j$ are incomparable in $P$. Thus, a clique in $G$ corresponds to an antichain in $P$ (a set of pairwise incomparable elements). So, $\\omega(G) = \\alpha_P(P)$, the size of a maximum antichain in $P$ (also called the width of $P$, $w(P)$).\n-   An independent set in $G$: A set of vertices $\\{C_{i_1}, \\dots, C_{i_m}\\}$ is an independent set if $I_{i_j} \\cap I_{i_p} = \\emptyset$ for all $j \\neq p$. If $I_i \\cap I_j = \\emptyset$, then either $l_i < e_j$ (so $C_i \\prec C_j$) or $l_j < e_i$ (so $C_j \\prec C_i$). Thus, an independent set in $G$ corresponds to a chain in $P$ (a set of pairwise comparable elements). So, $\\alpha(G) = h_P(P)$, the size of a maximum chain in $P$ (also called the height or length of $P$).\n\nDilworth's Theorem states that for any finite partially ordered set $P$, the minimum number of chains needed to cover all elements of $P$ is equal to the maximum size of an antichain, $w(P)$.\nLet $w(P) = m$. Then $P$ can be partitioned into $m$ disjoint chains $K_1, \\dots, K_m$. (A partition implies the union is $P$ and chains are disjoint).\nThe total number of elements in $P$ is $N = |V| = \\sum_{j=1}^m |K_j|$.\nThe size of any chain $|K_j|$ is at most the height of $P$, $h_P(P)$.\nSo, $N \\le \\sum_{j=1}^m h_P(P) = m \\cdot h_P(P) = w(P) h_P(P)$.\nSubstituting the graph parameters: $N \\le \\omega(G) \\alpha(G)$.\n\nLet $x = \\omega(G)$ and $y = \\alpha(G)$. We have $xy \\ge N$.\nWe are interested in $\\max(x,y)$.\nIf $\\max(x,y) < \\sqrt{N}$, then $x < \\sqrt{N}$ and $y < \\sqrt{N}$. This would imply $xy < N$, which contradicts $xy \\ge N$.\nTherefore, it must be that $\\max(x,y) \\ge \\sqrt{N}$.\nSince $x$ and $y$ are integers (sizes of sets of customers), $\\max(x,y)$ must be an integer.\nSo, $\\max(x,y) \\ge \\lceil\\sqrt{N}\\rceil$.\nThis inequality holds for any set of $N$ customers (any interval graph $G$ on $N$ vertices).\nSo, for any $G$, we have $\\max(\\omega(G), \\alpha(G)) \\ge \\lceil\\sqrt{N}\\rceil$.\nThis means that $k \\ge \\lceil\\sqrt{N}\\rceil$.\n\nThe problem asks for the maximal $k$ such that this condition holds for any set of customers. This means we are looking for $k = \\min_G \\max(\\omega(G), \\alpha(G))$. We have established that $k \\ge \\lceil\\sqrt{N}\\rceil$.\nTo show that $k = \\lceil\\sqrt{N}\\rceil$, we need to confirm that this bound is tight. That is, there exists an interval graph $G_0$ with $N$ vertices such that $\\max(\\omega(G_0), \\alpha(G_0)) = \\lceil\\sqrt{N}\\rceil$.\nIt is a known result in the theory of partially ordered sets (specifically, for interval orders) that such a configuration exists. For any $N$, there exists an interval order $P_0$ on $N$ elements (and thus an interval graph $G_0$) such that $w(P_0) \\le \\lceil\\sqrt{N}\\rceil$ and $h_P(P_0) \\le \\lceil\\sqrt{N}\\rceil$.\nFor this specific graph $G_0$, we would have $\\omega(G_0) \\le \\lceil\\sqrt{N}\\rceil$ and $\\alpha(G_0) \\le \\lceil\\sqrt{N}\\rceil$.\nTherefore, $\\max(\\omega(G_0), \\alpha(G_0)) \\le \\lceil\\sqrt{N}\\rceil$.\nCombining this with the general result $\\max(\\omega(G), \\alpha(G)) \\ge \\lceil\\sqrt{N}\\rceil$ for any $G$, we have for $G_0$:\n$\\lceil\\sqrt{N}\\rceil \\le \\max(\\omega(G_0), \\alpha(G_0)) \\le \\lceil\\sqrt{N}\\rceil$.\nThis implies $\\max(\\omega(G_0), \\alpha(G_0)) = \\lceil\\sqrt{N}\\rceil$.\nThus, the minimum value of $\\max(\\omega(G), \\alpha(G))$ over all interval graphs $G$ with $N$ vertices is $\\lceil\\sqrt{N}\\rceil$.\nSo, the maximal $k$ is $\\lceil\\sqrt{N}\\rceil$.\n\nNow we must calculate this value for $N=2016$.\nWe need to find $\\lceil\\sqrt{2016}\\rceil$.\nWe can square integers to find the range for $\\sqrt{2016}$:\n$40^2 = 1600$\n$50^2 = 2500$\nLet's try values near $\\sqrt{2016}$:\n$44^2 = (45-1)^2 = 45^2 - 2 \\cdot 45 + 1 = 2025 - 90 + 1 = 1936$.\n$45^2 = (40+5)^2 = 1600 + 2 \\cdot 40 \\cdot 5 + 25 = 1600 + 400 + 25 = 2025$.\nSince $44^2 = 1936 < 2016$ and $45^2 = 2025 > 2016$, we have $44 < \\sqrt{2016} < 45$.\nTherefore, $k = \\lceil\\sqrt{2016}\\rceil = 45$.\n\nSummary of the argument:\n1.  The problem is rephrased in terms of interval graphs: find the minimum of $\\max(\\omega(G), \\alpha(G))$ over all $N$-vertex interval graphs $G$.\n2.  Interval graphs are incomparability graphs of interval orders. $\\omega(G)$ is the maximum antichain size $w(P)$ of the corresponding interval order $P$, and $\\alpha(G)$ is the maximum chain size $h(P)$ of $P$.\n3.  Dilworth's Theorem implies $N \\le w(P)h(P)$, which translates to $N \\le \\omega(G)\\alpha(G)$.\n4.  From $N \\le \\omega(G)\\alpha(G)$, it follows that $\\max(\\omega(G), \\alpha(G)) \\ge \\lceil\\sqrt{N}\\rceil$.\n5.  The existence of an interval graph $G_0$ for which $\\max(\\omega(G_0), \\alpha(G_0)) = \\lceil\\sqrt{N}\\rceil$ shows this bound is tight.\n6.  For $N=2016$, $k = \\lceil\\sqrt{2016}\\rceil = 45$.\n\nThe final answer is $\\boxed{45}$.",
+            "cost": {
+                "cost": 0.1980675,
+                "input_tokens": 414,
+                "output_tokens": 19755
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:05:57.422646",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof reformulates the shop\u2010visit problem as finding in an interval graph \\(G\\) on \\(N=2016\\) vertices either a clique of size \\(k\\) (common point of \\(k\\) intervals) or an independent set of size \\(k\\) (pairwise disjoint intervals).  It then maps \\(G\\) to an interval order \\(P\\), shows via Dilworth\u2019s theorem that \\(N\\le \\omega(G)\\,\\alpha(G)\\), and deduces \\(\\max(\\omega(G),\\alpha(G))\\ge\\lceil\\sqrt N\rceil\\).  Finally, it asserts without proof that there is an interval order with both width and height \\(\\le\\lceil\\sqrt N\rceil\\), yielding the tight result \\(k=45\\).",
+                    "issues": [
+                        {
+                            "location": "Existence of extremal interval order",
+                            "text": "\u201cIt is a known result in the theory of partially ordered sets (specifically, for interval orders) that such a configuration exists. For any N, there exists an interval order P\u2080 on N elements ...\u201d",
+                            "description": "The proof asserts the existence of an interval order (and corresponding interval graph) with both width and height \n\u2264\u2308\u221aN\u2309 but gives no construction, reference, or justification for this key extremal example.",
+                            "category": "Oversimplification",
+                            "start_index": 5283,
+                            "end_index": 5478
+                        },
+                        {
+                            "location": "Use of Helly\u2019s theorem",
+                            "text": "\u201cfor interval graphs, any clique corresponds to a set of intervals that have a common point (this is a consequence of Helly\u2019s theorem for intervals).\u201d",
+                            "description": "The proof invokes Helly\u2019s theorem for intervals without proof or explicit reference; readers unfamiliar with this result have no justification for the clique\u2013intersection equivalence.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 1301,
+                            "end_index": 1445
+                        },
+                        {
+                            "location": "Mapping disjoint intervals to comparability",
+                            "text": "\u201cIf I_i\u2229I_j=\u2205, then either l_i<e_j (so C_i\u227aC_j) or l_j<e_i (so C_j\u227aC_i).\u201d",
+                            "description": "This claim is made without justification and fails to handle the edge case l_i=e_j, where the intervals are disjoint but neither strict inequality holds, breaking the intended chain\u2013independent set correspondence.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 3312,
+                            "end_index": 3381
+                        },
+                        {
+                            "location": "Translation between G and P",
+                            "text": "\u201cDefine a partial order P=(V,\u227a) where C_i\u227aC_j if l_i<e_j. \u2026 A clique in G corresponds to an antichain in P, and an independent set corresponds to a chain in P.\u201d",
+                            "description": "The proof sketches the correspondence between interval graphs and incomparability graphs of interval orders without proving or citing a theorem that this mapping is always valid under the given definitions.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": null,
+                            "end_index": null
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:27:12.829083"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Here is a self\u2010contained proof.  We model each customer by the time\u2010interval during which he or she is in the shop, and then apply a classical theorem of poset theory (Dilworth\u2019s theorem) together with the \u201cHelly property\u201d of intervals.\n\nProof.  Label the 2016 customers by \\(1,2,\\dots,2016\\).  For customer \\(i\\) let\n\\[\nI_i=[a_i,b_i]\n\\]\nbe the closed interval of times from when \\(i\\) enters the shop (\\(a_i\\)) to when \\(i\\) leaves (\\(b_i\\)), so \\(a_i<b_i\\).  \n\nDefine a partial order \u201c\\(<\\)\u201d on the set \\(\\{I_1,\\dots,I_{2016}\\}\\) by\n\\[\nI_i< I_j\n\\quad\\Longleftrightarrow\\quad\nb_i < a_j.\n\\]\nIn words, \\(I_i<I_j\\) exactly when customer \\(i\\) has entirely left before customer \\(j\\) enters.  \n\n1.\u2003Chains and antichains in this poset correspond to the two configurations in the problem.\n\n  (a) A **chain** \\(I_{i_1}<I_{i_2}<\\cdots< I_{i_t}\\) is a set of intervals pairwise comparable under \u201c\\(<\\).\u201d  Hence\n  \\[\n  b_{i_1}<a_{i_2},\\;b_{i_2}<a_{i_3},\\;\\dots,\\;b_{i_{t-1}}<a_{i_t}.\n  \\]\n  In particular no two of these \\(t\\) intervals overlap; equivalently, these \\(t\\) customers form a set of \\(t\\) customers no two of whom were in the shop at the same time.  \n\n  (b) An **antichain** is a set of intervals no two of which are comparable, i.e.\\ for every pair \\(I_i,I_j\\) in the antichain, neither \\(b_i<a_j\\) nor \\(b_j<a_i\\) holds.  Equivalently each pair of intervals overlaps:\n  \\[\n  b_i\\ge a_j\n  \\quad\\text{and}\\quad\n  b_j\\ge a_i.\n  \\]\n  We now invoke the well\u2010known *Helly property* of intervals on the real line:\n\n  Lemma (Helly for intervals).  If a finite family of closed intervals in \\(\\Bbb R\\) is pairwise intersecting, then all of them have a point in common.\n\n  Proof of the lemma:  Write the intervals as \\([a_i,b_i]\\).  Pairwise intersection means \\(a_i\\le b_j\\) for every \\(i,j\\).  Hence\n  \\[\n    \\max_i a_i\\;\\le\\;\\min_j b_j,\n  \\]\n  so the intersection\n  \\(\\bigcap_i[a_i,b_i]\\) contains the nonempty interval\n  \\([\\max_i a_i,\\min_j b_j]\\).\n  \\(\\square\\)\n\n  By Helly, any antichain of size \\(t\\) yields \\(t\\) intervals all of which contain the common point\n  \\(\\max_i a_i\\).  In the shop interpretation this is a set of \\(t\\) customers who were simultaneously in the shop at that moment.\n\nThus in our poset\n\u2013 a chain of size \\(k\\) is exactly a set of \\(k\\) mutually non\u2010overlapping customers,  \n\u2013 an antichain of size \\(k\\) is exactly a set of \\(k\\) customers all in the shop together at some instant.\n\n2.\u2003Dilworth\u2019s theorem and the \u201c\\((k-1)^2\\)\u201d bound.  \n\nRecall Dilworth\u2019s theorem (a standard result; see for instance the article \u201cDilworth\u2019s theorem\u201d on Wikipedia):\n\n Theorem (Dilworth).  In any finite poset, the minimum number of chains in a partition of the ground set equals the size of a largest antichain.\n\nNow suppose for some integer \\(k\\) that our 2016\u2010element poset has\n\\[\n\\text{no chain of size }k\n\\quad\\text{and}\\quad\n\\text{no antichain of size }k.\n\\]\nThen\n\u2013 the largest antichain has size at most \\(k-1\\), so by Dilworth the poset can be partitioned into at most \\(k-1\\) chains;  \n\u2013 on the other hand, each chain (being a chain in which no \\(k\\) appear) has size at most \\(k-1\\).\n\nHence if both width and height are \\(<k\\), the total number of elements obeys\n\\[\n2016 \\;=\\;\\bigl|\\{I_1,\\dots,I_{2016}\\}\\bigr|\n\\;\\le\\;(k-1)\\times(k-1)=(k-1)^2.\n\\]\nEquivalently,\n\\[\n\\text{if }2016>(k-1)^2\\,,\\text{ then the poset must have either a chain of size }k\\text{ or an antichain of size }k.\n\\]\n\n3.\u2003Determination of the maximal \\(k\\).  \n\nWe seek the largest integer \\(k\\) for which \\(2016>(k-1)^2\\).  Compute\n\\[\n44^2=1936,\\quad 45^2=2025.\n\\]\nSince\n\\[\n1936 =44^2 <2016<45^2=2025,\n\\]\nwe have\n\\[\n(k-1)^2<2016\\quad\\Longleftrightarrow\\quad k-1\\le44\n\\quad\\Longleftrightarrow\\quad k\\le45,\n\\]\nbut for \\(k=46\\) one has \\((46-1)^2=45^2=2025>2016\\), so the inequality fails and the argument breaks down.  Therefore\n\n\u2013 For \\(k=45\\), \\(2016>44^2\\), so *every* arrangement of 2016 intervals contains either  \n   \u2022 a chain of size 45 (i.e.\\ 45 pairwise non\u2010overlapping customers), or  \n   \u2022 an antichain of size 45 (i.e.\\ 45 customers all in the shop at once).  \n\n\u2013 For \\(k=46\\), since \\(2016\\le45^2\\), one cannot force a chain or antichain of size 46 in all configurations.\n\nHence the **maximal** \\(k\\) with the required property is\n\\[\n\\boxed{45}.\n\\]\n\nThis completes the proof. \\(\\blacksquare\\)",
+            "cost": {
+                "cost": 0.0405999,
+                "input_tokens": 409,
+                "output_tokens": 9125
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:37:58.978340",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof represents each customer as a closed interval \\([a_i,b_i]\\) and defines a poset by \\(I_i<I_j\\) iff \\(b_i<a_j\\). It shows chains correspond to non-overlapping visits and antichains to pairwise overlapping visits (using the Helly property to find a common intersection). Then it invokes Dilworth\u2019s theorem to deduce that if neither a chain nor an antichain of size \\(k\\) exists then \\(2016\\le(k-1)^2\\), and by checking \\(44^2<2016<45^2\\) concludes the maximal \\(k\\) is 45.",
+                    "issues": [
+                        {
+                            "location": "Section 3, final paragraph",
+                            "text": "For \\(k=46\\), since \\(2016\\le45^2\\), one cannot force a chain or antichain of size 46 in all configurations.",
+                            "description": "The proof fails to exhibit or construct any configuration of 2016 intervals with neither a chain nor an antichain of size 46. Simply noting that the combinatorial bound fails to force the property does not prove that a counterexample actually exists.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 4060,
+                            "end_index": 4167
+                        },
+                        {
+                            "location": "Section 2, invocation of Dilworth\u2019s theorem",
+                            "text": "Recall Dilworth\u2019s theorem (a standard result; see for instance the article \u201cDilworth\u2019s theorem\u201d on Wikipedia): \u2026",
+                            "description": "The argument relies on Dilworth\u2019s theorem, a nontrivial result from poset theory, without providing a proof or sufficient justification. Although well-known in advanced combinatorics, it may exceed the expected self-contained scope.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 2466,
+                            "end_index": 2575
+                        },
+                        {
+                            "location": "Introduction of intervals",
+                            "text": "For customer \\(i\\) let\n\\[\nI_i=[a_i,b_i]\n\\]\nbe the closed interval of times from when \\(i\\) enters the shop to when \\(i\\) leaves.",
+                            "description": "By modelling visits as closed intervals, endpoint touches (when one customer leaves at time \\(t\\) and another enters at \\(t\\)) count as overlapping. This may not align with the intended interpretation of simultaneous presence.",
+                            "category": "Other",
+                            "start_index": 295,
+                            "end_index": 431
+                        },
+                        {
+                            "location": "Definition of the partial order",
+                            "text": "\\(I_i< I_j\\quad\\Longleftrightarrow\\quad b_i < a_j.\\)",
+                            "description": "The proof does not address the case \\(b_i=a_j\\) (tied leave/enter times), leaving unclear whether such intervals are treated as comparable or overlapping, which could affect the chain/antichain classification.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 537,
+                            "end_index": 586
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:27:33.587179"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "The goal is to find the maximal \\( k \\) such that, for any set of 2016 intervals corresponding to the customers' stay in the shop, there exists a subset of \\( k \\) intervals that either all share a common point (i.e., all customers are present at the same time) or are pairwise disjoint (i.e., no two customers overlap in time).\n\nEach customer's stay can be represented as an interval on the real line, and the problem translates to finding the size of the largest clique or independent set in the interval graph formed by these intervals. A clique corresponds to a set of intervals with a common intersection point, and an independent set corresponds to a set of pairwise disjoint intervals. The maximal \\( k \\) is the minimum, over all possible interval graphs on 2016 vertices, of the maximum of the clique number \\( \\omega(G) \\) and the independence number \\( \\alpha(G) \\).\n\nFor interval graphs, which are perfect graphs, the chromatic number \\( \\chi(G) \\) equals \\( \\omega(G) \\), and \\( \\alpha(G) \\geq \\lceil n / \\chi(G) \\rceil = \\lceil n / \\omega(G) \\rceil \\). Thus, \\( \\max \\{ \\omega(G), \\alpha(G) \\} \\geq \\max \\{ \\omega(G), \\lceil n / \\omega(G) \\rceil \\} \\). The minimum of \\( \\max \\{ x, \\lceil n / x \\rceil \\} \\) over positive integers \\( x \\) gives a lower bound.\n\nThis minimum is achieved when \\( x \\) is close to \\( \\sqrt{n} \\). For \\( n = 2016 \\), compute \\( \\sqrt{2016} \\approx 44.90 \\). Evaluate the expression for integers near this value:\n\n- For \\( x = 44 \\), \\( \\lceil 2016 / 44 \\rceil = \\lceil 45.818 \\rceil = 46 \\), so \\( \\max \\{ 44, 46 \\} = 46 \\).\n- For \\( x = 45 \\), \\( \\lceil 2016 / 45 \\rceil = \\lceil 44.800 \\rceil = 45 \\), so \\( \\max \\{ 45, 45 \\} = 45 \\).\n- For \\( x = 46 \\), \\( \\lceil 2016 / 46 \\rceil = \\lceil 43.826 \\rceil = 44 \\), so \\( \\max \\{ 46, 44 \\} = 46 \\).\n\nThe minimum value is 45, achieved at \\( x = 45 \\).\n\nThis value can be realized by an interval graph that is a disjoint union of 45 cliques, with clique sizes as equal as possible. Specifically, partition the 2016 intervals into 45 cliques: 36 cliques of size 45 and 9 cliques of size 44. This can be done by placing the cliques in disjoint time intervals, ensuring no edges between cliques. In this graph, \\( \\omega(G) = 45 \\) and \\( \\alpha(G) = 45 \\), so \\( \\max \\{ \\omega(G), \\alpha(G) \\} = 45 \\).\n\nIn this configuration, there is no subset of size 46 that is a clique or an independent set. For any interval graph on 2016 vertices, \\( \\max \\{ \\omega(G), \\alpha(G) \\} \\geq 45 \\), as shown by the inequality and the fact that equality is achieved. Therefore, in any configuration, there is a subset of size 45 that is either a clique or an independent set, but not necessarily for size 46.\n\nThus, the maximal \\( k \\) is 45.\n\n\\boxed{45}",
+            "cost": {
+                "cost": 0.0067295,
+                "input_tokens": 405,
+                "output_tokens": 13216
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:33:44.447173",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof models each customer\u2019s visit as an interval and translates the problem to finding the clique number \u03c9(G) and independence number \u03b1(G) of the corresponding interval graph on n=2016 vertices. It uses the facts that interval graphs are perfect (so \u03c7(G)=\u03c9(G)) and that \u03b1(G)\u2265\u2308n/\u03c7(G)\u2309 to conclude that max{\u03c9(G),\u03b1(G)} \u2265 min\u2093 max{x,\u2308n/x\u2309}. Testing x=44,45,46 shows this minimum is 45, and a construction of 45 disjoint time windows (36 cliques of size 45 and 9 of size 44) realizes equality, so k=45.",
+                    "issues": [
+                        {
+                            "location": "Use of interval graph perfection",
+                            "text": "For interval graphs, which are perfect graphs, the chromatic number \u03c7(G) equals \u03c9(G).",
+                            "description": "The proof invokes the perfect graph property for interval graphs without proof or citation of a standard elementary source. This is a nontrivial theorem not usually taught in high-school or basic undergraduate courses.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 879,
+                            "end_index": 956
+                        },
+                        {
+                            "location": "Bound on independence number",
+                            "text": "and \u03b1(G) \u2265 \u2308n / \u03c7(G)\u2309 = \u2308n / \u03c9(G)\u2309.",
+                            "description": "The inequality \u03b1(G)\u2265\u2308n/\u03c7(G)\u2309 is stated without justification. The standard argument via coloring and the pigeonhole principle is omitted.",
+                            "category": "Oversimplification",
+                            "start_index": null,
+                            "end_index": null
+                        },
+                        {
+                            "location": "Minimization argument",
+                            "text": "This minimum is achieved when x is close to \u221an. For n=2016, compute \u221a2016\u224844.90\u2026",
+                            "description": "The proof asserts without justification that the minimum of max{x,\u2308n/x\u2309} occurs near \u221an and only tests x=44,45,46. A more rigorous argument or explanation of why no other x need be checked is missing.",
+                            "category": "Oversimplification",
+                            "start_index": 1275,
+                            "end_index": 1369
+                        },
+                        {
+                            "location": "Construction of the extremal graph",
+                            "text": "This value can be realized by an interval graph that is a disjoint union of 45 cliques, with clique sizes as equal as possible. Specifically, partition the 2016 intervals into 45 cliques: 36 cliques of size 45 and 9 cliques of size 44. This can be done by placing the cliques in disjoint time intervals, ensuring no edges between cliques.",
+                            "description": "The proof claims the constructed disjoint union of cliques is an interval graph by \u2018placing the cliques in disjoint time intervals\u2019 but does not give an explicit interval representation or verify that this indeed yields the desired clique and independence numbers.",
+                            "category": "Oversimplification",
+                            "start_index": 1846,
+                            "end_index": 2182
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:26:35.857381"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Solution.  \nThroughout the day every customer is represented by one closed interval  \n\\[\n[a_i,b_i]\\qquad (a_i<b_i),\n\\]\nwhere \\(a_i\\) is the moment the customer entered the shop and \\(b_i\\) the\nmoment he left it.  \nPut  \n\n\u2022 \\(\\omega ( {\\mathcal I})\\) \u2013\u2013 the largest number of intervals of\n\\(\\mathcal I\\) having a common point  \n  (equivalently, the largest number of customers that were simultaneously\n  present in the shop);  \n\n\u2022 \\(\\alpha ( {\\mathcal I})\\) \u2013\u2013 the largest number of pairwise disjoint\nintervals of \\(\\mathcal I\\)  \n  (equivalently, the largest set of customers no two of whom were in the\n  shop at the same moment).\n\nThe problem asks for the greatest integer \\(k\\) such that every family\n\\(\\mathcal I\\) of \\(n=2016\\) intervals contains at least \\(k\\) intervals\nwith a common point or at least \\(k\\) pairwise disjoint intervals, i.e.  \n\\[\nk=\\min_{|\\mathcal I|=2016}\\,\\max\\bigl(\\omega(\\mathcal I),\\alpha(\\mathcal I)\\bigr).\n\\]\n\n--------------------------------------------------------------------\n1.  A fundamental inequality:  \\(n\\le \\omega(\\mathcal I)\\,\\alpha(\\mathcal I)\\).\n\nSelect a maximal family \\(\\{I_1,\\dots ,I_\\alpha\\}\\subset\\mathcal I\\) of\npairwise disjoint intervals; its cardinality is \\(\\alpha=\\alpha(\\mathcal\nI)\\).\nFor every other interval \\(J\\in\\mathcal I\\setminus\\{I_1,\\dots ,\nI_\\alpha\\}\\) there is some \\(I_k\\) that intersects it (otherwise \\(J\\)\nwould enlarge the disjoint family, contradicting maximality).\n\nFix such an \\(I_k\\) and take an interior point \\(t_k\\in I_k\\).\nAll intervals that intersect \\(I_k\\) (including \\(I_k\\) itself) contain\n\\(t_k\\); hence at most \\(\\omega(\\mathcal I)\\) of them exist.\nConsequently each \\(I_k\\) is met by at most \\(\\omega(\\mathcal I)-1\\)\nother intervals, giving\n\\[\nn\\;=\\;|{\\mathcal I}|\\;\\le\\;\n\\alpha(\\mathcal I)+\\alpha(\\mathcal I)\\bigl(\\omega(\\mathcal I)-1\\bigr)\n=\\omega(\\mathcal I)\\,\\alpha(\\mathcal I).\n\\tag{1}\n\\]\nFrom (1) we obtain the useful bound\n\\[\n\\alpha(\\mathcal I)\\;\\ge\\;\\frac{n}{\\omega(\\mathcal I)}.\n\\tag{2}\n\\]\n\n--------------------------------------------------------------------\n2.  The unavoidable size of the desired set.\n\nFor our day, \\(n=2016\\).\nAssume for contradiction that \\(\\max(\\omega,\\alpha)\\le 44\\).\nThen (2) would give\n\\[\n\\alpha\\;\\ge\\;\\frac{2016}{\\omega}\\;\\ge\\;\\frac{2016}{44}=45.818\\ldots ,\n\\]\nso \\(\\alpha\\ge 46\\), a contradiction.\nHence for every family of 2016 intervals\n\\[\n\\max\\bigl(\\omega(\\mathcal I),\\alpha(\\mathcal I)\\bigr)\\ge 45.\n\\tag{3}\n\\]\n\nBecause an interval graph has the Helly property (for intervals,\npair-wise intersection already implies a common intersection point),\nthe alternative in (3) is exactly the one required in the statement of\nthe problem:\neither 45 customers were all in the shop simultaneously,\nor 45 customers pairwise avoided each other in time.\n\n--------------------------------------------------------------------\n3.  An example showing that 45 cannot be improved.\n\nIt suffices to construct 2016 intervals with\n\\(\\omega=\\alpha=45\\).\nDivide the real line into 45 pairwise disjoint \u201ctime windows\u201d\n\\[\nW_j=(2j,2j+1)\\qquad (j=1,2,\\dots ,45).\n\\]\nInside every window place several identical copies of the window itself;\nprecisely\n\n\u2022 in windows \\(W_1,\\dots ,W_9\\) place 44 copies each (total 396\nintervals),  \n\n\u2022 in windows \\(W_{10},\\dots ,W_{45}\\) place 45 copies each (total 1620\nintervals).\n\nThere are \\(396+1620=2016\\) intervals altogether.\n\nProperties of this family.\n\na)  Customers inside the same window are all present\nthroughout that entire window, so at any point belonging to \\(W_j\\)\nexactly the intervals situated in \\(W_j\\) are present.\nBecause each window contains at most 45 intervals,\n\\(\\omega=45\\).\n\nb)  Two intervals coming from different windows are disjoint,\nwhile two intervals taken from the same window intersect.\nThus in any pairwise disjoint subfamily at most one interval can be\nchosen from every window, so \\(\\alpha\\le 45\\).\nOn the other hand, choosing one interval from each window gives 45\npairwise disjoint intervals, therefore \\(\\alpha=45\\).\n\nHence \\(\\max(\\omega,\\alpha)=45\\) for this family; in particular no set\nof 46 customers has the required property.\n\n--------------------------------------------------------------------\n4.  Conclusion.\n\nStatement (3) shows that one can always find such a set of\nsize \\(45\\), while the construction of \u00a73 shows that one cannot always\nfind one of size \\(46\\).\nTherefore the largest integer \\(k\\) that is guaranteed is\n\n\\[\n\\boxed{\\,k=45\\,}.\n\\]",
+            "cost": {
+                "cost": 0.33309,
+                "input_tokens": 409,
+                "output_tokens": 8225
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:45:30.647790",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof models each customer as a closed interval and defines \\(\\omega(\\mathcal I)\\) as the size of the largest subfamily with a common point and \\(\\alpha(\\mathcal I)\\) as the size of the largest pairwise disjoint subfamily. In Section 1 it establishes the key inequality \\(n\\le\\omega(\\mathcal I)\\,\\alpha(\\mathcal I)\\) by considering a maximal disjoint family and counting intersections. In Section 2 it applies this to \\(n=2016\\) to deduce \\(\\max(\\omega,\\alpha)\\ge45\\). Section 3 gives an explicit construction of 2016 intervals in 45 disjoint time windows (with 44 or 45 copies each) achieving \\(\\omega=\\alpha=45\\), showing the bound is tight.",
+                    "issues": [
+                        {
+                            "location": "Section 1, derivation of inequality (1)",
+                            "text": "n\\;=\\;|{\\mathcal I}|\\;\\le\\;\\alpha(\\mathcal I)+\\alpha(\\mathcal I)(\\omega(\\mathcal I)-1)=\\omega(\\mathcal I)\\,\\alpha(\\mathcal I).",
+                            "description": "The proof assigns each interval not in the maximal disjoint family to some intersecting \\(I_k\\) and then sums over \\(k\\), but it does not justify why overlapping assignments (an interval intersecting multiple \\(I_k\\)) do not lead to overcounting. The combinatorial counting step is not fully explained.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1731,
+                            "end_index": 1868
+                        },
+                        {
+                            "location": "Section 2, end of argument",
+                            "text": "Because an interval graph has the Helly property (for intervals, pair-wise intersection already implies a common intersection point)...",
+                            "description": "The proof appeals to the Helly property for intervals without proof or reference, even though it had already defined \\(\\omega(\\mathcal I)\\) as the size of a family with a common point. This invocation of a named theorem is unnecessary and unexplained.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 2439,
+                            "end_index": 2570
+                        },
+                        {
+                            "location": "Section 3, example construction",
+                            "text": "Divide the real line into 45 pairwise disjoint \u201ctime windows\u201d \\[W_j=(2j,2j+1)\\]...",
+                            "description": "The main proof assumes each customer interval is closed, but the example uses open intervals \\((2j,2j+1)\\). This inconsistency in interval types is not addressed.",
+                            "category": "Other",
+                            "start_index": 2956,
+                            "end_index": 3034
+                        },
+                        {
+                            "location": "Section 2, numerical bound",
+                            "text": "\\[\\frac{2016}{44}=45.818\\ldots,\\] so \\(\\alpha\\ge46\\).",
+                            "description": "When converting \\(2016/44\\approx45.818\\) into the integer bound \\(\\alpha\\ge46\\), the proof does not explicitly note that \\(\\alpha\\) is an integer and must be rounded up.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2248,
+                            "end_index": 2301
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:27:16.327984"
+            }
+        }
+    ]
+}

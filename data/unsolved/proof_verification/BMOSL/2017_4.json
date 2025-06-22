@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2017
+    },
+    "problem": "Let \\( M = \\left\\{(a, b, c) \\in \\mathbb{R}^{3}: 0 < a, b, c < \\frac{1}{2}, a+b+c=1 \\right\\} \\) and \\( f: M \\rightarrow \\mathbb{R} \\) given as\n\n\\[\nf(a, b, c) = 4\\left(\\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c}\\right) - \\frac{1}{abc}\n\\]\n\nFind the best (real) bounds \\(\\alpha\\) and \\(\\beta\\) such that\n\n\\[\nf(M) = \\{f(a, b, c) : (a, b, c) \\in M\\} \\subseteq [\\alpha, \\beta]\n\\]\n\nand determine whether any of them is achievable.",
+    "problem_id": "BMOSL_2017_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Let $\\forall(a, b, c) \\in M, \\alpha \\leq f(a, b, c) \\leq \\beta$ and supose that there are no better bounds, i.e. $\\alpha$ is the largest possible and $\\beta$ is the smallest possible. Now,\n\n$$\n\\begin{aligned}\n\\alpha \\leq f(a, b, c) \\leq \\beta & \\Leftrightarrow \\alpha a b c \\leq 4(a b+b c+c a)-1 \\leq \\beta a b c \\\\\n& \\Leftrightarrow(\\alpha-8) a b c \\leq 4(a b+b c+c a)-8 a b c-1 \\leq(\\beta-8) a b c \\\\\n& \\Leftrightarrow(\\alpha-8) a b c \\leq 1-2(a+b+c)+4(a b+b c+c a)-8 a b c \\leq(\\beta-8) a b c \\\\\n& \\Leftrightarrow(\\alpha-8) a b c \\leq(1-2 a)(1-2 b)(1-2 c) \\leq(\\beta-8) a b c\n\\end{aligned}\n$$\n\nFor $\\alpha<8$, we have\n\n$$\n(1-2 a)(1-2 b)(1-2 c) \\geq 0>(\\alpha-8) a b c .\n$$\n\nSo $\\alpha \\geq 8$. But if we take $\\varepsilon>0$ small and $a=b=\\frac{1}{4}+\\varepsilon, c=\\frac{1}{2}-2 \\varepsilon$, we'll have:\n\n$$\n(\\alpha-8)\\left(\\frac{1}{4}+\\varepsilon\\right)\\left(\\frac{1}{4}+\\varepsilon\\right)\\left(\\frac{1}{2}-2 \\varepsilon\\right) \\leq\\left(\\frac{1}{2}-2 \\varepsilon\\right)\\left(\\frac{1}{2}-2 \\varepsilon\\right) 4 \\varepsilon\n$$\n\nTaking $\\varepsilon \\rightarrow 0^{+}$, we get $\\alpha-8 \\leq 0$. So $\\alpha=8$ and it can never be achieved. For the right side, note that there is a triangle whose side-lengths are $a, b, c$. For this triangle, denote $p=\\frac{1}{2}$ the half-perimeter, $S$ the area and $r, R$ respectively the radius of incircle,outcircle. Using the relations $R=\\frac{a b c}{4 S}$ and $S=p r$, we will have:\n\n$$\n\\begin{aligned}\n(1-2 a)(1-2 b)(1-2 c) \\leq(\\beta-8) a b c & \\Leftrightarrow(p-a)(p-b)(p-c) \\leq \\frac{(\\beta-8) a b c}{8} \\\\\n& \\Leftrightarrow \\frac{S^{2}}{p} \\leq \\frac{(\\beta-8) a b c}{8} \\\\\n& \\Leftrightarrow 2 \\frac{S}{p} \\leq \\frac{(\\beta-8) a b c}{4 S} \\\\\n& \\Leftrightarrow \\frac{R}{r} \\geq 2(\\beta-8)^{-1}\n\\end{aligned}\n$$\n\nSince the least value of $\\frac{R}{r}$ is $2$ (this is a well-known classic inequality), and it is achievable at $a=b=c=\\frac{1}{3}$, we must have $\\beta=9$.\nAnswer: $\\alpha=8$ not achievable and $\\beta=9$ achievable.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

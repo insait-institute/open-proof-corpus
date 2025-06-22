@@ -1,0 +1,7 @@
+default_max_tokens: 16000
+default_temperature: 0.8
+name: "discrete"
+prompt_path: "verl/runs/prompts/discrete_long.txt" 
+data_path: "INSAIT-Institute/OPC"
+n_solutions: -1
+discrete: true

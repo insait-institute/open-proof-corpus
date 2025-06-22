@@ -1,0 +1,13 @@
+name: "Dataset and Benchmark for Proof Verification"
+slug: "proof_verification"
+admins:
+  - "6-442464cd"
+  - "10-e40c0f23"
+
+model_configs:
+  - "gemini/gemini-pro-2.5"
+  - "openai/o3"
+  - "openai/o4-mini--high"
+  - "qwen/qwen3_235b_a22b"
+  - "deepseek/r1_0528"
+

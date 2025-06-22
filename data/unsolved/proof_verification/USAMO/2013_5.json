@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.26,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2013
+    },
+    "problem": "Let \\( m \\) and \\( n \\) be positive integers. Prove that there exists a positive integer \\( c \\) such that \\( cm \\) and \\( cn \\) have the same nonzero decimal digits.",
+    "problem_id": "USAMO_2013_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Let $m$ and $n$ be positive integers. Prove that there exists a positive integer $c$ such that cm and cn have the same nonzero decimal digits.\n\nOne-line spoiler: $142857$.\nMore verbosely, the idea is to look at the decimal representation of $1 / D, m / D, n / D$ for a suitable denominator $D$, which have a \"cyclic shift\" property in which the digits of $n / D$ are the digits of $m / D$ shifted by $3$.\n\nRemark (An example to follow along). Here is an example to follow along in the subsequent proof If $m=4$ and $n=23$ then the magic numbers $e=3$ and $D=41$ obey\n\n$$\n10^{3} \\cdot \\frac{4}{41}=97+\\frac{23}{41}\n$$\n\nThe idea is that\n\n$$\n\\begin{aligned}\n& \\frac{1}{41}=0 . \\overline{02439} \\\\\n& \\frac{4}{41}=0 . \\overline{09756} \\\\\n& \\frac{23}{41}=0 . \\overline{56097}\n\\end{aligned}\n$$\n\nand so $c=2349$ works; we get $4 c=9756$ and $23 c=56097$ which are cyclic shifts of each other by $3$ places (with some leading zeros appended).\n\nHere is the one to use:\nClaim - There exists positive integers $D$ and $e$ such that $\\operatorname{gcd}(D, 10)=1, D>$ $\\max (m, n)$, and moreover\n\n$$\n\\frac{10^{e} m-n}{D} \\in \\mathbb{Z}\n$$\n\nProof. Suppose we pick some exponent $e$ and define the number\n\n$$\nA=10^{e} n-m\n$$\n\nLet $r=\\nu_{2}(m)$ and $s=\\nu_{5}(m)$. As long as $e>\\max (r, s)$ we have $\\nu_{2}(A)=r$ and $\\nu_{5}(A)=s$, too. Now choose any $e>\\max (r, s)$ big enough that $A>2^{r} 5^{s} \\max (m, n)$ also holds. Then the number $D=\\frac{A}{2^{2} 5^{s}}$ works; the first two properties hold by construction and\n\n$$\n10^{e} \\cdot \\frac{n}{D}-\\frac{m}{D}=\\frac{A}{D}=2^{r} 5^{s}\n$$\nis an integer.\n\nRemark (For people who like obscure theorems). Kobayashi's theorem implies we can actually pick $D$ to be prime.\n\nNow we take $c$ to be the number under the bar of $1 / D$ (leading zeros removed). Then the decimal representation of $\\frac{m}{D}$ is the decimal representation of cm repeated (possibly including leading zeros). Similarly, $\\frac{n}{D}$ has the decimal representation of cm repeated (possibly including leading zeros). Finally, since\n\n$$\n10^{e} \\cdot \\frac{m}{D}-\\frac{n}{D} \\text { is an integer }\n$$\nit follows that these repeating decimal representations are rotations of each other by $e$ places, so in particular they have the same number of nonzero digits.\n\nRemark. Many students tried to find a $D$ satisfying the stronger hypothesis that $1 / D$, $2 / D, \\ldots,(D-1) / D$ are cyclic shifts of each other. For example, this holds in the famous $D=7$ case.\n\nThe official USAMO $2013$ solutions try to do this by proving that $10$ is a primitive root modulo $7^{e}$ for each $e \\geq 1$, by Hensel lifting lemma. I think this argument is actually incorrect, because it breaks if either $m$ or $n$ are divisible by $7$. Put bluntly, $\\frac{7}{49}$ and $\\frac{8}{49}$ are not shifts of each other.\n\nOne may be tempted to resort to using large primes $D$ rather than powers of $7$ to deal with this issue. However it is an open conjecture (a special case of Artin's primitive root conjecture) whether or not $10(\\bmod p)$ is primitive infinitely often, which is the necessary conjecture so this is harder than it seems.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

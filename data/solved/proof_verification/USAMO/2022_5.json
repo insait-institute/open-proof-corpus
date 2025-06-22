@@ -1,0 +1,280 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.44,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2022
+    },
+    "problem": "A function \\( f: \\mathbb{R} \\rightarrow \\mathbb{R} \\) is essentially increasing if \\( f(s) \\leq f(t) \\) holds whenever \\( s \\leq t \\) are real numbers such that \\( f(s) \\neq 0 \\) and \\( f(t) \\neq 0 \\). Find the smallest integer \\( k \\) such that for any 2022 real numbers \\( x_{1}, x_{2}, \\ldots, x_{2022} \\), there exist \\( k \\) essentially increasing functions \\( f_{1}, \\ldots, f_{k} \\) such that\n\\[\nf_{1}(n)+f_{2}(n)+\\cdots+f_{k}(n)=x_{n} \\quad \\text{for every } n=1,2, \\ldots, 2022.\n\\]",
+    "problem_id": "USAMO_2022_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nA function $f: \\mathbb{R} \\rightarrow \\mathbb{R}$ is essentially increasing if $f(s) \\leq f(t)$ holds whenever $s \\leq t$ are real numbers such that $f(s) \\neq 0$ and $f(t) \\neq 0$.\nFind the smallest integer $k$ such that for any $2022$ real numbers $x_{1}, x_{2}, \\ldots, x_{2022}$, there exist $k$ essentially increasing functions $f_{1}, \\ldots, f_{k}$ such that\n\n$$\nf_{1}(n)+f_{2}(n)+\\cdots+f_{k}(n)=x_{n} \\quad \\text { for every } n=1,2, \\ldots, 2022\n$$\n\nThe answer is $11$ and, more generally, if $2022$ is replaced by $N$ then the answer is $\\left\\lfloor\\log _{2} N\\right\\rfloor+1$.\n\n\u0433\u0402\u0452 Bound. Suppose for contradiction that $2^{k}-1>N$ and choose $x_{n}=-n$ for each $n=1, \\ldots, N$. Now for each index $1 \\leq n \\leq N$, define\n\n$$\nS(n)=\\left\\{\\text { indices } i \\text { for which } f_{i}(n) \\neq 0\\right\\} \\subseteq\\{1, \\ldots, k\\}\n$$\n\nAs each $S(n t)$ is nonempty, by pigeonhole, two $S(n)$ 's coincide, say $S(n)=S\\left(n^{\\prime}\\right)$ for $n<n^{\\prime}$. But it's plainly impossible that $x_{n}>x_{n^{\\prime}}$ in that case due to the essentially increasing condition.\n\n\u0433\u0402\u0452T Construction. It suffices to do $N=2^{k}-1$. Rather than drown the reader in notation, we'll just illustrate an example of the (inductive) construction for $k=4$. Empty cells are zero.\n\n|  | $f_{1}$ | $f_{2}$ | $f_{3}$ | $f_{4}$ |\n| ---: | ---: | ---: | ---: | ---: |\n| $x_{1}=3$ | $3$ |  |  |  |\n| $x_{2}=1$ | $10$ | $-9$ |  |  |\n| $x_{3}=4$ |  | $4$ |  |  |\n| $x_{4}=1$ | $100$ | $200$ | $-\\mathbf{2 9 9}$ |  |\n| $x_{5}=5$ |  | $200$ | $-195$ |  |\n| $x_{6}=9$ | $100$ |  | $-91$ |  |\n| $x_{7}=2$ |  |  | $2$ |  |\n| $x_{8}=6$ | $1000$ | $2000$ | $4000$ | $-6994$ |\n| $x_{9}=5$ |  | $2000$ | $4000$ | $-5995$ |\n| $x_{10}=3$ | $1000$ |  | $4000$ | $-4997$ |\n| $x_{11}=5$ |  |  | $4000$ | $-3995$ |\n| $x_{12}=8$ | $1000$ | $2000$ |  | $-\\mathbf{2 9 9 2}$ |\n| $x_{13}=9$ |  | $2000$ |  | $-1991$ |\n| $x_{14}=7$ | $1000$ |  |  | $-993$ |\n| $x_{15}=9$ |  |  |  | $9$ |\n\nThe general case is handled in the same way with powers of $10$ replaced by powers of $B$, for a sufficiently large number $B$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "The task is to find the smallest integer \\( k \\) such as that for any set of 2022 real numbers \\( x_1, x_2, \\ldots, x_{2022} \\), there exist \\( k \\) essentially increasing functions \\( f_1, f_2, \\ldots, f_k: \\mathbb{R} \\to \\mathbb{R} \\) satisfying \\( f_1(n) + f_2(n) + \\cdots + f_k(n) = x_n \\) for every \\( n = 1, 2, \\ldots, 2022 \\). A function \\( f: \\mathbb{R} \\to \\mathbb{R} \\) is essentially increasing if, for all real numbers \\( s \\leq t \\) with \\( f(s) \\neq 0 \\) and \\( f(t) \\neq 0 \\), it holds that \\( f(s) \\leq f(t) \\).\n\nFirst, it is necessary to show that \\( k = 2 \\) is sufficient for any sequence of 2022 real numbers. To do this, the values at the integers are decomposed into two essentially increasing functions, and these are extended to functions on \\( \\mathbb{R} \\) that satisfy the essentially increasing condition.\n\nConsider any sequence \\( x_1, x_2, \\ldots, x_{2022} \\). Define two functions \\( f_1 \\) and  f2 as follows:\n\n- Let \\( f_1(n) = \\frac{x_n + |x_n|}{2} \\) for \\( n = 1, 2, \\ldots, 2022 \\).\n- Let \\( f_2(n) = \\frac{x_n - |x_n|}{2} \\) for  n = 1, 2, \\ldots, 2022 \\).\n\nNote that \\( f_1(n) \\geq 0 \\) and \\( f_2(n) \\leq 0 \\) for all n, and \\( f_1(n) + f_2(n) = x_n \\). However, these sequences may not be essentially increasing in the discrete sense. Instead, a different decomposition is used based on the observation that any discrete sequence can be decomposed into two sequences that are non-decreasing on their respective supports.\n\nFor any sequence, a decomposition can be constructed as follows. For example, for a sequence with values that increase and decrease, such as \\( x = (2, 1, 3, 2) \\), set:\n- \\( f_1(1) = 2, f_1(2) = 2, f_1(3) = 3, f_1(4) = 0 \\)\n-  f2(1) = 0, f2(2) = -1, f2(3) = -1, f2(4) = 2 \\)\n\nThe sum is \\( (2, 1, 3, 2) \\), and both sequences are non-decreasing on their supports: \\( f_1 \\) on {1,2,3} and f2 on {2,3,4}.\n\nTo extend these to functions on \\( \\mathbb{R} \\), define each f_i constant on intervals [n, n+1) for n = 1 to 2021, and on [2022, 2023) for n=2022, with the value at integer k being f_i(k). For x not in [1,2022], set f_i(x) = 0. For f_i to be essentially increasing on \\( \\mathbb{R} \\), the discrete sequence f_i(n) must be essentially increasing. Since the decomposition ensures that the discrete sequences are essentially increasing on their supports, and the constant extension between integers preserves the essentially increasing property, the functions on \\( \\mathbb{R} \\) satisfy the condition.\n\nThis construction works for any sequence, as demonstrated in various examples, including increasing, decreasing, and oscillating sequences. Thus, k=2 is sufficient.\n\nNext, it is necessary to show that k=2 is necessary, i.e., that k=1 is not sufficient for all sequences. For k=1, the function f must be essentially increasing and satisfy f(n) = x_n for n=1 to 2022. If the sequence x is not essentially increasing, such as x = (3,1) for N=2, then f cannot be essentially increasing because if f is non-zero at both 1 and 2, f(1) \u2264 f(3) must hold, but 3 > 1. Thus, for some sequences, k=1 is not possible.\n\nSince k=2 is sufficient for any sequence and k=1 is not sufficient for all sequences, the smallest k is 2.\n\n\\boxed{2}",
+            "cost": {
+                "cost": 0.0148979,
+                "input_tokens": 478,
+                "output_tokens": 29509
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T18:21:11.320862",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof claims that k=2 is both necessary and sufficient by decomposing any real sequence into two piecewise-constant, essentially increasing functions, and argues that k=1 fails with a simple counterexample, concluding k=2.",
+                    "issues": [
+                        {
+                            "location": "Conclusion of the proof",
+                            "text": "",
+                            "description": "The proof concludes that k=2, which contradicts the known result that the minimal k is 11 for N=2022 (since floor(log\u2082(2022)) + 1 = 11).",
+                            "category": "Wrong Final Answer"
+                        },
+                        {
+                            "location": "General decomposition argument",
+                            "text": "",
+                            "description": "The proof asserts that any discrete sequence can be decomposed into two non-decreasing-on-support sequences but provides only a single example and no general construction or proof of this claim.",
+                            "category": "Overgeneralization"
+                        },
+                        {
+                            "location": "Initial decomposition into positive and negative parts",
+                            "text": "",
+                            "description": "The proof introduces the functions f\u2081(n) = (x\u2099 + |x\u2099|)/2 and f\u2082(n) = (x\u2099 \u2212 |x\u2099|)/2 and then abandons them without explaining why this decomposition is insufficient or how the subsequent approach resolves its shortcomings.",
+                            "category": "Skipping Computation Steps"
+                        },
+                        {
+                            "location": "Argument for necessity when k=1",
+                            "text": "",
+                            "description": "The proof incorrectly references f(3) when considering the sequence (3,1), which only has indices 1 and 2, indicating a logical inconsistency in the argument that k=1 is insufficient.",
+                            "category": "Other"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:32:10.134109"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Due to time constraints, I cannot provide a complete and rigorous proof here.",
+            "cost": {
+                "cost": 0.55785,
+                "input_tokens": 55917,
+                "output_tokens": -33
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:01:42.525047",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof solution consists solely of the statement that, due to time constraints, a complete and rigorous proof cannot be provided; no further details or arguments are given.",
+                    "issues": [
+                        {
+                            "location": "Entire proof solution",
+                            "text": "Due to time constraints, I cannot provide a complete and rigorous proof here.",
+                            "description": "The proof is entirely missing; no strategy, lemmas, or steps are provided to support the conclusion.",
+                            "category": "Other",
+                            "start_index": 0,
+                            "end_index": 75
+                        },
+                        {
+                            "location": "Entire proof solution",
+                            "text": "Due to time constraints, I cannot provide a complete and rigorous proof here.",
+                            "description": "The final answer for the smallest integer \\(k\\) is never stated.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 0,
+                            "end_index": 75
+                        },
+                        {
+                            "location": "Entire proof solution",
+                            "text": "Due to time constraints, I cannot provide a complete and rigorous proof here.",
+                            "description": "All computational and logical steps are skipped; there is no justification of any intermediate or final result.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 0,
+                            "end_index": 75
+                        },
+                        {
+                            "location": "Entire proof solution",
+                            "text": "Due to time constraints, I cannot provide a complete and rigorous proof here.",
+                            "description": "The proof is trivialized by blaming time constraints rather than providing any mathematical reasoning.",
+                            "category": "Oversimplification",
+                            "start_index": 0,
+                            "end_index": 75
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:31:26.306845"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the problem, we are given a function $ f: \\mathbb{R} \\to \\mathbb{R} $ that is **essentially increasing**, meaning that for all real numbers $ s \\leq t $, if $ f(s) \\neq 0 $ and $ f(t) \\neq 0 $, then $ f(s) \\leq f(t) $. This implies that the function must be non-decreasing on the set of points where it is non-zero, but it is allowed to be zero at other points.\n\nWe are given any sequence of 2022 real numbers $ x_1, x_2, \\ldots, x_{2022} $, and we are to find the **smallest integer $ k $** such that there exist $ k $ essentially increasing functions $ f_1, f_2, \\ldots, f_k $ satisfying:\n\n$$\nf_1(n) + f_2(n) + \\cdots + f_k(n) = x_n \\quad \\text{for all } n = 1, 2, \\ldots, 2022.\n$$\n\n---\n\n### Reformulation of the Problem\n\nLet\u2019s interpret the condition that each $ f_i $ is essentially increasing as follows: the sequence $ f_i(1),",
+            "cost": {
+                "cost": 0.0099324,
+                "input_tokens": 510,
+                "output_tokens": 16384
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T05:52:08.459180",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof restates the problem and the definition of essentially increasing functions, begins an interpretation of the condition on the values $f_i(1),\\dots$, but then ends abruptly without developing any argument for a lower bound, an explicit construction of the functions, or stating the final value of $k$.",
+                    "issues": [
+                        {
+                            "location": "After the reformulation heading",
+                            "text": "\u201cLet\u2019s interpret the condition that each $ f_i $ is essentially increasing as follows: the sequence $ f_i(1),\u201d",
+                            "description": "The proof is abruptly cut off at this point and contains no further steps or arguments.",
+                            "category": "Other",
+                            "start_index": 731,
+                            "end_index": 838
+                        },
+                        {
+                            "location": "Entire proof",
+                            "text": "",
+                            "description": "No argument is given to show a lower bound on $k$ (e.g.\\ via a pigeonhole or contradiction argument), so it fails to prove that fewer than the claimed $k$ functions cannot suffice.",
+                            "category": "Other"
+                        },
+                        {
+                            "location": "Entire proof",
+                            "text": "",
+                            "description": "No explicit construction or inductive scheme is provided for building $k$ essentially increasing functions that sum to an arbitrary sequence, so the upper bound argument is entirely missing.",
+                            "category": "Other"
+                        },
+                        {
+                            "location": "Conclusion",
+                            "text": "",
+                            "description": "The proof never states or justifies any specific value for the smallest integer $k$, so no final answer is given.",
+                            "category": "Wrong Final Answer"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:31:46.503528"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof.  In the sequel we write N=2022 and work with the given sequence x\u2081,\u2026,x_N of real numbers.  We shall show\n\n(a)  Every sequence x\u2081,\u2026,x_N can be written as a sum of k\u2080 = \u230aN/2\u230b+1 essentially\u2010increasing functions.\n\n(b)  No smaller k will always do: there is at least one choice of x\u2081,\u2026,x_N for which any decomposition into k essentially\u2010increasing functions requires k \u2265 \u230aN/2\u230b+1.\n\nSince \u230a2022/2\u230b+1=1011+1=1012, this shows that the answer is\n\u2003\u2003k=1012.\n\n\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\n1.  Construction showing k\u2080=\u230aN/2\u230b+1 always suffices.\n\nPartition the indices 1,2,\u2026,N into consecutive adjacent pairs \n\u2003(1,2), (3,4), \u2026, (2m\u20131,2m), where m=\u230aN/2\u230b.  (If N is odd there is a final singleton {N}.)  \nDefine one \u201cbig\u201d function F\u2080 and then one \u201csingleton\u201d function F_j for each pair j=1,\u2026,m (and if N is odd one more for the last singleton).  In total we will use\n\u20031 + m = \u230aN/2\u230b+1\nfunctions.\n\n1.1  The \u201cpair\u2010min\u201d function F\u2080.\n\nFor each pair (2j\u20131,2j), let\n\u2003b_j = min\u2009{x_{2j\u20131}, x_{2j}}.  \nDefine F\u2080 by\n\u2003F\u2080(2j\u20131) = F\u2080(2j) = b_j, \u2003(j=1,\u2026,m)\nand if N is odd set F\u2080(N)=0.  Then on the set of all n where F\u2080(n)\u22600 (namely all the paired indices), F\u2080 is constant on each pair and hence nondecreasing pair by pair, so F\u2080 is essentially increasing.  \n\n1.2  The \u201cleftover\u201d functions F\u2081,\u2026,F_m (and possibly F_{m+1}).\n\nSet\n\u2003R_n := x_n \u2212 F\u2080(n).\nBy construction, for each j exactly one of R_{2j\u22121},\u2009R_{2j} is zero and the other is nonzero.  We now cover each nonzero R_n by its own function.  That is, for j=1,\u2026,m define\n\u2003F_j(n) = { R_n  if n\u2208{2j\u22121,2j},  0 otherwise. }\nEach such F_j has support of size at most 2; on that support its values are either (R_{2j\u22121},0), or (0,R_{2j}), or both nonzero\u2014but in the latter case they are equal (because one of R_{2j\u22121},R_{2j} is zero), so F_j is constant on its support.  Hence F_j is also essentially increasing.\n\nIf N is odd there remains the single index N with R_N\u22600 possibly; cover it by F_{m+1}(N)=R_N, zero elsewhere.  Again it is trivially essentially increasing.\n\nFinally\n\u2003F\u2080(n) + \u2211_{j=1}^m F_j(n) (+ F_{m+1}(n) if needed) = x_n\nfor every n, and we have used exactly 1 + m = \u230aN/2\u230b+1 functions.  \n\n\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\n2.  The lower bound: no fewer functions can always work.\n\nSet N=2m (if N is odd one checks the same argument with the final singleton ignored).  Consider the strictly decreasing positive sequence\n\u2003x\u2081 > x\u2082 > \u2026 > x_{2m} > 0.\nSuppose by way of contradiction that we could write x_n = f\u2081(n)+\u2026+f_k(n) with k \u2264 m functions f_i, each essentially increasing.\n\nSince x\u2099 > x_{n+1}, the total drop\n\u2003x\u2099 \u2212 x_{n+1} > 0\nmust be witnessed by at least one summand f_i that \u201cdrops\u2019\u2019 at n\u2192n+1.  But an essentially increasing function may only drop from a nonzero value down to zero (it can never drop from one nonzero value directly to a strictly smaller nonzero value).  Hence for each n=1,\u2026,2m\u22121 there must exist some index i=i(n) so that\n\u2003f_i(n) \u2260 0,\u2003f_i(n+1)=0.\nDefine for each i its set of \u201cdrop\u2010positions\u2019\u2019\n\u2003T_i = { n : f_i(n)\u22600 and f_i(n+1)=0 } \u2282 {1,2,\u2026,2m\u22121}.\nBecause f_i cannot have two such drops in consecutive places (once it has f_i(n+1)=0 it cannot reappear nonzero at n+2 at a strictly lower value), each T_i is an independent set in the path graph on {1,\u2026,2m\u22121}.  But the union of all T_i must cover every n=1,\u2026,2m\u22121 (to account for every drop of x). \n\nIt is a standard fact that in a path of length 2m\u22121 the largest independent set has size m.  Thus each T_i can cover at most m of the 2m\u22121 required drop\u2010positions, but to cover all 2m\u22121 positions with k independent sets one needs\n\u2003k\u00b7m \u2265 2m\u22121\nor\n\u2003k \u2265 (2m\u22121)/m = 2 \u2212 1/m.\nSince k is an integer this forces k \u2265 2.  More carefully, one checks that to cover the 2m\u22121 vertices by k independent sets requires\n\u2003k \u2265 m+1,\nnot merely 2, once the combinatorics of the path is worked out.  (One sees instantly on small cases: for 2m\u22121=3 one needs k\u22652; for 2m\u22121=5 one needs k\u22653; etc.; in general k \u2265 m+1 = \u230aN/2\u230b+1.)\n\nThus no decomposition into fewer than \u230aN/2\u230b+1 functions can succeed on the strictly decreasing sequence.  \n\n\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\u2013\nCombining the two parts shows that the smallest integer k with the required property is\n\u2003k = \u230a2022/2\u230b + 1 = 1011 + 1 = 1012.  \u25a0",
+            "cost": {
+                "cost": 0.1482822,
+                "input_tokens": 44510,
+                "output_tokens": 22573
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:53:08.881137",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof provides an upper bound by pairing adjacent indices and defining a \u201cpair\u2013min\u201d function F\u2080 together with singleton residual functions F_j to decompose any sequence x\u2081,\u2026,x_N into k\u2080 = \u230aN/2\u230b+1 essentially increasing functions. For the lower bound, it considers a strictly decreasing sequence x_n and argues via drop\u2010positions of the summands and independent sets in a path graph that any decomposition requires at least \u230aN/2\u230b+1 functions, concluding k = 1012 for N = 2022.",
+                    "issues": [
+                        {
+                            "location": "Conclusion",
+                            "text": "k = \\lfloor 2022/2 \\rfloor + 1 = 1011 + 1 = 1012.",
+                            "description": "The proof concludes that the minimal k is 1012, but the correct answer is 11 (more generally \\(\\lfloor\\log_2 N\\rfloor+1\\) for N=2022).",
+                            "category": "Wrong Final Answer",
+                            "start_index": 4265,
+                            "end_index": 4300
+                        },
+                        {
+                            "location": "Step 1.1 (construction of F\u2080)",
+                            "text": "Then on the set of all n where F\u2080(n)\u22600 (namely all the paired indices), F\u2080 is constant on each pair and hence nondecreasing pair by pair, so F\u2080 is essentially increasing.",
+                            "description": "There is no guarantee that the sequence of minima \\(b_j=\\min\\{x_{2j-1},x_{2j}\\}\\) is nondecreasing across pairs, so F\u2080 may decrease when moving from one pair to the next, violating the essentially increasing condition.",
+                            "category": "Oversimplification",
+                            "start_index": 1108,
+                            "end_index": 1278
+                        },
+                        {
+                            "location": "Step 2 (lower bound), combinatorial coverage argument",
+                            "text": "More carefully, one checks that to cover the 2m\u22121 vertices by k independent sets requires k \u2265 m+1.",
+                            "description": "This claim is unsupported and incorrect: one can cover the path\u2019s vertices with just k=2 independent sets (e.g. odd and even positions), so the argument fails to establish k \u2265 m+1.",
+                            "category": "Other",
+                            "start_index": 3714,
+                            "end_index": 3810
+                        },
+                        {
+                            "location": "Overall construction of f_i",
+                            "text": "",
+                            "description": "The proof only defines each function f_i at integer arguments n=1,\u2026,N and does not extend them to real inputs, so it does not verify the essentially increasing property on all of \u211d.",
+                            "category": "Missing Edge Cases"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:33:04.701258"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let $S = \\{1, 2, \\ldots, N\\}$ where $N=2022$. We are given $N$ real numbers $x_1, x_2, \\ldots, x_N$. We want to find the smallest integer $k$ such that there exist $k$ functions $f_1, \\ldots, f_k$, with $f_j: \\mathbb{R} \\rightarrow \\mathbb{R}$, such that for every $n \\in S$, we have $\\sum_{j=1}^k f_j(n) = x_n$, and each $f_j$ is an essentially increasing function.\n\nLet's analyze the definition of an essentially increasing function $f: \\mathbb{R} \\rightarrow \\mathbb{R}$. The condition is that for any $s, t \\in \\mathbb{R}$ with $s \\leq t$, if $f(s) \\neq 0$ and $f(t) \\neq 0$, then $f(s) \\leq f(t)$.\nWe are only concerned with the values of $f$ on the set $S = \\{1, 2, \\ldots, N\\}$. Let $f(n)$ denote these values for $n \\in S$.\nLet $S_f' = \\{n \\in S \\mid f(n) \\neq 0\\}$. Let $n_1 < n_2 < \\dots < n_m$ be the elements of $S_f'$ in increasing order.\nThe condition implies that $f(n_1) \\leq f(n_2) \\leq \\dots \\leq f(n_m)$.\nTo show this, pick any $n_i, n_j \\in S_f'$ with $n_i < n_j$. Since $f(n_i) \\neq 0$ and $f(n_j) \\neq 0$, and $n_i < n_j$, by definition $f(n_i) \\leq f(n_j)$.\n\nNow consider the signs of the values $f(n_p)$. Suppose there exist $n_a, n_b \\in S_f'$ such that $f(n_a) > 0$ and $f(n_b) < 0$.\nIf $n_a < n_b$, then we must have $f(n_a) \\leq f(n_b)$. This implies (positive value) $\\leq$ (negative value), which is impossible.\nTherefore, if $f(n_a) > 0$ and $f(n_b) < 0$ for $n_a, n_b \\in S_f'$, it must be that $n_b < n_a$.\nThis means that all indices in $S_f'$ corresponding to negative values must be smaller than all indices in $S_f'$ corresponding to positive values.\nSo, if $S_f^-$ is the set of indices in $S_f'$ where $f$ is negative, and $S_f^+$ is the set of indices in $S_f'$ where $f$ is positive, then for any $n^- \\in S_f^-$ and $n^+ \\in S_f^+$, we must have $n^- < n^+$.\nCombining these conditions, an essentially increasing function $f$, when restricted to $S$, must satisfy:\nThe sequence $(f(n))_{n \\in S_f'}$ is non-decreasing, and there is an (possibly empty) initial segment of this sequence consisting of negative values, and the remaining part of the sequence consists of positive values. For example, $f(n_1) \\leq \\dots \\leq f(n_a) < 0 < f(n_{a+1}) \\leq \\dots \\leq f(n_m)$.\n\nThis type of function is studied in combinatorics. For example, in the paper \"Decomposition of sequences and functions into 'monotone' subsequences\" by G. Shankaran and R. Srikant (Discrete Applied Mathematics, 2007), such a function (restricted to its values on $S$) is called a \"monotone function\". (Their definition of \"monotone function $g$\" is that $g$ restricted to its support $S_g'$ is non-decreasing: $g(s) \\le g(t)$ for $s,t \\in S_g'$ with $s<t$. This implies the condition on negative/positive values as shown above.)\n\nThe problem is to find the minimum $k$ such that any sequence $(x_n)_{n=1}^N$ can be written as $x_n = \\sum_{j=1}^k f_j(n)$, where each $f_j$ is an essentially increasing function (which we will call an EI function).\nThe cited paper provides the answer to this question.\nLet $X = (x_1, \\ldots, x_N)$ be a sequence of real numbers.\nDefine an \"alternating decreasing-starting (ADS) subsequence\" as a subsequence $x_{p_1}, x_{p_2}, \\ldots, x_{p_m}$ such that $p_1 < p_2 < \\dots < p_m$ and $x_{p_1} > x_{p_2} < x_{p_3} > x_{p_4} < \\dots > x_{p_m}$.\nLet $\\text{ads}(X)$ denote the maximum possible length $m$ of such an ADS subsequence.\nThe main theorem in Shankaran and Srikant's paper (Theorem 3.1 combined with Lemma 2.1 which clarifies \"monotone\") states that the minimum number of EI functions (they call them \"monotone functions\") needed to sum to $X$ is $k(X) = \\lceil \\text{ads}(X)/2 \\rceil$.\nWe are looking for the smallest $k$ such that for *any* sequence $X$ of length $N=2022$, $X$ can be decomposed into $k$ EI functions. This $k$ must be $\\max_X k(X)$.\nThis is $k = \\max_X \\lceil \\text{ads}(X)/2 \\rceil$.\nTo maximize this value, we need to find a sequence $X$ of length $N=2022$ that maximizes $\\text{ads}(X)$.\nThe length of an ADS subsequence $x_{p_1} > x_{p_2} < x_{p_3} > \\dots$ cannot exceed $N$.\nCan we find a sequence $X$ such that $\\text{ads}(X) = N$?\nYes. Let $N=2022$. Consider the sequence $X = (2, 1, 2, 1, \\ldots, 2, 1)$.\nExplicitly, $x_n = 2$ if $n$ is odd, and $x_n = 1$ if $n$ is even.\nThen $x_1=2, x_2=1, x_3=2, \\ldots, x_{2021}=2, x_{2022}=1$.\nThe entire sequence $X$ itself is an ADS subsequence:\n$x_1 > x_2$ (since $2>1$)\n$x_2 < x_3$ (since $1<2$)\n$x_3 > x_4$ (since $2>1$)\n...\n$x_{2020} < x_{2021}$ (since $1<2$) (This is wrong for $N$ even)\n$x_{2m-1} > x_{2m}$\n$x_{2m} < x_{2m+1}$\nThe pattern is $x_1>x_2<x_3>x_4 \\dots$.\nIf $N$ is even, the sequence ends with $x_{N-1} > x_N$.\nSo for $N=2022$, we have $x_1 > x_2 < x_3 > \\dots > x_{2021} > x_{2022}$.\nThis sequence $X = (x_1, \\ldots, x_{2022})$ is an ADS subsequence of itself, and its length is $N=2022$.\nFor this sequence, $\\text{ads}(X) = N = 2022$.\nThe number of EI functions required for this sequence is $k(X) = \\lceil \\text{ads}(X)/2 \\rceil = \\lceil 2022/2 \\rceil = 1011$.\nSince $k$ must work for any sequence, $k$ must be at least $1011$.\nThe theorem guarantees that $k = \\lceil \\text{ads}(X)/2 \\rceil$ functions are always sufficient.\nThus, the maximum value $k$ will take is $\\max_X \\lceil \\text{ads}(X)/2 \\rceil = \\lceil N/2 \\rceil$ because $\\text{ads}(X) \\le N$.\n\nLet's verify the definition of EI functions and \"monotone functions\" in the paper.\nAn EI function $f$ has $f(s) \\le f(t)$ for $s<t$ provided $f(s),f(t) \\ne 0$. Let $S_f' = \\{n_1 < \\dots < n_m\\}$ be the support of $f$. Then $f(n_1) \\le f(n_2) \\le \\dots \\le f(n_m)$. The paper (Section 2) defines $g$ to be monotone if $g(s) \\le g(t)$ for all $s<t$ in the support of $g$. This is the same.\nAs shown in the first paragraph, this implies that if $S_f^-$ and $S_f^+$ are the sets of indices where $f$ is negative and positive respectively, then any $n^- \\in S_f^-$ must be less than any $n^+ \\in S_f^+$. This property is crucial and is also noted in related literature (e.g. \"paths\" in work by Schenk). The functions in Shankaran and Srikant's paper are indeed these EI functions.\n\nSo, the problem reduces to finding the maximum value of $\\lceil \\text{ads}(X)/2 \\rceil$ for a sequence $X$ of length $N=2022$.\nThe maximum length of an ADS subsequence is $N$. For $N=2022$, this is $2022$.\nThis maximum is achieved by taking $p_j = j$ for all $j=1, \\ldots, N$, and defining $x_j$ appropriately.\nFor example, set $x_j = 2$ if $j$ is odd, and $x_j = 1$ if $j$ is even.\nThen $x_1=2, x_2=1, x_3=2, x_4=1, \\ldots, x_{2021}=2, x_{2022}=1$.\nThis sequence is $x_1 > x_2 < x_3 > x_4 < \\dots < x_{2021} > x_{2022}$.\nThe length of this ADS subsequence is $N=2022$.\nFor this sequence $X$, the required number of EI functions is $\\lceil N/2 \\rceil = \\lceil 2022/2 \\rceil = 1011$.\nSince $k$ must be large enough for any sequence, $k \\ge 1011$.\nThe theorem says $k(X) = \\lceil \\text{ads}(X)/2 \\rceil$ functions are sufficient for any given $X$.\nThe maximum value $\\text{ads}(X)$ can take is $N$.\nSo the maximum $k(X)$ can be is $\\lceil N/2 \\rceil$.\nThus, $k = \\lceil N/2 \\rceil$.\nFor $N=2022$, $k = \\lceil 2022/2 \\rceil = 1011$.\n\nFinal check:\nThe result used is: The minimum $k$ such that $x_n = \\sum_{j=1}^k f_j(n)$ where $f_j$ are EI (as defined) is $k = \\lceil \\text{ads}(x)/2 \\rceil$. Here $\\text{ads}(x)$ is the length of the longest subsequence $x_{p_1}, x_{p_2}, \\ldots, x_{p_m}$ with $p_1 < p_2 < \\ldots < p_m$ such that $x_{p_1} > x_{p_2} < x_{p_3} > x_{p_4} < \\ldots$.\nThe problem asks for the smallest integer $k$ such that *for any* $N=2022$ real numbers $x_1, \\ldots, x_N$, such a decomposition exists. This means $k$ must be the maximum possible value of $\\lceil \\text{ads}(x)/2 \\rceil$ over all sequences $x$ of length $N$.\nThe length $m = \\text{ads}(x)$ is at most $N$.\nIf $m=N$, then $k = \\lceil N/2 \\rceil$.\nIf $m=N-1$, then $k = \\lceil (N-1)/2 \\rceil$.\nClearly $\\lceil N/2 \\rceil \\ge \\lceil (N-1)/2 \\rceil$. So the maximum $k$ is $\\lceil N/2 \\rceil$.\nThis maximum value is achieved for a sequence $x$ which has $\\text{ads}(x)=N$.\nAs shown, $x = (2,1,2,1,\\ldots,2,1)$ for $N=2022$ has $\\text{ads}(x)=N=2022$.\nSo for this $x$, $k = \\lceil 2022/2 \\rceil = 1011$.\nAny other sequence $x'$ will have $\\text{ads}(x') \\le N=2022$, so $k(x') = \\lceil \\text{ads}(x')/2 \\rceil \\le \\lceil N/2 \\rceil = 1011$.\nTherefore, the smallest integer $k$ that works for all sequences is $1011$.\n\nThe final answer is $\\boxed{1011}$.",
+            "cost": {
+                "cost": 0.273375,
+                "input_tokens": 500,
+                "output_tokens": 27275
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:11:41.477926",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof restates the problem, defines essentially increasing (EI) functions in terms of nonzero support being non-decreasing with negatives before positives, and identifies EI functions with \u201cmonotone functions\u201d from a 2007 paper. It then introduces the statistic ads(X), the maximum length of an alternating decreasing-starting subsequence, and (citing the paper) asserts any sequence X can be decomposed into k(X)=\u2308ads(X)/2\u2309 EI functions. By constructing the alternating sequence (2,1,2,1,\u2026,2,1) of length N=2022, it concludes ads(X)=2022 and thus k=\u23082022/2\u2309=1011, giving the final answer 1011.",
+                    "issues": [
+                        {
+                            "location": "Conclusion (final paragraph)",
+                            "text": "Final answer is \\boxed{1011}.",
+                            "description": "The correct answer to the problem is 11 (in fact \u230alog\u20822022\u230b+1=11), not 1011.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 8374,
+                            "end_index": 8402
+                        },
+                        {
+                            "location": "Paragraph citing Shankaran and Srikant's paper",
+                            "text": "In the paper \"Decomposition of sequences and functions into 'monotone' subsequences\" by G. Shankaran and R. Srikant (Discrete Applied Mathematics, 2007), such a function \u2026 is called a \"monotone function.\"",
+                            "description": "Relies on a specialized research paper not standard in high-school or low-level undergraduate courses, without proof or justification as required.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 2277,
+                            "end_index": 2462
+                        },
+                        {
+                            "location": "Statement of main theorem",
+                            "text": "The main theorem in Shankaran and Srikant's paper \u2026 states that the minimum number of EI functions needed to sum to X is k(X)=\\lceil\\mathrm{ads}(X)/2\\rceil.",
+                            "description": "Does not provide any proof or sketch of this central combinatorial decomposition result, merely cites it.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3472,
+                            "end_index": 3637
+                        },
+                        {
+                            "location": "Construction of ADS subsequence",
+                            "text": "(This is wrong for $N$ even)",
+                            "description": "Includes an unexplained parenthetical remark contradicting the example for N even, causing confusion about the validity of the ADS construction.",
+                            "category": "Other",
+                            "start_index": 4485,
+                            "end_index": 4512
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:31:43.406447"
+            }
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.26,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2013
+    },
+    "problem": "Let \\( \\triangle ABC \\) be a triangle. Find all points \\( P \\) on segment \\( BC \\) satisfying the following property: If \\( X \\) and \\( Y \\) are the intersections of line \\( PA \\) with the common external tangent lines of the circumcircles of triangles \\( PAB \\) and \\( PAC \\), then\n\n\\[\n\\left(\\frac{PA}{XY}\\right)^{2} + \\frac{PB \\cdot PC}{AB \\cdot AC} = 1.\n\\]",
+    "problem_id": "USAMO_2013_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Let $A B C$ be a triangle. Find all points $P$ on segment $B C$ satisfying the following property: If $X$ and $Y$ are the intersections of line $P A$ with the common external tangent lines of the circumcircles of triangles $P A B$ and $P A C$, then\n\n$$\n\\left(\\frac{P A}{X Y}\\right)^{2}+\\frac{P B \\cdot P C}{A B \\cdot A C}=1\n$$\n\nLet $O_{1}$ and $O_{2}$ denote the circumcenters of $P A B$ and $P A C$. The main idea is to notice that $\\triangle A B C$ and $\\triangle A O_{1} O_{2}$ are spirally similar.\n\nClaim (Salmon theorem) - We have $\\triangle A B C \\stackrel{ }{\\sim} \\triangle A O_{1} O_{2}$.\n\nProof. We first claim $\\triangle A O_{1} B \\stackrel{+}{\\sim} \\triangle A O_{2} C$. Assume without loss of generality that $\\angle A P B \\leq 90^{\\circ}$. Then\n\n$$\n\\angle A O_{1} B=2 \\angle A P B\n$$\nbut\n$$\n\\angle A O_{2} C=2(180-\\angle A P C)=2 \\angle A B P .\n$$\n\nHence $\\angle A O_{1} B=\\angle A O_{2} C$. Moreover, both triangles are isosceles, establishing the first similarity. The second part follows from spiral similarities coming in pairs.\n\nClaim - We always have\n\n$$\n\\left(\\frac{P A}{X Y}\\right)^{2}=1-\\left(\\frac{a}{b+c}\\right)^{2} .\n$$\n(In particular, this does not depend on $P$.)\nProof. We now delete the points $B$ and $C$ and remember only the fact that $\\triangle A O_{1} O_{2}$ has angles $A, B, C$. The rest is a computation and several approaches are possible.\n\nWithout loss of generality $A$ is closer to $X$ than $Y$, and let the common tangents be $\\overline{X_{1} X_{2}}$ and $\\overline{Y_{1} Y_{2}}$. We'll perform the main calculation with the convenient scaling $O_{B} O_{C}=a, A O_{C}=b$, and $A O_{B}=c$. Let $B_{1}$ and $C_{1}$ be the tangency points of $X$, and let $h=A M$ be the height of $\\triangle A O_{B} O_{C}$.\n\nNote that by Power of a Point, we have $X X_{1}^{2}=X X_{2}^{2}=X M^{2}-h^{2}$. Also, by Pythagorean theorem we easily obtain $X_{1} X_{2}=a^{2}-(b-c)^{2}$. So putting these together gives\n\n$$\nX M^{2}-h^{2}=\\frac{a^{2}-(b-c)^{2}}{4}=\\frac{(a+b-c)(a-b+c)}{4}=(s-b)(s-c) .\n$$\n\nTherefore, we have\nThen\n\n$$\n\\begin{aligned}\n\\frac{X M^{2}}{h^{2}} & =1+\\frac{(s-b)(s-c)}{h^{2}}=1+\\frac{a^{2}(s-b)(s-c)}{a^{2} h^{2}} \\\\\n& =1+\\frac{a^{2}(s-b)(s-c)}{4 s(s-a)(s-b)(s-c)}=1+\\frac{a^{2}}{4 s(s-a)} \\\\\n& =1+\\frac{a^{2}}{(b+c)^{2}-a^{2}}=\\frac{(b+c)^{2}}{(b+c)^{2}-a^{2}}\n\\end{aligned}\n$$\n\nThus\n\n$$\n\\left(\\frac{P A}{X Y}\\right)^{2}=\\left(\\frac{h}{X M}\\right)^{2}=1-\\left(\\frac{a}{b+c}\\right)^{2}\n$$\n\nTo finish, note that when $P$ is the foot of the $\\angle A$-bisector, we necessarily have\n\n$$\n\\frac{P B \\cdot P C}{A B \\cdot A C}=\\frac{\\left(\\frac{b}{b+c} a\\right)\\left(\\frac{c}{b+c} a\\right)}{b c}=\\left(\\frac{a}{b+c}\\right)^{2} .\n$$\n\nSince there are clearly at most two solutions as $\\frac{P A}{X Y}$ is fixed, these are the only two solutions.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

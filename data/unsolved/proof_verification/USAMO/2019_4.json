@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.38,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2019
+    },
+    "problem": "Let \\( n \\) be a nonnegative integer. Determine the number of ways to choose sets \\( S_{ij} \\subseteq \\{1, 2, \\ldots, 2n\\} \\), for all \\( 0 \\leq i \\leq n \\) and \\( 0 \\leq j \\leq n \\) (not necessarily distinct), such that:\n- \\(|S_{ij}| = i + j\\), and\n- \\( S_{ij} \\subseteq S_{kl} \\) if \\( 0 \\leq i \\leq k \\leq n \\) and \\( 0 \\leq j \\leq l \\leq n \\).",
+    "problem_id": "USAMO_2019_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nLet $n$ be a nonnegative integer. Determine the number of ways to choose sets $S_{i j} \\subseteq\\{1,2, \\ldots, 2 n\\}$, for all $0 \\leq i \\leq n$ and $0 \\leq j \\leq n$ (not necessarily distinct), such that\n\n- $\\left|S_{i j}\\right|=i+j$, and\n- $S_{i j} \\subseteq S_{k l}$ if $0 \\leq i \\leq k \\leq n$ and $0 \\leq j \\leq l \\leq n$.\n\nThe answer is $(2 n)!\\cdot 2^{n^{2}}$. First, we note that $\\varnothing=S_{00} \\subsetneq S_{01} \\subsetneq \\cdots \\subsetneq S_{n n}=\\{1, \\ldots, 2 n\\}$ and thus multiplying by $(2 n)$ ! we may as well assume $S_{0 i}=\\{1, \\ldots, i\\}$ and $S_{i n}=\\{1, \\ldots, n+i\\}$. We illustrate this situation by placing the sets in a grid, as below for $n=4$; our goal is to fill in the rest of the grid.\n$\\left[\\begin{array}{ccccc}1234 & 12345 & 123456 & 1234567 & 12345678 \\\\ 123 & & & & \\\\ 12 & & & & \\\\ 1 & & & & \\\\ \\varnothing & & & & \\end{array}\\right]$\n\nWe claim the number of ways to do so is $2^{n^{2}}$. In fact, more strongly even the partial fillings are given exactly by powers of $2$.\n\nClaim - Fix a choice $T$ of cells we wish to fill in, such that whenever a cell is in $T$, so are all the cells above and left of it. (In other words, $T$ is a Young tableau.) The number of ways to fill in these cells with sets satisfying the inclusion conditions is $2^{|T|}$ \u0433\u0402\u201a\n\nAn example is shown below, with an indeterminate set marked in red (and the rest of $T$ marked in blue).\n$\\left[\\begin{array}{ccccc}1234 & 12345 & 123456 & 1234567 & 12345678 \\\\ 123 & 1234 & 12346 & 123467 & \\\\ 12 & 124 & 1234 \\text { or } 1246 & & \\\\ 1 & 12 & & & \\\\ \\varnothing & 2 & & & \\end{array}\\right]$\n\nProof. The proof is by induction on $|T|$, with $|T|=0$ being vacuous.\nNow suppose we have a corner $\\left[\\begin{array}{cc}B & C \\\\ A & S\\end{array}\\right]$ where $A, B, C$ are fixed and $S$ is to be chosen. Then we may write $B=A \\cup\\{x\\}$ and $C=A \\cup\\{x, y\\}$ for $x, y \\notin A$. Then the two choices of $S$ are $A \\cup\\{x\\}$ (i.e. $B$ ) and $A \\cup\\{y\\}$, and both of them are seen to be valid.\n\nIn this way, we gain a factor of $2$ any time we add one cell as above to $T$. Since we can achieve any Young tableau in this way, the induction is complete.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

@@ -1,0 +1,228 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2021
+    },
+    "problem": "Find all functions \\( f: \\mathbb{R}^{+} \\rightarrow \\mathbb{R} \\) and \\( g: \\mathbb{R}^{+} \\rightarrow \\mathbb{R} \\) such that\n\n\\[\nf\\left(x^{2}+y^{2}\\right)=g(x y)\n\\]\n\nholds for all \\( x, y \\in \\mathbb{R}^{+} \\).",
+    "problem_id": "BMOSL_2021_22",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Given any $u \\geqslant 2$, take $a, b \\in \\mathbb{R}^{+}$such that $a+b=u$ and $a b=1$. This is possible as the equation $x^{2}-u x+1$ for $u \\geqslant 2$ has two positive real solutions. (Discriminant is $u^{2}-4 \\geqslant 0$, sum and product of solutions are positive.) Now taking $x=\\sqrt{a}, y=\\sqrt{b}$ we get $f(u)=g(1)$. Now given any $t \\in \\mathbb{R}^{+}$, taking $x=t / 2, y=2$ we have\n\n$$\ng(t)=f\\left(\\frac{t^{2}}{4}+4\\right)=g(1)\n$$\nas $\\frac{t^{2}}{4}+4 \\geqslant 2$. So $g$ is constant. But since any real number can be written as a sum of two squares, then $f$ is constant as well. So there is a $c \\in \\mathbb{R}$ such that $f(x)=c$ and $g(x)=c$ for every $x \\in \\mathbb{R}^{+}$. Obviosuly any such pair of functions satisfies the equation.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof.  Let \\(f:\\mathbb R^+\\to\\mathbb R\\) and \\(g:\\mathbb R^+\\to\\mathbb R\\) satisfy\n\\[\n   f\\bigl(x^2+y^2\\bigr)\\;=\\;g(xy)\n   \\quad\\text{for all }x,y>0.\n\\]\nWe will show first that \\(f\\) must be constant on \\(\\mathbb R^+\\), and then deduce that \\(g\\) is the same constant.\n\n1.  Expressing \\(g\\) in terms of \\(f\\).  Take \\(x=y\\).  Then\n\\[\n   f\\bigl(x^2+x^2\\bigr)\n   \\;=\\;f(2x^2)\n   \\;=\\;g(x\\cdot x)\n   \\;=\\;g\\bigl(x^2\\bigr).\n\\]\nThus for every \\(t>0\\), setting \\(t=x^2\\) gives\n\\[\n   g(t)\\;=\\;f(2t).\n\\]\nIn particular \\(g\\) is completely determined by the values of \\(f\\) on the positive reals.\n\n2.  A functional equation for \\(f\\).  Substituting \\(g(t)=f(2t)\\) back into the original equation, we obtain\n\\[\n   f\\bigl(x^2+y^2\\bigr)\n   \\;=\\;g(xy)\n   \\;=\\;f\\bigl(2\\,xy\\bigr)\n   \\quad\\text{for all }x,y>0.\n\\]\nSet\n\\[\n   u=x^2,\\quad v=y^2,\n\\]\nso that \\(u>0\\), \\(v>0\\), and\n\\[\n   x^2+y^2\\;=\\;u+v,\\qquad 2\\,xy\\;=\\;2\\sqrt{uv}.\n\\]\nThe equation becomes\n\\[\n   f(u+v)\\;=\\;f\\bigl(2\\sqrt{uv}\\bigr)\n   \\quad\\text{for all }u>0,\\;v>0.\n\\]\n\n3.  \\(f\\) is constant.  Fix any two positive numbers \\(a,b>0\\).  We claim that \\(f(a)=f(b)\\).  There are two cases:\n\n  (i) If \\(a=b\\) then trivially \\(f(a)=f(b)\\).\n\n  (ii) If \\(a\\neq b\\), then without loss of generality assume \\(a>b\\).  We seek \\(u,v>0\\) such that\n  \\[\n    u+v=a,\n    \\qquad\n    2\\sqrt{uv}=b.\n  \\]\n  Equivalently \\(\\sqrt{uv}=b/2\\), so\n  \\[\n    uv=\\frac{b^2}{4},\n    \\qquad\n    u+v=a.\n  \\]\n  The numbers \\(u\\) and \\(v\\) are the roots of the quadratic\n  \\[\n    t^2 - a\\,t + \\frac{b^2}{4} \\;=\\;0.\n  \\]\n  Its discriminant is\n  \\[\n    \\Delta \\;=\\;a^2 \\;-\\; 4\\cdot\\frac{b^2}{4}\n    \\;=\\;a^2-b^2\n    \\;\\ge\\;0\n  \\]\n  because \\(a\\ge b\\).  Hence there are two real roots\n  \\[\n    u,\\;v\n    \\;=\\;\n    \\frac{a\\pm\\sqrt{a^2-b^2}}{2}.\n  \\]\n  Moreover their sum \\(u+v=a>0\\) and their product \\(uv=b^2/4>0\\), so both \\(u\\) and \\(v\\) are strictly positive.  We may therefore apply the functional equation\n  \\(f(u+v)=f(2\\sqrt{uv})\\) to conclude\n  \\[\n    f(a)\\;=\\;f(u+v)\\;=\\;f\\bigl(2\\sqrt{uv}\\bigr)\\;=\\;f(b).\n  \\]\nIn either case, \\(f(a)=f(b)\\).  Since \\(a,b>0\\) were arbitrary, \\(f\\) is constant on \\(\\mathbb R^+\\); say\n\\[\n   f(x)\\equiv C\n   \\quad\\text{for all }x>0,\n\\]\nwhere \\(C\\in\\mathbb R\\) is a fixed constant.\n\n4.  Determining \\(g\\).  From step 1 we have \\(g(t)=f(2t)\\).  Since \\(f(2t)=C\\) for all \\(t>0\\), it follows that\n\\[\n   g(t)\\equiv C\n   \\quad\\text{for all }t>0.\n\\]\n\n5.  Verification.  Finally, one checks easily that for any constant \\(C\\in\\mathbb R\\), the choice\n\\[\n   f(x)=C,\\quad g(y)=C\n   \\quad(\\forall x,y>0)\n\\]\nindeed satisfies \\(f(x^2+y^2)=C=g(xy)\\).  Hence these are all the solutions.\n\nAnswer.  The only solutions are\n\\[\n   f(x)\\equiv C,\\quad g(x)\\equiv C\n   \\quad\\text{for some constant }C\\in\\mathbb R.\n\\]\nThis completes the proof.  \u25a0",
+            "cost": {
+                "cost": 0.0265694,
+                "input_tokens": 402,
+                "output_tokens": 5938
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:33:11.622684",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof begins by setting x=y to show that g(t)=f(2t) for all t>0.  Substituting this back yields the equation f(x^2+y^2)=f(2xy), or equivalently f(u+v)=f(2\u221a(uv)) for all u,v>0.  To prove f is constant, the author shows that for any a,b>0 one can solve u+v=a and 2\u221a(uv)=b with u,v>0, giving f(a)=f(b).  It follows that f and hence g are constant, and these constant functions indeed satisfy the original equation.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:21:20.590554"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let \\( P(x, y) \\) be the assertion \\( f\\left(x^{2}+y^{2}\\right)=g(x y) \\). The functions \\(f\\) and \\(g\\) are defined on \\( \\mathbb{R}^{+} \\).\n\nStep 1: Relate \\( f \\) and \\( g \\).\nLet \\( x=y \\) in \\( P(x,x) \\). Since \\( x \\in \\mathbb{R}^{+} \\), this is allowed.\nThen \\( f(x^2+x^2) = g(x \\cdot x) \\), which simplifies to \\( f(2x^2) = g(x^2) \\).\nLet \\( t = x^2 \\). Since \\( x \\in \\mathbb{R}^{+} \\), \\( t \\) can take any value in \\( \\mathbb{R}^{+} \\).\nSo, for all \\( t \\in \\mathbb{R}^{+} \\), we have\n\\[ g(t) = f(2t) \\]\n\nStep 2: Rewrite the original equation in terms of \\( f \\) only.\nSubstitute \\( g(xy) = f(2xy) \\) (from Step 1, setting \\( t=xy \\)) into the original equation \\( f(x^2+y^2)=g(xy) \\).\nThis yields an equation involving only \\( f \\):\n\\[ f(x^2+y^2) = f(2xy) \\]\nThis equation holds for all \\( x, y \\in \\mathbb{R}^{+} \\).\n\nStep 3: Show that \\( f \\) is constant on intervals of the form \\( [c, \\infty) \\).\nLet \\( c \\in \\mathbb{R}^{+} \\) be an arbitrary positive real number.\nWe are looking for pairs \\( (x,y) \\) such that \\( 2xy = c \\). This means \\( y = \\frac{c}{2x} \\). Since \\( x, y \\in \\mathbb{R}^{+} \\), this requires \\( x > 0 \\) and \\( c/(2x) > 0 \\), which is true if \\( c>0 \\) and \\( x>0 \\).\nFor such pairs \\( (x,y) \\), the equation \\( f(x^2+y^2) = f(2xy) \\) becomes\n\\[ f\\left(x^2 + \\left(\\frac{c}{2x}\\right)^2\\right) = f(c) \\]\nLet \\( u = x^2 + \\left(\\frac{c}{2x}\\right)^2 = x^2 + \\frac{c^2}{4x^2} \\).\nLet \\( t' = x^2 \\). Since \\( x \\in \\mathbb{R}^{+} \\), \\( t' \\) can take any value in \\( \\mathbb{R}^{+} \\).\nSo, \\( u = h(t') = t' + \\frac{c^2}{4t'} \\) for \\( t' \\in \\mathbb{R}^{+} \\).\nWe want to find the range of \\( h(t') \\) for \\( t' \\in \\mathbb{R}^{+} \\).\nBy the AM-GM inequality, for \\( t' > 0 \\) and \\( \\frac{c^2}{4t'} > 0 \\):\n\\[ h(t') = t' + \\frac{c^2}{4t'} \\ge 2 \\sqrt{t' \\cdot \\frac{c^2}{4t'}} = 2 \\sqrt{\\frac{c^2}{4}} = 2 \\left(\\frac{c}{2}\\right) = c \\]\nEquality holds if and only if \\( t' = \\frac{c^2}{4t'} \\), which means \\( 4t'^2 = c^2 \\). Since \\( t' > 0 \\) and \\( c > 0 \\), we have \\( 2t' = c \\), so \\( t' = c/2 \\).\nThe function \\( h(t') \\) is continuous on \\( \\mathbb{R}^{+} \\).\nAs \\( t' \\to 0^{+} \\), \\( h(t') = t' + \\frac{c^2}{4t'} \\to \\infty \\).\nAs \\( t' \\to \\infty \\), \\( h(t') = t' + \\frac{c^2}{4t'} \\to \\infty \\).\nSince \\( h(c/2)=c \\) is the minimum value of \\( h(t') \\), and \\( h(t') \\) is continuous and tends to \\( \\infty \\) at both ends of its domain of definition \\( (0, \\infty) \\), by the Intermediate Value Theorem, the range of \\( h(t') \\) is \\( [c, \\infty) \\).\nThus, for any \\( c \\in \\mathbb{R}^{+} \\), the equation \\( f(u) = f(c) \\) holds for all \\( u \\in [c, \\infty) \\).\n\nStep 4: Show that \\( f \\) is a constant function.\nLet \\( c_1, c_2 \\in \\mathbb{R}^{+} \\). We want to show that \\( f(c_1) = f(c_2) \\).\nFrom Step 3, we know that for any \\( c \\in \\mathbb{R}^{+} \\), \\( f(u) = f(c) \\) for all \\( u \\in [c, \\infty) \\).\n\nCase 1: \\( c_1 = c_2 \\). Then \\( f(c_1)=f(c_2) \\) trivially.\nCase 2: \\( c_1 < c_2 \\).\nSet \\( c = c_1 \\). Then \\( f(u) = f(c_1) \\) for all \\( u \\in [c_1, \\infty) \\).\nSince \\( c_2 > c_1 \\), it follows that \\( c_2 \\in [c_1, \\infty) \\). Therefore, we can set \\( u=c_2 \\), which gives \\( f(c_2) = f(c_1) \\).\nCase 3: \\( c_1 > c_2 \\).\nSet \\( c = c_2 \\). Then \\( f(u) = f(c_2) \\) for all \\( u \\in [c_2, \\infty) \\).\nSince \\( c_1 > c_2 \\), it follows that \\( c_1 \\in [c_2, \\infty) \\). Therefore, we can set \\( u=c_1 \\), which gives \\( f(c_1) = f(c_2) \\).\n\nIn all cases, \\( f(c_1)=f(c_2) \\) for arbitrary \\( c_1, c_2 \\in \\mathbb{R}^{+} \\).\nThis means that \\( f \\) must be a constant function. Let \\( K \\in \\mathbb{R} \\) be this constant.\nSo, \\( f(x) = K \\) for all \\( x \\in \\mathbb{R}^{+} \\).\n\nStep 5: Determine \\( g \\).\nFrom Step 1, we have the relation \\( g(t) = f(2t) \\) for all \\( t \\in \\mathbb{R}^{+} \\).\nSince \\( f(x) = K \\) for all \\( x \\in \\mathbb{R}^{+} \\), it follows that \\( f(2t) = K \\) for all \\( t \\in \\mathbb{R}^{+} \\) (as \\( 2t \\in \\mathbb{R}^{+} \\) if \\( t \\in \\mathbb{R}^{+} \\)).\nTherefore, \\( g(t) = K \\) for all \\( t \\in \\mathbb{R}^{+} \\).\n\nStep 6: Verify the solution.\nThe proposed solution is \\( f(x) = K \\) and \\( g(x) = K \\) for all \\( x \\in \\mathbb{R}^{+} \\), for some constant \\( K \\in \\mathbb{R} \\).\nSubstitute these into the original equation \\( f(x^2+y^2) = g(xy) \\):\nThe left side is \\( f(x^2+y^2) = K \\), since \\( x^2+y^2 \\in \\mathbb{R}^{+} \\) for \\( x,y \\in \\mathbb{R}^{+} \\).\nThe right side is \\( g(xy) = K \\), since \\( xy \\in \\mathbb{R}^{+} \\) for \\( x,y \\in \\mathbb{R}^{+} \\).\nSo the equation becomes \\( K=K \\), which is true for any \\( x,y \\in \\mathbb{R}^{+} \\) and any constant \\( K \\in \\mathbb{R} \\).\n\nConclusion:\nThe functions \\( f: \\mathbb{R}^{+} \\rightarrow \\mathbb{R} \\) and \\( g: \\mathbb{R}^{+} \\rightarrow \\mathbb{R} \\) that satisfy the given equation are constant functions, i.e., \\( f(x) = K \\) and \\( g(x) = K \\) for all \\( x \\in \\mathbb{R}^{+} \\), where \\( K \\) is an arbitrary real constant.\n\nThe final answer is $\\boxed{f(x) = c, g(x) = c \\text{ for any constant } c \\in \\mathbb{R}}$.",
+            "cost": {
+                "cost": 0.146845,
+                "input_tokens": 396,
+                "output_tokens": 14635
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:46:57.411671",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof first sets x=y in the equation to obtain g(t)=f(2t). Substituting back gives f(x^2+y^2)=f(2xy). For an arbitrary c>0, it considers pairs with 2xy=c and analyzes h(t)=t + c^2/(4t) to show h maps (0,\u221e) onto [c,\u221e), so f is constant on [c,\u221e). By comparing overlapping intervals [c1,\u221e) and [c2,\u221e), it concludes f is constant on all of \u211d\u207a, hence g is also constant.",
+                    "issues": [
+                        {
+                            "location": "Step 3",
+                            "text": "By the Intermediate Value Theorem, the range of \\(h(t')\\) is \\([c, \\infty)\\).",
+                            "description": "The proof implicitly invokes the Intermediate Value Theorem to conclude that the continuous function \\(h(t')=t'+c^2/(4t')\\) attains every value \u2265 c, but does not state or justify the continuity hypothesis or the connectedness of the domain required for IVT.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2423,
+                            "end_index": 2504
+                        },
+                        {
+                            "location": "Step 3",
+                            "text": "As \\(t' \\to 0^{+}\\), \\(h(t') \\to \\infty\\); as \\(t' \\to \\infty\\), \\(h(t')\\to\\infty\\).",
+                            "description": "The proof asserts the endpoint behavior of \\(h(t')\\) without computing the limits or providing justification for why these limits hold.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2108,
+                            "end_index": 2208
+                        },
+                        {
+                            "location": "Step 1",
+                            "text": "Let \\(t = x^2\\). Since \\(x \\in \\mathbb{R}^{+}\\), \\(t\\) can take any value in \\(\\mathbb{R}^{+}\\). So, for all \\(t \\in \\mathbb{R}^{+}\\), we have \\(g(t) = f(2t)\\).",
+                            "description": "The proof assumes without comment that the map \\(x\\mapsto x^2\\) is surjective onto \\(\\mathbb{R}^{+}\\); while true, this elementary fact is not justified.",
+                            "category": "Oversimplification",
+                            "start_index": 343,
+                            "end_index": 509
+                        },
+                        {
+                            "location": "Step 2",
+                            "text": "Substitute \\(g(xy) = f(2xy)\\) into the original equation.",
+                            "description": "The proof does not explicitly justify that the product map \\((x,y)\\mapsto xy\\) covers every positive real number, which is needed to conclude the substitution holds for all arguments of \\(g\\).",
+                            "category": "Oversimplification",
+                            "start_index": 4181,
+                            "end_index": 4224
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:22:18.206001"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "The task is to find all functions \\( f: \\mathbb{R}^{+} \\rightarrow \\mathbb{R} \\) and \\( g: \\mathbb{R}^{+} \\rightarrow \\mathbb{R} \\) such that \\( f(x^{2} + y^{2}) = g(xy) \\) holds for all \\( x, y \\in \\mathbb{R}^{+} \\).\n\nTo solve this, begin by substituting specific values to explore the relationship between \\( f \\) and \\( g \\). Set \\( y = x \\), where \\( x > 0 \\). Then the equation becomes:\n\\[\nf(x^{2} + x^{2}) = g(x \\cdot x) \\implies f(2x^{2}) = g(x^{2}).\n\\]\nLet \\( t = x^{2} \\). Since \\( x > 0 \\), \\( t > 0 \\), and the equation can be rewritten as:\n\\[\ng(t) = f(2t) \\quad \\text{for all} \\quad t > 0.\n\\]\nThis establishes a direct relationship between \\( g \\) and \\( f \\). Substitute this back into the original equation:\n\\[\nf(x^{2} + y^{2}) = g(xy) = f(2 \\cdot xy).\n\\]\nThus, the equation simplifies to:\n\\[\nf(x^{2} + y^{2}) = f(2xy) \\quad \\text{for all} \\quad x, y > 0.\n\\]\nThis implies that \\( f \\) takes the same value at \\( x^{2} + y^{2} \\) and \\( 2xy \\) for all positive \\( x \\) and \\( y \\).\n\nConsider the expression \\( x^{2} + y^{2} - 2xy = (x - y)^{2} \\), so:\n\\[\nx^{2} + y^{2} = (x - y)^{2} + 2xy.\n\\]\nThe equation \\( f(x^{2} + y^{2}) = f(2xy) \\) becomes:\n\\[\nf((x - y)^{2} + 2xy) = f(2xy).\n\\]\nFix \\( c = 2xy > 0 \\). Then \\( x^{2} + y^{2} = (x - y)^{2} + c \\). The goal is to determine the range of \\( x^{2} + y^{2} \\) when \\( 2xy = c \\) is fixed.\n\nSet \\( k = xy = c/2 \\). Then \\( y = k/x \\), and:\n\\[\nx - y = x - \\frac{k}{x}.\n\\]\nAs \\( x > 0 \\) varies, \\( x - k/x \\) ranges over all real numbers. As \\( x \\to 0^{+} \\), \\( y \\to \\infty \\), and \\( x - y \\to -\\infty \\). As \\( x \\to \\infty \\), \\( y \\to 0 \\), and \\( x - y \\to \\infty \\). At \\( x = \\sqrt{k} \\), \\( y = \\sqrt{k} \\), and \\( x - y = 0 \\). Thus, \\( (x - y)^{2} \\) ranges over \\( [0, \\infty) \\).\n\nTherefore, when \\( 2xy = c \\), \\( x^{2} + y^{2} = (x - y)^{2} + c \\) ranges over \\( [c, \\infty) \\). Since \\( f(x^{2} + y^{2}) = f(2xy) = f(c) \\) and \\( x^{2} + y^{2} \\) covers \\( [c, \\infty) \\), it follows that:\n\\[\nf(w) = f(c) \\quad \\text{for all} \\quad w \\geq c.\n\\]\nThis holds for any fixed \\( c > 0 \\), meaning \\( f \\) is constant on \\( [c, \\infty) \\) for each \\( c > 0 \\).\n\nNow consider any two positive numbers \\( a \\) and \\( b \\). Assume without loss of generality that \\( a < b \\). Since \\( b \\geq a \\), and \\( f(w) = f(a) \\) for all \\( w \\geq a \\), it follows that:\n\\[\nf(b) = f(a).\n\\]\nIf \\( b < a \\), then similarly \\( f(a) = f(b) \\). Thus, \\( f(a) = f(b) \\) for all \\( a, b > 0 \\), so \\( f \\) is constant on \\( \\mathbb{R}^{+} \\).\n\nSuppose \\( f(x) = k \\) for some constant \\( k \\in \\mathbb{R} \\) and all \\( x > 0 \\). Then from \\( g(t) = f(2t) \\), it follows that \\( g(t) = k \\) for all \\( t > 0 \\). Check the original equation:\n\\[\nf(x^{2} + y^{2}) = k = g(xy),\n\\]\nwhich holds for all \\( x, y > 0 \\).\n\nTo confirm these are the only solutions, suppose there exists a non-constant \\( f \\). Then there exist \\( a, b > 0 \\) with \\( f(a) \\neq f(b) \\). Assume \\( a < b \\). However, as shown, \\( f(b) = f(a) \\), leading to a contradiction. Thus, no non-constant \\( f \\) satisfies the equation.\n\nTherefore, the only solutions are when both \\( f \\) and \\( g \\) are constant functions with the same constant value.\n\n\\[\n\\boxed{\\text{All constant functions } f \\text{ and } g \\text{ such that } f(x) \\,=\\, c \\quad \\text{and} \\quad g(x) \\,=\\, c \\quad \\text{for some constant } c \\in \\mathbb{R} \\text{ and for all } x > 0.} \\]",
+            "cost": {
+                "cost": 0.0029565,
+                "input_tokens": 380,
+                "output_tokens": 5685
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:00:15.789757",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof first sets y=x to obtain f(2x\u00b2)=g(x\u00b2), hence g(t)=f(2t) for all t>0. Substituting back gives f(x\u00b2+y\u00b2)=f(2xy), so for any fixed c=2xy the quantity x\u00b2+y\u00b2 ranges over [c,\u221e), implying f is constant on each ray [c,\u221e). By comparing any two positive arguments a,b one sees f(a)=f(b), so f is constant on \u211d\u207a. Then g(t)=f(2t) is also constant, and constant functions satisfy the original equation. It concludes no nonconstant solutions exist.",
+                    "issues": [
+                        {
+                            "location": "Where the proof asserts the range of x\u2212y",
+                            "text": "As \\(x \\to 0^{+}\\), \\(y \\to \\infty\\), and \\(x - y \\to -\\infty\\). As \\(x \\to \\infty\\), \\(y \\to 0\\), and \\(x - y \\to \\infty\\). Thus, \\(x - y\\) ranges over \\(\\mathbb{R}\\).",
+                            "description": "The proof claims that \\(x-y\\) covers all real values based solely on endpoint behavior, without justifying continuity of the function or invoking the intermediate value theorem.",
+                            "category": "Oversimplification",
+                            "start_index": 1499,
+                            "end_index": 1655
+                        },
+                        {
+                            "location": "Conclusion that f is constant on [c,\u221e)",
+                            "text": "Since \\(f(x^{2}+y^{2}) = f(c)\\) and \\(x^{2}+y^{2}\\) covers \\([c,\\infty)\\), it follows that:\n\n\\[ f(w) = f(c) \\quad \\text{for all} \\quad w \\ge c.\\]",
+                            "description": "The proof omits a detailed construction (e.g. solving a quadratic) showing that for every \\(w\\ge c\\) there indeed exist \\(x,y>0\\) with \\(2xy=c\\) and \\(x^2+y^2=w\\), relying instead on a heuristic range argument.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1856,
+                            "end_index": 2020
+                        },
+                        {
+                            "location": "Argument extending constancy from each ray to all of \u211d\u207a",
+                            "text": "Since \\(b \\ge a\\), and \\(f(w) = f(a)\\) for all \\(w \\ge a\\), it follows that:\n\n\\[ f(b) = f(a).\\]\nIf \\(b < a\\), then similarly \\(f(a) = f(b)\\).",
+                            "description": "The step that uses a brief WLOG argument to extend constancy from every interval \\([c,\\infty)\\) to the entire domain is presented too tersely, without fully unpacking the logic.",
+                            "category": "Oversimplification",
+                            "start_index": 2244,
+                            "end_index": 2396
+                        },
+                        {
+                            "location": "Derivation of g(t)=f(2t)",
+                            "text": "Let \\(t = x^{2}\\). Since \\(x > 0\\), \\(t > 0\\), and the equation can be rewritten as:\n\n\\[ g(t) = f(2t) \\quad \\text{for all} \\quad t > 0.\\]",
+                            "description": "The proof assumes without comment that every positive real \\(t\\) arises as \\(x^2\\) for some \\(x>0\\), which, while elementary, should be explicitly justified for completeness.",
+                            "category": "Oversimplification",
+                            "start_index": 461,
+                            "end_index": 599
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:22:15.260148"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Solution.\n\nLet  \n\nf : (0,\\infty)\\to\\mathbb R , \\qquad  \ng : (0,\\infty)\\to\\mathbb R  \n\nsatisfy  \n\n(1)\u2003\u2003f(x^{2}+y^{2}) = g(xy)\u2003\u2003for all x , y > 0 .\n\n--------------------------------------------------------------------\n1.  The equation with x = y\n--------------------------------------------------------------------\n\nPut x = y in (1).  \nThen\n\nf(2x^{2}) = g(x^{2})\\qquad\\text{for every }x>0.          (2)\n\nWith the change of variable t = x^{2}\\;(t>0) we obtain\n\ng(t) = f(2t)\\qquad\\text{for every }t>0.                  (3)\n\nThus g is completely determined by f.  \nInsert (3) back into (1):\n\nf(x^{2}+y^{2}) = f\\bigl(2xy\\bigr)\\qquad\\text{for all }x,y>0.    (4)\n\nOur task is now to find all f for which (4) holds.\n\n--------------------------------------------------------------------\n2.  Equal values of f at two arbitrary positive numbers\n--------------------------------------------------------------------\n\nTake any two positive numbers\n\na > b > 0.                                               (5)\n\nWe show that there exist positive x , y with\n\nx^{2}+y^{2}=a ,\\qquad 2xy = b.                           (6)\n\nIndeed, set  \n\nS = x+y,\\qquad P = xy.\n\nBecause x^{2}+y^{2} = (x+y)^{2}-2xy, system (6) is equivalent to  \n\nS^{2}-2P = a ,\\qquad 2P = b.\n\nHence  \n\nS^{2} = a + b,\\qquad P = \\dfrac{b}{2}.                  (7)\n\nLet  \n\nS = \\sqrt{a+b}\\;(>0),\\qquad P = \\dfrac{b}{2}.\n\nThe quadratic equation  \n\nt^{2}-St+P = 0                                           (8)\n\nhas discriminant  \n\n\u0394 = S^{2}-4P = (a+b)-2b = a-b > 0,\n\nso it possesses two distinct real roots\n\nx=\\dfrac{S+\\sqrt{\u0394}}{2},\\qquad y=\\dfrac{S-\\sqrt{\u0394}}{2}. (9)\n\nBecause 0<\\sqrt{\u0394}<S, both x and y given by (9) are positive.  \nThus for every ordered pair (a,b) with a>b>0 we have produced\nx,y>0 satisfying (6).\n\n--------------------------------------------------------------------\n3.  f is constant on (0,\u221e)\n--------------------------------------------------------------------\n\nApply (4) to the pair (x,y) obtained in \u00a72. By (6),\n\nf(a)=f(x^{2}+y^{2}) = f(2xy)=f(b).\n\nHence f takes the same value at every two numbers a>b>0.\nConsequently,\n\nf(u)=f(v)\\quad\\text{for all }u,v>0,\n\nso f is constant on (0,\\infty). Say f(x)\u2261c for some real constant c.\n\n--------------------------------------------------------------------\n4.  Determination of g\n--------------------------------------------------------------------\n\nUsing (3) we get g(t)=f(2t)=c for every t>0.  \nTherefore g, too, is the constant function g(x)\u2261c.\n\n--------------------------------------------------------------------\n5.  Verification\n\nFor any constant c\u2208\\mathbb R,\n\nf(x)=c,\\qquad g(x)=c\\qquad(x>0)\n\nsatisfy (1) because both sides equal c for all positive x,y.\n\n--------------------------------------------------------------------\n6.  Conclusion\n--------------------------------------------------------------------\n\nThe only solutions are the constant pairs\n\nf(x)=c,\\quad g(x)=c\\qquad\\bigl(c\\in\\mathbb R,\\;x>0\\bigr).\n\nNo non-constant functions meet the required identity. \u220e",
+            "cost": {
+                "cost": 0.09414,
+                "input_tokens": 402,
+                "output_tokens": 2253
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:34:50.440989",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof first sets x = y to obtain f(2x\u00b2) = g(x\u00b2), so g(t) = f(2t). Substituting back yields f(x\u00b2 + y\u00b2) = f(2xy). For arbitrary a > b > 0 it solves the system x\u00b2 + y\u00b2 = a, 2xy = b by introducing S = x + y and P = xy and solving a quadratic, giving f(a) = f(b). Hence f is constant on \u211d\u207a, and then g(t) = f(2t) is also constant. Finally, it verifies that any constant pair (f \u2261 c, g \u2261 c) satisfies the original equation.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:21:54.465780"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the functional equation\n\n$$\nf(x^2 + y^2) = g(xy)\n$$\n\nfor all $ x, y \\in \\mathbb{R}^+ $, we aim to find all functions $ f: \\mathbb{R}^+ \\to \\mathbb{R} $ and $ g: \\mathbb{R}^+ \\to \\mathbb{R} $ satisfying this identity.\n\n---\n\n### Step 1: Use symmetry and substitution\n\nWe begin by substituting $ x = y $. Then the equation becomes:\n\n$$\nf(x^2 + x^2) = f(2x^2) = g(x \\cdot x) = g(x^2)\n$$\n\nThis gives us the relation:\n\n$$\nf(2x^2) = g(x^2)\n$$\n\nLet $ t = x^2 $, which is positive since $ x > 0 $. Then we can write:\n\n$$\nf(2t) = g(t)\n$$\n\nThis is a crucial identity: it expresses $ g $ in terms of $ f $. So we now know:\n\n$$\ng(x) = f(2x) \\quad \\text{for all } x > 0\n$$\n\n---\n\n### Step 2: Substitute back into the original equation\n\nUsing the relation $ g(x) = f(2x) $, the original equation becomes:\n\n$$\nf(x^2 + y^2) = f(2xy)\n$$\n\nThis equation must hold for all $ x, y > 0 $. So for any $ x, y > 0 $, we have:\n\n$$\nf(x^2 + y^2) = f(2xy)\n$$\n\nLet us define $ a = x^2 + y^2 $ and $ b = 2xy $. Then the equation becomes:\n\n$$\nf(a) = f(b)\n$$\n\nWe now analyze the relationship between $ a $ and $ b $. Since $ x, y > 0 $, we have:\n\n$$\na = x^2 + y^2 \\geq 2xy = b\n$$\n\nby the **AM-GM inequality**, with equality if and only if $ x = y $.\n\nSo for any $ x, y > 0 $, we have $ a \\geq b $, and $ f(a) = f(b) $. This suggests that $ f $ is constant on intervals where $ a \\geq b $, but we need to determine whether this forces $ f $ to be constant on all of $ \\mathbb{R}^+ $.\n\n---\n\n### Step 3: Use a substitution to generalize the identity\n\nLet us now consider the substitution $ y = kx $, where $ k > 0 $. Then:\n\n$$\nx^2 + y^2 = x^2 + (kx)^2 = x^2(1 + k^2)\n$$\n$$\n2xy = 2x(kx) = 2kx^2\n$$\n\nSo the equation becomes:\n\n$$\nf(x^2(1 + k^2)) = f(2kx^2)\n$$\n\nLet $ t = x^2 > 0 $, so we have:\n\n$$\nf(t(1 + k^2)) = f(2kt)\n$$\n\nNow define $ c = \\frac{1 + k^2}{2k} $, so that:\n\n$$\nf(ct) = f(t)\n$$\n\nNote that $ c \\geq 1 $ for all $ k > 0 $, since:\n\n$$\n\\frac{1 + k^2}{2k} \\geq 1 \\iff k^2 - 2k + 1 \\geq 0 \\iff (k - 1)^2 \\geq 0\n$$\n\nThis is always true. Therefore, for all $ t > 0 $ and $ c \\geq 1 $, we have:\n\n$$\nf(ct) = f(t)\n$$\n\n---\n\n### Step 4: Use this identity to deduce that $ f $ is constant\n\nNow, fix any $ t > 0 $, and consider any $ z > t $. Then we can write $ z = c t $ for some $ c > 1 $, so:\n\n$$\nf(z) = f(ct) = f(t)\n$$\n\nSo $ f(z) = f(t) $ for all $ z > t $. Since $ t $ was arbitrary, this implies that $ f $ is constant on the entire domain $ \\mathbb{R}^+ $.\n\nLet $ f(x) = C $ for some constant $ C \\in \\mathbb{R} $. Then from the earlier identity $ g(x) = f(2x) $, we get:\n\n$$\ng(x) = f(2x) = C\n$$\n\nThus, both $ f $ and $ g $ are constant functions.\n\n---\n\n### Step 5: Verify that constant functions satisfy the original equation\n\nLet $ f(x) = C $ and $ g(x) = C $ for all $ x > 0 $. Then:\n\n$$\nf(x^2 + y^2) = C, \\quad g(xy) = C\n$$\n\nSo the equation $ f(x^2 + y^2) = g(xy) $ is satisfied for all $ x, y > 0 $.\n\n---\n\n### Final Conclusion\n\nWe have shown that the only functions $ f $ and $ g $ that satisfy the equation for all $ x, y > 0 $ are constant functions. Moreover, they must be equal.\n\n$$\n\\boxed{f(x) = C}, \\quad \\boxed{g(x) = C}\n$$\n\nfor some constant $ C \\in \\mathbb{R} $.",
+            "cost": {
+                "cost": 0.0035632,
+                "input_tokens": 407,
+                "output_tokens": 5803
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:41:06.168614",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof begins by setting x=y to obtain g(t)=f(2t), then substitutes g(x)=f(2x) into the original equation to get f(x^2+y^2)=f(2xy).  Noting by AM\u2013GM that x^2+y^2\u22652xy, it deduces f(a)=f(b) whenever a=x^2+y^2 and b=2xy.  Introducing y=kx shows f((1+k^2)t)=f(2kt), so f(ct)=f(t) for c=(1+k^2)/(2k)\u22651.  Finally, writing any z>t as z=ct, it concludes that f (and hence g) is constant on \u211d\u207a.",
+                    "issues": [
+                        {
+                            "location": "Step 3\u20134",
+                            "text": "Therefore, for all \\(t>0\\) and \\(c\\ge1\\), we have \\(f(ct)=f(t)\\).",
+                            "description": "The proof only establishes this identity for values of \\(c\\) of the form \\((1+k^2)/(2k)\\), but then overgeneralizes to all \\(c\\ge1\\) without proving that every such \\(c\\) arises from some \\(k>0\\).",
+                            "category": "Overgeneralization",
+                            "start_index": 2013,
+                            "end_index": 2084
+                        },
+                        {
+                            "location": "Step 4",
+                            "text": "Then we can write \\(z=ct\\) for some \\(c>1\\), so \\(f(z)=f(ct)=f(t)\\).",
+                            "description": "This step relies on the unproven claim that \\(f(ct)=f(t)\\) for arbitrary \\(c>1\\) and does not justify the existence of a corresponding \\(k\\) for each \\(c\\).",
+                            "category": "Overgeneralization",
+                            "start_index": 2211,
+                            "end_index": 2287
+                        },
+                        {
+                            "location": "Step 3",
+                            "text": "Let \\(c=\\frac{1+k^2}{2k}\\), so that \\(f(ct)=f(t)\\).",
+                            "description": "The proof omits the inversion argument\u2014that for any given \\(c\\ge1\\) one can solve \\((1+k^2)/(2k)=c\\) for a positive \\(k\\)\u2014leaving a gap in showing the relation holds for all scaling factors.",
+                            "category": "Oversimplification",
+                            "start_index": 1804,
+                            "end_index": 1856
+                        },
+                        {
+                            "location": "Conclusion of constantness",
+                            "text": "",
+                            "description": "The argument shows \\(f(z)=f(t)\\) whenever \\(z>t\\) but does not explicitly address the case \\(z<t\\), although symmetry would cover it.",
+                            "category": "Missing Edge Cases"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:22:25.002807"
+            }
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2017
+    },
+    "problem": "Find all the functions \\( f: \\mathbb{N} \\rightarrow \\mathbb{N} \\) such that:\n\n\\[\nn+f(m) \\mid f(n)+n f(m)\n\\]\n\nfor any \\( m, n \\in \\mathbb{N} \\).",
+    "problem_id": "BMOSL_2017_3",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "We will consider $2$ cases, whether the range of the functions is infinite or finite or in other words the function take infinite or finite values.\nCase 1. The Function has an infinite range. Let's fix a random natural number $n$ and let $m$ be any natural number. Then using (1) we have\n\n$$\nn+f(m)\\left|f(n)+n f(m)=f(n)-n^{2}+n(f(m)+n) \\quad \\Rightarrow \\quad n+f(m)\\right| f(n)-n^{2}\n$$\n\nSince $n$ is a fixed natural number, then $f(n)-n^{2}$ is as well a fixed natural number, and since the above results is true for any $m$ and the function $f$ has an infinite range, we can choose $m$ such that $n+f(m)>\\left|f(n)-n^{2}\\right|$. This implies that $f(n)=n^{2}$ for any natural number $n$. We now check that it is a solution. Since\n\n$$\nn+f(m)=n+m^{2}\n$$\nand\n$$\nf(n)+n f(m)=n^{2}+n m^{2}=n\\left(n+m^{2}\\right)\n$$\n\nit is straightforward that $n+f(m) \\mid f(n)+n f(m)$\nCase 2. The Function has a finite range. Since the function takes finite values, then it exists a natural number $k$ such that $\\mathrm{I} \\leq f(n) \\leq k$ for any natural number $n$. It is clear that it exists at least one natural number $s$ (where $1 \\leq s \\leq k$ ) such that $f(n)=s$ for infinite natural numbers $n$. Let $m, n$ be any natural numbers such that $f(m)=f(n)=s$. Using (1) we have\n\n$$\nn+s\\left|s+n s=s-s^{2}+s(n+s) \\Rightarrow n+s\\right| s^{2}-s\n$$\n\nSince this is true for any natural number $n$ such that $f(n)=s$ and since exist infinite natural numbers $n$ such that $f(n)=s$, we can choose the natural number $n$ such that $n+s>s^{2}-s$, which implies that $s^{2}=s \\Rightarrow s=1$, or in other words $f(n)=1$ for an infinite natural number n\nLet's fix a random natural number $m$ and let $n$ be any natural number $f(n)=1$. Then using (1) we have\n\n$$\nn+f(m)\\left|1+n f(m)=1-(f(m))^{2}+f(m)(n+f(m)) \\Rightarrow n+f(m)\\right|(f(m))^{2}-1\n$$\n\nSince $m$ is a fixed a random natural number, then $(f(m))^{2}-1$ is a fixed non-negative integer and since $n$ is any natural nummber such that $f(n)=1$ and since exist infinite numbers $n$ such that $f(n)=1$, we can choose the the natural number $n$ such that $n+f(m)>(f(m))^{2}-1$. This implies $f(m)=1$ for any natural number $m$. We now check that it is a solution. Since\n\n$$\nn+f(m)=n+1\n$$\nand\n$$\nf(n)+n f(m)=1+n\n$$\n\nit is straightforward that $n+f(m) \\mid f(n)+n f(m)$.\nSo, all the functions that satisfy the given condition are $f(n)=n^{2}$ for any $n \\in \\mathbb{N}$ or $f(n)=1$ for any $n \\in \\mathbb{N}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

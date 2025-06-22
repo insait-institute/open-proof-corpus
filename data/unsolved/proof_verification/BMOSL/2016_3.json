@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.89,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2016
+    },
+    "problem": "Find all monotonic functions \\( f: \\mathbb{R} \\rightarrow \\mathbb{R} \\) satisfying the condition: for every real number \\( x \\) and every natural number \\( n \\)\n\n\\[\n\\left|\\sum_{i=1}^{n} i\\left(f(x+i+1)-f^{2}(x+i)\\right)\\right|<C\n\\]\n\nwhere \\( C>0 \\) is independent of \\( x \\) and \\( f^{2}(x)=f(f(x)) \\).",
+    "problem_id": "BMOSL_2016_3",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. From the condition of the problem we get $\\left|\\sum_{i=1}^{n-1} i\\left(f(x+i+1)-f^{2}(x+i)\\right)\\right|<C$. Then $\\left|n\\left(f(x+n+1)-f^{2}(x+n)\\right)\\right|=\\left|\\sum_{i=1}^{n} i\\left(f(x+i+1)-f^{2}(x+i)\\right)-\\sum_{i=1}^{n-1} i\\left(f(x+i+1)-f^{2}(x+i)\\right)\\right|<2 C$ implying $\\left|f(x+n+1)-f^{2}(x+n)\\right|<\\frac{2 C}{n}$ for every real number $x$ and every natural number $n$. Let $y \\in \\mathbb{R}$ be arbitrary. Then there exists $x$ such that $y=x+n$. We obtain $\\left|f(y+1)-f^{2}(y)\\right|<\\frac{2 C}{n}$ for every real number $y$ and every natural number $n$. The last inequality holds for every natural number $n$ from where $f(y+1)=f^{2}(y)$ for every $y \\in \\mathbb{R}$. The function $f$ is monotonic which implies that it is an injection and the latter implies $f(y)=y+1$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

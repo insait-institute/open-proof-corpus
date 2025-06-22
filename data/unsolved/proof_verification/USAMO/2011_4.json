@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.22,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2011
+    },
+    "problem": "Consider the assertion that for each positive integer \\( n \\geq 2 \\), the remainder upon dividing \\( 2^{2^{n}} \\) by \\( 2^{n}-1 \\) is a power of \\( 4 \\). Either prove the assertion or find (with proof) a counterexample.",
+    "problem_id": "USAMO_2011_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nConsider the assertion that for each positive integer $n \\geq 2$, the remainder upon dividing $2^{2^{n}}$ by $2^{n}-1$ is a power of $4$. Either prove the assertion or find (with proof) a counterexample.\n\nWe claim $n=25$ is a counterexample. Since $2^{25} \\equiv 2^{0}\\left(\\bmod 2^{25}-1\\right)$, we have\n\n$$\n2^{2^{25}} \\equiv 2^{2^{25} \\bmod 25} \\equiv 2^{7} \\bmod 2^{25}-1\n$$\nand the right-hand side is actually the remainder, since $0<2^{7}<2^{25}$. But $2^{7}$ is not a power of $4$.\n\nRemark. Really, the problem is just equivalent for asking $2^{n}$ to have odd remainder when divided by $n$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

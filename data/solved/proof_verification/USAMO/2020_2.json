@@ -1,0 +1,290 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.4,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2020
+    },
+    "problem": "2. An empty $2020 \\times 2020 \\times 2020$ cube is given, and a $2020 \\times 2020$ grid of square unit cells is drawn on each of its six faces. A beam is a $1 \\times 1 \\times 2020$ rectangular prism. Several beams are placed inside the cube subject to the following conditions:\n\n- The two $1 \\times 1$ faces of each beam coincide with unit cells lying on opposite faces of the cube. (Hence, there are $3 \\cdot 2020^{2}$ possible positions for a beam.)\n- No two beams have intersecting interiors.\n- The interiors of each of the four $1 \\times 2020$ faces of each beam touch either a face of the cube or the interior of the face of another beam.\n\nWhat is the smallest positive number of beams that can be placed to satisfy these conditions?",
+    "problem_id": "USAMO_2020_2",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nAn empty $2020 \\times 2020 \\times 2020$ cube is given, and a $2020 \\times 2020$ grid of square unit cells is drawn on each of its six faces. A beam is a $1 \\times 1 \\times 2020$ rectangular prism. Several beams are placed inside the cube subject to the following conditions:\n\n- The two $1 \\times 1$ faces of each beam coincide with unit cells lying on opposite faces of the cube. (Hence, there are $3 \\cdot 2020^{2}$ possible positions for a beam.)\n- No two beams have intersecting interiors.\n- The interiors of each of the four $1 \\times 2020$ faces of each beam touch either a face of the cube or the interior of the face of another beam.\n\nWhat is the smallest positive number of beams that can be placed to satisfy these conditions?\n\n\u0433\u0402\u0452 Answer. $3030$ beams.\n\u0433\u0402\u0452 Construction. We first give a construction with $3 n / 2$ beams for any $n \\times n \\times n$ box, where $n$ is an even integer. Shown below is the construction for $n=6$, which generalizes. (The left figure shows the cube in 3d; the right figure shows a direct view of the three visible faces.)\n\n\n\n\nRight face\n\nTo be explicit, impose coordinate axes such that one corner of the cube is the origin. We specify a beam by two opposite corners. The $3 n / 2$ beams come in three directions, $n / 2$ in each direction:\n\n- $(0,0,0) \\rightarrow(1,1, n),(2,2,0) \\rightarrow(3,3, n),(4,4,0) \\rightarrow(5,5, n)$, and so on;\n- $(1,0,0) \\rightarrow(2, n, 1),(3,0,2) \\rightarrow(4, n, 3),(5,0,4) \\rightarrow(6, n, 5)$, and so on;\n- $(0,1,1) \\rightarrow(n, 2,2),(0,3,3) \\rightarrow(n, 4,4),(0,5,5) \\rightarrow(n, 6,6)$, and so on.\n\nThis gives the figure we drew earlier and shows $3030$ beams is possible.\n\nNecessity. We now show at least $3 n / 2$ beams are necessary. Maintain coordinates, and call the beams $x$-beams, $y$-beams, $z$-beams according to which plane their long edges are perpendicular too. Let $N_{x}, N_{y}, N_{z}$ be the number of these.\n\nClaim - If $\\min \\left(N_{x}, N_{y}, N_{z}\\right)=0$, then at least $n^{2}$ beams are needed.\n\nProof. Assume WLOG that $N_{z}=0$. Orient the cube so the $z$-plane touches the ground. Then each of the $n$ layers of the cube (from top to bottom) must be completely filled, and so at least $n^{2}$ beams are necessary,\n\nWe henceforth assume $\\min \\left(N_{x}, N_{y}, N_{z}\\right)>0$.\nClaim - If $N_{z}>0$, then we have $N_{x}+N_{y} \\geq n$.\n\nProof. Again orient the cube so the $z$-plane touches the ground. We see that for each of the $n$ layers of the cube (from top to bottom), there is at least one $x$-beam or $y$-beam. (Pictorially, some of the $x$ and $y$ beams form a \"staircase\".) This completes the proof.\n\nProceeding in a similar fashion, we arrive at the three relations\n\n$$\n\\begin{aligned}\n& N_{x}+N_{y} \\geq n \\\\\n& N_{y}+N_{z} \\geq n \\\\\n& N_{z}+N_{x} \\geq n .\n\\end{aligned}\n$$\n\nSumming gives $N_{x}+N_{y}+N_{z} \\geq 3 n / 2$ too.\nRemark. The problem condition has the following \"physics\" interpretation. Imagine the cube is a metal box which is sturdy enough that all beams must remain orthogonal to the faces of the box (i.e. the beams cannot spin). Then the condition of the problem is exactly what is needed so that, if the box is shaken or rotated, the beams will not move.\n\nRemark. Walter Stromquist points out that the number of constructions with $3030$ beams is actually enormous: not dividing out by isometries, the number is $(2 \\cdot 1010!)^{3}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let $N=2020$. The cube is an $N \\times N \\times N$ region. Beams are $1 \\times 1 \\times N$ rectangular prisms.\nLet the cube occupy the region $[0,N]^3$. A unit cell is a $1 \\times 1 \\times 1$ cube.\nA beam is identified by its orientation and its position in the cross-section.\nLet $P_x$ be the set of $(y,z)$ integer coordinates of beams parallel to the x-axis. Such a beam $B_{x,(j,k)}$ occupies $[0,N] \\times [j,j+1] \\times [k,k+1]$.\nLet $P_y$ be the set of $(x,z)$ integer coordinates of beams parallel to the y-axis. Such a beam $B_{y,(i,k)}$ occupies $[i,i+1] \\times [0,N] \\times [k,k+1]$.\nLet $P_z$ be the set of $(x,y)$ integer coordinates of beams parallel to the z-axis. Such a beam $B_{z,(i,j)}$ occupies $[i,i+1] \\times [j,j+1] \\times [0,N]$.\nThe number of beams is $|P_x| + |P_y| + |P_z|$. We seek to minimize this sum, such that it is positive.\n\nCondition 1 (Ends of beams on cube faces): This is incorporated into the definition of beams.\n\nCondition 2 (No two beams have intersecting interiors):\n- Two beams parallel to the same axis, e.g., $B_{z,(i,j)}$ and $B_{z,(i',j')}$, have disjoint interiors if and only if $(i,j) \\neq (i',j')$. This is naturally satisfied by being distinct elements of $P_z$.\n- Two beams parallel to different axes. E.g., $B_{z,(i_0,j_0)}$ and $B_{y,(i_1,k_1)}$.\n  The interior of $B_{z,(i_0,j_0)}$ is $(i_0,i_0+1) \\times (j_0,j_0+1) \\times (0,N)$.\n  The interior of $B_{y,(i_1,k_1)}$ is $(i_1,i_1+1) \\times (0,N) \\times (k_1,k_1+1)$.\n  Their interiors intersect if and only if $(i_0,i_0+1) \\cap (i_1,i_1+1) \\neq \\emptyset$ and $(j_0,j_0+1) \\cap (0,N) \\neq \\emptyset$ and $(0,N) \\cap (k_1,k_1+1) \\neq \\emptyset$. This means $i_0=i_1$.\n  So, for their interiors to be disjoint, $i_0 \\neq i_1$.\nLet $X(P_z) = \\{i \\mid \\exists j \\text{ s.t. } (i,j) \\in P_z \\}$. These are the x-coordinates occupied by z-beams.\nLet $X(P_y) = \\{i \\mid \\exists k \\text{ s.t. } (i,k) \\in P_y \\}$. These are the x-coordinates occupied by y-beams.\nThe condition implies $X(P_z) \\cap X(P_y) = \\emptyset$.\nSimilarly, let $Y(P_z) = \\{j \\mid \\exists i \\text{ s.t. } (i,j) \\in P_z \\}$ and $Y(P_x) = \\{j \\mid \\exists k \\text{ s.t. } (j,k) \\in P_x \\}$. Then $Y(P_z) \\cap Y(P_x) = \\emptyset$.\nAnd let $Z(P_x) = \\{k \\mid \\exists j \\text{ s.t. } (j,k) \\in P_x \\}$ and $Z(P_y) = \\{k \\mid \\exists i \\text{ s.t. } (i,k) \\in P_y \\}$. Then $Z(P_x) \\cap Z(P_y) = \\emptyset$.\n\nCondition 3 (Faces of beams are covered):\nThe interior of each of the four $1 \\times N$ faces of each beam touches either a face of the cube or the interior of a face of another beam.\nConsider a beam $B_0 = B_{z,(i_0,j_0)} \\in P_z$. Its interior is $(i_0,i_0+1) \\times (j_0,j_0+1) \\times (0,N)$.\nIts four faces (interiors of) are:\n$F_{x}^- = \\{i_0\\} \\times (j_0,j_0+1) \\times (0,N)$ (left face)\n$F_{x}^+ = \\{i_0+1\\} \\times (j_0,j_0+1) \\times (0,N)$ (right face)\n$F_{y}^- = (i_0,i_0+1) \\times \\{j_0\\} \\times (0,N)$ (front face)\n$F_{y}^+ = (i_0,i_0+1) \\times \\{j_0+1\\} \\times (0,N)$ (back face)\n\nConsider $F_{x}^+ = \\{i_0+1\\} \\times (j_0,j_0+1) \\times (0,N)$.\nIf $i_0+1 = N$, this face lies on the boundary of the cube $C$ (specifically, the face $x=N$). So condition 3 is satisfied for this face.\nSuppose $i_0+1 < N$. Then $F_{x}^+$ must be \"covered\" by faces of other beams.\nThe covering face(s) must lie in the same plane $x=i_0+1$ and have the same footprint $(j_0,j_0+1) \\times (0,N)$ (in $y,z$ coordinates).\nOption 1: $F_{x}^+$ is covered by a face of another z-beam. This beam must be $B_{z,(i_0+1,j_0)}$. Its left face is $\\{i_0+1\\} \\times (j_0,j_0+1) \\times (0,N)$, which is identical to $F_{x}^+$. So, if $B_{z,(i_0+1,j_0)} \\in P_z$, $F_x^+$ is covered.\nOption 2: $F_{x}^+$ is covered by faces of y-beams. A y-beam $B_{y,(i,k)}$ has x-coordinates $(i,i+1)$. For its face to be at $x=i_0+1$, this beam must be $B_{y,(i_0,k)}$ (its right face $F_{y,x,k}^+$) or $B_{y,(i_0+1,k)}$ (its left face $F_{y,x,k}^-$). Let's assume it's $B_{y,(i_0,k)}$. Its face is $F_{y,x,k}^+ = \\{i_0+1\\} \\times (0,N) \\times (k,k+1)$.\nThe face $F_{x}^+$ (a $1 \\times N$ rectangle in the $yz$-plane at $x=i_0+1$) must be formed by a collection of faces of $y$-beams. The faces of $y$-beams like $F_{y,x,k}^+$ are $N \\times 1$ rectangles in the $yz$-plane.\nSpecifically, $F_x^+ = \\{ (x,y,z) \\mid x=i_0+1, j_0 < y < j_0+1, 0 < z < N \\}$.\nA face $F_{y,x,k}^+ = \\{ (x,y,z) \\mid x=i_0+1, 0 < y < N, k < z < k+1 \\}$.\nThe union of $\\text{int}(F_x^+) \\cap \\text{int}(F_{y,x,k}^+)$ over all $k \\in \\{0, \\dots, N-1\\}$ must be $\\text{int}(F_x^+)$.\n$\\text{int}(F_x^+) \\cap \\text{int}(F_{y,x,k}^+) = \\{ (x,y,z) \\mid x=i_0+1, j_0 < y < j_0+1, k < z < k+1 \\}$.\nFor $\\text{int}(F_x^+)$ to be covered by these intersections, this union must extend over all $z \\in (0,N)$. This is achieved if $B_{y,(i_0,k)} \\in P_y$ for all $k \\in \\{0, \\dots, N-1\\}$. Let $W_y(i_0)$ denote this \"wall\" of $N$ y-beams: $W_y(i_0) = \\{ B_{y,(i_0,k)} \\mid 0 \\le k < N-1 \\}$.\nSo, if $(i_0,j_0) \\in P_z$ and $i_0+1 < N$:\nEither $(i_0+1,j_0) \\in P_z$ or $W_y(i_0) \\subseteq P_y$.\nIf $W_y(i_0) \\subseteq P_y$, then $i_0 \\in X(P_y)$. Given $(i_0,j_0) \\in P_z$, $i_0 \\in X(P_z)$.\nSo $i_0 \\in X(P_z) \\cap X(P_y)$. But Condition 2 states $X(P_z) \\cap X(P_y) = \\emptyset$.\nThis means this situation is forbidden. Thus, it must be that if $(i_0,j_0) \\in P_z$ and $i_0+1 < N$, then $(i_0+1,j_0) \\in P_z$.\n\nApplying this argument:\n1.  For any $(i,j) \\in P_z$: if $i+1 < N$, then $(i+1,j) \\in P_z$. (Argument above for $F_x^+$).\n2.  For any $(i,j) \\in P_z$: if $i > 0$, then $(i-1,j) \\in P_z$. (Symmetric argument for $F_x^-$, using $W_y(i-1)$).\n    These two imply that if $P_z$ contains $(i_0,j_0)$, it must contain the full \"row\" of z-beams $\\{(i,j_0) \\mid 0 \\le i < N \\}$.\n    Let $S_z = \\{j \\mid (0,j) \\in P_z\\}$. Then $P_z = \\{ (i,j) \\mid 0 \\le i < N, j \\in S_z \\}$. If $S_z \\neq \\emptyset$, then $X(P_z) = \\{0,1,\\dots,N-1\\}$.\n\nBy symmetry, similar structural constraints apply to $P_x$ and $P_y$:\n-   $P_x = \\{ (j,k) \\mid j \\in S_x, 0 \\le k < N \\}$, where $S_x = \\{j \\mid (j,0) \\in P_x \\}$. If $S_x \\neq \\emptyset$, then $Z(P_x) = \\{0,1,\\dots,N-1\\}$.\n-   $P_y = \\{ (i,k) \\mid i \\in S_y^x, 0 \\le k < N \\}$, where $S_y^x = \\{i \\mid (i,0) \\in P_y \\}$. If $S_y^x \\neq \\emptyset$, then $Z(P_y) = \\{0,1,\\dots,N-1\\}$.\n    OR $P_y = \\{ (i,k) \\mid 0 \\le i < N, k \\in S_y^z \\}$, where $S_y^z = \\{k \\mid (0,k) \\in P_y \\}$. If $S_y^z \\neq \\emptyset$, then $X(P_y) = \\{0,1,\\dots,N-1\\}$.\n    A specific set of beams $P_y$ must be constituted of rows along one direction or the other, not a mix. For example, if $P_y$ contains $(i_0, k_0)$ and $(i_1, k_0)$ then it implies it contains all beams $(i, k_0)$ for $0 \\le i < N$. If it also contains $(i_0, k_1)$ then it implies it contains $(i_0, k)$ for $0 \\le k < N$. This would imply $P_y$ forms a full grid $[0,N-1]\\times[0,N-1]$.\n\nLet's assume $P_z$ is non-empty. So $S_z \\neq \\emptyset$ and $X(P_z) = \\{0,1,\\dots,N-1\\}$.\nFrom $X(P_z) \\cap X(P_y) = \\emptyset$: if $P_z$ is non-empty, then $X(P_y)$ must be empty. This means $P_y = \\emptyset$.\nIf $P_y = \\emptyset$, then $Z(P_y) = \\emptyset$. This condition $Z(P_x) \\cap Z(P_y) = \\emptyset$ is $Z(P_x) \\cap \\emptyset = \\emptyset$, which is always true.\nSo, if $P_z \\neq \\emptyset$, then $P_y = \\emptyset$.\nSymmetrically, if $P_x \\neq \\emptyset$, then $Z(P_x) = \\{0,1,\\dots,N-1\\}$. Then $Z(P_x) \\cap Z(P_y) = \\emptyset$ implies $Z(P_y)=\\emptyset$, so $P_y = \\emptyset$.\nThis means if either $P_x$ or $P_z$ is non-empty, then $P_y$ must be empty.\nIf $P_y \\neq \\emptyset$, then $P_x = \\emptyset$ and $P_z = \\emptyset$. In this case $P_y$ must satisfy the covering conditions by itself. This would mean $P_y$ consists of $N^2$ beams, i.e. $S_y^x = \\{0, \\dots, N-1\\}$ and $S_y^z = \\{0, \\dots, N-1\\}$. This leads to $|P_y|=N^2$.\n\nAssume we seek a solution with $P_y = \\emptyset$.\nThen we only have $P_z = \\{ (i,j) \\mid 0 \\le i < N, j \\in S_z \\}$ and $P_x = \\{ (j,k) \\mid j \\in S_x, 0 \\le k < N \\}$.\nThe remaining disjointness condition is $Y(P_z) \\cap Y(P_x) = \\emptyset$.\n$Y(P_z) = S_z$. $Y(P_x) = S_x$. So $S_z \\cap S_x = \\emptyset$.\nNow consider Condition 3 for a beam $B_{z,(i,j)}$ where $j \\in S_z$.\nThe faces $F_x^-$ and $F_x^+$ (at $x=i$ and $x=i+1$) are covered by other $z$-beams in the same row $\\{(i',j) \\mid 0 \\le i' < N \\}$, or by faces of $C$ if $i=0$ or $i+1=N$. This is fine.\nConsider face $F_y^+ = (i,i+1) \\times \\{j+1\\} \\times (0,N)$.\nIf $j+1=N$, it's a face of $C$.\nSuppose $j+1 < N$. $F_y^+$ must be covered.\nOption 1: By $B_{z,(i,j+1)}$. This means $(i,j+1) \\in P_z$, so $j+1 \\in S_z$.\nOption 2: By a \"wall\" of $x$-beams $W_x(j) = \\{ B_{x,(j,k)} \\mid 0 \\le k < N \\}$. This means $S_x$ must contain $j$, i.e. $j \\in S_x$.\nSo, for any $j \\in S_z$: if $j+1 < N$: either $j+1 \\in S_z$ or $j \\in S_x$.\nBut $S_z \\cap S_x = \\emptyset$. So $j \\in S_x$ is impossible if $j \\in S_z$.\nTherefore, it must be that if $j \\in S_z$ and $j+1 < N$, then $j+1 \\in S_z$.\nThis means $S_z$ must be of the form $\\{j_0, j_0+1, \\dots, N-1\\}$ for some $j_0 \\in \\{0, \\dots, N-1\\}$. (If $S_z = \\emptyset$, $j_0=N$).\nSymmetrically for $S_x$: if $k \\in S_x$ and $k+1 < N$, then $k+1 \\in S_x$. So $S_x = \\{k_0, k_0+1, \\dots, N-1\\}$.\n\nNow consider face $F_y^- = (i,i+1) \\times \\{j\\} \\times (0,N)$ for $B_{z,(i,j)}$.\nIf $j=0$, it's a face of $C$.\nSuppose $j > 0$. $F_y^-$ must be covered.\nOption 1: By $B_{z,(i,j-1)}$. This means $(i,j-1) \\in P_z$, so $j-1 \\in S_z$.\nOption 2: By a \"wall\" of $x$-beams $W_x(j-1) = \\{ B_{x,(j-1,k)} \\mid 0 \\le k < N \\}$. This means $j-1 \\in S_x$.\nSo, for any $j \\in S_z$: if $j > 0$: either $j-1 \\in S_z$ or $j-1 \\in S_x$.\nIf $S_z = \\{j_0, \\dots, N-1\\}$ and $j_0 > 0$, then $j_0-1 \\notin S_z$. So it must be that $j_0-1 \\in S_x$.\nSymmetrically for $S_x = \\{k_0, \\dots, N-1\\}$: if $k_0 > 0$, then $k_0-1 \\in S_z$.\n\nTo summarize, assuming $P_y=\\emptyset$:\n$S_z = \\{j_0, \\dots, N-1\\}$ or $\\emptyset$.\n$S_x = \\{k_0, \\dots, N-1\\}$ or $\\emptyset$.\nCondition $S_z \\cap S_x = \\emptyset$.\nIf $S_z \\neq \\emptyset$ and $j_0 > 0$, then $j_0-1 \\in S_x$. This implies $k_0 \\le j_0-1$.\nIf $S_x \\neq \\emptyset$ and $k_0 > 0$, then $k_0-1 \\in S_z$. This implies $j_0 \\le k_0-1$.\nSuppose $S_z \\neq \\emptyset$ and $S_x \\neq \\emptyset$.\nThen $j_0 > 0$ and $k_0 > 0$ must hold for the conditions to apply in this way.\nSo $k_0 \\le j_0-1$ and $j_0 \\le k_0-1$.\nThen $j_0 \\le (j_0-1)-1 = j_0-2$. This implies $0 \\le -2$, which is impossible.\nSo, it's not possible for $j_0 > 0$ and $k_0 > 0$ simultaneously.\nAt least one of $j_0, k_0$ must be $0$.\nCase 1: $j_0=0$. Then $S_z = \\{0, \\dots, N-1\\}$.\nSince $S_z \\cap S_x = \\emptyset$, this forces $S_x = \\emptyset$.\nThen $P_z = \\{ (i,j) \\mid 0 \\le i < N, 0 \\le j < N \\}$, so $|P_z|=N^2$. And $P_x=\\emptyset$, so $|P_x|=0$.\nThe conditions on $j_0, k_0$: $j_0=0$. The condition \"if $j_0>0$...\" does not apply. $S_x=\\emptyset \\implies k_0=N$. The condition \"if $k_0>0$...\" applies: $N>0 \\implies N-1 \\in S_z$. This is true since $S_z=\\{0,..,N-1\\}$.\nThis configuration is $N^2$ beams of type $z$, and 0 beams of other types. It satisfies all conditions.\nCase 2: $k_0=0$. Then $S_x = \\{0, \\dots, N-1\\}$.\nThis forces $S_z = \\emptyset$. So $P_x = \\{ (j,k) \\mid 0 \\le j < N, 0 \\le k < N \\}$, so $|P_x|=N^2$. And $P_z=\\emptyset$.\nThis is $N^2$ beams of type $x$.\nCase 3: $S_z = \\emptyset$ and $S_x = \\emptyset$. This means no beams, which is not allowed (smallest positive number).\n\nSo if $P_y=\\emptyset$, the minimum positive number of beams is $N^2$.\nIf $P_x=\\emptyset$ and $P_z=\\emptyset$, then $P_y$ must be $N^2$ beams of type $y$.\nThe problem asks for the smallest positive number of beams.\nThe analysis showed that at least two of $P_x, P_y, P_z$ must be empty.\nIf say $P_z \\neq \\emptyset$, then $P_y=\\emptyset$.\nIf $P_y=\\emptyset$, then $P_x$ and $P_z$ are constrained as above. This led to one of them being $N^2$ beams and the other being empty.\nFor example, if $P_z \\neq \\emptyset$, then $P_y=\\emptyset$. This means $X(P_z)=\\{0,...,N-1\\}$.\nThe condition analysis for $(P_z,P_x)$ (with $P_y=\\emptyset$) gives either ($P_z$ has $N^2$ beams and $P_x=\\emptyset$) or ($P_x$ has $N^2$ beams and $P_z=\\emptyset$).\nSo, any configuration satisfying the conditions must consist of exactly $N^2$ beams of a single orientation.\nThe number of beams is $N^2$. For $N=2020$, this is $2020^2$.\nThe value $N^2 = 2020^2 = 4080400$.\n\nFinal check:\nLet $P_z$ consist of all $N^2$ possible $z$-beams. $P_x = P_y = \\emptyset$.\nNumber of beams is $N^2$.\nCondition 1: Satisfied by definition.\nCondition 2: $X(P_z) = \\{0,...,N-1\\}$. $Y(P_z) = \\{0,...,N-1\\}$. $P_x,P_y$ are empty, so intersection conditions $X(P_z) \\cap X(P_y) = \\emptyset$, etc. are trivially satisfied.\nCondition 3: Consider $B_{z,(i,j)}$.\nIts face $F_x^+ = \\{i+1\\} \\times (j,j+1) \\times (0,N)$. If $i+1<N$, this must be covered. Since $P_z$ contains all $z$-beams, $B_{z,(i+1,j)}$ exists and covers this face. If $i+1=N$, it's a cube face.\nAll four faces are similarly covered by \"buddy\" $z$-beams or cube faces. All conditions are satisfied.\n\nThe reasoning that implies that sets like $X(P_z)$ are $\\{0, \\dots, N-1\\}$ is as follows:\nTake $(i_0,j_0) \\in P_z$.\nIf $i_0+1<N$ and $(i_0+1,j_0) \\notin P_z$, then $W_y(i_0) \\subseteq P_y$. This means $i_0 \\in X(P_y)$. Since $(i_0,j_0) \\in P_z$, $i_0 \\in X(P_z)$. So $i_0 \\in X(P_z) \\cap X(P_y)$. This is disallowed. So, if $(i_0,j_0) \\in P_z$ and $i_0+1<N$, then $(i_0+1,j_0) \\in P_z$.\nIf $i_0>0$ and $(i_0-1,j_0) \\notin P_z$, then $W_y(i_0-1) \\subseteq P_y$. This means $i_0-1 \\in X(P_y)$. If $i_0-1 \\in X(P_z)$, then $i_0-1 \\in X(P_z) \\cap X(P_y)$, disallowed. So $i_0-1 \\notin X(P_z)$. This is consistent.\nThis means: if $(i_0,j_0) \\in P_z$, then $(i,j_0) \\in P_z$ for all $i \\in [0,N-1]$ OR this row must be \"confined\" by full walls of $P_y$ beams.\nSpecifically, if $(x,j_0) \\in P_z$ for $x \\in [x_{start}, x_{end}]$, then $x_{start}-1 \\in X(P_y)$ (if $x_{start}>0$) and $x_{end} \\in X(P_y)$ (if $x_{end}<N-1$).\nThen $X(P_z) = [x_{start}, x_{end}]$ and $X(P_y)$ contains $\\{x_{start}-1, x_{end}\\}$. These can be disjoint.\nThis means $P_z$ is not necessarily full rows like $[0,N-1] \\times S_z$. This is a potential flaw.\n\nRevisit: \"if $(i_0,j_0) \\in P_z$ and $i_0+1<N$, then $(i_0+1,j_0) \\in P_z$ OR $i_0 \\in X(P_y)$.\"\nThis is $A \\lor B$. $A$ is $(i_0+1,j_0) \\in P_z$. $B$ is $i_0 \\in X(P_y)$.\nThe disjointness $X(P_z) \\cap X(P_y) = \\emptyset$ means $i_0 \\notin X(P_y)$ if $i_0 \\in X(P_z)$.\nSo if $(i_0,j_0) \\in P_z$, then $i_0 \\in X(P_z)$. Then $B$ is false. So $A$ must be true.\nSo if $(i_0,j_0) \\in P_z$ and $i_0+1 < N$, then $(i_0+1,j_0) \\in P_z$. This is correct.\nThe argument that $P_z$ is made of \"full rows\" $P_z = [0,N-1] \\times S_z$ (using my own notation for brevity) is correct.\nThe rest of the argument follows.\n\nThe smallest positive number of beams is $N^2 = 2020^2$.\n\nThe final answer is $\\boxed{2020^2}$.",
+            "cost": {
+                "cost": 0.35640625,
+                "input_tokens": 525,
+                "output_tokens": 35575
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:39:32.382766",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof parametrizes x-, y-, and z\u2013aligned beams by sets P_x, P_y, P_z of integer coordinate pairs, translates the non\u2010intersection condition into disjointness of certain coordinate projections (e.g. X(P_z) \u2229 X(P_y)=\u2205), and then uses the face\u2010covering requirement to deduce that any nonempty P\u2013set must consist of entire rows (full coordinate ranges). From this it concludes that at most one orientation can be used and that yields N\u00b2 beams in that direction, so the minimum is N\u00b2=2020\u00b2.",
+                    "issues": [
+                        {
+                            "location": "Final conclusion",
+                            "text": "The smallest positive number of beams is N^2 = 2020^2 = 4080400.",
+                            "description": "The claimed minimum N^2 contradicts the known correct construction of 3N/2 beams (3030 for N=2020). The argument leading to N^2 is therefore incorrect.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 14653,
+                            "end_index": 14707
+                        },
+                        {
+                            "location": "Derivation that at least two of P_x,P_y,P_z must be empty",
+                            "text": "",
+                            "description": "The proof overgeneralizes by ruling out mixed\u2010orientation solutions entirely, ignoring valid constructions (e.g.\\ the 3N/2 'staircase' uses all three orientations simultaneously).",
+                            "category": "Overgeneralization"
+                        },
+                        {
+                            "location": "Paragraph defining the structure of P_y",
+                            "text": "A specific set of beams P_y must be constituted of rows along one direction or the other, not a mix.",
+                            "description": "This claim is made without justification and overlooks the possibility that P_y could include some rows in one direction and some in the other without violating the conditions.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 6391,
+                            "end_index": 6493
+                        },
+                        {
+                            "location": "Covering argument for F_x^+ in Condition 3",
+                            "text": "Option 2: F_x^+ is covered by faces of y-beams. ... This is achieved if B_{y,(i_0,k)} \u2208 P_y for all k \u2208 {0, \u2026, N\u22121}.",
+                            "description": "The proof asserts without detailed reasoning that covering a length\u2010N face forces the entire 'wall' of N y-beams, then dismisses that possibility by disjointness. This leap oversimplifies the coverage argument and skips checking partial or alternate coverings.",
+                            "category": "Oversimplification",
+                            "start_index": 3637,
+                            "end_index": 3716
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:39:37.216874"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof.  Call the side\u2010length of the cube \\(n\\); in our problem \\(n=2020\\).  We introduce coordinates so that the cube is\n\\[\n\\{(x,y,z)\\in\\Bbb R^3:0\\le x,y,z\\le n\\}.\n\\]\nBeams come in three \u201corientations,\u201d parallel to the \\(x\\)\u2013, \\(y\\)\u2013, or \\(z\\)\u2013axis.  We will show that no matter which orientation you choose (and you may mix orientations), as soon as you place one beam of a given orientation you are forced to place all \\(n^2\\) beams of that orientation.  Hence the smallest positive total number of beams is\n\\[\nn^2 \\;=\\;2020^2 \\;=\\;4\\,080\\,400.\n\\]\n\n1.  Reduction to one orientation.  \nSuppose for contradiction that beams of different orientations could support each other.  A beam parallel to the \\(x\\)\u2013axis has its four side faces lying in the planes\n\\[\ny=y_0,\\quad y=y_0+1,\\quad z=z_0,\\quad z=z_0+1,\n\\]\neach of which is isometric to a \\(1\\times n\\) rectangle in the corresponding coordinate plane.  One checks by comparing dimensions that none of these four faces can lie flush against a face of a \\(y\\)\u2013beam or a \\(z\\)\u2013beam:  although those faces also live in one of these four planes, their face\u2010rectangles are \u201crotated\u201d in the plane and do not coincide as subsets of \\(\\Bbb R^3\\).  Thus each side face of an \\(x\\)\u2013beam can be supported only by\n\u2013 the corresponding face of the cube (if that face is on the boundary), or  \n\u2013 the corresponding face of another \\(x\\)\u2013beam lying immediately adjacent.\n\nTherefore the support\u2010conditions for the \\(x\\)\u2013beams form a self\u2013contained combinatorial problem; and similarly for the \\(y\\)\u2013beams and \\(z\\)\u2013beams.  The total is the sum of three independent copies of the same problem.  Hence to minimize the total number of beams it suffices to look at just one orientation, say the \\(x\\)\u2013beams, and to show:\n\n\u2003\u201cIf you place any nonzero number of \\(x\\)\u2013beams at all, the support\u2010rules force you to place every single one of the \\(n^2\\) possible \\(x\\)\u2013beams.\u201d\n\n2.  The \\(x\\)\u2013beam grid and its support\u2010rule.  \nIndex the possible \\(x\\)\u2013beams by the integer pair \\((y,z)\\) with\n\\[\n0\\le y,z\\le n-1,\n\\]\nmeaning the beam occupies\n\\[\n\\{(x,y',z') : 0\\le x\\le n,\\;y'\\in[y,y+1],\\;z'\\in[z,z+1]\\}\\,.\n\\]\nCall\n\\[\nS\\;=\\;\\{(y,z)\\in\\{0,\\dots,n-1\\}^2:\\text{the beam at }(y,z)\\text{ is placed}\\}.\n\\]\nThe support\u2010conditions state exactly:\n\n\u2002If \\((y,z)\\in S\\) then\n\u2003\u2022 if \\(y>0\\), the face in the plane \\(y=y\\) is not on the cube\u2010boundary, so it must touch the face of another \\(x\\)\u2013beam at \\((y-1,z)\\), hence \\((y-1,z)\\in S\\);\n\u2003\u2022 if \\(y<n-1\\), the face in the plane \\(y=y+1\\) is interior and must touch the face of the beam \\((y+1,z)\\), so \\((y+1,z)\\in S\\);\n\u2003\u2022 likewise if \\(z>0\\) then \\((y,z-1)\\in S\\);\n\u2003\u2022 and if \\(z<n-1\\) then \\((y,z+1)\\in S\\).\n\nIn other words, \\(S\\) is \u201c4\u2010direction\u2010closed\u201d in the \\(n\\times n\\) grid.\n\n3.  Any nonempty 4\u2010closed set is the whole grid.  \nSuppose \\(S\\) is nonempty and pick one element \\((y_0,z_0)\\in S\\).  \n\u2013 By applying the \u201cif \\(y>0\\) then \\((y-1,z)\\in S\\)\u201d rule repeatedly, we deduce\n\\[\n(0,z_0),(1,z_0),\\dots,(n-1,z_0)\\;\\subseteq\\;S.\n\\]\n\u2013 Now for each \\(y\\) among \\(0,1,\\dots,n-1\\), we have \\((y,z_0)\\in S\\).  Applying the \u201cif \\(z>0\\) then \\((y,z-1)\\in S\\)\u201d and \u201cif \\(z<n-1\\) then \\((y,z+1)\\in S\\)\u201d rules repeatedly in the \\(z\\)\u2013direction shows\n\\[\n(y,0),(y,1),\\dots,(y,n-1)\\;\\subseteq\\;S.\n\\]\nSince \\(y\\) was arbitrary in \\(\\{0,\\dots,n-1\\}\\), it follows that\n\\[\nS \\;=\\;\\{0,1,\\dots,n-1\\}\\times\\{0,1,\\dots,n-1\\},\n\\]\nso \\(\\lvert S\\rvert=n^2\\).\n\n4.  Conclusion.  \nWe have shown that for each orientation (\\(x\\)\u2013, \\(y\\)\u2013, or \\(z\\)\u2013beams) either you place no beams of that orientation or you place all \\(n^2\\) of them.  To have a positive total number of beams you must choose one orientation in which you place all \\(n^2\\) beams, and place none in the other two orientations.  Hence the smallest positive total is\n\\[\nn^2 \\;=\\;2020^2 \\;=\\;4\\,080\\,400.\n\\]\nAnswer: \\(\\boxed{4080400}.\\)",
+            "cost": {
+                "cost": 0.08219090000000001,
+                "input_tokens": 503,
+                "output_tokens": 18554
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:52:12.818770",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof introduces coordinates on the cube and classifies beams into three orientations (x-, y-, z-beams). It claims that beams of different orientations cannot support each other, reducing the problem to one orientation. Modeling placed x-beams by a set S in an n\u00d7n grid, it shows S must be 4-direction-closed and hence either empty or the entire grid. Concluding that any nonzero placement forces all n\u00b2 beams in one orientation, it asserts the minimal positive total is n\u00b2=2020\u00b2=4 080 400.",
+                    "issues": [
+                        {
+                            "location": "Step 1, Reduction to one orientation",
+                            "text": "\u201cnone of these four faces can lie flush against a face of a y\u2013beam or a z\u2013beam: although those faces also live in one of these four planes, their face-rectangles are \u201crotated\u201d in the plane and do not coincide as subsets of \\(\\Bbb R^3\\).\u201d",
+                            "description": "The proof makes an unproven, overgeneralized claim that beams of different orientations cannot support each other, without rigorous justification.",
+                            "category": "Overgeneralization",
+                            "start_index": 943,
+                            "end_index": 1185
+                        },
+                        {
+                            "location": "Overall support-interaction argument",
+                            "text": "",
+                            "description": "The proof completely ignores configurations where beams of different orientations do support each other, failing to consider these edge cases.",
+                            "category": "Missing Edge Cases"
+                        },
+                        {
+                            "location": "Step 1, support-conditions argument",
+                            "text": "\u201cOne checks by comparing dimensions that none of these four faces can lie flush against a face of a y\u2013beam or a z\u2013beam.\u201d",
+                            "description": "The proof skips the detailed geometrical justification for why faces of different-orientation beams cannot align, leaving a gap in the argument.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 902,
+                            "end_index": 1027
+                        },
+                        {
+                            "location": "Conclusion (Step 4)",
+                            "text": "\u201cAnswer: \\(\\boxed{4080400}\\).\u201d",
+                            "description": "The final result \\(n^2=4\\,080\\,400\\) contradicts the known correct answer of 3030 beams.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 3803,
+                            "end_index": 3831
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:39:27.448112"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To determine the **smallest positive number of beams** that can be placed inside a $2020 \\times 2020 \\times 2020$ cube under the given constraints, we must carefully analyze the **geometric and combinatorial implications** of the conditions.\n\n---\n\n### **Understanding the Constraints**\n\nEach **beam** is a $1 \\times 1 \\times 2020$ rectangular prism, aligned along one of the three coordinate axes (x, y, or z). The beam\u2019s **two $1 \\times 1$ ends** must lie on **opposite faces** of the cube, and its **four long $1 \\times 2020$ faces** must each be **either on the cube's boundary** or **adjacent to the face of another beam**. Additionally, **no two beams may intersect in their interiors**.\n\n---\n\n### **Key Observations**\n\n1. **Beam Placement and Volume**:\n   - Each beam occupies $2020$ unit cubes.\n   - The entire cube has $2020^3$ unit cubes.\n   - Therefore, the **maximum** number of beams that can fit without overlapping is:\n     $$\n     \\frac{2020^3}{2020} = 2020^2\n     $$\n   - However, this is the **upper bound**, and the question asks for the **minimum** number that satisfies the adjacency condition.\n\n2. **Adjacency Requirement**:\n   - Each beam must have **all four of its long faces** adjacent to **either the cube boundary or another beam**.\n   - This implies that **no beam can be isolated**, and the arrangement must be **dense enough** to ensure that all beams are **surrounded** on all sides.\n\n3. **Interlocking Beams**:\n   - Beams in different orientations (x, y, z) can **interlock**, meaning that the face of one beam can be adjacent to the face of another beam in a different direction.\n   - This allows for a **more efficient packing**, where fewer beams can satisfy the adjacency condition by **mutually supporting each other**.\n\n---\n\n### **Constructive Insight**\n\nTo **minimize** the number of beams while satisfying the adjacency condition, we consider a **three-dimensional interlocking structure**. A known and efficient way to do this is by **using beams in all three directions**, arranged in a **regular, repeating pattern** that ensures that every beam is **surrounded by beams in other directions**.\n\nOne such construction involves:\n\n- Placing beams in all three directions (x, y, z), but **only at even coordinates**.\n- That is, for each coordinate axis, we place beams at **every other unit** in the other two directions.\n- This results in a **grid-like structure** where beams in different directions **intersect** at right angles, but **do not overlap** in their interiors.\n\nFor example:\n\n- Along the **x-axis**, place beams at positions $(y, z)$ where both $y$ and $z$ are **even**.\n- Similarly for the **y-axis** and **z-axis**.\n\nEach such beam occupies a line through the cube, and the **adjacent beams in other directions** ensure that all long faces are covered.\n\n---\n\n### **Counting the Beams**\n\n- For each axis, the number of beams is:\n  $$\n  \\left(\\frac{2020}{2}\\right)^2 = 1010^2\n  $$\n- Since we use beams in **three** directions, the total number of beams is:\n  $$\n  3 \\times 1010^2 = 3 \\times (2020/2)^2 = 3 \\times 1010^2\n  $$\n- Simplifying:\n  $$\n  3 \\times 1010^2 = 3 \\times (1010 \\times 1010) = 3 \\times 1,020,100 = 3,060,300\n  $$\n\nWait \u2014 this is **not** the minimal number. This is the **total** number of beams in the **full 3D grid**, which is **not** the minimal.\n\nTo find the **minimal** number, we consider a **different construction** that uses **only beams in two directions**, arranged such that they **mutually support each other**.\n\nA known **optimal construction** for this type of problem (in 3D with similar adjacency constraints) is to use **3n/2** beams, where $n$ is the side length of the cube. This is derived from a **3D grid structure** that ensures **each beam is adjacent to others in a minimal way**.\n\nGiven that $n = 2020$, the **minimal number of beams** is:\n$$\n\\frac{3}{2} \\times 2020 = 3030\n$$\n\n---\n\n### **Conclusion**\n\nThis number, **3030**, represents the **smallest number of beams** that can be placed inside the cube such that:\n\n- Each beam's **long faces** are either on the **cube boundary** or **adjacent to another beam**.\n- **No two beams intersect in their interiors**.\n- The **adjacency condition** is satisfied in a **minimal** way.\n\n$$\n\\boxed{3030}\n$$",
+            "cost": {
+                "cost": 0.011282,
+                "input_tokens": 520,
+                "output_tokens": 18630
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:20:43.872696",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof restates the beam constraints, presents a naive even-coordinate grid construction yielding 3,060,300 beams, then abruptly appeals to a \u201cknown optimal construction\u201d of \\(\\tfrac{3n}{2}\\) beams (3030 for \\(n=2020\\)) without giving the construction or any lower-bound argument, and concludes that 3030 is minimal.",
+                    "issues": [
+                        {
+                            "location": "\u201cConstructive Insight\u201d section",
+                            "text": "One such construction involves:\n- Placing beams in all three directions (x, y, z), but only at even coordinates.",
+                            "description": "The proof does not verify that this even-coordinate arrangement actually satisfies the requirement that each beam\u2019s four long faces touch either the cube boundary or another beam face.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2138,
+                            "end_index": 2249
+                        },
+                        {
+                            "location": "\u201cCounting the Beams\u201d section",
+                            "text": "For each axis, the number of beams is:\n  \\(\\left(\\frac{2020}{2}\\right)^2 = 1010^2\\)\nSince we use beams in three directions, the total number of beams is:\n  \\(3 \\times 1010^2 = 3{,}060{,}300\\)",
+                            "description": "The proof computes a dense grid count but then dismisses it without explaining why that arrangement cannot be improved or adapted to reduce the number of beams.",
+                            "category": "Oversimplification",
+                            "start_index": 2845,
+                            "end_index": 3038
+                        },
+                        {
+                            "location": "Conclusion",
+                            "text": "A known optimal construction for this type of problem (in 3D with similar adjacency constraints) is to use \\(\\tfrac{3n}{2}\\) beams, where \\(n\\) is the side length of the cube.",
+                            "description": "The proof appeals to an unspecified external \u201cknown\u201d result without providing the construction or any reference, violating the requirement for a self-contained proof.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 3498,
+                            "end_index": 3665
+                        },
+                        {
+                            "location": "Overall proof",
+                            "text": "",
+                            "description": "No argument or calculation is given to show that fewer than \\(\\tfrac{3n}{2}\\) beams cannot satisfy the adjacency and non-overlap conditions, so the minimality claim is unproven.",
+                            "category": "Skipping Computation Steps"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:39:48.123002"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "We measure all lengths in unit cubes  \n(the large cube therefore has side\u2013length 2020 and volume \\(2020^{3}\\)).\n\nA beam is the set of the 2020 unit cubes that lie on one whole\nline parallel to one of the coordinate axes;  \nits two square bases are on the two opposite faces of the large cube.\nConsequently\n\n\u2022 every beam contains exactly \\(2020\\) unit cubes, and  \n\n\u2022 two different beams can never share a unit cube, because that would\nmake their interiors intersect.\n\nThroughout the proof the word \u201cface\u2019\u2019 always means a complete\n\\(1\\times 2020\\) face of a beam (not only a part of it).\n\n--------------------------------------------------------------------\n1.  Every unit cube of the big cube is occupied by a beam\n--------------------------------------------------------------------\n\nAssume, to the contrary, that there exists at least one empty unit\ncube.  \nTake one such cube that is not completely surrounded by other empty\ncubes (i.e. one of its six unit square sides is adjacent to a beam).\nThat unit square belongs to a \\(1\\times 2020\\) face \\(F\\) of that beam.\nSince the empty cube is not a beam and is not part of the\nsurface of the big cube, the interior of \\(F\\) touches neither\nanother beam (its equal-sized face) nor the cube\u2019s boundary.\nThis contradicts the third condition in the statement.  \nHence no empty unit cube can exist; the beams together\nfill the whole \\(2020\\times 2020\\times 2020\\) cube.\n\n--------------------------------------------------------------------\n2.  A universal lower bound\n--------------------------------------------------------------------\n\nBecause the beams partition the whole cube and each beam consists of\n\\(2020\\) unit cubes, the number \\(N\\) of beams satisfies\n\n\\[\n2020\\cdot N \\;=\\;2020^{3}\\qquad\\Longrightarrow\\qquad\nN=2020^{2}.\n\\]\n\nThus at least \\(2020^{2}\\) beams are necessary.\n\n--------------------------------------------------------------------\n3.  A configuration with exactly \\(2020^{2}\\) beams\n--------------------------------------------------------------------\n\nFor every ordered pair \\((y,z)\\) with\n\\(0\\le y\\le 2019,\\;0\\le z\\le 2019\\) place one beam whose axis is\nparallel to the \\(x\\)-axis and whose cross\u2013section is the unit square\n\\((y,z)\\) in the \\(yz\\)-plane.  \nExplicitly, this beam consists of the 2020 unit cubes\n\\[\n(x,y,z)\\quad (x=0,1,\\dots ,2019).\n\\]\n\nProperties of the arrangement.\n\n\u2022 The two square bases of each beam coincide with the unit cells\n\\((0,y,z)\\) and \\((2019,y,z)\\) lying on the opposite faces \\(x=0\\)\nand \\(x=2019\\) of the big cube, so the first condition is met.\n\n\u2022 The interiors of distinct beams are disjoint because they occupy\ndifferent \\((y,z)\\) lines, so the second condition holds.\n\n\u2022 Consider one of these beams.  \n  \u2013 If \\(y=0\\) (or \\(y=2019\\)), its \u201cleft\u2019\u2019 (respectively \u201cright\u2019\u2019)\n    long face coincides with the face \\(y=0\\) (respectively \\(y=2019\\))\n    of the big cube.  \n  \u2013 If \\(0<y<2019\\) the beam located at \\((y-1,z)\\)\n    (respectively at \\((y+1,z)\\)) is parallel and touches its entire\n    left (respectively right) long face.  \n  The same reasoning with the coordinate \\(z\\) shows that the two\n  \u201cfront\u2019\u2019 and \u201cback\u2019\u2019 faces are also completely covered.\n  Hence every long face of every beam touches either the cube\u2019s\n  boundary or the whole long face of another beam; the third condition\n  is satisfied.\n\nExactly one beam has been placed for each of the\n\\(2020^{2}\\) pairs \\((y,z)\\), so the configuration uses\n\\(2020^{2}\\) beams.\n\n--------------------------------------------------------------------\n4.  Optimality\n--------------------------------------------------------------------\n\nSection 1 showed that any allowed placement fills the cube\nand Section 2 proved that therefore\nat least \\(2020^{2}\\) beams are unavoidable.\nSection 3 presents a placement with exactly that many beams.\nConsequently\n\nthe smallest positive number of beams that can be placed is\n\\[\n\\boxed{\\,2020^{2}\\,}.\n\\]",
+            "cost": {
+                "cost": 0.30971,
+                "input_tokens": 503,
+                "output_tokens": 7617
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:04:09.191963",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof argues that if any unit cube were empty then its face adjacent to some beam would violate the requirement that each beam\u2019s 1\u00d72020 face touch either the cube boundary or another beam, so all 2020\u00b3 cubes must be filled. It then notes each beam occupies 2020 cubes, giving 2020\u00b7N=2020\u00b3 and hence N=2020\u00b2, and exhibits a construction of 2020\u00b2 beams all parallel to the x-axis that supposedly meets the three conditions.",
+                    "issues": [
+                        {
+                            "location": "Step 1",
+                            "text": "\u201cThat unit square belongs to a 1\u00d72020 face F of that beam.\u201d",
+                            "description": "The proof assumes without justification that a face of an empty cube adjacent to a beam must lie on one of the beam\u2019s long 1\u00d72020 faces, but it could lie on a 1\u00d71 base face to which the third condition does not apply.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 996,
+                            "end_index": 1068
+                        },
+                        {
+                            "location": "Step 1",
+                            "text": "\u201cEvery unit cube of the big cube is occupied by a beam\u201d",
+                            "description": "Misapplies the third condition to conclude full volume coverage. The argument overgeneralizes by treating any adjacency between a beam and an empty cube as a violation, rather than only applying to the beam\u2019s four long faces.",
+                            "category": "Overgeneralization",
+                            "start_index": 659,
+                            "end_index": 714
+                        },
+                        {
+                            "location": "Step 3",
+                            "text": "\u201cFor every ordered pair \\((y,z)\\) with \\(0\\le y,z\\le2019\\) place one beam whose axis is parallel to the x-axis\u2026\u201d",
+                            "description": "Constructs only beams parallel to the x-axis and ignores more efficient mixed-orientation arrangements (using y- and z-beams) which can dramatically reduce the total number.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2020,
+                            "end_index": 2151
+                        },
+                        {
+                            "location": "Conclusion",
+                            "text": "\u201c\\(\\boxed{2020^{2}}\\).\u201d",
+                            "description": "The final answer 2020\u00b2 contradicts the established minimum of 3030 beams and stems from the flawed coverage and counting arguments.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 3868,
+                            "end_index": 3889
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:40:42.464253"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "The problem requires finding the smallest positive number of beams that can be placed in a $2020 \\times 2020 \\times 2020$ cube under the given conditions. The beams are $1 \\times 1 \\times 2020$ rectangular prisms that span from one face of the cube to the opposite face, with their ends coinciding with unit cells on the grid of the cube's faces. The conditions are that no two beams have intersecting interiors and that for each beam, the interiors of its four $1 \\times 2020$ lateral faces must touch either a face of the cube or the interior of a face of another beam.\n\nTo solve this, consider a configuration where all beams are aligned in the same direction, specifically along the z-axis (Z-beams). Place all Z-beams at a fixed y-index, say $j=0$, for all x-indices $i$ from 0 to 2019. This results in 2020 beams, each occupying the region $x$ from $i$ to $i+1$, $y$ from 0 to 1, and $z$ from 0 to 2020.\n\nFirst, verify that no two beams intersect interiors. Since all beams are Z-beams and each is defined by a unique $(i, j)$ pair with $j=0$ fixed and $i$ varying from 0 to 2019, the beams are disjoint because their x-intervals $[i, i+1]$ are distinct for different $i$, and they share the same y-interval $[0,1]$ and z-interval $[0,2020]$. The interiors are open sets, and since the closures intersect only at boundaries (e.g., at $x=i+1$ for adjacent $i$), the interiors do not intersect, satisfying the first condition.\n\nNext, verify the second condition that each lateral face's interior touches either a cube face or another beam's face. Each Z-beam at $(i,0)$ has four lateral faces: at $x=i$, $x=i+1$, $y=0$, and $y=1$.\n\n- For the face at $y=0$: This face lies on the plane $y=0$, which is a face of the cube, so it is on the boundary and satisfies the condition for all i.\n- For the face at $y=1$: This face is not on a cube face (since $y=1$ is not 0 or 2020). However, for each Z-beam at $(i,0)$, the face at $y=1$ is a rectangle in the $y=1$ plane with $x$ from $i$ to $i+1$ and $z$ from 0 to 2020. Adjacent Z-beams at $(i,0)$ and $(i+1,0)$ (for $i$ from 0 to 2018) have their $y=1$ faces at $y=1$, with x-intervals $[i, i+1]$ and $[i+1, i+2]$, respectively. These rectangles share the line $x=i+1$, $z$ from 0 to 2020. Assuming that \"interiors touch\" allows for sharing a boundary of positive measure (a line in this case), the face at $y=1$ for each beam is touched by the adjacent beam's face. For the end beams at $i=0$ and $i=2019$, their $y=1$ faces are touched by the adjacent beams at $i=1$ and $i=2018$, respectively, except at the endpoints, but the shared boundary ensures contact.\n- For the faces at $x=i$ and $x=i+1$: These faces are in planes parallel to the yz-plane. For adjacent Z-beams at $(i,0)$ and $(i+1,0)$, their faces at $x=i+1$ coincide (for $i$ from 0 to 2018), so they touch along the entire face. For the end beams, at $i=0$, the face at $x=0$ is on the cube boundary, and at $i=2019$, the face at $x=2020$ is on the cube boundary. For interior faces, the shared boundaries with adjacent beams ensure contact.\n\nThus, with 2020 beams, all conditions are satisfied if sharing boundaries is allowed for \"interiors touch.\" To check if fewer beams are possible, consider using 2019 beams in a similar chain. Omitting one beam, say at $i=5$, leaves the right face at $x=5$ of the beam at $i=4$ and the left face at $x=5$ of the beam at $i=6$ uncovered and not on the cube boundary, violating the condition. Configurations with beams in different directions or fewer beams do not satisfy the conditions without increasing the number or violating the no-intersection rule.\n\nTherefore, the smallest number of beams is 2020.\n\n\\boxed{2020}",
+            "cost": {
+                "cost": 0.0174077,
+                "input_tokens": 499,
+                "output_tokens": 34516
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-26T00:21:02.010587",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof attempts to place 2020 beams all oriented along the z-axis at y=0 and x ranging from 0 to 2019, forming a linear chain so that adjacent beams share boundary segments. It checks non-intersection by noting distinct x-intervals and verifies the touching conditions by claiming that sharing edges or faces suffices. Finally, it argues that removing any one beam breaks the chain and thus 2020 is minimal.",
+                    "issues": [
+                        {
+                            "location": "Conclusion",
+                            "text": "\u201cTherefore, the smallest number of beams is 2020.\u201d",
+                            "description": "The claimed minimum (2020) contradicts the known correct answer (3030) for the problem.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 3611,
+                            "end_index": 3660
+                        },
+                        {
+                            "location": "Touching condition analysis",
+                            "text": "\u201cAssuming that \u2018interiors touch\u2019 allows for sharing a boundary of positive measure (a line in this case).\u201d",
+                            "description": "Oversimplifies the requirement that the interior of each 1\u00d72020 lateral face must touch another face: sharing a 1-dimensional edge is not a 2-dimensional interior-to-interior contact as stated in the problem.",
+                            "category": "Oversimplification",
+                            "start_index": 2238,
+                            "end_index": 2341
+                        },
+                        {
+                            "location": "Minimality argument",
+                            "text": "\u201cTo check if fewer beams are possible, consider using 2019 beams in a similar chain. Omitting one beam, say at i=5, leaves ... violating the condition.\u201d",
+                            "description": "Only rules out removing a single beam from this specific linear arrangement, but does not address all possible configurations with fewer beams or provide a general lower-bound argument.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 3165,
+                            "end_index": 3293
+                        },
+                        {
+                            "location": "Verification of lateral face contacts",
+                            "text": "\u201cFor the face at y=1: ... adjacent Z-beams ... share the line x=i+1, z from 0 to 2020.\u201d",
+                            "description": "Skips a rigorous check that the faces have overlapping 2D interiors; instead it only notes a shared line segment without justification that this satisfies the problem\u2019s touching criterion.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2173,
+                            "end_index": 2236
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:39:38.085122"
+            }
+        }
+    ]
+}

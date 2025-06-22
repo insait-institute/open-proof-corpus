@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.89,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2016
+    },
+    "problem": "Let \\(a, b, c,\\) and \\(d\\) be real numbers such that \\(a+b+c+d=2\\) and \\(ab+bc+cd+da+ac+bd=0\\). Find the minimum value and the maximum value of the product \\(abcd\\).",
+    "problem_id": "BMOSL_2016_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Let's find the minimum first.\n\n$$\na^{2}+b^{2}+c^{2}+d^{2}=(a+b+c+d)^{2}-2(a b+b c+c d+d a+a c+b d)=4\n$$\n\nBy AM-GM, $4=a^{2}+b^{2}+c^{2}+d^{2} \\geq 4 \\sqrt{|a b c d|} \\Rightarrow 1 \\geq|a b c d| \\Rightarrow a b c d \\geq-1$.\nNote that if $a=b=c=1$ and $d=-1$, then $a b c d=-1$.\nWe'll find the maximum. We search for $a b c d>0$.\nObviously, the numbers $a, b, c$ and $d$ can not be all positive or all negative.\nWLOG $a, b>0$ and $c, d<0$. Denote $-c=x,-d=y$.\nWe have $a, b, x, y>0, a+b-x-y=2$ and $a^{2}+b^{2}+x^{2}+y^{2}=4$. We need to find $\\max (a b x y)$. We get: $x+y=a+b-2$ and $x^{2}+y^{2}=4-\\left(a^{2}+b^{2}\\right)$. Since $(x+y)^{2} \\leq 2\\left(x^{2}+y^{2}\\right)$, then $2\\left(a^{2}+b^{2}\\right)+(a+b-2)^{2} \\leq 8 ;$ on the other hand, $(a+b)^{2} \\leq 2\\left(a^{2}+b^{2}\\right) \\Rightarrow(a+b)^{2}+(a+b-2)^{2} \\leq 8$.\nLet $a+b=2 s \\Rightarrow 2 s^{2}-2 s-1 \\leq 0 \\Rightarrow s \\leq \\frac{\\sqrt{3}+1}{2}=k$.\nBut $a b \\leq s^{2} \\Rightarrow a b \\leq k^{2}$.\nNow $a+b=x+y+2$ and $a^{2}+b^{2}=4-\\left(x^{2}+y^{2}\\right)$. Since $(a+b)^{2} \\leq 2\\left(a^{2}+b^{2}\\right)$, then $2\\left(x^{2}+y^{2}\\right)+(x+y+2)^{2} \\leq 8$; on the other hand, $(x+y)^{2} \\leq 2\\left(x^{2}+y^{2}\\right) \\Rightarrow$\n$\\Rightarrow(x+y)^{2}+(x+y+2)^{2} \\leq 8$. Let $x+y=2 q \\Rightarrow 2 q^{2}+2 q-1 \\leq 0 \\Rightarrow q \\leq \\frac{\\sqrt{3}-1}{2}=\\frac{1}{2 k}$.\nBut $x y \\leq q^{2} \\Rightarrow x y \\leq \\frac{1}{4 k^{2}}$.\nIn conclusion, $a b x y \\leq k^{2} \\cdot \\frac{1}{4 k^{2}}=\\frac{1}{4} \\Rightarrow a b c d \\leq \\frac{1}{4}$.\nNote that if $a=b=k$ and $c=d=-\\frac{1}{2 k}$, then $a b c d=\\frac{1}{4}$\nIn conclusion, $\\min (a b c d)=-1$ and $\\max (a b c d)=\\frac{1}{4}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

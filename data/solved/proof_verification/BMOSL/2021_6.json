@@ -1,0 +1,274 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.09,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2021
+    },
+    "problem": "Let \\( n \\) be a positive integer. Determine, in terms of \\( n \\), the greatest integer which divides every number of the form \\( p+1 \\), where \\( p \\equiv 2 \\pmod{3} \\) is a prime number which does not divide \\( n \\).",
+    "problem_id": "BMOSL_2021_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Let $k$ be the greatest such integer. We will show that $k=3$ when $n$ is odd and $k=6$ when $n$ is even.\n\nWe will say that a number $p$ is nice if $p$ is a prime number of the form $2 \\bmod 3$ which does not divide $N$.\n\nNote first that if $3 \\mid p+1$ for every nice number $p$ and so $k$ is a multiple of $3$.\nIf $n$ is odd, then $p=2$ is nice, so we must have $k \\mid 3$. From the previous paragraph we get that $k=3$.\n\nIf $n$ is even, then $p=2$ is not nice, therefore every nice $p$ is of the form $5 \\bmod 6$. So in this case $6 \\mid p+1$ for every nice number $p$.\n\nIt remains to show that (if $n$ is even then)\n(i) There is a nice $p$ such that $4 \\nmid p+1$.\n(ii) There is a nice $p$ such that $9 \\nmid p+1$.\n(iii) There is a nice $p$ such that for every prime $q \\neq 2,3$ we have that $q \\nmid p+1$.\n\nFor (i), by Dirichlet's theorem on arithmetic progressions, there are infinitely many primes of the form $p \\equiv 5 \\bmod 12$. Any one of them which is larger than $n$ will do.\n\nFor (ii), by Dirichlet's theorem on arithmetic progressions, there are infinitely many primes of the form $p \\equiv 2 \\bmod 9$. Any one of them which is larger than $n$ will do.\n\nFor (iii), by Dirichlet's theorem on arithmetic progressions, there are infinitely many primes of the form $p \\equiv 2 \\bmod 3 q$. Any one of them which is larger than $n$ will do.\n\nRemark. In the proposal, the statement of Dirichlet's theorem on Arithmetic Progressions was given as known. Even though this makes the problem fairer we omitted it because we feel that it also makes it easier.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "openai/o3",
+            "solution": "Let  \n\nS(n)= { p+1 : p is prime , p \u2261 2 (mod 3) and p \u2224 n } ,\n\nand denote  \n\nd(n)=gcd S(n)=gcd { p+1 : p \u2208S(n) } .\n\nOur goal is to determine d(n) for every positive integer n.\n\n------------------------------------------------------------------\n1.  The factor 3 is always present\n------------------------------------------------------------------\nIf p \u2261 2 (mod 3) then p+1 \u2261 0 (mod 3); hence 3 divides every element\nof S(n).  Consequently  \n\n3 | d(n).                                                     (1)\n\n------------------------------------------------------------------\n2.  Behaviour of the factor 2\n------------------------------------------------------------------\n\u2022  Suppose 2 | n.  \n\u2003Then p=2 is excluded from S(n).  \n\u2003All remaining p are odd, so each p+1 is even; hence 2 | d(n).\n\n\u2022  Suppose 2 \u2224 n.  \n\u2003Then p=2 belongs to S(n) and 2+1=3 is odd; thus 2 \u2224 d(n).\n\nTherefore  \n\n2 | d(n)  \u21d4  2 | n.                                          (2)\n\nCombining (1) and (2) we already know\n\nd(n) is either 3   (if n is odd)      or   6   (if n is even).   (3)\n\nTo finish the problem we must show that no further prime factor can\ndivide d(n).\n\n------------------------------------------------------------------\n3.  No odd prime r \u2265 5 divides d(n)\n------------------------------------------------------------------\nLet r be an odd prime with r \u2260 3.  \nAssume, for the sake of contradiction, that r | d(n); i.e.\n\np+1 \u2261 0  (mod r)  for every p \u2208 S(n).                         (4)\n\nThus every such prime satisfies p \u2261 \u22121 (mod r).\n\nWe now construct a prime q contradicting (4).\n\nBecause gcd(3,r)=1, there exists an integer a satisfying the two\ncongruences\n\na \u2261 2 (mod 3),                                                (5a)\na \u2261 1 (mod r).                                                (5b)\n\nPut m = 3r.  The residue class a (mod m) is coprime to m, so by\nDirichlet\u2019s theorem on arithmetic progressions there are infinitely\nmany primes in that class.  Choose one of them, call it q, which does\nnot divide n (possible because n has only finitely many prime\ndivisors).\n\nFrom (5a) we have q \u2261 2 (mod 3), so q is of the required\ntype; from (5b) we have q \u2261 1 (mod r), hence\n\nq+1 \u2261 2 (mod r)  \u2260  0 (mod r).                                (6)\n\nTherefore r does not divide q+1, contradicting (4).  The contradiction\nshows that our assumption was false:\n\nNo odd prime r \u2265 5 divides d(n).                              (7)\n\n------------------------------------------------------------------\n4.  Determination of d(n)\n------------------------------------------------------------------\nThe only possible prime divisors of d(n) are 2 and 3.  Relation (1)\ngives one factor 3; relation (2) decides whether the factor 2 is\npresent.  Hence\n\nd(n)=  3\u2003 if n is odd,\nd(n)=  6\u2003 if n is even.                                       (8)\n\n------------------------------------------------------------------\n5.  Answer\n------------------------------------------------------------------\nThe greatest integer that divides every number p+1 with\np \u2261 2 (mod 3) a prime not dividing n is\n\n    3\u2003 when n is odd,  \n    6\u2003 when n is even.",
+            "cost": {
+                "cost": 0.28316,
+                "input_tokens": 376,
+                "output_tokens": 6985
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:36:25.669050",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines \\(d(n)=\\gcd\\{p+1: p\\equiv2\\pmod3,\\;p\\nmid n\\}\\).  It shows 3 always divides each \\(p+1\\), and that 2 divides each \\(p+1\\) precisely when \\(2\\mid n\\) by observing whether \\(p=2\\) lies in the set.  Hence \\(d(n)\\) is either 3 or 6.  Finally, it uses Dirichlet\u2019s theorem to exhibit, for any odd prime \\(r\\ge5\\), a prime \\(q\\equiv2\\pmod3\\), \\(q\\equiv1\\pmod r\\), \\(q\\nmid n\\), so that \\(r\\nmid q+1\\), ruling out any further prime divisors and yielding the answer \\(d(n)=3\\) if \\(n\\) is odd, and \\(6\\) if \\(n\\) is even.",
+                    "issues": [
+                        {
+                            "location": "Definition of S(n) and d(n)",
+                            "text": "S(n)= { p+1 : p is prime , p \u2261 2 (mod 3) and p \u2224 n } , and denote  d(n)=gcd S(n)=gcd { p+1 : p \u2208S(n) } .",
+                            "description": "The set S(n) is defined to consist of the numbers \\(p+1\\), yet in the gcd notation the proof writes \"\\(p\\in S(n)\\)\" and then takes \\(p+1\\) again.  This is a minor notational inconsistency between elements of S(n) and the original primes.",
+                            "category": "Other",
+                            "start_index": 7,
+                            "end_index": 112
+                        },
+                        {
+                            "location": "Implicit setup",
+                            "text": "",
+                            "description": "The proof never explicitly justifies that S(n) is nonempty for every positive n (though this follows since either p=2 or by Dirichlet there are infinitely many primes \\(\u22612\\pmod3\\) not dividing n).",
+                            "category": "Missing Edge Cases"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:19:53.075271"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof. Fix a positive integer \\(n\\). Let \n\\[\nS \\;=\\;\\{\\,p\\text{ prime}:\\;p\\equiv 2\\pmod 3\\text{ and }p\\nmid n\\}.\n\\]\nWe wish to find \n\\[\nd \\;=\\;\\gcd\\bigl\\{\\,p+1 : p\\in S\\bigr\\}.\n\\]\n\nStep 1. The set \\(S\\) is nonempty (in fact infinite).  \nSince \\(n\\) has only finitely many prime divisors, it suffices to show there are infinitely many primes \\(p\\equiv 2\\pmod 3\\).  But this is a direct corollary of Dirichlet\u2019s theorem on arithmetic progressions:\n\nLemma (Dirichlet).  If \\(\\gcd(a,m)=1\\), then there are infinitely many primes \\(p\\equiv a\\pmod m\\).\n\nApply the lemma with \\(a=2\\), \\(m=3\\).  Hence \\(S\\) is infinite, so the above gcd is well-defined and taken over an infinite family of integers.\n\nStep 2. All primes \\(p\\in S\\) except \\(p=2\\) are odd, and every such odd prime satisfies\n\\[\np\\equiv 2\\pmod 3\n\\quad\\Longrightarrow\\quad\np+1\\equiv 0\\pmod 3,\n\\]\nand, being odd, also satisfies\n\\[\np+1\\equiv 0\\pmod 2.\n\\]\nHence for every odd \\(p\\in S\\) we have\n\\[\n6 \\;\\bigm|\\; p+1.\n\\]\nThus every element of the multiset \\(\\{\\,p+1 : p\\in S,\\;p>2\\}\\) is a multiple of 6.\n\nStep 3. We determine the exact value of\n\\[\nd \\;=\\;\\gcd\\{\\,p+1 : p\\in S\\}\n\\]\nby a case\u2013distinction on whether \\(2\\) belongs to \\(S\\) or not.\n\nCase 1. \\(2\\mid n\\).  Then \\(2\\) divides \\(n\\), so \\(p=2\\notin S\\).  Thus every \\(p\\in S\\) is odd, hence \\(6\\mid p+1\\) for every \\(p\\in S\\).  It follows that\n\\[\n6 \\;\\bigm|\\; d.\n\\]\nOn the other hand, since \\(d\\) divides each \\(p+1\\), its only prime factors lie among those of \\(6\\), namely \\(2\\) and \\(3\\).  Writing\n\\[\nd \\;=\\;2^a\\cdot 3^b,\n\\]\nwe have \\(a\\ge1\\) and \\(b\\ge1\\).  To see that \\(a=1\\) and \\(b=1\\), note:\n\n\u2022 By Dirichlet\u2019s theorem again (applied to the progression \\(p\\equiv 5\\pmod{12}\\)), there exists a prime\n\\[\np_0\\equiv 5\\pmod{12},\\quad p_0\\not\\mid n.\n\\]\nThen \\(p_0\\in S\\) and\n\\[\np_0+1\\equiv 6\\pmod{12},\n\\]\nso \\(p_0+1\\) is divisible by \\(2\\) exactly once and by \\(3\\) exactly once.  Hence \n\\[\nv_2(d)\\;\\le\\;v_2(p_0+1)\\;=\\;1,\n\\qquad\nv_3(d)\\;\\le\\;v_3(p_0+1)\\;=\\;1.\n\\]\nCombined with \\(a,v_2(d)\\ge1\\) and \\(b=v_3(d)\\ge1\\), this forces \\(a=b=1\\).  Therefore\n\\[\nd \\;=\\;2^1\\cdot 3^1 \\;=\\;6.\n\\]\n\nCase 2. \\(2\\nmid n\\).  Then \\(p=2\\) is a prime satisfying \\(2\\equiv2\\pmod3\\) and \\(2\\nmid n\\), so \\(2\\in S\\).  Hence \\(2+1=3\\) is one of the numbers whose gcd we take, and so\n\\[\nd \\;\\bigm|\\;3.\n\\]\nOn the other hand, for every odd \\(p\\in S\\) we have shown \\(6\\mid p+1\\), so\n\\[\n\\gcd\\bigl(3,\\;6\\bigr)\\;=\\;3\n\\quad\\Longrightarrow\\quad\n3\\;\\bigm|\\;d.\n\\]\nThus \\(d\\mid 3\\) and \\(3\\mid d\\), whence \\(d=3\\).\n\nConclusion.  Combining the two cases, we obtain\n\\[\nd \\;=\\;\n\\begin{cases}\n6,&2\\mid n,\\\\\n3,&2\\nmid n.\n\\end{cases}\n\\]\nEquivalently,\n\\[\nd \\;=\\;3\\;\\gcd(2,n).\n\\]\nThis completes the proof.",
+            "cost": {
+                "cost": 0.049090800000000004,
+                "input_tokens": 376,
+                "output_tokens": 11063
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:33:58.895991",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines \\(S=\\{p\text{ prime}:p\\equiv2\\pmod3,\\;p\nmid n\\}\\), shows via Dirichlet\u2019s theorem that \\(S\\) is infinite, and observes that for every odd \\(p\\in S\\), \\(6\\mid p+1\\).  It then treats separately the cases \\(2\\mid n\\) (so \\(2\notin S\\)) and \\(2\nmid n\\) (so \\(2\\in S\\)), using specific primes in progressions and \\(v_2,v_3\\) arguments to conclude \\(\\gcd\\{p+1:p\\in S\\}=6\\) when \\(n\\) is even and \\(3\\) when \\(n\\) is odd.",
+                    "issues": [
+                        {
+                            "location": "Step 1",
+                            "text": "Since \\(n\\) has only finitely many prime divisors, it suffices to show there are infinitely many primes \\(p\\equiv2\\pmod3\\).",
+                            "description": "The proof omits the justification that excluding the finitely many primes dividing \\(n\\) from the infinite set of primes in the progression still leaves infinitely many; this finite exclusion argument should be stated explicitly.",
+                            "category": "Oversimplification",
+                            "start_index": 237,
+                            "end_index": 360
+                        },
+                        {
+                            "location": "Case 1 (Step 3)",
+                            "text": "By Dirichlet\u2019s theorem again (applied to the progression \\(p\\equiv5\\pmod{12}\\)), there exists a prime\n\\[p_0\\equiv5\\pmod{12},\\quad p_0\\not\\mid n.\\]",
+                            "description": "The proof asserts the existence of a prime \\(p_0\\not\\mid n\\) in the progression but does not explain how to avoid the finitely many prime divisors of \\(n\\) (e.g. by choosing \\(p_0>n\\)); this exclusion step is omitted.",
+                            "category": "Oversimplification",
+                            "start_index": 1616,
+                            "end_index": 1761
+                        },
+                        {
+                            "location": "Case 2",
+                            "text": "On the other hand, for every odd \\(p\\in S\\) we have shown \\(6\\mid p+1\\), so\n\\[\\gcd(3,6)=3\\quad\\Longrightarrow\\quad3\\mid d.\\]",
+                            "description": "The deduction is terse and somewhat inverted: it should explicitly state that since 3 divides every element of the set, 3 must divide their gcd \\(d\\), rather than invoking \\(\\gcd(3,6)\\) without clear logical steps.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2295,
+                            "end_index": 2431
+                        },
+                        {
+                            "location": "Step 2",
+                            "text": "Thus every element of the multiset \\(\\{p+1 : p\\in S,\\;p>2\\}\\) is a multiple of 6.",
+                            "description": "Refers to the collection as a \u201cmultiset\u201d even though no element is repeated; this terminology is unnecessary and may confuse the reader about the role of multiplicities in computing a gcd.",
+                            "category": "Other",
+                            "start_index": 972,
+                            "end_index": 1052
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:20:10.535276"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To determine the greatest integer that divides every number of the form $ p + 1 $, where $ p \\equiv 2 \\pmod{3} $ is a prime number that does **not** divide $ n $, we proceed by analyzing the structure of such numbers.\n\n---\n\n### Step 1: Understand the Structure of $ p + 1 $\n\nGiven that $ p \\equiv 2 \\pmod{3} $, we have:\n\n$$\np + 1 \\equiv 2 + 1 \\equiv 0 \\pmod{3}\n$$\n\nSo, **every** such $ p + 1 $ is divisible by 3. Therefore, the greatest common divisor $ d $ must be divisible by 3.\n\n---\n\n### Step 2: Consider the Parity of $ n $\n\nWe now examine whether $ n $ is **even** or **odd**:\n\n- **Case 1: $ n $ is even**\n\n  Then $ 2 \\mid n $, so the prime $ p = 2 $ is **excluded** from the set of primes $ p \\equiv 2 \\pmod{3} $ not dividing $ n $.\n\n  All remaining primes $ p \\equiv 2 \\pmod{3} $ are **odd**, so $ p + 1 $ is even. Hence, $ p + 1 $ is divisible by both 2 and 3, and thus divisible by 6.\n\n  We now ask: can a number greater than 6 divide all such $ p + 1 $?\n\n  Suppose for contradiction that a prime $ q > 3 $ divides all such $ p + 1 $. Then $ p \\equiv -1 \\pmod{q} $. By the Chinese Remainder Theorem and Dirichlet's theorem on primes in arithmetic progressions, there exists a prime $ p \\equiv 2 \\pmod{3} $ and $ p \\equiv -1 \\pmod{q} $, which would make $ p + 1 \\equiv 0 \\pmod{q} $, contradicting the assumption that $ q $ divides all $ p + 1 $.\n\n  Therefore, no such $ q > 3 $ can divide all $ p + 1 $, and the greatest such integer is **6**.\n\n- **Case 2: $ n $ is odd**\n\n  Then $ 2 \\nmid n $, so the prime $ p = 2 $ is allowed (since it does not divide $ n $).\n\n  Then $ p + 1 = 3 $, which is **not divisible by 6**. Thus, the greatest common divisor cannot be greater than 3.\n\n  But all other $ p + 1 $ for $ p \\equiv 2 \\pmod{3} $ are divisible by 3, so the greatest common divisor is exactly **3**.\n\n---\n\n### Step 3: Express the Result in Terms of $ n $\n\nFrom the above, we observe that the greatest integer dividing every $ p + 1 $ for the specified primes is:\n\n- $ 6 $ if $ n $ is even\n- $ 3 $ if $ n $ is odd\n\nThis can be compactly written as:\n\n$$\n\\boxed{3 \\cdot \\gcd(2, n)}\n$$\n\nThis expression correctly evaluates to 3 when $ n $ is odd and 6 when $ n $ is even, as required.\n\n---\n\n### Final Answer\n\n$$\n\\boxed{3 \\cdot \\gcd(2, n)}\n$$",
+            "cost": {
+                "cost": 0.007187,
+                "input_tokens": 376,
+                "output_tokens": 11853
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:41:42.476527",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof shows that every prime \\(p\\equiv2\\pmod3\\) not dividing \\(n\\) satisfies \\(p+1\\equiv0\\pmod3\\). It then splits on the parity of \\(n\\): if \\(n\\) is even, excluding \\(p=2\\) makes all remaining \\(p+1\\) even, so divisible by 6, and a CRT+Dirichlet argument is used to attempt to rule out any larger divisor, yielding \\(6\\); if \\(n\\) is odd, including \\(p=2\\) gives \\(p+1=3\\) so the gcd is \\(3\\). Finally it writes the answer as \\(3\\gcd(2,n)\\).",
+                    "issues": [
+                        {
+                            "location": "Step 2, Case 1: ruling out divisors \\(q>3\\)",
+                            "text": "Suppose for contradiction that a prime \\(q>3\\) divides all such \\(p+1\\). Then \\(p\\equiv-1\\pmod q\\). By the Chinese Remainder Theorem and Dirichlet's theorem on primes in arithmetic progressions, there exists a prime \\(p\\equiv2\\pmod3\\) and \\(p\\equiv-1\\pmod q\\), which would make \\(p+1\\equiv0\\pmod q\\), contradicting the assumption that \\(q\\) divides all \\(p+1\\).",
+                            "description": "The proof aims to derive a contradiction but instead confirms that \\(p+1\\) is divisible by \\(q\\), which is exactly the assumption; no contradiction is obtained.",
+                            "category": "Other",
+                            "start_index": 968,
+                            "end_index": 1340
+                        },
+                        {
+                            "location": "Step 2, Case 1: excluding composite divisors beyond primes",
+                            "text": "",
+                            "description": "The proof only considers ruling out prime divisors \\(q>3\\) but does not address composite divisors such as 4 or 9, leaving open the possibility that higher prime powers might divide all \\(p+1\\).",
+                            "category": "Missing Edge Cases"
+                        },
+                        {
+                            "location": "Step 2, Case 1: application of CRT and Dirichlet's theorem",
+                            "text": "By the Chinese Remainder Theorem and Dirichlet's theorem on primes in arithmetic progressions, there exists a prime \\(p\\equiv2\\pmod3\\) and \\(p\\equiv-1\\pmod q\\).",
+                            "description": "The proof does not verify the necessary coprimality conditions for applying Dirichlet's theorem or explain why this combined congruence yields infinitely many primes, skipping key justification steps.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1076,
+                            "end_index": 1236
+                        },
+                        {
+                            "location": "Step 2, Case 1: divisibility by 6 claim",
+                            "text": "All remaining primes \\(p\\equiv2\\pmod3\\) are odd, so \\(p+1\\) is even. Hence, \\(p+1\\) is divisible by both 2 and 3, and thus divisible by 6.",
+                            "description": "The proof asserts a single factor of 2 in every \\(p+1\\) without addressing whether higher powers of 2 (e.g. 4) could also divide all \\(p+1\\), oversimplifying the exponent argument.",
+                            "category": "Oversimplification",
+                            "start_index": 743,
+                            "end_index": 894
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:20:20.722691"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let $S_n$ be the set of numbers of the form $p+1$, where $p$ is a prime number such that $p \\equiv 2 \\pmod{3}$ and $p \\nmid n$. We are looking for $G_n = \\gcd(S_n)$, the greatest common divisor of all numbers in $S_n$.\n\nFirst, let's analyze the condition $p \\equiv 2 \\pmod{3}$.\nIf $p$ is a prime and $p \\equiv 2 \\pmod{3}$, then $p+1 \\equiv 2+1 \\equiv 3 \\equiv 0 \\pmod{3}$.\nThis means that every number $p+1$ in the set $S_n$ is divisible by 3.\nTherefore, $G_n$ must be divisible by 3. This implies $3 | G_n$.\n\nWe consider two cases based on the parity of $n$.\n\nCase 1: $n$ is odd (i.e., $2 \\nmid n$).\nIn this case, the prime $p=2$ needs to be considered.\n$p=2$ satisfies $2 \\equiv 2 \\pmod{3}$.\nThe condition $p \\nmid n$ means $2 \\nmid n$. This is true for this case.\nSo, $p=2$ is one of the primes included in the definition of $S_n$.\nThe corresponding number $p+1$ is $2+1=3$.\nSo, $3 \\in S_n$.\nSince $G_n$ must divide every element in $S_n$, $G_n$ must divide 3.\nWe have $3 | G_n$ and $G_n | 3$. The only positive integer satisfying this is $G_n=3$.\nThus, if $n$ is odd, $G_n=3$.\n\nCase 2: $n$ is even (i.e., $2 | n$).\nIn this case, the prime $p=2$ is a divisor of $n$.\nSo $p=2$ does not satisfy the condition $p \\nmid n$.\nThus, $p=2$ is not among the primes considered for $S_n$.\nThis means any prime $p$ contributing to $S_n$ must be an odd prime (since $p=2$ is the only even prime).\nIf $p$ is an odd prime, then $p+1$ is an even number.\nSo, every number $p+1$ in $S_n$ is divisible by 2.\nTherefore, $G_n$ must be divisible by 2.\nWe already know $3 | G_n$. Since $\\gcd(2,3)=1$, it follows that $2 \\cdot 3 = 6$ must divide $G_n$. So $6 | G_n$.\n\nTo determine $G_n$ more precisely in this case ($2|n$), we investigate its prime factorization $G_n = 2^{v_2} 3^{v_3} 5^{v_5} \\dots$. We know $v_2 \\ge 1$ and $v_3 \\ge 1$.\n\nLet's examine $v_2(G_n)$.\nPrimes $p \\equiv 2 \\pmod 3$ can be classified by their residue modulo 12:\n$p \\equiv 2 \\pmod{12}$: $p=2$. (Since $12k+2 = 2(6k+1)$, $p=2$ is the only such prime). This prime is excluded because $2|n$.\n$p \\equiv 5 \\pmod{12}$: For these primes, $p+1 \\equiv 6 \\pmod{12}$. So $p+1 = 12k+6 = 6(2k+1)$. For these numbers, $v_2(p+1)=1$ (since $2k+1$ is odd). Examples: $p=5, 17, 29, ...$.\n$p \\equiv 8 \\pmod{12}$: For $k \\ge 0$, $12k+8 = 4(3k+2)$ is composite. Thus, no prime is of the form $12k+8$. (If $3k+2=1$, $3k=-1$, no integer $k$. If $3k+2$ is a prime, $4(3k+2)$ is composite. If $3k+2=-1$, $3k=-3$, $k=-1$, $p=12(-1)+8 = -4$, not a prime).\n$p \\equiv 11 \\pmod{12}$: For these primes, $p+1 \\equiv 0 \\pmod{12}$. So $v_2(p+1) \\ge 2$. Examples: $p=11, 23, ...$.\nBy Dirichlet's Theorem on Arithmetic Progressions, there are infinitely many primes of the form $12k+5$. Let this set of primes be $P_{5 \\pmod{12}}$.\nSince $n$ has a finite number of prime factors, $P_{5 \\pmod{12}} \\setminus \\{q | q \\text{ is a prime factor of } n\\}$ is an infinite set.\nThus, there exists a prime $p^* \\in P_{5 \\pmod{12}}$ such that $p^* \\nmid n$.\nNote that $p^* \\ne 2$ (since $2 \\not\\equiv 5 \\pmod{12}$) and $p^* \\ne 3$ (since $3 \\not\\equiv 2 \\pmod 3$).\nThis prime $p^*$ satisfies $p^* \\equiv 2 \\pmod 3$ (as $5 \\equiv 2 \\pmod 3$) and $p^* \\nmid n$. So $p^*+1 \\in S_n$.\nFor this $p^*$, $p^*+1 \\equiv 6 \\pmod{12}$, which means $v_2(p^*+1)=1$.\nSince $G_n | (p^*+1)$, we must have $v_2(G_n) \\le v_2(p^*+1)=1$.\nAs $6 | G_n$, we have $v_2(G_n) \\ge 1$. So $v_2(G_n)=1$.\n\nLet's examine $v_3(G_n)$.\nPrimes $p \\equiv 2 \\pmod 3$ can be classified by their residue modulo 9:\n$p \\equiv 2 \\pmod 9$: For these primes, $p+1 \\equiv 3 \\pmod 9$. So $v_3(p+1)=1$. Examples: $p=2, 11, 29, ...$.\n$p \\equiv 5 \\pmod 9$: For these primes, $p+1 \\equiv 6 \\pmod 9$. So $v_3(p+1)=1$. Examples: $p=5, 23, ...$. ($p=41$ is $41 \\equiv 5 \\pmod 9$ and $41 \\equiv 2 \\pmod 3$).\n$p \\equiv 8 \\pmod 9$: For these primes, $p+1 \\equiv 0 \\pmod 9$. So $v_3(p+1) \\ge 2$. Examples: $p=17, ...$.\nBy Dirichlet's Theorem, there are infinitely many primes of the form $9k+2$ and infinitely many primes of the form $9k+5$.\nLet $P_{2,5 \\pmod 9}$ be the set of primes $p$ such that $p \\equiv 2 \\pmod 9$ or $p \\equiv 5 \\pmod 9$. This set is infinite.\nSince $n$ has a finite number of prime factors and $2|n$ (so $p=2$ is excluded from $P_n$), $(P_{2,5 \\pmod 9} \\setminus \\{2\\}) \\setminus \\{q | q \\text{ is a prime factor of } n\\}$ is an infinite set.\nThus, there exists a prime $p' \\in P_{2,5 \\pmod 9}$, $p' \\ne 2$, such that $p' \\nmid n$.\nThis prime $p'$ satisfies $p' \\equiv 2 \\pmod 3$ (as $2 \\equiv 2 \\pmod 3$ and $5 \\equiv 2 \\pmod 3$) and $p' \\nmid n$. Also $p' \\ne 3$ (as $3 \\not\\equiv 2,5 \\pmod 9$). So $p'+1 \\in S_n$.\nFor this $p'$, $p'+1 \\equiv 3 \\pmod 9$ or $p'+1 \\equiv 6 \\pmod 9$. In both cases, $v_3(p'+1)=1$.\nSince $G_n | (p'+1)$, we must have $v_3(G_n) \\le v_3(p'+1)=1$.\nAs $3 | G_n$, we have $v_3(G_n) \\ge 1$. So $v_3(G_n)=1$.\n\nLet's examine $v_q(G_n)$ for any prime $q > 3$.\nWe want to show $v_q(G_n)=0$. This means $q \\nmid G_n$.\nTo show this, we need to find a prime $p^{**}$ such that $p^{**} \\equiv 2 \\pmod 3$, $p^{**} \\nmid n$, and $q \\nmid (p^{**}+1)$.\nThe condition $q \\nmid (p^{**}+1)$ is equivalent to $p^{**} \\not\\equiv -1 \\pmod q$.\nConsider the system of congruences:\n$x \\equiv 2 \\pmod 3$\n$x \\equiv 1 \\pmod q$\nSince $q>3$, $q$ is not $3$. So $\\gcd(3,q)=1$. By the Chinese Remainder Theorem (CRT), there is a unique solution $x_0$ modulo $3q$.\nWe need to check if $\\gcd(x_0, 3q)=1$.\n$x_0 \\equiv 2 \\pmod 3 \\implies 3 \\nmid x_0$.\n$x_0 \\equiv 1 \\pmod q \\implies q \\nmid x_0$.\nSo $\\gcd(x_0, 3q)=1$.\nBy Dirichlet's Theorem, there are infinitely many primes $p \\equiv x_0 \\pmod{3q}$. Let this set be $P_{x_0 \\pmod{3q}}$.\nThese primes satisfy $p \\equiv 2 \\pmod 3$ and $p \\equiv 1 \\pmod q$.\nFor such a prime $p$, $p+1 \\equiv 1+1 \\equiv 2 \\pmod q$.\nSince $q>3$, $q \\nmid 2$. So $q \\nmid (p+1)$.\nSince $n$ has a finite number of prime factors, $P_{x_0 \\pmod{3q}} \\setminus \\{r | r \\text{ is a prime factor of } n\\}$ is an infinite set.\nThus, there exists a prime $p^{**}$ in this set such that $p^{**} \\nmid n$.\nThis prime $p^{**}$ satisfies $p^{**} \\equiv 2 \\pmod 3$ and $p^{**} \\nmid n$.\nThis $p^{**}$ cannot be $2$: $2 \\equiv 1 \\pmod q$ implies $q=1$, which is not possible.\nThis $p^{**}$ cannot be $3$: $3 \\not\\equiv 2 \\pmod 3$.\nSo $p^{**}+1 \\in S_n$.\nFor this $p^{**}$, $q \\nmid (p^{**}+1)$.\nSince $G_n | (p^{**}+1)$, it must be that $q \\nmid G_n$.\nSo $v_q(G_n)=0$ for any prime $q>3$.\n\nCombining these results for the case $2|n$:\n$v_2(G_n)=1$.\n$v_3(G_n)=1$.\n$v_q(G_n)=0$ for all primes $q>3$.\nSo $G_n = 2^1 \\cdot 3^1 = 6$.\n\nIn summary:\nIf $n$ is odd ($2 \\nmid n$), $G_n=3$.\nIf $n$ is even ($2 | n$), $G_n=6$.\n\nThe result can be stated as: the greatest integer is 3 if $n$ is odd, and 6 if $n$ is even.\n\nFinal check:\nThe set $S_n$ is non-empty. Dirichlet's theorem guarantees there are infinitely many primes $p \\equiv 2 \\pmod 3$. Since $n$ has finitely many prime factors, there are infinitely many primes $p \\equiv 2 \\pmod 3$ such that $p \\nmid n$.\n\nExample: $n=1$ (odd). $G_1=3$. The set of primes is $\\{p \\text{ prime } | p \\equiv 2 \\pmod 3, p \\nmid 1\\}$. These are all primes $p \\equiv 2 \\pmod 3$.\n$S_1=\\{2+1, 5+1, 11+1, 17+1, 23+1, \\dots \\} = \\{3, 6, 12, 18, 24, \\dots \\}$.\n$\\gcd(3,6,12,18,24,\\dots)=3$. This matches.\n\nExample: $n=2$ (even). $G_2=6$. The set of primes is $\\{p \\text{ prime } | p \\equiv 2 \\pmod 3, p \\nmid 2\\}$. These are primes $p \\equiv 2 \\pmod 3$ except $p=2$.\n$S_2=\\{5+1, 11+1, 17+1, 23+1, \\dots \\} = \\{6, 12, 18, 24, \\dots \\}$.\n$\\gcd(6,12,18,24,\\dots)=6$. This matches.\n\nExample: $n=3$ (odd). $G_3=3$. The set of primes is $\\{p \\text{ prime } | p \\equiv 2 \\pmod 3, p \\nmid 3\\}$. These are all primes $p \\equiv 2 \\pmod 3$. ($p=3$ is not $p \\equiv 2 \\pmod 3$).\n$S_3=\\{2+1, 5+1, 11+1, 17+1, 23+1, \\dots \\} = \\{3, 6, 12, 18, 24, \\dots \\}$.\n$\\gcd(S_3)=3$. This matches.\n\nExample: $n=5$ (odd). $G_5=3$. The set of primes is $\\{p \\text{ prime } | p \\equiv 2 \\pmod 3, p \\nmid 5\\}$. These are primes $p \\equiv 2 \\pmod 3$ except $p=5$.\n$S_5=\\{2+1, 11+1, 17+1, 23+1, \\dots \\} = \\{3, 12, 18, 24, \\dots \\}$.\n$\\gcd(S_5)=\\gcd(3,12,18,24,\\dots)=3$. This matches.\n\nExample: $n=6$ (even). $G_6=6$. The set of primes is $\\{p \\text{ prime } | p \\equiv 2 \\pmod 3, p \\nmid 6\\}$. These are primes $p \\equiv 2 \\pmod 3$ except $p=2$ (and $p=3$, but $3 \\not\\equiv 2 \\pmod 3$).\n$S_6=\\{5+1, 11+1, 17+1, 23+1, \\dots \\} = \\{6, 12, 18, 24, \\dots \\}$.\n$\\gcd(S_6)=6$. This matches.\n\nThe final answer is $\\boxed{3 \\text{ if } n \\text{ is odd, } 6 \\text{ if } n \\text{ is even}}$.",
+            "cost": {
+                "cost": 0.1826,
+                "input_tokens": 376,
+                "output_tokens": 18213
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:41:09.001505",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines S\u2099 = {p+1: p prime, p \u2261 2 (mod 3), p \u2224 n} and G\u2099 = gcd(S\u2099), then shows 3|G\u2099 since p+1 \u2261 0 (mod 3). For odd n it includes p=2 to get G\u2099=3. For even n it excludes p=2 so deduces 2|G\u2099 and hence 6|G\u2099. It then uses Dirichlet\u2019s theorem and CRT to exhibit primes forcing v\u2082(G\u2099)=1, v\u2083(G\u2099)=1 and v_q(G\u2099)=0 for q>3, giving G\u2099=6. Finally, it checks examples and states the answer: 3 if n is odd, 6 if n is even.",
+                    "issues": [
+                        {
+                            "location": "Applications of Dirichlet\u2019s theorem in mod 12 and mod 9 cases",
+                            "text": "By Dirichlet's Theorem on Arithmetic Progressions, there are infinitely many primes of the form p \\equiv 5 \\pmod{12}. ... Similarly, infinitely many primes of the form p \\equiv 2 \\pmod{9} and p \\equiv 5 \\pmod{9}.",
+                            "description": "The proof invokes Dirichlet's theorem on arithmetic progressions without explicitly verifying the necessary coprimality condition gcd(residue, modulus)=1 in these applications.",
+                            "category": "Other",
+                            "start_index": 2602,
+                            "end_index": 2743
+                        },
+                        {
+                            "location": "Removal of prime divisors of n from infinite sets",
+                            "text": "Since n has a finite number of prime factors, P_{5 \\pmod{12}} \\setminus {q | q is a prime factor of n} is an infinite set.",
+                            "description": "It is assumed without comment that removing a finite subset of primes from an infinite progression leaves it infinite.",
+                            "category": "Other",
+                            "start_index": 2752,
+                            "end_index": 2887
+                        },
+                        {
+                            "location": "Inference from divisibility to valuation bounds",
+                            "text": "Since G\u2099 \\mid (p*+1), we must have v\u2082(G\u2099) \u2264 v\u2082(p*+1)=1.",
+                            "description": "The argument uses the fact that divisibility implies an inequality on p-adic valuations without stating or citing the underlying lemma.",
+                            "category": "Other",
+                            "start_index": 3262,
+                            "end_index": 3325
+                        },
+                        {
+                            "location": "Classification of primes \u22618 mod 12",
+                            "text": "p \\equiv 8 \\pmod{12}: For k \u2265 0, 12k+8 = 4(3k+2) is composite. Thus, no prime is of the form 12k+8.",
+                            "description": "The proof gives a lengthy case analysis to rule out primes in this residue class; a simpler argument (12k+8>4 and divisible by 4) would suffice.",
+                            "category": "Other",
+                            "start_index": 2227,
+                            "end_index": 2334
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:20:24.055422"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "Let \\( n \\) be a positive integer. The task is to determine the greatest integer that divides every number of the form \\( p+1 \\), where \\( p \\equiv 2 \\pmod{3} \\) is a prime number that does not divide \\( n \\).\n\nFirst, note that for any prime \\( p \\equiv 2 \\pmod{3} \\), it follows that \\( p + 1 \\equiv 0 \\pmod{3} \\), so 3 divides \\( p + 1 \\). Additionally, if \\( p > 2 \\), then \\( p \\) is odd, so \\( p + 1 \\) is even and thus divisible by 2. However, when \\( p = 2 \\), which satisfies \\( p \\equiv 2 \\pmod{3} \\), \\( p + 1 = 3 \\), which is odd and not divisible by 2.\n\nThe condition that \\( p \\) does not divide \\( n \\) determines whether \\( p = 2 \\) is included in the set of primes under consideration. Specifically, \\( p = 2 \\) does not divide \\( n \\) if and only if \\( n \\) is odd, meaning 2 does not divide \\( n \\). Define \\( d = \\gcd(2, n) \\). Then \\( d = 1 \\) if \\( n \\) is odd, and \\( d = 2 \\) if \\( n \\) is even. The claim is that the greatest integer dividing all such \\( p + 1 \\) is \\( 3d \\).\n\n### Proof that \\( 3d \\) divides every \\( p + 1 \\)\n\n- If \\( n \\) is odd, then \\( d = 1 \\) and \\( 3d = 3 \\). Since \\( p \\equiv 2 \\pmod{3} \\) for all such primes, \\( p + 1 \\equiv 0 \\pmod{3} \\), so 3 divides \\( p + 1 \\).\n- If \\( n \\) is even, then \\( d = 2 \\) and \\( 3d = 6 \\). In this case, \\( p = 2 \\) is excluded because 2 divides \\( n \\), so all primes \\( p \\equiv 2 \\pmod{3} \\) in the set satisfy \\( p \\geq 5 \\). Such \\( p \\) are odd and \\( p \\equiv 2 \\pmod{3} \\), so \\( p + 1 \\) is even and divisible by 3, hence divisible by 6.\n\nThus, \\( 3d \\) divides every \\( p + 1 \\) for primes \\( p \\equiv 2 \\pmod{3} \\) not dividing \\( n \\).\n\n### Proof that \\( 3d \\) is the greatest such integer\n\n- If \\( n \\) is odd, then \\( d = 1 \\) and \\( 3d = 3 \\). Since \\( n \\) is odd, 2 does not divide \\( n \\), so \\( p = 2 \\) is in the set and \\( p + 1 = 3 \\). Any common divisor of all \\( p + 1 \\) must divide 3. Since 3 divides all \\( p + 1 \\), the greatest such divisor is 3.\n- If \\( n \\) is even, then \\( d = 2 \\) and \\( 3d = 6 \\). It has been shown that 6 divides all such \\( p + 1 \\). To show that no larger integer divides all such \\( p + 1 \\), consider that for any prime \\( q > 3 \\), there exists a prime \\( p \\equiv 2 \\pmod{3} \\) such that \\( p + 1 \\) is not divisible by \\( q \\). For example, choose \\( p \\equiv 2 \\pmod{3} \\) and \\( p \\equiv 1 \\pmod{q} \\) (if \\( q \\) is odd), so \\( p + 1 \\equiv 2 \\pmod{q} \\neq 0 \\). By Dirichlet's theorem on arithmetic progressions, there are infinitely many such primes, so one can be chosen that does not divide \\( n \\) and is in the set. Thus, no prime \\( q > 3 \\) divides all \\( p + 1 \\) in the set.\n\nAdditionally, for the prime 2, there exist primes \\( p \\equiv 2 \\pmod{3} \\) in the set such that \\( p \\equiv 5 \\pmod{12} \\), so \\( p + 1 \\equiv 6 \\pmod{12} \\), which is divisible by 2 but not by 4. Similarly, for the prime 3, there exist \\( p + 1 \\) divisible by 3 but not by 9 (e.g., \\( p = 5 \\), \\( p + 1 = 6 \\), or if excluded, \\( p = 11 \\), \\( p + 1 = 12 \\)). Thus, the highest powers are \\( 2^1 \\) and \\( 3^1 \\), so the greatest common divisor is 6.\n\nTherefore, in both cases, the greatest integer is \\( 3 \\gcd(2, n) \\).\n\n\\[\n\\boxed{3\\,\\gcd \\left(2,\\,n\\right)}\n\\]",
+            "cost": {
+                "cost": 0.0068393,
+                "input_tokens": 371,
+                "output_tokens": 13456
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:49:22.769456",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof sets $d=\\gcd(2,n)$ and shows that every $p+1$ (with $p\\equiv2\\pmod3$ and $p\\nmid n$) is divisible by $3d$ by parity and exclusion of $p=2$, then proves maximality by constructing primes in specific congruence classes (invoking Dirichlet\u2019s theorem) to rule out higher powers of 2 or 3 and any other prime divisors.",
+                    "issues": [
+                        {
+                            "location": "Final paragraph on limiting the 2-adic valuation",
+                            "text": "primes $p \\equiv 5 \\pmod{12}$",
+                            "description": "The proof asserts the existence of infinitely many primes congruent to $5\\pmod{12}$ without citing Dirichlet\u2019s theorem for modulus 12, checking that $\\gcd(5,12)=1$, or ensuring such primes can be chosen so as not to divide $n$.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1348,
+                            "end_index": 1376
+                        },
+                        {
+                            "location": "Final paragraph on limiting the 3-adic valuation",
+                            "text": "for the prime 3, there exist $p+1$ divisible by 3 but not by 9 (e.g., $p=5$, $p+1=6$, or if excluded, $p=11$, $p+1=12$)",
+                            "description": "Rather than giving a general Dirichlet-theorem argument for primes $p\\equiv2\\pmod9$ and $p>n$, the proof relies on a fixed list of small examples and does not guarantee these primes avoid dividing $n$.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2844,
+                            "end_index": 2974
+                        },
+                        {
+                            "location": "Argument excluding primes $q>3$ in the maximality proof",
+                            "text": "choose $p \\equiv 2 \\pmod{3}$ and $p \\equiv 1 \\pmod{q}$ (if $q$ is odd), so $p+1 \\equiv 2 \\pmod{q}$",
+                            "description": "The proof invokes Dirichlet\u2019s theorem for the combined modulus $3q$ without mentioning the Chinese Remainder Theorem to produce the required residue class or verifying that the chosen residue is coprime to $3q$.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2287,
+                            "end_index": 2400
+                        },
+                        {
+                            "location": "Overall maximality arguments",
+                            "text": "",
+                            "description": "In several places the proof assumes one can choose the constructed primes large enough to avoid dividing $n$, but it never explicitly enforces or justifies this condition in each case.",
+                            "category": "Missing Edge Cases"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:19:58.955231"
+            }
+        }
+    ]
+}

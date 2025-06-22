@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.97,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2018
+    },
+    "problem": "Two ants start at the same point in the plane. Each minute they choose whether to walk due north, east, south, or west. They each walk \\(1\\) meter in the first minute. In each subsequent minute, the distance they walk is multiplied by a rational number \\(q > 0\\). They meet after a whole number of minutes, but have not taken exactly the same route within that time. Determine all possible values of \\(q\\).",
+    "problem_id": "BMOSL_2018_2",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Solution.\n\nAnswer: $q=1$.\nLet $x_{A}^{(n)}$ (resp. $x_{B}^{(n)}$ ) be the $x$-coordinates of the first (resp. second) ant's position after $n$ minutes. Then $x_{A}^{(n)}-x_{A}^{(n-1)} \\in\\left\\{q^{n},-q^{n}, 0\\right\\}$, and so $x_{A}^{(n)}, x_{B}^{(n)}$ are given by polynomials in $q$ with coefficients in $\\{-1,0,1\\}$. So if the ants meet after $n$ minutes, then\n\n$$\n0=x_{A}^{(n)}-x_{B}^{(n)}=P(q)\n$$\nwhere $P$ is a polynomial with degree at most $n$ and coefficients in $\\{-2,-, 1,0,1,2\\}$. Thus if $q=\\frac{a}{b}(a, b \\in \\mathbb{N})$, we have $a \\mid 2$ and $b \\mid 2$, i.e. $q \\in\\left\\{\\frac{1}{2}, 1,2\\right\\}$.\nIt is clearly possible when $q=1$.\nWe argue that $q=\\frac{1}{2}$ is not possible. Assume that the ants diverge for the first time after the $k$ th minute, for $k \\geqslant 0$. Then\n$$\n\\left|x_{B}^{(k+1)}-x_{A}^{(k+1)}\\right|+\\left|y_{B}^{(k+1)}-y_{A}^{(k+1)}\\right|=2 q^{k}\n$$\n\nBut also $\\left|x_{A}^{(\\ell+1)}-x_{A}^{(\\ell)}\\right|+\\left|y_{A}^{(\\ell+1)}-y_{A}^{(\\ell)}\\right|=q^{\\ell}$ for each $l \\geqslant k+1$, and so\n\n$$\n\\left|x_{A}^{(n)}-x_{A}^{(k+1)}\\right|+\\left|y_{A}^{(n)}-y_{A}^{(k+1)}\\right| \\leqslant q^{k+1}+q^{k+2}+\\ldots+q^{n-1}\n$$\nand similarly for the second ant. Combining (1) and (2) with the triangle inequality, we obtain for any $n \\geqslant k+1$\n$$\n\\left|x_{B}^{(n)}-x_{A}^{(n)}\\right|+\\left|y_{B}^{(n)}-y_{A}^{(n)}\\right| \\geqslant 2 q^{k}-2\\left(q^{k+1}+q^{k+2}+\\ldots+q^{n-1}\\right),\n$$\n\nwhich is strictly positive for $q=\\frac{1}{2}$. So for any $n \\geqslant k+1$, the ants cannot meet after $n$ minutes. Thus $q \\neq \\frac{1}{2}$.\nFinally, we show that $q=2$ is also not possible. Suppose to the contrary that there is a pair of routes for $q=2$, meeting after $n$ minutes. Now consider rescaling the plane by a factor $2^{-n}$, and looking at the routes in the opposite direction. This would then be an example for $q=1 / 2$ and we have just shown that this is not possible.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

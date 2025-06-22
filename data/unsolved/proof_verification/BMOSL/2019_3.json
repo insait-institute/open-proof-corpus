@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.01,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2019
+    },
+    "problem": "Let \\( a, b, c \\) be real numbers such that \\( 0 \\leq a \\leq b \\leq c \\). Prove that if\n\n\\[\na+b+c=ab+bc+ca>0,\n\\]\n\nthen \\(\\sqrt{bc}(a+1) \\geq 2\\). When does the equality hold?",
+    "problem_id": "BMOSL_2019_3",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Let $a+b+c=a b+b c+c a=k$. Since $(a+b+c)^{2} \\geq 3(a b+b c+c a)$, we get that $k^{2} \\geq 3 k$. Since $k>0$, we obtain that $k \\geq 3$.\n\nWe have $b c \\geq c a \\geq a b$, so from the above relation we deduce that $b c \\geq 1$.\nBy AM-GM, $b+c \\geq 2 \\sqrt{b c}$ and consequently $b+c \\geq 2$. The equality holds iff $b=c$.\nThe constraint gives us\n\n$$\na=\\frac{b+c-b c}{b+c-1}=1-\\frac{b c-1}{b+c-1} \\geq 1-\\frac{b c-1}{2 \\sqrt{b c}-1}=\\frac{\\sqrt{b c}(2-\\sqrt{b c})}{2 \\sqrt{b c}-1}\n$$\n\nFor $\\sqrt{b c}=2$ condition $a \\geq 0$ gives $\\sqrt{b c}(a+1) \\geq 2$ with equality iff $a=0$ and $b=c=2$.\nFor $\\sqrt{b c}<2$, taking into account the estimation for $a$, we get\n\n$$\na \\sqrt{b c} \\geq \\frac{b c(2-\\sqrt{b c})}{2 \\sqrt{b c}-1}=\\frac{b c}{2 \\sqrt{b c}-1}(2-\\sqrt{b c}) .\n$$\n\nSince $\\frac{b c}{2 \\sqrt{b c}-1} \\geq 1$, with equality for $b c=1$, we get $\\sqrt{b c}(a+1) \\geq 2$ with equality iff $a=b=c=1$.\n\nFor $\\sqrt{b c}>2$ we have $\\sqrt{b c}(a+1)>2(a+1) \\geq 2$.\nThe proof is complete.\nThe equality holds iff $a=b=c=1$ or $a=0$ and $b=c=2$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

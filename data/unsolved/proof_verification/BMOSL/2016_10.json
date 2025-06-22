@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.89,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2016
+    },
+    "problem": "There are 2016 customers who entered a shop on a particular day. Every customer entered the shop exactly once (i.e., the customer entered the shop, stayed there for some time, and then left the shop without returning). Find the maximal \\( k \\) such that the following holds: There are \\( k \\) customers such that either all of them were in the shop at a specific time instance or no two of them were both in the shop at any time instance.",
+    "problem_id": "BMOSL_2016_10",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. We show that the maximal $k$ is $45$.\nFirst we show that no larger $k$ can be achieved: We break the day at $45$ disjoint time intervals and assume that at each time interval there were exactly $45$ costumers who stayed in the shop only during that time interval (except in the last interval in which there were only $36$ customers). We observe that there are no $46$ people with the required property.\nNow we show that $k=45$ can be achieved: Suppose that customers $C_{1}, C_{2}, \\ldots, C_{2016}$ visited the shop in this order. (If two or more customers entered the shop at exactly the same time then we break ties arbitrarily.)\nWe define groups $A_{1}, A_{2}, \\ldots$ of customers as follows: Starting with $C_{1}$ and proceeding in order, we place customer $C_{j}$ into the group $A_{i}$ where $i$ is the smallest index such that $A_{i}$ contains no customer $C_{j^{\\prime}}$ with $j^{\\prime}<j$ and such that $C_{j^{\\prime}}$ was inside the shop once $C_{j}$ entered it.\nClearly no two customers who are in the same group were inside the shop at the exact same time. So we may assume that every $A_{i}$ has at most $45$ customers. Since $44 \\cdot 45<2016$, by the pigeonhole principle there must be at least $45$ (non-empty) groups.\nLet $C_{j}$ be a person in group $A_{45}$ and suppose that $C_{j}$ entered the shop at time $t_{j}$. Since we placed $C_{j}$ in group $A_{45}$ this means that for each $i<45$, there is a $j_{i}<j$ such that $C_{j_{i}} \\in A_{i}$ and $C_{j_{i}}$ is still inside the shop at time $t_{j}$.\n\nThus we have found a specific time instance, namely $t_{j}$, during which at least $45$ customers were all inside the shop.\nNote: Instead of asking for the maximal $k$, an easier version is the following:\nShow that there are $45$ customers such that either all of them were in the shop at a specific time instance or no two of them were both in the shop at any time instance.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

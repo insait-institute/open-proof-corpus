@@ -1,0 +1,48 @@
+/* 1. BASE / GLOBAL STYLES */
+body {
+  font-family: 'Open Sans';
+}
+
+h4 {
+  margin-top: 10px !important;
+}
+
+table {
+  border-collapse: separate;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;              /* put children side-by-side */
+  align-items: flex-start;     /* top-align the two columns */
+}
+
+/* 2. TYPOGRAPHY */
+.dnerf {
+  font-variant: small-caps;
+}
+
+/* 3. LAYOUT */
+.container {
+  justify-content: center !important;
+  max-width: 90vw;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.column.is-ninety {
+  width: 90%;
+  max-width: 1000px;
+}
+
+.columns.is-centered.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 8. COMPONENTS */
+
+
+/* Nav Tabs */

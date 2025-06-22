@@ -1,0 +1,300 @@
+/* --- Existing CSS from your prompt --- */
+/* In your styles.css */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 320px; 
+    background-color: #ffffff;
+    border-right: 1px solid #d1d9e6;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.03);
+    transition: width 0.3s ease-in-out; 
+    overflow-x: hidden;
+
+    /* --- NEW --- */
+    padding-top: 50px; /* Create 50px space at the top */
+}
+
+
+
+.sidebar-header {
+    padding: 15px 22px; /* Adjusted padding to make space for toggle */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+    border-bottom: 1px solid #e2e8f0;
+    flex-shrink: 0;
+    background-color: #f7fafc;
+    display: flex; /* To align toggle button and text */
+    align-items: center;
+    /* text-align: center; NO - handled by flex now */
+    position: relative; /* For absolute positioning of toggle button if needed */
+}
+
+/* NEW: Container for the actual header text, to hide it when collapsed */
+.sidebar-header-text-container {
+    flex-grow: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.sidebar-return-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: calc(100% - 44px);
+    margin: 18px 22px 8px 22px;
+    padding: 12px 18px;
+    background-color: #4a5568;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.3s ease, visibility 0.3s ease; /* Added transitions */
+    flex-shrink: 0;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+.sidebar-return-button:hover {
+    background-color: #2d3748;
+}
+.sidebar-return-button .arrow {
+    font-size: 1.2em;
+}
+.sidebar-return-button .return-button-text { /* NEW CLASS */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.sidebar-items-list {
+    padding: 8px 0;
+    overflow-y: auto;
+    flex-grow: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Added transitions */
+}
+
+.sidebar-item {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 22px;
+    color: #4a5568;
+    text-decoration: none;
+    width: 100%;
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent wrapping during transition */
+}
+.sidebar-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar-item-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.competition-item {
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+.competition-item:hover {
+    background-color: #f0f3f5;
+}
+.competition-item .file-name-sidebar {
+     font-weight: 600;
+}
+
+.question-item .file-name-sidebar {
+    font-size: 1rem;
+}
+.question-item:hover {
+    background-color: #edf2f7;
+}
+
+.sidebar-item.current,
+.current-competition-group {
+    background-color: #e0e7ff;
+    color: #3730a3;
+    border-left: 4px solid #4f46e5;
+    padding-left: 18px;
+}
+.sidebar-item.current:hover,
+.current-competition-group:hover {
+     background-color: #c7d2fe;
+}
+
+.sidebar-item.current .file-name-sidebar,
+.sidebar-item.current .file-status-sidebar,
+.current-competition-group .file-name-sidebar {
+    color: #3730a3;
+}
+
+.file-name-sidebar {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 12px;
+    font-size: 1.05rem;
+}
+
+.file-status-sidebar {
+    margin-left: auto;
+    flex: 0 0 auto;
+    font-size: 1.1rem;
+    display: flex;
+    gap: 6px;
+}
+.competition-arrow {
+    margin-left: auto;
+    font-size: 0.9em;
+    color: #718096;
+}
+.current-competition-group .competition-arrow {
+    color: #4f46e5;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+.progress-bar-fill {
+    height: 100%;
+    background-color: #4f46e5;
+    border-radius: 4px;
+    transition: width 0.3s ease-in-out;
+    width: 0%;
+}
+.current-competition-group .progress-bar-fill {
+     background-color: #3730a3;
+}
+
+.no-files-message {
+    padding: 18px 22px;
+    color: #718096;
+    font-style: italic;
+    justify-content: center;
+    font-size: 1rem;
+    border-bottom: none;
+    cursor: default;
+    text-align: center;
+}
+.no-files-message:hover {
+    background-color: transparent;
+    color: #718096;
+}
+
+.sidebar-items-list::-webkit-scrollbar {
+    width: 8px;
+}
+.sidebar-items-list::-webkit-scrollbar-track {
+    background: #f7fafc;
+}
+.sidebar-items-list::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 10px;
+    border: 2px solid #f7fafc;
+}
+.sidebar-items-list::-webkit-scrollbar-thumb:hover {
+    background-color: #a0aec0;
+}
+
+/* --- NEW CSS for Collapsible Sidebar --- */
+.sidebar-toggle-button {
+    position: absolute; 
+    top: 16px;      
+    left: 15px;      
+    background: none;
+    border: none;
+    font-size: 1.6rem; 
+    /* --- MODIFIED --- */
+    color: #101010; /* White icon color */
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    z-index: 10; 
+}
+.sidebar-toggle-button:hover {
+    /* --- MODIFIED --- */
+    color: #101010; /* Lighter gray for hover, still contrasts on dark */
+}
+
+/* Styles for when sidebar is collapsed */
+.sidebar.collapsed {
+    width: 60px; /* Collapsed width */
+}
+
+.sidebar.collapsed .sidebar-header-text-container,
+.sidebar.collapsed .sidebar-return-button .return-button-text,
+.sidebar.collapsed .file-name-sidebar,
+.sidebar.collapsed .file-status-sidebar, /* Hide status icons too */
+.sidebar.collapsed .competition-arrow,
+.sidebar.collapsed .progress-bar-container,
+.sidebar.collapsed .no-files-message {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.1s ease, visibility 0.1s linear 0.1s; /* Quick fade out */
+}
+.sidebar.collapsed .sidebar-item-content {
+    /* If you want to show icons only in collapsed mode, you'd style them here.
+       For now, we hide most text content. */
+    justify-content: center; /* Center any remaining visible content (like an icon) */
+}
+
+
+.sidebar.collapsed .sidebar-header {
+    padding-left: 50px; /* Make space if toggle button is on left and header text is hidden */
+    justify-content: flex-end; /* Or center, depending on where toggle button is */
+}
+.sidebar.collapsed .sidebar-toggle-button {
+    /* If you need to reposition the button when collapsed */
+    /* left: 10px; */
+}
+
+
+.sidebar.collapsed .sidebar-return-button {
+    width: auto; /* Allow it to shrink */
+    padding: 12px 15px; /* Adjust padding */
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.sidebar.collapsed .sidebar-return-button .arrow {
+    margin-right: 0; /* No extra space if text is hidden */
+}
+
+
+.sidebar.collapsed .sidebar-items-list {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Prevent interaction with hidden items */
+}
+
+/* Example for main content area adjustment (add this to your main content's CSS) */
+/*
+.main-content {
+    margin-left: 320px; // Should match SIDEBAR_EXPANDED_WIDTH
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+.sidebar.collapsed + .main-content { // If main-content is a direct sibling
+    margin-left: 60px; // Should match SIDEBAR_COLLAPSED_WIDTH
+}
+*/

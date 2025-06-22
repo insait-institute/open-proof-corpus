@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.05,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2020
+    },
+    "problem": "Let \\( \\triangle ABC \\) be an isosceles triangle with \\( AB = AC \\) and \\( \\angle A = 45^\\circ \\). Its circumcircle \\((c)\\) has center \\( O \\). \\( M \\) is the midpoint of \\( BC \\) and \\( D \\) is the foot of the perpendicular from \\( C \\) to \\( AB \\). With center \\( C \\) and radius \\( CD \\), we draw a circle which internally intersects \\( AC \\) at the point \\( F \\) and the circle \\((c)\\) at the points \\( Z \\) and \\( E \\), such that \\( Z \\) lies on the small arc \\(\\overparen{BC}\\) and \\( E \\) on the small arc \\(\\overparen{AC}\\). Prove that the lines \\( ZE, CO, FM \\) are concurrent.",
+    "problem_id": "BMOSL_2020_13",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Since $Z E$ is the common chord of the two circles, the line of the centres $C O$ is its perpendicular bisector. This means that $C O$ passes through the midpoint of $Z E$, let it be $T$. Thus, it suffices to prove that $F M$ passes through $T$. To this end, we will prove that $F Z M E$ is a parallelogram: we will precisely show that the segments $F E$ and $Z M$ are parallel and equal.\n\nLet $K$ be the intersection point of $Z E$ and $A C$. Then $K$ lies on the radical axis of the two circles, so it has equal powers to both circles. The power of the point $K$ with respect to the one circle is $K A \\cdot K C$, while the power to the other circle is $R^{2}-K C^{2}=C D^{2}-K C^{2}$ \u0433\u0402\u201a\n\nFrom the theorem of Pythagoras in triangle $A D C$ we get $A C^{2}=2 C D^{2}$. We set $K A=x, K C=y$, and combining all the above yields $x y=\\frac{(x+y)^{2}}{2}-y^{2}$, hence $2 x y=$ $x^{2}+y^{2}+2 x y-y^{2}$, i.e. $x=y$.\n\nThis means that $K$ is the midpoint of $A C$. Moreover, we have $\\angle A D C=\\angle A M C=$ $90^{\\circ}$, so the points $A, D, M, C$ are on the same circle - let it be $\\left(c_{1}\\right)$ - and the center of this circle is $K$.\n\nFrom the cyclic quadrilateral we have that $\\angle D M B=45^{\\circ}$, but we have also that $\\angle O C B=45^{\\circ}$, so the lines $O C, D M$ are parallel, hence $K Z \\perp D M$ and, since $D M$ is a chord of the circle, $Z D=Z M$. (1)\n\nThe triangle $C D F$ is isosceles and $C O$ is bisector, so $C O \\perp D F$, and this means that $Z E \\| D F$. It follows that $D F E Z$ is an isosceles trapezium, so $D Z=F E$ (2), and from (1) and (2) we have that $Z M=F E(*)$.\n\nFrom the isosceles trapezium we also have that $\\angle F E Z=\\angle D Z E$ (3). Since $Z K$ is an altitude in the isosceles triangle $D Z M$, it will be also angle bisector, so $\\angle D Z E=\\angle M Z E$ (4).\n\nFrom (3) and (4) we conclude that $\\angle F E Z=\\angle M Z E$, so $F E \\| Z M\\left({ }^{* *}\\right)$. From (*) and $\\left({ }^{* *}\\right)$ we get that $F Z M E$ is a parallelogram, which is the desired result.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

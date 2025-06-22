@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.89,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2016
+    },
+    "problem": "Given that \\( \\triangle ABC \\) is a triangle where \\( AB < AC \\). On the half-lines \\( BA \\) and \\( CA \\), we take points \\( F \\) and \\( E \\) respectively such that \\( BF = CE = BC \\). Let \\( M, N, \\) and \\( H \\) be the midpoints of the segments \\( BF, CE, \\) and \\( BC \\) respectively, and let \\( K \\) and \\( O \\) be the circumcenters of the triangles \\( \\triangle ABC \\) and \\( \\triangle MNH \\) respectively. We assume that line \\( OK \\) cuts \\( BE \\) and \\( HN \\) at the points \\( A_1 \\) and \\( B_1 \\) respectively, and that \\( C_1 \\) is the point of intersection of \\( HN \\) and \\( FE \\). If the parallel line from \\( A_1 \\) to \\( OC_1 \\) cuts the line \\( FE \\) at \\( D \\) and the perpendicular from \\( A_1 \\) to the line \\( DB_1 \\) cuts \\( FE \\) at the point \\( M_1 \\), prove that \\( E \\) is the orthocenter of the triangle \\( \\triangle A_1OM_1 \\).",
+    "problem_id": "BMOSL_2016_14",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. The circumcenter of the triangle $\\triangle M N H$ coincides with the incentre of the triangle $\\triangle A B C$ because the triangles $\\triangle B M H$ and $\\triangle N H C$ are isosceles and therefore the perpendiculars of the $M H, H N$ are also the bisectors of the angles $\\angle A B C, \\angle A C B$, respectively.\n\n\nLet $G, I$ be the points of tangents of the incircle $(O, r)$ of the triangle $\\triangle A B C$ with the sides $A B$ and $A C$ respectively. Now if $a, b, c$ are the sides of the triangle $\\triangle A B C$ and $s$ the semiperimeter of the triangle , we have\n\n$$\nO F^{2}=O G^{2}+F G^{2}=r^{2}+(a-s+b)^{2}\n$$\nand\n$$\nO E^{2}=O I^{2}+E I^{2}=r^{2}+(a-s+c)^{2}\n$$\n\nThen\n\n$$\nO F^{2}-O E^{2}=\\alpha(b-c)\n$$\n\nApplying two times the theorem of Stewarts at the triangles $\\triangle K F B$ and $\\triangle K A C$ we get\n\n$$\nF A \\cdot K A^{2}+c \\cdot K F^{2}=a \\cdot K A^{2}+a c \\cdot F A \\quad \\text { or } \\quad K F^{2}=K A^{2}+a(a-c)\n$$\nand\n$$\nE A \\cdot K E^{2}+\\alpha \\cdot K A^{2}=b \\cdot K E^{2}+a b \\cdot E A \\quad \\text { or } \\quad K E^{2}=K A^{2}+a(b-a)\n$$\n\nFrom (2) and (3) we have\n\n$$\nK F^{2}-K E^{2}=a(a-c)-a(b-a)=\\alpha(b-c)\n$$\n\nFrom (1),(4), because $O F^{2}-O E^{2}=K F^{2}-K E^{2}$ we have that $F E \\perp O K$.\n\nLet $J$ the point of intersection of $F E, O K$.\nBecause $A_{1} D / / O C_{1}$ we have\n\n$$\n\\frac{J O}{J A_{1}}=\\frac{J C_{1}}{J D}\n$$\n\nAnd since $A_{1} E / / H N$ we get\n\n$$\n\\frac{J E}{J A_{1}}=\\frac{J C_{1}}{J B_{1}}\n$$\n\nTherefore, we have\n\n$$\n\\frac{J O}{J E}=\\frac{J B_{1}}{J D}\n$$\n\nThus, from the inverse of Thales theorem we have that $E O / / D B_{1}$, So\n\n$$\nA M_{1} \\perp E O\n$$\n\nConsequently, the point $E$ is the orthocenter of the triangle $\\triangle A_{1} O M_{1}$\nRemark(PSC): Here in the solution the side $B C$ has been referred as $\\alpha$ and $a$, which are equivalent.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

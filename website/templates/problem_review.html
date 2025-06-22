@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta property="og:title" content="Grading Tool"/>
+  <meta property="og:description" content="Grading Tool for Human Grading of LLM Generated Proofs"/>
+  <meta property="description" content="Grading Tool for Human Grading of LLM Generated Proofs"/>
+
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="keywords" content="Math, LLM, Olympiads, Competitions, Leaderboards, AI, Machine Learning, Grading"/>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Grading Tool - Upload File</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body class="position-relative vh-100 bg-light">
+    <form
+      id="uploadForm"
+      class="position-absolute top-50 start-50 translate-middle p-4 rounded-3 shadow bg-white text-center"
+      style="min-width: 350px; max-width: 500px;"
+      method="POST"
+      action="/upload/" enctype="multipart/form-data" >
+      <h4 class="mb-3">Upload File for Problem Review</h4>
+      <div class="mb-3">
+        <label for="fileUpload" class="form-label">Select file (Max: 50MB)</label>
+        <input
+          type="file"
+          class="form-control"
+          id="fileUpload"
+          name="gradingFile" required
+          accept=".json" />
+        <input type="hidden" name="MAX_FILE_SIZE" value="52428800" /> <div id="fileError" class="form-text text-danger mt-1" style="display: none;"></div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 mb-2">Upload and Start Review</button>
+    </form>
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+    </body>
+</html>

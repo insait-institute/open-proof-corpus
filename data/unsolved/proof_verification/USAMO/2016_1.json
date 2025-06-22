@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.32,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2016
+    },
+    "problem": "Let \\(X_{1}, X_{2}, \\ldots, X_{100}\\) be a sequence of mutually distinct nonempty subsets of a set \\(S\\). Any two sets \\(X_{i}\\) and \\(X_{i+1}\\) are disjoint and their union is not the whole set \\(S\\), that is, \\(X_{i} \\cap X_{i+1}=\\emptyset\\) and \\(X_{i} \\cup X_{i+1} \\neq S\\), for all \\(i \\in\\{1, \\ldots, 99\\}\\). Find the smallest possible number of elements in \\(S\\).",
+    "problem_id": "USAMO_2016_1",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution with Danielle Wang: the answer is that $|S| \\geq 8$.\n\n\u0430\u00a4\u00ac Proof that $|S| \\geq 8$ is necessary. Since we must have $2^{|S|} \\geq 100$, we must have $|S| \\geq 7$.\n\nTo see that $|S|=8$ is the minimum possible size, consider a chain on the set $S=$ $\\{1,2, \\ldots, 7\\}$ satisfying $X_{i} \\cap X_{i+1}=\\emptyset$ and $X_{i} \\cup X_{i+1} \\neq S$. Because of these requirements any subset of size $4$ or more can only be neighbored by sets of size $2$ or less, of which there are $\\binom{7}{1}+\\binom{7}{2}=28$ available. Thus, the chain can contain no more than $29$ sets of size $4$ or more and no more than $28$ sets of size $2$ or less. Finally, since there are only $\\binom{7}{3}=35$ sets of size $3$ available, the total number of sets in such a chain can be at most $29+28+35=92<100$, contradiction.\n\n\u0433\u0402\u0452 Construction. We will provide an inductive construction for a chain of subsets $X_{1}, X_{2}, \\ldots, X_{2^{n-1}+1}$ of $S=\\{1, \\ldots, n\\}$ satisfying $X_{i} \\cap X_{i+1}=\\varnothing$ and $X_{i} \\cup X_{i+1} \\neq S$ for each $n \\geq 4$.\n\nFor $S=\\{1,2,3,4\\}$, the following chain of length $2^{3}+1=9$ will work:\n\n$$\n\\begin{array}{lllllllll}\n34 & 1 & 23 & 4 & 12 & 3 & 14 & 2 & 13 .\n\\end{array}\n$$\n\nNow, given a chain of subsets of $\\{1,2, \\ldots, n\\}$ the following procedure produces a chain of subsets of $\\{1,2, \\ldots, n+1\\}$ :\n\n1. take the original chain, delete any element, and make two copies of this chain, which now has even length;\n2. glue the two copies together, joined by $\\varnothing$ in between; and then\n3. insert the element $n+1$ into the sets in alternating positions of the chain starting with the first.\n\nFor example, the first iteration of this construction gives:\n\n| $345$ | $1$ | $235$ | $4$ | $125$ | $3$ | $145$ | $2$ | $5$ |\n| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n| $34$ | $15$ | $23$ | $45$ | $12$ | $35$ | $14$ | $25$ |  |\n\nIt can be easily checked that if the original chain satisfies the requirements, then so does the new chain, and if the original chain has length $2^{n-1}+1$, then the new chain has length $2^{n}+1$, as desired. This construction yields a chain of length $129$ when $S=\\{1,2, \\ldots, 8\\}$.\n\nRemark. Here is the construction for $n=8$ in its full glory.\n\n| $345678$ | $1$ | $235678$ | $4$ | $125678$ | $3$ | $145678$ | $2$ | $5678$ |\n| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n| $34$ | $15678$ | $23$ | $45678$ | $12$ | $35678$ | $14$ | $678$ |  |\n| $345$ | $1678$ | $235$ | $4678$ | $125$ | $3678$ | $145$ | $2678$ | $5$ |\n| $34678$ | $15$ | $23678$ | $45$ | $12678$ | $35$ | $78$ |  |  |\n| $3456$ | $178$ | $2356$ | $478$ | $1256$ | $378$ | $1456$ | $278$ | $56$ |\n| $3478$ | $156$ | $2378$ | $456$ | $1278$ | $356$ | $1478$ | $6$ |  |\n| $34578$ | $16$ | $23578$ | $46$ | $12578$ | $36$ | $14578$ | $26$ | $578$ |\n| $346$ | $1578$ | $236$ | $4578$ | $126$ | $8$ |  |  |  |\n| $34567$ | $18$ | $23567$ | $48$ | $12567$ | $38$ | $14567$ | $28$ | $567$ |\n| $348$ | $1567$ | $238$ | $4567$ | $128$ | $3567$ | $148$ | $67$ |  |\n| $3458$ | $167$ | $2358$ | $467$ | $1258$ | $367$ | $1458$ | $267$ | $58$ |\n| $3467$ | $158$ | $2367$ | $458$ | $1267$ | $358$ | $7$ |  |  |\n| $34568$ | $17$ | $23568$ | $47$ | $12568$ | $37$ | $14568$ | $27$ | $568$ |\n| $347$ | $1568$ | $237$ | $4568$ | $127$ | $3568$ | $147$ | $68$ |  |\n| $3457$ | $168$ | $2357$ | $468$ | $1257$ | $368$ | $1457$ | $268$ | $57$ |\n| $3468$ | $157$ | $2368$ | $457$ | $1268$ |  |  |  |  |",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

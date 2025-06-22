@@ -1,0 +1,197 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2017
+    },
+    "problem": "A grasshopper is sitting at an integer point in the Euclidean plane. Each second it jumps to another integer point in such a way that the jump vector is constant. A hunter that knows neither the starting point of the grasshopper nor the jump vector (but knows that the jump vector for each second is constant) wants to catch the grasshopper. Each second the hunter can choose one integer point in the plane and, if the grasshopper is there, he catches it. Can the hunter always catch the grasshopper in a finite amount of time?",
+    "problem_id": "BMOSL_2017_20",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "The hunter can catch the grasshopper. Here is the strategy for him. Let $f$ be any bijection between the set of positive integers and the set $\\{((x, y),(u, v)): x, y, u, v \\in \\mathbb{Z}\\}$, and denote\n\n$$\nf(t)=\\left(\\left(x_{t}, y_{t}\\right),\\left(u_{t}, v_{t}\\right)\\right) .\n$$\n\nIn the second $t$, the hunter should hunt at the point $\\left(x_{t}+t u_{t}, y_{t}+t v_{t}\\right)$. Let us show that this strategy indeed works.\nAssume that the grasshopper starts at the point ( $x^{\\prime}, y^{\\prime}$ ) and that the jump vector is ( $u^{\\prime}, v^{\\prime}$ ). Then in the second $t$ the grasshopper is at the point $\\left(x^{\\prime}+t u^{\\prime}, y^{\\prime}+t v^{\\prime}\\right)$. Let\n\n$$\nt^{\\prime}=f^{-1}\\left(\\left(x^{\\prime}, y^{\\prime}\\right),\\left(u^{\\prime}, v^{\\prime}\\right)\\right)\n$$\n\nThe hunter's strategy dictates that in the second $t^{\\prime}$ he searches for the grasshopper at the point $\\left(x_{t^{\\prime}}+t^{\\prime} u_{t^{\\prime}}, y_{t^{\\prime}}+t^{\\prime} v_{t^{\\prime}}\\right)$, which is actually $\\left(x^{\\prime}+t^{\\prime} u^{\\prime}, y^{\\prime}+t^{\\prime} v^{\\prime}\\right)$, and this is precisely the point where the grasshopper is in the second $t^{\\prime}$. This completes the proof.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "The hunter can always catch the grasshopper in finite time by using a systematic enumeration strategy based on the countable set of possible starting points and jump vectors. Below is a complete and self-contained proof.\n\n---\n\n**Proof:**\n\nThe grasshopper starts at some integer point \\((x_0^*, y_0^*) \\in \\mathbb{Z}^2\\) at time \\(t = 0\\) and jumps with a constant jump vector \\((a^*, b^*) \\in \\mathbb{Z}^2\\) each second. Thus, at time \\(t \\in \\mathbb{N} \\cup \\{0\\}\\), the position of the grasshopper is given by:\n\\[\n(x_0^* + a^* \\cdot t, \\, y_0^* + b^* \\cdot t).\n\\]\nThe hunter does not know \\((x_0^*, y_0^*)\\) or \\((a^*, b^*)\\), but knows that both are integer-valued and that the jump vector is constant. The hunter's goal is to choose a point to check at each time \\(t\\) such that, for any fixed \\((x_0^*, y_0^*, a^*, b^*)\\), there exists some finite time \\(t\\) where the hunter's chosen point matches the grasshopper's position.\n\nFirst, note that the set of all possible quadruples \\((x_0, y_0, a, b) \\in \\mathbb{Z}^4\\) is countable because \\(\\mathbb{Z}^4\\) is a countable union of countable sets (since each component is countable). Therefore, an enumeration of all such quadruples exists. Define a sequence of quadruples \\((x_k, y_k, a_k, b_k)\\) for \\(k = 0, 1, 2, \\dots\\) that includes every possible \\((x_0, y_0, a, b) \\in \\mathbb{Z}^4\\) exactly once. Such an enumeration can be constructed, for example, by ordering the quadruples first by the sum of absolute values \\(|x_0| + |y_0| + |a| + |b|\\), and then lexicographically within each sum to ensure all quadruples are listed.\n\nThe hunter employs the following strategy: at each time step \\(t = 0, 1, 2, \\dots\\), the hunter assumes that the quadruple \\((x_t, y_t, a_t, b_t)\\) (the \\(t\\)-th quadruple in the enumeration) is the true one and checks the point where this hypothetical grasshopper would be at time \\(t\\). Specifically, the hunter visits the point:\n\\[\n(p_x(t), p_y(t)) = (x_t + a_t \\cdot t, \\, y_t + b_t \\cdot t).\n\\]\n\nNow, consider the true quadruple \\((x_0^*, y_0^*, a^*, b^*)\\). Since the enumeration includes all possible quadruples, there exists some finite index \\(m \\geq 0\\) such that \\((x_m, y_m, a_m, b_m) = (x_0^*, y_0^*, a^*, b^*)\\). At time \\(t = m\\), the hunter visits:\n\\[\n(p_x(m), p_y(m)) = (x_m + a_m \\cdot m, \\, y_m + b_m \\cdot m) = (x_0^* + a^* \\cdot m, \\, y_0^* + b^* \\cdot m),\n\\]\nbecause \\((x_m, y_m, a_m, b_m) = (x_0^*, y_0^*, a^*, b^*)\\). Meanwhile, the actual position of the grasshopper at time \\(t = m\\) is:\n\\[\n(x_0^* + a^* \\cdot m, \\, y_0^* + b^* \\cdot m).\n\\]\nThus, the hunter's chosen point \\((p_x(m), p_y(m))\\) matches the grasshopper's position at time \\(m\\), and the hunter catches the grasshopper.\n\nSince \\(m\\) is finite for any fixed true quadruple \\((x_0^*, y_0^*, a^*, b^*)\\), the capture occurs in finite time. This strategy works regardless of the specific values of \\(x_0^*\\), \\(y_0^*\\), \\(a^*\\), and \\(b^*\\), as long as they are fixed integers. Therefore, the hunter can always catch the grasshopper in finite time.\n\n\\boxed{\\text{Yes}}",
+            "cost": {
+                "cost": 0.002975,
+                "input_tokens": 420,
+                "output_tokens": 5698
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:00:30.253407",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof enumerates all integer quadruples \\((x_0,y_0,a,b)\\in\\mathbb Z^4\\) in a sequence indexed by \\(t=0,1,2,\\dots\\), and at each time \\(t\\) the hunter checks the point \\((x_t+a_t t,\\,y_t+b_t t)\\). Since the true quadruple \\((x_0^*,y_0^*,a^*,b^*)\\) appears at some finite index \\(m\\), at time \\(m\\) the hunter\u2019s chosen point coincides with the grasshopper\u2019s position, ensuring capture in finite time.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:21:27.495344"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To determine whether a hunter can always catch a grasshopper in finite time, we begin by analyzing the motion of the grasshopper and the constraints of the hunter's strategy.\n\n---\n\n### **Problem Setup**\n\n- The grasshopper starts at an unknown integer point $(x_0, y_0)$ in the plane.\n- Each second, it jumps by a fixed vector $(dx, dy)$, also an integer vector.\n- The grasshopper's position at time $t$ is therefore:\n  $$\n  (x_0 + dx \\cdot t, y_0 + dy \\cdot t)\n  $$\n- The hunter does **not** know $(x_0, y_0)$ or $(dx, dy)$, but knows that the jump vector is constant and the grasshopper moves on integer points.\n- The hunter can choose **one** integer point per second to check for the grasshopper.\n- The goal is to determine whether the hunter can **guarantee** catching the grasshopper in **finite time**, regardless of the grasshopper's initial position and jump vector.\n\n---\n\n### **Key Observations**\n\n1. **Countability of Trajectories**:  \n   Each grasshopper trajectory is uniquely determined by the four integers $(x_0, y_0, dx, dy)$. Since these are all integers, the set of all such trajectories is countable. We can enumerate them as a sequence:\n   $$\n   Q_1, Q_2, Q_3, \\dots\n   $$\n   where each $Q_n = (x_0^{(n)}, y_0^{(n)}, dx^{(n)}, dy^{(n)})$.\n\n2. **Hunter's Strategy**:  \n   The hunter can choose a sequence of points $(a_t, b_t)$ to check at time $t$. The goal is to ensure that for **some finite** $t$, the point $(a_t, b_t)$ coincides with the grasshopper's position at time $t$, i.e.,\n   $$\n   (a_t, b_t) = (x_0 + dx \\cdot t, y_0 + dy \\cdot t)\n   $$\n   for the grasshopper's unknown trajectory.\n\n3. **Diagonalization Strategy**:  \n   The hunter can use a **diagonalization** approach. Specifically, the hunter can:\n   - Enumerate all possible grasshopper trajectories $Q_1, Q_2, Q_3, \\dots$.\n   - At time $t$, the hunter checks the position of the $t$-th trajectory at time $t$, i.e., checks:\n     $$\n     (x_0^{(t)} + dx^{(t)} \\cdot t, y_0^{(t)} + dy^{(t)} \\cdot t)\n     $$\n   - Since the grasshopper follows **some** trajectory $Q_m$, and the hunter checks the $m$-th trajectory at time $m$, the hunter will catch the grasshopper at time $t = m$, which is finite.\n\n---\n\n### **Why This Works**\n\n- The enumeration of all possible grasshopper trajectories is **possible** because the set of integer quadruples $(x_0, y_0, dx, dy)$ is countable.\n- The hunter's strategy is **well-defined** and **guarantees** that for any grasshopper trajectory, there is a finite time $t$ when the hunter checks the grasshopper's position.\n- The strategy does **not** require the hunter to know the grasshopper's trajectory in advance. It only requires that the hunter can follow a fixed sequence of guesses that eventually covers every possible trajectory at some finite time.\n\n---\n\n### **Conclusion**\n\nThe hunter can indeed always catch the grasshopper in finite time by enumerating all possible grasshopper trajectories and checking the position of the $t$-th trajectory at time $t$. This guarantees that for any grasshopper trajectory, the hunter will eventually check the grasshopper's position at the correct time.\n\n$$\n\\boxed{Yes}\n$$",
+            "cost": {
+                "cost": 0.0054972,
+                "input_tokens": 429,
+                "output_tokens": 9019
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:42:51.191803",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof observes that each grasshopper trajectory is determined by an integer quadruple $(x_0,y_0,dx,dy)$, so the set of all trajectories is countable. It enumerates them as $Q_1,Q_2,\\dots$, and at time $t$ the hunter checks the point reached at time $t$ by the $t$-th trajectory. Since the actual trajectory is $Q_m$ for some $m$, the hunter will inspect the grasshopper\u2019s true position at time $m$ and catch it.",
+                    "issues": [
+                        {
+                            "location": "Key Observations (enumeration of trajectories)",
+                            "text": "\u201cSince these are all integers, the set of all such trajectories is countable. We can enumerate them as a sequence: $Q_1,Q_2,Q_3,\\dots$.\u201d",
+                            "description": "The proof asserts the existence of an enumeration of $\\mathbb Z^4$ without providing any explicit construction or justification of a bijection between $\\mathbb N$ and $\\mathbb Z^4$. This skips a nontrivial but standard step of giving an explicit enumeration.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1042,
+                            "end_index": 1183
+                        },
+                        {
+                            "location": "Diagonalization Strategy",
+                            "text": "\u201cThe hunter can use a **diagonalization** approach.\u201d",
+                            "description": "Labeling the method as \u201cdiagonalization\u201d is misleading: the argument is a direct enumeration rather than a true diagonal argument (in the Cantor sense).",
+                            "category": "Other",
+                            "start_index": 1648,
+                            "end_index": 1702
+                        },
+                        {
+                            "location": "Hunter's Strategy",
+                            "text": "\u201cAt time $t$, the hunter checks the position of the $t$-th trajectory at time $t$, i.e., checks: $(x_0^{(t)} + dx^{(t)} \\cdot t,\\;y_0^{(t)} + dy^{(t)} \\cdot t)$.\u201d",
+                            "description": "The proof implicitly assumes the enumeration is injective (a bijection) so that each index $t$ corresponds to a unique trajectory. This injectivity is not stated or proved.",
+                            "category": "Oversimplification",
+                            "start_index": 1816,
+                            "end_index": 1984
+                        },
+                        {
+                            "location": "Key Observations / Conclusion",
+                            "text": "\u201cSince the grasshopper follows **some** trajectory $Q_m$, and the hunter checks the $m$-th trajectory at time $m$, the hunter will catch the grasshopper at time $t = m$.\u201d",
+                            "description": "The strategy relies on the hunter being able to compute the $m$-th term of the enumeration effectively. The proof does not address whether the enumeration is computable, which is necessary for the hunter to execute the strategy in finite time.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 1999,
+                            "end_index": 2166
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:21:39.901148"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Yes, the hunter can always catch the grasshopper in a finite amount of time. Here is a proof.\n\n**1. Problem Formulation**\n\nLet the position of the grasshopper at time $t$ be $P_t \\in \\mathbb{Z}^2$. Time $t$ is a non-negative integer, i.e., $t \\in \\mathbb{N}_0 = \\{0, 1, 2, \\ldots\\}$.\nThe initial position of the grasshopper at $t=0$ is $P_0 \\in \\mathbb{Z}^2$.\nThe grasshopper has a constant jump vector $V \\in \\mathbb{Z}^2$. So, its position at time $t$ is given by the formula:\n\\\\[ P_t = P_0 + tV \\\\]\nThe problem states that \"Each second it jumps to another integer point\". This means that $P_{k} \\neq P_{k-1}$ for $k \\ge 1$.\n$P_k - P_{k-1} = (P_0 + kV) - (P_0 + (k-1)V) = V$.\nSo, $P_k \\neq P_{k-1}$ implies $V \\neq (0,0)$. The jump vector $V$ must be non-zero.\nThe set of all possible initial positions is $\\mathbb{Z}^2$. The set of all possible jump vectors is $\\mathbb{Z}^2 \\setminus \\{(0,0)\\}$.\nA specific grasshopper behavior is determined by the pair $(P_0, V)$.\n\nThe hunter does not know $P_0$ or $V$. At each time $t \\in \\mathbb{N}_0$, the hunter can choose one integer point $H_t \\in \\mathbb{Z}^2$ to check. If the grasshopper is at that point at that time (i.e., $P_t = H_t$), it is caught.\nWe need to show that there exists a strategy for the hunter (a sequence of choices $H_0, H_1, H_2, \\ldots$) such that for any pair $(P_0, V)$, the grasshopper is caught in a finite amount of time.\n\n**2. The Set of Grasshopper Behaviors is Countable**\n\nA grasshopper's behavior is entirely determined by the pair $(P_0, V)$, where $P_0 \\in \\mathbb{Z}^2$ and $V \\in \\mathbb{Z}^2 \\setminus \\{(0,0)\\}$. Let $\\mathcal{C}$ be the set of all such pairs:\n\\\\[ \\mathcal{C} = \\mathbb{Z}^2 \\times (\\mathbb{Z}^2 \\setminus \\{(0,0)\\}) \\\\]\nWe will show that $\\mathcal{C}$ is a countably infinite set.\n*   The set of integers $\\mathbb{Z} = \\{\\ldots, -2, -1, 0, 1, 2, \\ldots\\}$ is countable. A known bijection $f: \\mathbb{N}_0 \\to \\mathbb{Z}$ is, for example, $f(n) = (-1)^n \\lceil n/2 \\rceil$.\n*   If $A$ and $B$ are countable sets, their Cartesian product $A \\times B$ is also countable.\n    Since $\\mathbb{Z}$ is countable, $\\mathbb{Z}^2 = \\mathbb{Z} \\times \\mathbb{Z}$ is countable.\n*   The set $\\mathbb{Z}^2 \\setminus \\{(0,0)\\}$ is obtained by removing a single element $((0,0))$ from the countably infinite set $\\mathbb{Z}^2$. Therefore, $\\mathbb{Z}^2 \\setminus \\{(0,0)\\}$ is also countably infinite.\n*   The set $\\mathcal{C}$ is the Cartesian product of $\\mathbb{Z}^2$ and $\\mathbb{Z}^2 \\setminus \\{(0,0)\\}$. Both are countable sets, so $\\mathcal{C}$ is also countable.\n\n**3. Enumeration of Grasshopper Behaviors**\n\nSince $\\mathcal{C}$ is countable, we can create an exhaustive list (an enumeration) of all possible grasshopper behaviors. Let $\\Psi: \\mathbb{N}_0 \\to \\mathcal{C}$ be such an enumeration. For each $k \\in \\mathbb{N}_0$, $\\Psi(k)$ corresponds to a unique pair $(P_0^{(k)}, V^{(k)})$, where $P_0^{(k)}$ is the initial position and $V^{(k)}$ is the jump vector for the $k$-th behavior in our list.\nThis list $(P_0^{(0)}, V^{(0)}), (P_0^{(1)}, V^{(1)}), (P_0^{(2)}, V^{(2)}), \\ldots$ includes every possible behavior $(P_0,V)$ satisfying the problem conditions.\n\n**4. The Hunter's Strategy**\n\nThe hunter can use the enumeration $\\Psi$ to define their strategy. At each time $t \\in \\mathbb{N}_0$, the hunter decides to check the point $H_t$ that corresponds to the $t$-th behavior in the list, $\\Psi(t)=(P_0^{(t)}, V^{(t)})$. Specifically, the hunter checks the point where the grasshopper following behavior $\\Psi(t)$ would be at time $t$.\nSo, the hunter's strategy is:\n\\\\[ H_t = P_0^{(t)} + tV^{(t)} \\\\]\nSince $P_0^{(t)} \\in \\mathbb{Z}^2$ and $V^{(t)} \\in \\mathbb{Z}^2$, and $t$ is an integer, $tV^{(t)}$ is also an integer vector. Thus, $H_t$ is an integer point in $\\mathbb{Z}^2$, so it is a valid point for the hunter to check.\n\n**5. Proof of Guaranteed Capture in Finite Time**\n\nNow, we prove that this strategy guarantees that the hunter catches the grasshopper in a finite amount of time, regardless of what the grasshopper's actual $P_0$ and $V$ are.\n\nLet the grasshopper's actual initial position be $P_0^*$ and its actual jump vector be $V^*$. According to the problem's conditions, $P_0^* \\in \\mathbb{Z}^2$ and $V^* \\in \\mathbb{Z}^2 \\setminus \\{(0,0)\\}$.\nSo the pair $(P_0^*, V^*)$ is one of the behaviors in the set $\\mathcal{C}$.\nSince $\\Psi$ is an enumeration of all behaviors in $\\mathcal{C}$, there must exist some index $j \\in \\mathbb{N}_0$ such that this specific pair $(P_0^*, V^*)$ is the $j$-th behavior in our list:\n\\\\[ (P_0^*, V^*) = \\Psi(j) = (P_0^{(j)}, V^{(j)}) \\\\]\nNow, let's consider what happens at time $t=j$:\n*   The actual position of the grasshopper at time $t=j$ is $P_j^* = P_0^* + jV^*$.\n*   According to the hunter's strategy, the point checked by the hunter at time $t=j$ is $H_j = P_0^{(j)} + jV^{(j)}$.\n\nSubstituting $P_0^* = P_0^{(j)}$ and $V^* = V^{(j)}$, the grasshopper's actual position at time $t=j$ is:\n\\\\[ P_j^* = P_0^{(j)} + jV^{(j)} \\\\]\nComparing this with the hunter's chosen point $H_j$, we see that $P_j^* = H_j$.\nThis means that at time $t=j$, the grasshopper is located at the exact point $H_j$ that the hunter checks. Therefore, the grasshopper is caught.\n\nSince $j$ is the index of the grasshopper's behavior in the enumeration, $j$ is a finite non-negative integer. Thus, the grasshopper is always caught at a finite time $j$.\n\n**6. Note on the condition $V \\neq (0,0)$**\n\nThe problem statement \"Each second it jumps to another integer point\" implies $V \\neq (0,0)$. If we were to allow $V=(0,0)$, the set of behaviors would be $\\mathcal{C}' = \\mathbb{Z}^2 \\times \\mathbb{Z}^2 = \\mathbb{Z}^4$. This set $\\mathcal{C}'$ is also countable. The same argument would follow:\n1. Enumerate all pairs in $\\mathbb{Z}^4$ as $(P_0^{(k)}, V^{(k)})$ for $k \\in \\mathbb{N}_0$.\n2. The hunter's strategy is $H_t = P_0^{(t)} + tV^{(t)}$.\n3. If the grasshopper's state is $(P_0^{(j)}, V^{(j)})$, it is caught at time $t=j$ because its position $P_0^{(j)} + jV^{(j)}$ will be equal to $H_j$.\nSo, the conclusion holds even if $V=(0,0)$ is allowed.\n\n**7. Conclusion**\n\nThe hunter can define a strategy by enumerating all possible grasshopper behaviors $(P_0^{(k)}, V^{(k)})$ and checking the point $P_0^{(t)} + tV^{(t)}$ at time $t$. This strategy guarantees that any grasshopper, characterized by a pair $(P_0, V)$, will be caught at time $j$ where $j$ is the index of $(P_0, V)$ in the enumeration. Since $j$ is finite, the hunter always catches the grasshopper in a finite amount of time.\n\nThe final answer is $\\boxed{Yes}$.",
+            "cost": {
+                "cost": 0.1184425,
+                "input_tokens": 426,
+                "output_tokens": 11791
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:46:03.331540",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines the grasshopper's position by \\(P_t = P_0 + tV\\) with \\(V\\neq(0,0)\\), observes that the set of behaviors \\((P_0,V)\\) is countable, and fixes an enumeration \\(\\Psi: \\mathbb{N}_0 \\to \\mathcal{C}\\). The hunter\u2019s strategy is: at time \\(t\\), check the point \\(H_t = P_0^{(t)} + tV^{(t)}\\). If the actual behavior is the \\(j\\)-th in the list, then at time \\(j\\) the hunter checks the grasshopper\u2019s actual position and catches it, proving capture in finite time.",
+                    "issues": [
+                        {
+                            "location": "Section 3, \"Enumeration of Grasshopper Behaviors\"",
+                            "text": "Since \\(\\mathcal{C}\\) is countable, we can create an exhaustive list (an enumeration) of all possible grasshopper behaviors. Let \\(\\Psi: \\mathbb{N}_0 \\to \\mathcal{C}\\) be such an enumeration.",
+                            "description": "The proof asserts the existence of an enumeration but does not explicitly construct a bijection or explain why \\(\\Psi\\) can be taken one-to-one and onto. This skips details of how to enumerate \\(\\mathcal{C}\\).",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2607,
+                            "end_index": 2794
+                        },
+                        {
+                            "location": "Section 4, \"The Hunter's Strategy\"",
+                            "text": "The hunter can use the enumeration \\(\\Psi\\) to define their strategy. ... So, the hunter's strategy is: \\[ H_t = P_0^{(t)} + tV^{(t)} \\]",
+                            "description": "The strategy relies on the hunter effectively computing the enumeration \\(\\Psi(t)\\) and the corresponding \\((P_0^{(t)},V^{(t)})\\), but no algorithm or constructive method is provided. The argument is non-constructive.",
+                            "category": "Other",
+                            "start_index": 3475,
+                            "end_index": 3604
+                        },
+                        {
+                            "location": "Section 2, \"The Set of Grasshopper Behaviors is Countable\"",
+                            "text": "If \\(A\\) and \\(B\\) are countable sets, their Cartesian product \\(A \\times B\\) is also countable. Since \\(\\mathbb{Z}\\) is countable, \\(\\mathbb{Z}^2 = \\mathbb{Z} \\times \\mathbb{Z}\\) is countable. ...",
+                            "description": "The proof invokes the standard result that a product of countable sets is countable without outlining the construction of an explicit enumeration for \\(\\mathbb{Z}^2\\) or \\(\\mathbb{Z}^2\\setminus\\{(0,0)\\}\\), glossing over details.",
+                            "category": "Oversimplification",
+                            "start_index": 1983,
+                            "end_index": 2169
+                        },
+                        {
+                            "location": "Section 6, \"Note on the condition \\(V \\neq (0,0)\\)\"",
+                            "text": "If we were to allow \\(V=(0,0)\\), the set of behaviors would be \\(\\mathcal{C}' = \\mathbb{Z}^2 \\times \\mathbb{Z}^2 = \\mathbb{Z}^4\\). ... So, the conclusion holds even if \\(V=(0,0)\\) is allowed.",
+                            "description": "This digression to the case \\(V=(0,0)\\) is unnecessary since the original problem forbids zero jump vectors. Introducing and re-proving the result for \\(\\mathcal{C}'\\) is extraneous and may confuse the reader about the problem\u2019s constraints.",
+                            "category": "Other",
+                            "start_index": 5527,
+                            "end_index": 5660
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:21:59.309225"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof. We will exhibit an explicit \u201cuniversal\u201d strategy for the hunter, based only on the fact that \\(\\Bbb Z\\) is countable and hence so is \\(\\Bbb Z^4\\).\n\n1.  Since \\(\\Bbb Z\\) is countable, the Cartesian product \\(\\Bbb Z^4\\) is countable.  Therefore there exists a surjection\n   \\[\n     f\\;:\\;\\Bbb N\\;\\longrightarrow\\;\\Bbb Z^4,\\qquad\n     f(t)=(x_t,y_t,a_t,b_t)\\,.\n   \\]\n   In other words, as \\(t\\) runs through the positive integers, the quadruple \\((x_t,y_t,a_t,b_t)\\) runs through every element of \\(\\Bbb Z^4\\).\n\n2.  We now describe the hunter\u2019s strategy.  At the \\(t\\)-th second (for \\(t=1,2,3,\\dots\\)), the hunter \u201cprobes\u201d the single lattice point\n   \\[\n     H_t \\;=\\;\\bigl(x_t + a_t\\,t,\\;y_t + b_t\\,t\\bigr)\\;\\in\\;\\Bbb Z^2.\n   \\]\n   That is, he chooses to check exactly that point at time \\(t\\).\n\n3.  Let \\((x_0,y_0)\\in\\Bbb Z^2\\) be the grasshopper\u2019s (unknown) starting point and \\((a,b)\\in\\Bbb Z^2\\) its (unknown) constant jump vector.  By surjectivity of \\(f\\), there is some index \\(N\\in\\Bbb N\\) for which\n   \\[\n     f(N)\\;=\\;(x_N,y_N,a_N,b_N)\\;=\\;(x_0,y_0,a,b).\n   \\]\n   But then at time \\(N\\) the grasshopper\u2019s position is\n   \\[\n     (x_0 + a\\,N,\\;y_0 + b\\,N),\n   \\]\n   and by the definition of our strategy the hunter probes precisely the point\n   \\[\n     H_N \\;=\\;\\bigl(x_N + a_N\\,N,\\;y_N + b_N\\,N\\bigr)\n          \\;=\\;(x_0 + a\\,N,\\;y_0 + b\\,N).\n   \\]\n   Hence at time \\(N\\) the hunter\u2019s probe coincides with the grasshopper\u2019s position, and the grasshopper is caught.\n\n4.  Because \\(N\\) is finite, this shows that no matter what the (unknown) initial data \\((x_0,y_0,a,b)\\) are, the hunter\u2019s strategy succeeds in finitely many steps.\n\nThis completes the proof that the hunter can always catch the grasshopper in finite time. \u220e",
+            "cost": {
+                "cost": 0.0192049,
+                "input_tokens": 423,
+                "output_tokens": 4259
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:32:59.704845",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof constructs a surjection f: \u2115 \u2192 \u2124\u2074 enumerating all possible grasshopper data (start and jump vector). At time t the hunter checks the point H\u209c = (x\u209c + a\u209c t, y\u209c + b\u209c t). When t equals the index N at which f(N) equals the grasshopper\u2019s actual data (x\u2080, y\u2080, a, b), H\u2099 coincides with the grasshopper\u2019s position, so the hunter catches it in finite time.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:21:16.386082"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Yes, the hunter has a strategy that is guaranteed to succeed after finitely many seconds.\n\n----------------------------------------------------------------\nNotation\n----------------------------------------------------------------\n\u2022 A lattice point will be written \\( (x,y) \\) with \\(x,y\\in\\mathbb Z\\).\n\u2022 Let the unknown initial position of the grasshopper be  \n  \\(G_{0}=(x_{0},y_{0})\\in\\mathbb Z^{2}\\).\n\u2022 Let the (unknown but fixed) jump vector be  \n  \\(v=(a,b)\\in\\mathbb Z^{2}\\).\n  After \\(t\\) seconds the grasshopper is therefore at  \n\n\\[\nG_{t}=G_{0}+t\\,v=(x_{0}+ta,\\; y_{0}+tb).\n\\]\n\nThus every possible motion of the grasshopper is completely described\nby a quadruple  \n\n\\[\nq=(x_{0},y_{0},a,b)\\in\\mathbb Z^{4}.\n\\]\n\n----------------------------------------------------------------\nStep 1.  Enumerate all possible quadruples\n----------------------------------------------------------------\nBecause \\(\\mathbb Z\\) is countable, so is \\(\\mathbb Z^{4}\\).\nChoose any bijection  \n\n\\[\n\\phi:\\mathbb N\\longrightarrow\\mathbb Z^{4},\\qquad \nn\\;\\mapsto\\;\\phi(n)=\\bigl(u_{0}(n),v_{0}(n),p(n),q(n)\\bigr).\n\\]\n\n(For concreteness one may order the quadruples by the\nnon-negative value  \n\\(|x_{0}|+|y_{0}|+|a|+|b|\\) and break ties lexicographically; any\none-to-one listing is acceptable.)\n\n----------------------------------------------------------------\nStep 2.  The hunter\u2019s strategy\n----------------------------------------------------------------\nTime is counted in whole seconds \\(t=0,1,2,\\dots\\).\n\nAt second \\(t\\) the hunter does the following.\n\n1. Look up the \\(t\\)-th quadruple in the enumeration:  \n\n   \\[\n   \\phi(t)=\\bigl(u_{0}(t),v_{0}(t),p(t),q(t)\\bigr).\n   \\]\n\n2. Go to the lattice point  \n\n   \\[\n   H_{t}=\\bigl(u_{0}(t)+t\\,p(t),\\;\n               v_{0}(t)+t\\,q(t)\\bigr).\n   \\]\n\n3. If the grasshopper happens to be there, it is caught;\n   otherwise the hunter proceeds to the next second.\n\nBecause all numbers involved are integers, \\(H_{t}\\) is always a valid\nlattice point, so the protocol is well defined.\n\n----------------------------------------------------------------\nStep 3.  Why the strategy must succeed\n----------------------------------------------------------------\nLet the grasshopper\u2019s\ntrue quadruple be  \n\n\\[\nq^{\\ast}=(x_{0},y_{0},a,b)\\in\\mathbb Z^{4}.\n\\]\n\nSince \\(\\phi\\) is a bijection, there exists a unique\nindex \\(T\\in\\mathbb N\\) with \\(\\phi(T)=q^{\\ast}\\).\nBy construction, at time \\(T\\) the hunter is located at  \n\n\\[\nH_{T}= \\bigl(x_{0}+T\\,a,\\; y_{0}+T\\,b\\bigr).\n\\]\n\nBut this is exactly the grasshopper\u2019s position after \\(T\\) seconds,\nbecause\n\n\\[\nG_{T}=G_{0}+T\\,v=(x_{0}+Ta,\\;y_{0}+Tb)=H_{T}.\n\\]\n\nHence the grasshopper is caught at the \\emph{finite} time \\(T\\).\n(The actual value of \\(T\\) depends on the unknown quadruple, but it is\nfinite because every quadruple appears somewhere in the enumeration.)\n\n----------------------------------------------------------------\nConclusion\n----------------------------------------------------------------\nThe hunter can guarantee capture in finitely many steps by\n\n\u2022 enumerating all possible initial positions and jump vectors, and  \n\u2022 at second \\(t\\) visiting the lattice point that\n  \\emph{that particular} trajectory would occupy at time \\(t\\).\n\nTherefore the answer to the question is:\n\nYes, the hunter can always catch the grasshopper in a finite amount of time.",
+            "cost": {
+                "cost": 0.11663,
+                "input_tokens": 423,
+                "output_tokens": 2810
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:34:56.831845",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof constructs an explicit enumeration \u03c6 of all possible quadruples (initial position and jump vector) in \u2124\u2074. At time t the hunter visits the point determined by the t-th quadruple\u2019s trajectory at time t. Since the grasshopper\u2019s true quadruple appears at some finite index T in the enumeration, at time T the hunter and grasshopper occupy the same lattice point, ensuring capture in finite time.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:21:25.977747"
+            }
+        }
+    ]
+}

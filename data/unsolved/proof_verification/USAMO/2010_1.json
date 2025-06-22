@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.2,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2010
+    },
+    "problem": "Let \\( A X Y Z B \\) be a convex pentagon inscribed in a semicircle of diameter \\( A B \\). Denote by \\( P, Q, R, S \\) the feet of the perpendiculars from \\( Y \\) onto lines \\( A X, B X, A Z, B Z \\), respectively. Prove that the acute angle formed by lines \\( P Q \\) and \\( R S \\) is half the size of \\(\\angle X O Z\\), where \\( O \\) is the midpoint of segment \\( A B \\).",
+    "problem_id": "USAMO_2010_1",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nLet $A X Y Z B$ be a convex pentagon inscribed in a semicircle of diameter $A B$. Denote by $P, Q, R, S$ the feet of the perpendiculars from $Y$ onto lines $A X, B X, A Z, B Z$, respectively. Prove that the acute angle formed by lines $P Q$ and $R S$ is half the size of $\\angle X O Z$, where $O$ is the midpoint of segment $A B$.\n\nWe present two possible approaches. The first approach is just \"bare-hands\" angle chasing. The second approach requires more insight but makes it clearer what is going on; it shows the intersection point of lines $P Q$ and $R S$ is the foot from the altitude from $Y$ to $A B$ using Simson lines. The second approach also has the advantage that it works even if $\\overline{A B}$ is not a diameter of the circle.\n\n\u0433\u0402\u0452 First approach using angle chasing. Define $T=\\overline{P Q} \\cap \\overline{R S}$. Also, let $2 \\alpha, 2 \\beta, 2 \\gamma, 2 \\delta$ denote the measures of $\\operatorname{arcs} \\widehat{A X}, \\widehat{X Y}, \\widehat{Y Z}, \\widehat{Z B}$, respectively, so that $\\alpha+\\beta+\\gamma+\\delta=90^{\\circ}$.\n\n\nWe now compute the following angles:\n\n$$\n\\begin{aligned}\n& \\angle S R Y=\\angle S Z Y=90^{\\circ}-\\angle Y Z A=90^{\\circ}-(\\alpha+\\beta) \\\\\n& \\angle Y Q P=\\angle Y X P=90^{\\circ}-\\angle B X Y=90^{\\circ}-(\\gamma+\\delta) \\\\\n& \\angle Q Y R=180^{\\circ}-\\angle(\\overline{Z R}, \\overline{Q X})=180^{\\circ}-\\frac{2 \\beta+2 \\gamma+180^{\\circ}}{2}=90^{\\circ}-(\\beta+\\gamma)\n\\end{aligned}\n$$\n\nHence, we can then compute\n\n$$\n\\begin{aligned}\n\\angle R T Q & =360^{\\circ}-\\left(\\angle Q Y R+\\left(180^{\\circ}-\\angle S R Y\\right)+\\left(180^{\\circ}-\\angle Y Q P\\right)\\right) \\\\\n& =\\angle S R Y+\\angle Y Q P-\\angle Q Y R\n\\end{aligned}\n$$\n\n$$\n\\begin{aligned}\n& =\\left(90^{\\circ}-(\\alpha+\\beta)\\right)+\\left(90^{\\circ}-(\\gamma+\\delta)\\right)-\\left(90^{\\circ}-(\\beta+\\gamma)\\right) \\\\\n& =90^{\\circ}-(\\alpha+\\delta) \\\\\n& =\\beta+\\gamma .\n\\end{aligned}\n$$\n\nSince $\\angle X O Z=\\frac{2 \\beta+2 \\gamma}{2}=\\beta+\\gamma$, the proof is complete.\nSecond approach using Simson lines, ignoring the diameter condition. In this solution, we will ignore the condition that $\\overline{A B}$ is a diameter; the solution works equally well without it, as long as $O$ is redefined as the center of $(A X Y Z B)$ instead. We will again show the angle formed by lines $P Q$ and $R S$ is half the measure of $\\widehat{X Z}$.\n\nUnlike the previous solution, we instead define $T$ to be the foot from $Y$ to $\\overline{A B}$. Then the Simson line of $Y$ with respect to $\\triangle X A B$ passes through $P, Q, T$. Similarly, the Simson line of $Y$ with respect to $\\triangle Z A B$ passes through $R, S, T$. Therefore, point $T$ coincides with $\\overline{P Q} \\cap \\overline{R S}$.\n\n\nNow it's straightforward to see $A P Y R T$ is cyclic (in the circle with diameter $\\overline{A Y}$ ), and therefore\n\n$$\n\\angle R T Y=\\angle R A Y=\\angle Z A Y .\n$$\n\nSimilarly,\n\n$$\n\\angle Y T Q=\\angle Y B Q=\\angle Y B X\n$$\n\nSumming these gives $\\angle R T Q$ is equal to half the measure of $\\operatorname{arc} \\widehat{X Z}$ as needed.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2017
+    },
+    "problem": "Let \\( \\triangle ABC \\) be an acute triangle. Variable points \\( E \\) and \\( F \\) are on sides \\( AC \\) and \\( AB \\) respectively such that \\( BC^2 = BA \\cdot BF + CE \\cdot CA \\). As \\( E \\) and \\( F \\) vary, prove that the circumcircle of \\( \\triangle AEF \\) passes through a fixed point other than \\( A \\).",
+    "problem_id": "BMOSL_2017_12",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Let $H$ be the ortocenter of $A B C$ and $K, L, M$ be the feet of perpendiculars respectively from $A, B, C$ to their opposite sides of $A B C$. Also let $D$ be the intersection point of lines $B E$ and $C F$. From power of point we have\n\n$$\nB A \\cdot B M=B C \\cdot B K\n$$\nand\n$$\nC A \\cdot C L=C B \\cdot C K\n$$\n\nAdding (1) and (2) we have:\n\n$$\nC A \\cdot C L+B A \\cdot B M=B C \\cdot B K+C B \\cdot C K=B C(B K+C K)=B C^{2}\n$$\n\nCombining (3) with the problem statement $B C^{2}=B A \\cdot B F+C E \\cdot C A$ we have:\n\n$$\n\\begin{aligned}\n& B A \\cdot B F-B A \\cdot B M=C A \\cdot C L-C E \\cdot C A \\\\\n& B A(B F-B M)=C A(C L-C E) \\\\\n& B A \\cdot F M=C A \\cdot L E \\\\\n& \\quad \\frac{L E}{F M}=\\frac{A B}{A C}=\\frac{B L}{C M}\n\\end{aligned}\n$$\n\nWhere the last equality follows from $\\triangle A M C \\sim \\triangle A L B$. Now since $\\frac{L E}{F M}=\\frac{B L}{C M}$ and $\\angle F M C=\\angle E L B=90^{\\circ}$ we get that triangles $\\triangle F M C \\sim \\triangle E L B$. From this similarity we get\n\n$$\n\\measuredangle A E D=\\measuredangle A E B=\\angle L E B=\\measuredangle M F C=180^{\\circ}-\\angle A F C=180-\\angle A F D,\n$$\nmeaning points $A, D, E, F$ are concylic.\nSince both pairs $\\{E, F\\}$ and $\\{M, L\\}$ satisfy the problem condition, we must have this fixed point we are looking for is the second intersection of the circumcircles around $A F D E$ and AMHL. Let this point be $X$. We now prove that $X$ is fixed on the circumcircle of $A M H L$ (which would imply $X$ is fixed).\nFrom the concylicity we have\n$$\n\\angle X L E=180^{\\circ}-\\measuredangle X L A=\\measuredangle X M A=\\angle X M F \\text { and } \\measuredangle X E L=\\measuredangle X E A=180-\\measuredangle X F A=\\measuredangle X F M\n$$\n\nand from here we get $\\triangle X L E \\sim \\triangle X M F$. This similarity gives us\n\n$$\n\\frac{X L}{X M}=\\frac{L E}{M F} .\n$$\n\nNow combining (4) and (5) we get $\\frac{X L}{X M}=\\frac{A B}{A C}$ which is a fixed quantity. Since points $M, L$, the circumcircle of $A M L$, and ratio $\\frac{X L}{X M}$ are fixed, this implies that point $X$ is fixed.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

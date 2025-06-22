@@ -1,0 +1,226 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.36,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2018
+    },
+    "problem": "Let \\( p \\) be a prime, and let \\( a_{1}, \\ldots, a_{p} \\) be integers. Show that there exists an integer \\( k \\) such that the numbers\n\n\\[\na_{1}+k, a_{2}+2k, \\ldots, a_{p}+pk\n\\]\n\nproduce at least \\(\\frac{1}{2} p\\) distinct remainders upon division by \\( p \\).",
+    "problem_id": "USAMO_2018_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "For each $k=0, \\ldots, p-1$ let $G_{k}$ be the graph on $\\{1, \\ldots, p\\}$ where we join $\\{i, j\\}$ if and only if\n\n$$\na_{i}+i k \\equiv a_{j}+j k \\quad(\\bmod p) \\Longleftrightarrow k \\equiv-\\frac{a_{i}-a_{j}}{i-j} \\quad(\\bmod p) .\n$$\n\nSo we want a graph $G_{k}$ with at least $\\frac{1}{2} p$ connected components.\nHowever, each $\\{i, j\\}$ appears in exactly one graph $G_{k}$, so some graph has at most $\\frac{1}{p}\\binom{p}{2}=\\frac{1}{2}(p-1)$ edges (by \"pigeonhole\"). This graph has at least $\\frac{1}{2}(p+1)$ connected components, as desired.\n\nRemark. Here is an example for $p=5$ showing equality can occur:\n\n$$\n\\left[\\begin{array}{lllll}\n0 & 0 & 3 & 4 & 3 \\\\\n0 & 1 & 0 & 2 & 2 \\\\\n0 & 2 & 2 & 0 & 1 \\\\\n0 & 3 & 4 & 3 & 0 \\\\\n0 & 4 & 1 & 1 & 4\n\\end{array}\\right] .\n$$\n\nAnkan Bhattacharya points out more generally that $a_{i}=i^{2}$ is sharp in general.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the problem, we are given a prime number $ p $ and integers $ a_1, a_2, \\dots, a_p $. We are to show that there exists an integer $ k $ such that the numbers\n\n$$\na_1 + k, a_2 + 2k, \\dots, a_p + pk\n$$\n\nhave at least $ \\frac{1}{2}p $ **distinct remainders** modulo $ p $.\n\n---\n\n### Step 1: Reduction Modulo $ p $\n\nWe begin by reducing each $ a_i $ modulo $ p $, since adding or subtracting multiples of $ p $ does not affect the remainder modulo $ p $. Let $ b_i = a_i \\mod p $, so $ b_i \\in \\{0, 1, \\dots, p-1\\} $. Then the numbers in question become:\n\n$$\nr_i(k) = b_i + i k \\mod p\n$$\n\nfor $ i = 1, 2, \\dots, p $, and we define $ m_k $ as the number of **distinct** values among $ r_1(k), r_2(k), \\dots, r_p(k) $.\n\nOur goal is to show that there exists some $ k \\in \\{0, 1, \\dots, p-1\\} $ such that $ m_k \\geq \\frac{1}{2}p $.\n\n---\n\n### Step 2: Counting Collisions\n\nLet us define the number of **colliding pairs** for a given $ k $ as:\n\n$$\nC(k) = \\sum_{1 \\le i < j \\le p} \\mathbf{1}\\{r_i(k) = r_j(k)\\}\n$$\n\nThis counts the number of unordered pairs $ (i, j) $ such that the residues $ r_i(k) $ and $ r_j(k) $ are equal.\n\nWe can relate $ C(k) $ to the number of distinct residues $ m_k $ using the identity:\n\n$$\nC(k) = \\sum_{c=0}^{p-1} \\binom{n_c(k)}{2}\n$$\n\nwhere $ n_c(k) $ is the number of indices $ i $ such that $ r_i(k) \\equiv c \\mod p $. Since $ \\sum_{c=0}^{p-1} n_c(k) = p $, we can use the identity:\n\n$$\n\\sum_{c=0}^{p-1} \\binom{n_c(k)}{2} = \\frac{1}{2} \\left( \\sum_{c=0}^{p-1} n_c(k)^2 - p \\right)\n$$\n\nSo,\n\n$$\nC(k) = \\frac{1}{2} \\left( \\sum_{c=0}^{p-1} n_c(k)^2 - p \\right)\n$$\n\nUsing the Cauchy-Schwarz inequality:\n\n$$\n\\sum_{c=0}^{p-1} n_c(k)^2 \\ge \\frac{p^2}{m_k}\n$$\n\nTherefore,\n\n$$\nC(k) \\ge \\frac{1}{2} \\left( \\frac{p^2}{m_k} - p \\right)\n$$\n\n---\n\n### Step 3: Expected Number of Collisions\n\nWe now compute the expected value of $ C(k) $ over all $ k \\in \\{0, 1, \\dots, p-1\\} $.\n\nFor each pair $ (i, j) $ with $ i \\ne j $, the equation $ b_i + i k \\equiv b_j + j k \\mod p $ simplifies to:\n\n$$\nk \\equiv \\frac{b_j - b_i}{i - j} \\mod p\n$$\n\nThis has a unique solution $ k \\mod p $, since $ i - j \\not\\equiv 0 \\mod p $ (as $ i \\ne j $ and $ p $ is prime). Therefore, for each such pair, there is exactly one $ k \\in \\{0, 1, \\dots, p-1\\} $ for which $ r_i(k) = r_j(k) $.\n\nThere are $ \\binom{p}{2} $ such pairs, and each contributes 1 to $ C(k) $ for exactly one $ k $. Hence, the total number of colliding pairs across all $ k $ is $ \\binom{p}{2} $, and since there are $ p $ values of $ k $, the expected value of $ C(k) $ is:\n\n$$\n\\mathbb{E}[C(k)] = \\frac{1}{p} \\binom{p}{2} = \\frac{p(p-1)}{2p} = \\frac{p - 1}{2}\n$$\n\n---\n\n### Step 4: Relating to $ m_k $\n\nWe now combine the two expressions for $ \\mathbb{E}[C(k)] $:\n\n$$\n\\frac{p - 1}{2} = \\mathbb{E}[C(k)] \\ge \\mathbb{E} \\left[ \\frac{1}{2} \\left( \\frac{p^2}{m_k} - p \\right) \\right] = \\frac{1}{2} \\left( p^2 \\mathbb{E} \\left[ \\frac{1}{m_k} \\right] - p \\right)\n$$\n\nMultiply both sides by 2:\n\n$$\np - 1 \\ge p^2 \\mathbb{E} \\left[ \\frac{1}{m_k} \\right] - p\n$$\n\nAdd $ p $ to both sides:\n\n$$\n2p - 1 \\ge p^2 \\mathbb{E} \\left[ \\frac{1}{m_k} \\right]\n$$\n\nSo,\n\n$$\n\\mathbb{E} \\left[ \\frac{1}{m_k} \\right] \\le \\frac{2p - 1}{p^2}\n$$\n\nNow, since $ f(x) = \\frac{1}{x} $ is convex for $ x > 0 $, we can apply **Jensen's Inequality**:\n\n$$\n\\mathbb{E} \\left[ \\frac{1}{m_k} \\right] \\ge \\frac{1}{\\mathbb{E}[m_k]}\n$$\n\nCombining both inequalities:\n\n$$\n\\frac{1}{\\mathbb{E}[m_k]} \\le \\frac{2p - 1}{p^2} \\Rightarrow \\mathbb{E}[m_k] \\ge \\frac{p^2}{2p - 1}\n$$\n\n---\n\n### Step 5: Final Argument\n\nNow, observe that:\n\n$$\n\\frac{p^2}{2p - 1} = \\frac{p}{2 - \\frac{1}{p}} > \\frac{p}{2}\n$$\n\nsince $ 2 - \\frac{1}{p} < 2 $. Therefore:\n\n$$\n\\mathbb{E}[m_k] > \\frac{p}{2}\n$$\n\nThis implies that **there must exist at least one** $ k \\in \\{0, 1, \\dots, p-1\\} $ such that $ m_k \\ge \\frac{p}{2} $, because if **all** $ m_k < \\frac{p}{2} $, then the average $ \\mathbb{E}[m_k] $ would also be less than $ \\frac{p}{2} $, which contradicts the inequality above.\n\n---\n\n### Conclusion\n\nWe have shown that the expected number of distinct residues $ m_k $ over all $ k \\in \\{0, 1, \\dots, p-1\\} $ is strictly greater than $ \\frac{p}{2} $. Therefore, there must exist at least one integer $ k $ such that the numbers $ a_1 + k, a_2 + 2k, \\dots, a_p + pk $ have at least $ \\frac{1}{2}p $ distinct remainders modulo $ p $.\n\n$$\n\\boxed{p}\n$$",
+            "cost": {
+                "cost": 0.005666399999999999,
+                "input_tokens": 411,
+                "output_tokens": 9307
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:00:49.114474",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof reduces the problem to residues modulo p, defines for each k the number of distinct residues m_k of the list r_i(k)=b_i+i k (mod p), and counts the number of collisions C(k) among these residues. It bounds C(k) below by \u00bd(p^2/m_k\u2212p) via Cauchy\u2013Schwarz, computes the average of C(k) over k by observing each pair collides exactly once, then uses Jensen\u2019s inequality on E[1/m_k] to deduce E[m_k]>p/2. Finally it concludes some k has m_k\u2265p/2 distinct residues.",
+                    "issues": [
+                        {
+                            "location": "End of proof",
+                            "text": "\\boxed{p}",
+                            "description": "The proof terminates with \u201c\\boxed{p}\u201d, which does not state the existence of a suitable k or the required bound on m_k; it is unrelated to the conclusion.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 4324,
+                            "end_index": 4332
+                        },
+                        {
+                            "location": "Step 4: Relating to m_k",
+                            "text": "\u201cNow, since $f(x)=\\frac{1}{x}$ is convex for $x>0$, we can apply Jensen\u2019s Inequality:\n\n$$\n\\mathbb{E}\\bigl[1/m_k\\bigr] \\ge 1/\\mathbb{E}[m_k].\n$$\u201d",
+                            "description": "Jensen\u2019s inequality is invoked without proof or justification. While well-known in analysis, it may be considered too advanced or non-elementary for the intended audience without explanation.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 3174,
+                            "end_index": 3348
+                        },
+                        {
+                            "location": "Step 3: Expected Number of Collisions",
+                            "text": "",
+                            "description": "The proof computes $\\mathbb{E}[C(k)]$ over all k without stating that k is taken uniformly from $\\{0,1,\\dots,p-1\\}$ or justifying the probability model for expectation.",
+                            "category": "Skipping Computation Steps"
+                        },
+                        {
+                            "location": "Step 2: Counting Collisions",
+                            "text": "\u201cUsing the Cauchy\u2013Schwarz inequality:\n\n$$\n\\sum_{c=0}^{p-1} n_c(k)^2 \\ge \\frac{p^2}{m_k}.\n$$\u201d",
+                            "description": "The application of the Cauchy\u2013Schwarz inequality is asserted without showing the intermediate steps or explaining how it applies to the sequence $(n_c(k))$.",
+                            "category": "Oversimplification",
+                            "start_index": 1589,
+                            "end_index": 1678
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:34:19.215429"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "Let \\( p \\) be a prime number and let \\( a_1, \\ldots, a_p \\) be integers. The goal is to show that there exists an integer \\( k \\) such that the numbers \\( a_1 + k, a_2 + 2k, \\ldots, a_p + p k \\) produce at least \\( \\frac{p}{2} \\) distinct remainders when divided by \\( p \\).\n\nDefine \\( S(k) \\) as the number of distinct remainders modulo \\( p \\) of the set \\( \\{ a_i + i k \\pmod{p} \\mid i = 1, 2, \\ldots, p \\} \\). The objective is to prove that there exists an integer \\( k \\) such that \\( S(k) \\geq \\frac{p}{2} \\).\n\nSince the remainders are considered modulo \\( p \\), and adding multiples of \\( p \\) to \\( k \\) does not change the remainders, it suffices to consider \\( k \\) in the range \\( \\{0, 1, \\ldots, p-1\\} \\). Thus, there are \\( p \\) possible values for \\( k \\).\n\nAssume, for the sake of contradiction, that for all \\( k \\in \\{0, 1, \\ldots, p-1\\} \\), \\( S(k) < \\frac{p}{2} \\). Since \\( S(k) \\) is a positive integer (as there is at least one remainder), and \\( S(k) < \\frac{p}{2} \\), it follows that \\( S(k) \\leq \\left\\lfloor \\frac{p-1}{2} \\right\\rfloor \\). For \\( p = 2 \\), \\( \\left\\lfloor \\frac{1}{2} \\right\\rfloor = 0 \\), but \\( S(k) \\geq 1 \\) for all \\( k \\) (since there is at least one element in the set), which is a contradiction because \\( S(k) < 1 \\) is impossible. Thus, the assumption is false for \\( p = 2 \\), and there exists \\( k \\) with \\( S(k) \\geq \\frac{p}{2} = 1 \\). For \\( p > 2 \\) (which implies \\( p \\) is odd, as \\( p \\) is prime), proceed with the contradiction.\n\nFor each \\( k \\), define the function \\( f_k(i) = a_i + i k \\pmod{p} \\) for \\( i = 1, 2, \\ldots, p \\). The value \\( S(k) \\) is the size of the image of \\( f_k \\). Consider the sum over all pairs \\( (i, j) \\) and all \\( k \\) of the indicator function that \\( f_k(i) = f_k(j) \\):\n\n\\[\n\\sum_{k=0}^{p-1} \\sum_{i=1}^{p} \\sum_{j=1}^{p} \\mathbf{1}_{a_i + i k \\equiv a_j + j k \\pmod{p}}.\n\\]\n\nThis sum can be rewritten as:\n\n\\[\n\\sum_{i=1}^{p} \\sum_{j=1}^{p} \\sum_{k=0}^{p-1} \\mathbf{1}_{a_i + i k \\equiv a_j + j k \\pmod{p}} = \\sum_{i=1}^{p} \\sum_{j=1}^{p} \\left| \\{ k : a_i + i k \\equiv a_j + j k \\pmod{p} \\} \\right|.\n\\]\n\nNow, compute the number of \\( k \\) for which \\( a_i + i k \\equiv a_j + j k \\pmod{p} \\):\n\n- If \\( i = j \\), then \\( a_i + i k \\equiv a_j + j k \\pmod{p} \\) for all \\( k \\), so there are \\( p \\) such \\( k \\).\n- If \\( i \\neq j \\), then \\( a_i + i k \\equiv a_j + j k \\pmod{p} \\) implies \\( (i - j) k \\equiv a_j - a_i \\pmod{p} \\). Since \\( p \\) is prime and \\( i, j \\in \\{1, 2, \\ldots, p\\} \\), the values \\( i \\pmod{p} \\) are \\( \\{1, 2, \\ldots, p-1, 0\\} \\), which are all distinct modulo \\( p \\). Thus, \\( i \\not\\equiv j \\pmod{p} \\) when \\( i \\neq j \\), so \\( i - j \\not\\equiv 0 \\pmod{p} \\), and \\( i - j \\) has an inverse modulo \\( p \\). Therefore, there is exactly one \\( k \\) modulo \\( p \\) that satisfies the equation.\n\nThe number of pairs \\( (i, j) \\) with \\( i = j \\) is \\( p \\), and each contributes \\( p \\) to the sum. The number of pairs with \\( i \\neq j \\) is \\( p(p-1) \\), and each contributes 1 to the sum. Thus:\n\n\\[\n\\sum_{i=1}^{p} \\sum_{j=1}^{p} \\left| \\{ k : a_i + i k \\equiv a_j + j k \\pmod{p} \\} \\right| = p \\cdot p + p(p-1) \\cdot 1 = p^2 + p^2 - p = 2p^2 - p.\n\\]\n\nOn the other hand:\n\n\\[\n\\sum_{k=0}^{p-1} \\sum_{i=1}^{p} \\sum_{j=1}^{p} \\mathbf{1}_{f_k(i) = f_k(j)} = \\sum_{k=0}^{p-1} \\sum_{r=0}^{p-1} \\left| \\{ i : f_k(i) \\equiv r \\pmod{p} \\} \\right|^2.\n\\]\n\nBy the Cauchy-Schwarz inequality applied to the sizes of the preimages:\n\n\\[\n\\sum_{r=0}^{p-1} \\left| \\{ i : f_k(i) \\equiv r \\pmod{p} \\} \\right|^2 \\geq \\frac{\\left( \\sum_{r=0}^{p-1} \\left| \\{ i : f_k(i) \\equiv r \\pmod{p} \\} \\right| \\right)^2}{S(k)} = \\frac{p^2}{S(k)},\n\\]\n\nsince \\( \\sum_{r=0}^{p-1} \\left| \\{ i : f_k(i) \\equiv r \\pmod{p} \\} \\right| = p \\). Summing over \\( k \\):\n\n\\[\n\\sum_{k=0}^{p-1} \\sum_{r=0}^{p-1} \\left| \\{ i : f_k(i) \\equiv r \\pmod{p} \\} \\right|^2 \\geq \\sum_{k=0}^{p-1} \\frac{p^2}{S(k)}.\n\\]\n\nBut from earlier:\n\n\\[\n\\sum_{k=0}^{p-1} \\sum_{r=0}^{p-1} \\left| \\{ i : f_k(i) \\equiv r \\pmod{p} \\} \\right|^2 = 2p^2 - p,\n\\]\n\nso:\n\n\\[\n\\sum_{k=0}^{p-1} \\frac{p^2}{S(k)} \\leq 2p^2 - p.\n\\]\n\nUnder the assumption that \\( S(k) \\leq \\frac{p-1}{2} \\) for all \\( k \\) (since \\( p > 2 \\) is odd and \\( S(k) < \\frac{p}{2} \\) implies \\( S(k) \\leq \\frac{p-1}{2} \\)):\n\n\\[\n\\frac{p^2}{S(k)} \\geq \\frac{p^2}{\\frac{p-1}{2}} = \\frac{2p^2}{p-1},\n\\]\n\nso:\n\n\\[\n\\sum_{k=0}^{p-1} \\frac{p^2}{S(k)} \\geq \\sum_{k=0}^{p-1} \\frac{2p^2}{p-1} = p \\cdot \\frac{2p^2}{p-1} = \\frac{2p^3}{p-1}.\n\\]\n\nThus:\n\n\\[\n\\frac{2p^3}{p-1} \\leq \\sum_{k=0}^{p-1} \\frac{p^2}{S(k)} \\leq 2p^2 - p.\n\\]\n\nThis implies:\n\n\\[\n\\frac{2p^3}{p-1} \\leq 2p^2 - p.\n\\]\n\nHowever:\n\n\\[\n\\frac{2p^3}{p-1} - (2p^2 - p) = \\frac{2p^3 - (2p^2 - p)(p-1)}{p-1} = \\frac{2p^3 - (2p^3 - 2p^2 - p^2 + p)}{p-1} = \\frac{2p^3 - 2p^3 + 3p^2 - p}{p-1} = \\frac{3p^2 - p}{p-1} = \\frac{p(3p-1)}{p-1}.\n\\]\n\nFor \\( p \\geq 2 \\), \\( \\frac{p(3p-1)}{p-1} > 0 \\), so \\( \\frac{2p^3}{p-1} > 2p^2 - p \\), which contradicts the inequality \\( \\frac{2p^3}{p-1} \\leq 2p^2 - p \\). Therefore, the assumption that \\( S(k) < \\frac{p}{2} \\) for all \\( k \\) is false, and there exists some \\( k \\) such that \\( S(k) \\geq \\frac{p}{2} \\).\n\nThus, there exists an integer \\( k \\) such that the numbers \\( a_1 + k, a_2 + 2k, \\ldots, a_p + p k \\) produce at least \\( \\frac{p}{2} \\) distinct remainders modulo \\( p \\).\n\n\\boxed{\\text{Proof provided in the response}}",
+            "cost": {
+                "cost": 0.0070304,
+                "input_tokens": 398,
+                "output_tokens": 13822
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:52:35.224759",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines S(k) as the number of distinct residues of the set \\(\\{a_i + i k\\pmod p:1\\le i\\le p\\}\\) and assumes for contradiction that S(k)<p/2 for all \\(k\\) modulo \\(p\\).  It then double\u2010counts the total number of coincidences \\(f_k(i)=f_k(j)\\) over all \\(k,i,j\\) in two ways: exactly as \\(2p^2-p\\), and via Cauchy\u2013Schwarz as \\(\\sum_k p^2/S(k)\\).  Under the assumption \\(S(k)\\le(p-1)/2\\) this yields \\(2p^3/(p-1)\\le2p^2-p\\), a contradiction, so some \\(k\\) has \\(S(k)\\ge p/2\\).",
+                    "issues": [
+                        {
+                            "location": "Application of Cauchy\u2013Schwarz for each k",
+                            "text": "\\[ \\sum_{r=0}^{p-1} \\bigl|\\{ i : f_k(i) \\equiv r \\pmod{p}\\}\\bigr|^2 \\ge \\frac{p^2}{S(k)}. \\]",
+                            "description": "The proof invokes Cauchy\u2013Schwarz but does not justify why the denominator is taken to be \\(S(k)\\) (the number of nonempty fibres) rather than the total number of residues \\(p\\).  It omits the step of restricting the sum to nonzero bins.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3448,
+                            "end_index": 3530
+                        },
+                        {
+                            "location": "Rewriting the triple sum",
+                            "text": "\\[ \\sum_{k=0}^{p-1}\\sum_{i=1}^p\\sum_{j=1}^p \\mathbf{1}_{f_k(i)=f_k(j)} = \\sum_{k=0}^{p-1}\\sum_{r=0}^{p-1} \\bigl|\\{i:f_k(i)\\equiv r\\pmod{p}\\}\\bigr|^2. \\]",
+                            "description": "The equivalence between summing the indicator over all ordered pairs \\((i,j)\\) and summing the squares of fibre sizes is asserted without explanation or intermediate justification.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3203,
+                            "end_index": 3370
+                        },
+                        {
+                            "location": "Handling the case \\(p=2\\)",
+                            "text": "\u201cFor \\(p = 2\\), \\(\\lfloor 1/2 \\rfloor = 0\\), but \\(S(k) \\ge 1\\) for all \\(k\\) (since there is at least one element in the set), which contradicts \\(S(k)<1\\).\u201d",
+                            "description": "The special case \\(p=2\\) is dealt with in a single sentence and does not examine the actual values of \\(a_1, a_2\\) or the two possible \\(k\\), making the argument overly terse.",
+                            "category": "Oversimplification",
+                            "start_index": 1067,
+                            "end_index": 1268
+                        },
+                        {
+                            "location": "Restriction of \\(k\\) to \\(\\{0,1,\\dots,p-1\\}\\)",
+                            "text": "\u201cSince adding multiples of \\(p\\) to \\(k\\) does not change the remainders, it suffices to consider \\(k\\in\\{0,1,\\ldots,p-1\\}.\\)\u201d",
+                            "description": "The proof asserts without proof that one may reduce \\(k\\) modulo \\(p\\) without loss of generality, but does not explain why this restriction covers all integer choices of \\(k\\).",
+                            "category": "Oversimplification",
+                            "start_index": 571,
+                            "end_index": 714
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:34:48.320633"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof. Let \\(p\\) be a prime and \\(a_{1},\\dots,a_{p}\\) be given integers. All congruences below are understood modulo \\(p\\).\n\nStep 1: Reformulation in terms of collisions.  \nFor each integer \\(k\\) (which we may regard modulo \\(p\\)), define the residues\n\\[\nr_{i}(k)\\;=\\;a_{i}+i\\,k\\pmod p,\\qquad i=1,2,\\dots,p.\n\\]\nLet\n\\[\nS(k)\\;=\\;\\{\\,r_{1}(k),r_{2}(k),\\dots,r_{p}(k)\\}\n\\]\nand write \\(d(k)=|S(k)|\\) for the number of distinct residues among the \\(r_{i}(k)\\).  We must show that there exists some \\(k\\) for which\n\\[\nd(k)\\;\\ge\\;\\frac{p}{2}.\n\\]\n(When \\(p\\) is odd this means \\(d(k)\\ge\\bigl\\lceil p/2\\bigr\\rceil\\).)\n\nEquivalently, let\n\\[\nc(k)\n\\;=\\;\n\\#\\bigl\\{\\{i,j\\}\\subset\\{1,\\dots,p\\}:i<j,\\;r_{i}(k)=r_{j}(k)\\bigr\\}\n\\]\nbe the number of \u201ccolliding\u201d pairs among the indices \\(\\{1,\\dots,p\\}\\).  Then each collision \\(r_{i}(k)=r_{j}(k)\\) reduces the total count of distinct residues by at most one.  More precisely, if the equivalence classes of indices under the relation \u201c\\(i\\) and \\(j\\) collide\u201d have sizes \\(m_{1},\\dots,m_{d(k)}\\), then\n\\[\n\\sum_{t=1}^{d(k)}m_{t}\\;=\\;p,\n\\qquad\nd(k)=\\sum_{t=1}^{d(k)}1,\n\\]\nand\n\\[\nc(k)\n\\;=\\;\n\\sum_{t=1}^{d(k)}\\binom{m_{t}}{2}\n\\;=\\;\n\\sum_{t=1}^{d(k)}\\frac{m_{t}(m_{t}-1)}{2}.\n\\]\nSince for each \\(m_{t}\\ge1\\) we have\n\\[\n\\frac{m_{t}(m_{t}-1)}{2}\n\\;\\ge\\;\nm_{t}-1\n\\quad\\bigl(\\text{because }m_{t}(m_{t}-1)\\ge2(m_{t}-1)\\bigr),\n\\]\nsumming over \\(t\\) yields\n\\[\nc(k)\\;\\ge\\;\\sum_{t=1}^{d(k)}(m_{t}-1)\n\\;=\\;\n\\Bigl(\\sum_{t}m_{t}\\Bigr)\\;-\\;d(k)\n\\;=\\;\np-d(k).\n\\]\nHence\n\\[\nd(k)\\;\\ge\\;p-c(k).\n\\]\n\nStep 2: Averaging over \\(k\\).  \nFix an unordered pair \\(\\{i,j\\}\\) with \\(1\\le i<j\\le p\\).  The congruence\n\\[\nr_{i}(k)=r_{j}(k)\n\\quad\\Longleftrightarrow\\quad\na_{i}+i\\,k\\equiv a_{j}+j\\,k\n\\quad\\Longleftrightarrow\\quad\n(i-j)\\,k\\equiv a_{j}-a_{i}\n\\pmod p.\n\\]\nSince \\(p\\) is prime and \\(i\\neq j\\), the integer \\(i-j\\) is invertible modulo \\(p\\).  Therefore this congruence has exactly one solution \\(k\\pmod p\\).  In other words, each of the \\(\\binom{p}{2}\\) pairs \\(\\{i,j\\}\\) contributes exactly one collision to exactly one residue class of \\(k\\).  Summing over all pairs,\n\\[\n\\sum_{k\\in\\mathbb{Z}/p\\mathbb{Z}}c(k)\n\\;=\\;\n\\binom{p}{2}\n\\;=\\;\n\\frac{p(p-1)}{2}.\n\\]\nSince there are \\(p\\) choices of \\(k\\pmod p\\), the average value of \\(c(k)\\) is\n\\[\n\\frac{1}{p}\\sum_{k}c(k)\n\\;=\\;\n\\frac{p-1}{2}.\n\\]\nHence there exists some \\(k_{0}\\) for which\n\\[\nc(k_{0})\n\\;\\le\\;\n\\frac{p-1}{2}.\n\\]\n\nStep 3: Conclusion.  \nFor this choice \\(k_{0}\\), we have\n\\[\nd(k_{0})\n\\;\\ge\\;\np-c(k_{0})\n\\;\\ge\\;\np-\\frac{p-1}{2}\n\\;=\\;\n\\frac{p+1}{2}\n\\;\\ge\\;\n\\frac{p}{2}.\n\\]\nThat is, among the residues\n\\[\na_{1}+k_{0},\\;\na_{2}+2k_{0},\\;\\dots,\\;\na_{p}+p\\,k_{0}\n\\pmod p\n\\]\nthere are at least \\(\\tfrac p2\\) distinct values, as claimed.  This completes the proof.",
+            "cost": {
+                "cost": 0.0225423,
+                "input_tokens": 409,
+                "output_tokens": 5021
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:41:08.972239",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines for each k the residues r_i(k)=a_i+i k mod p, lets d(k) be the number of distinct r_i and c(k) the number of collisions.  It shows via counting that d(k)\u2265p\u2212c(k), and that each unordered pair {i,j} collides for exactly one k, giving \u2211_k c(k)=p(p\u22121)/2 and hence an average c(k)=(p\u22121)/2.  Thus some k\u2080 has c(k\u2080)\u2264(p\u22121)/2, so d(k\u2080)\u2265p\u2212(p\u22121)/2=(p+1)/2\u2265p/2, as required.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:33:29.446281"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let $S_k = \\{a_1+k, a_2+2k, \\ldots, a_p+pk\\}$. We are interested in the number of distinct values in $S_k$ when its elements are taken modulo $p$. Let $N_k$ be this number. Our goal is to show that there exists an integer $k$ such that $N_k \\ge \\frac{1}{2}p$. We can restrict $k$ to the set $\\{0, 1, \\ldots, p-1\\}$, as $a_i+i(k+p) = a_i+ik+ip \\equiv a_i+ik \\pmod p$.\n\nLet $c_i = i \\pmod p$. So $c_i = i$ for $i \\in \\{1, \\ldots, p-1\\}$, and $c_p = 0$.\nThe given numbers modulo $p$ are $b_i(k) = (a_i + c_i k) \\pmod p$ for $i \\in \\{1, \\ldots, p\\}$.\n$N_k$ is the number of distinct values in the set $\\{b_1(k), \\ldots, b_p(k)\\}$.\n\nLet $n_r(k)$ be the number of times a remainder $r \\in \\{0, 1, \\ldots, p-1\\}$ appears in the list $b_1(k), \\ldots, b_p(k)$.\nSo, for a fixed $k$:\n$\\sum_{r=0}^{p-1} n_r(k) = p$, since there are $p$ numbers in the list.\n$N_k = |\\{r \\in \\{0, \\ldots, p-1\\} \\mid n_r(k) \\ge 1\\}|$.\n\nWe can relate $N_k$ to the sum of squares of $n_r(k)$.\nLet $S_0(k) = \\{r \\mid n_r(k) \\ge 1\\}$. Then $N_k = |S_0(k)|$.\nBy the Cauchy-Schwarz inequality, for $x_r=1$ and $y_r=n_r(k)$ for $r \\in S_0(k)$:\n$(\\sum_{r \\in S_0(k)} n_r(k))^2 \\le (\\sum_{r \\in S_0(k)} 1^2) (\\sum_{r \\in S_0(k)} n_r(k)^2)$.\nSince $\\sum_{r \\in S_0(k)} n_r(k) = \\sum_{r=0}^{p-1} n_r(k) = p$, and $\\sum_{r \\in S_0(k)} 1^2 = N_k$:\n$p^2 \\le N_k \\sum_{r \\in S_0(k)} n_r(k)^2$.\nAs $n_r(k)=0$ for $r \\notin S_0(k)$, $\\sum_{r \\in S_0(k)} n_r(k)^2 = \\sum_{r=0}^{p-1} n_r(k)^2$.\nSo, $p^2 \\le N_k \\sum_{r=0}^{p-1} n_r(k)^2$.\n\nLet $Coll_k$ be the number of pairs of indices $(i,j)$ such that $1 \\le i < j \\le p$ and $b_i(k) \\equiv b_j(k) \\pmod p$. These are \"collisions\".\nThe sum $\\sum_{r=0}^{p-1} \\binom{n_r(k)}{2}$ also counts the number of such pairs. If $n_r(k)$ elements are equal to $r$, they contribute $\\binom{n_r(k)}{2}$ pairs. So, $Coll_k = \\sum_{r=0}^{p-1} \\frac{n_r(k)(n_r(k)-1)}{2}$.\nWe can rewrite $\\sum_{r=0}^{p-1} n_r(k)^2$ using $Coll_k$:\n$\\sum_{r=0}^{p-1} n_r(k)^2 = \\sum_{r=0}^{p-1} (n_r(k)(n_r(k)-1) + n_r(k))$\n$= \\sum_{r=0}^{p-1} 2 \\binom{n_r(k)}{2} + \\sum_{r=0}^{p-1} n_r(k)$\n$= 2 Coll_k + p$.\nSubstituting this into the inequality $p^2 \\le N_k \\sum_{r=0}^{p-1} n_r(k)^2$:\n$p^2 \\le N_k (2 Coll_k + p)$.\nThis implies $N_k \\ge \\frac{p^2}{2 Coll_k + p}$. (If $2Coll_k+p=0$, this means $p=0$ which is not possible. $2Coll_k+p > 0$ since $p>0$.)\n\nTo show that there is a $k$ for which $N_k \\ge p/2$, we will show that there is a $k_0$ for which $Coll_{k_0}$ is sufficiently small.\nConsider the sum of $Coll_k$ over all possible values of $k \\in \\{0, 1, \\ldots, p-1\\}$:\n$C = \\sum_{k=0}^{p-1} Coll_k = \\sum_{k=0}^{p-1} \\sum_{1 \\le i < j \\le p} \\mathbb{I}(b_i(k) \\equiv b_j(k) \\pmod p)$,\nwhere $\\mathbb{I}(\\cdot)$ is the indicator function.\nSubstituting $b_i(k) = (a_i+c_ik) \\pmod p$:\n$C = \\sum_{k=0}^{p-1} \\sum_{1 \\le i < j \\le p} \\mathbb{I}(a_i+c_ik \\equiv a_j+c_jk \\pmod p)$.\nWe can swap the order of summation:\n$C = \\sum_{1 \\le i < j \\le p} \\sum_{k=0}^{p-1} \\mathbb{I}(a_i-a_j \\equiv (c_j-c_i)k \\pmod p)$.\n\nLet's analyze the inner sum for a fixed pair $(i,j)$ with $1 \\le i < j \\le p$.\nThe coefficients $c_s = s \\pmod p$ for $s \\in \\{1, \\ldots, p\\}$ are $1, 2, \\ldots, p-1, 0$. These are all distinct modulo $p$.\nSince $i \\ne j$, we have $c_i \\not\\equiv c_j \\pmod p$.\nTherefore, $c_j-c_i \\not\\equiv 0 \\pmod p$.\nSince $p$ is a prime number, any non-zero residue modulo $p$ has a unique multiplicative inverse modulo $p$.\nSo, $(c_j-c_i)$ has a unique inverse $(c_j-c_i)^{-1} \\pmod p$.\nThe congruence $a_i-a_j \\equiv (c_j-c_i)k \\pmod p$ is equivalent to $k \\equiv (a_i-a_j)(c_j-c_i)^{-1} \\pmod p$.\nThis equation has exactly one solution for $k$ in $\\{0, 1, \\ldots, p-1\\}$.\nThus, for each pair $(i,j)$ with $1 \\le i < j \\le p$, the inner sum $\\sum_{k=0}^{p-1} \\mathbb{I}(a_i-a_j \\equiv (c_j-c_i)k \\pmod p)$ is equal to 1.\n\nThe number of such pairs $(i,j)$ is $\\binom{p}{2} = \\frac{p(p-1)}{2}$.\nSo, $C = \\sum_{1 \\le i < j \\le p} 1 = \\frac{p(p-1)}{2}$.\n\nThe sum of $Coll_k$ over $p$ possible values for $k$ is $\\frac{p(p-1)}{2}$.\nThe average value of $Coll_k$ is $\\frac{C}{p} = \\frac{p(p-1)/2}{p} = \\frac{p-1}{2}$.\nSince the average value is $\\frac{p-1}{2}$, there must exist at least one $k_0 \\in \\{0, \\ldots, p-1\\}$ such that $Coll_{k_0} \\le \\frac{p-1}{2}$.\n(If all $Coll_k > \\frac{p-1}{2}$, then $\\sum Coll_k > p \\cdot \\frac{p-1}{2}$, which contradicts $C = \\frac{p(p-1)}{2}$.)\nSince $Coll_{k_0}$ must be an integer, $Coll_{k_0} \\le \\lfloor \\frac{p-1}{2} \\rfloor$. This is not strictly needed, as $\\frac{p-1}{2}$ is fine.\n\nFor this $k_0$, we have $N_{k_0} \\ge \\frac{p^2}{2 Coll_{k_0} + p}$.\nSince $Coll_{k_0} \\le \\frac{p-1}{2}$, we have $2 Coll_{k_0} + p \\le 2 \\left(\\frac{p-1}{2}\\right) + p = (p-1)+p = 2p-1$.\nThe inequality $N_k (2Coll_k+p) \\ge p^2$ implies $N_k \\ge \\frac{p^2}{2Coll_k+p}$. Since the denominator $2Coll_k+p$ is positive, a smaller denominator leads to a larger or equal value for the fraction if the numerator is non-negative.\nTherefore, $N_{k_0} \\ge \\frac{p^2}{2p-1}$.\n\nFinally, we need to check if $\\frac{p^2}{2p-1} \\ge \\frac{p}{2}$.\nSince $p$ is a prime, $p \\ge 2$. So $p > 0$ and $2p-1 > 0$.\nThe inequality is equivalent to $2p^2 \\ge p(2p-1)$.\nDividing by $p$ (which is allowed as $p>0$):\n$2p \\ge 2p-1$.\nThis simplifies to $0 \\ge -1$, which is true.\nThus, for this chosen $k_0$, $N_{k_0} \\ge \\frac{p^2}{2p-1} \\ge \\frac{p}{2}$.\nThis completes the proof that there exists an integer $k$ such that the numbers $a_1+k, \\ldots, a_p+pk$ produce at least $\\frac{1}{2}p$ distinct remainders upon division by $p$.\n\nSummary of the steps:\n1.  Defined $N_k$ as the number of distinct residues modulo $p$ for $a_1+k, \\ldots, a_p+pk$.\n2.  Related $N_k$ to $Coll_k$ (number of pairwise collisions modulo $p$) via $N_k \\ge \\frac{p^2}{2Coll_k+p}$, using Cauchy-Schwarz.\n3.  Calculated the total number of collisions $C = \\sum_{k=0}^{p-1} Coll_k$. Showed $C = \\binom{p}{2} = \\frac{p(p-1)}{2}$.\n4.  Argued that there must be a $k_0$ such that $Coll_{k_0} \\le \\frac{p-1}{2}$ (the average).\n5.  Used this $Coll_{k_0}$ in the inequality from step 2 to get $N_{k_0} \\ge \\frac{p^2}{2p-1}$.\n6.  Showed that $\\frac{p^2}{2p-1} \\ge \\frac{p}{2}$, which proves the claim.\n\nThe final answer is $\\boxed{N_k \\ge p/2}$.",
+            "cost": {
+                "cost": 0.1634875,
+                "input_tokens": 406,
+                "output_tokens": 16298
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:15:39.453372",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines for each $k$ the number $N_k$ of distinct residues of $a_i+ik\\bmod p$ and the collision count $\\mathrm{Coll}_k=\\#\\{(i<j):a_i+ik\\equiv a_j+jk\\ (\\bmod\\,p)\\}$. It applies the Cauchy\u2013Schwarz inequality to show\n$$N_k\\ge\\frac{p^2}{2\\mathrm{Coll}_k+p},$$\nthen sums $\\mathrm{Coll}_k$ over all $k\\in\\{0,\\dots,p-1\\}$ to get an average of $(p-1)/2$, picks a $k_0$ with $\\mathrm{Coll}_{k_0}\\le(p-1)/2$, and checks\n$$\\frac{p^2}{2p-1}\\ge\\frac p2$$\nto conclude $N_{k_0}\\ge p/2$.",
+                    "issues": [
+                        {
+                            "location": "Application of Cauchy\u2013Schwarz inequality",
+                            "text": "By the Cauchy\u2013Schwarz inequality, for \\(x_r=1\\) and \\(y_r=n_r(k)\\): \\(p^2\\le N_k\\sum_{r\\in S_0(k)}n_r(k)^2\\).",
+                            "description": "The proof invokes Cauchy\u2013Schwarz in a single line without detailing why the hypotheses hold or showing the intermediate algebraic steps, contrary to the instruction not to skip computation steps.",
+                            "category": "Oversimplification",
+                            "start_index": 1022,
+                            "end_index": 1133
+                        },
+                        {
+                            "location": "Derivation of \\(\\sum_{r=0}^{p-1}n_r(k)^2=2\\mathrm{Coll}_k+p\\)",
+                            "text": "We can rewrite \\(\\sum_{r=0}^{p-1}n_r(k)^2\\) using \\(\\mathrm{Coll}_k\\): it equals \\(\\sum_{r=0}^{p-1}[n_r(k)(n_r(k)-1)+n_r(k)] = 2\\mathrm{Coll}_k + p\\).",
+                            "description": "The algebraic manipulation combining the sums and binomial coefficients is sketched without showing the detailed expansion and regrouping of terms.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1860,
+                            "end_index": 2001
+                        },
+                        {
+                            "location": "Overall argument (small prime case)",
+                            "text": "",
+                            "description": "The proof does not explicitly address the edge case \\(p=2\\), the smallest prime, although the result still holds in that case.",
+                            "category": "Missing Edge Cases"
+                        },
+                        {
+                            "location": "Case analysis of denominator positivity",
+                            "text": "If \\(2\\mathrm{Coll}_k+p=0\\), this means \\(p=0\\) which is not possible.",
+                            "description": "This conditional branch is vacuous since \\(\\mathrm{Coll}_k\\ge0\\) implies \\(2\\mathrm{Coll}_k+p>0\\); including it is unnecessary and may confuse readers.",
+                            "category": "Other",
+                            "start_index": 2238,
+                            "end_index": 2293
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:34:33.312808"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Let  \n\n\\[\nS_{k}=\\bigl\\{\\,a_{1}+1k,\\;a_{2}+2k,\\;\\dots ,\\;a_{p}+pk \\bigr\\}\\subset\\mathbb Z\n\\]\n\nand denote by  \n\n\\[\nm(k)=\\#\\bigl(\\,S_{k}\\pmod{p}\\bigr)\n\\]\n\nthe number of different residues modulo \\(p\\) that occur in the set \\(S_{k}\\).\nThe aim is to prove that some integer \\(k\\) satisfies  \n\n\\[\nm(k)\\ge \\frac12\\,p .\n\\]\n\n-------------------------------------------------------------------\n1.  Collisions and pairs of indices  \n-------------------------------------------------------------------\n\nFor a fixed integer \\(k\\) call a pair of indices \\(i\\ne j\\) with  \n\n\\[\na_{i}+ik\\equiv a_{j}+jk\\pmod{p} \\tag{1}\n\\]\n\na collision for the value \\(k\\).\nLet  \n\n\\[\nc(k)=\\#\\Bigl\\{\\{i,j\\}\\subset\\{1,\\dots ,p\\}\\mid i<j,\\; (1)\\text{ holds}\\Bigr\\}\n\\]\n\nbe the total number of colliding unordered pairs for this \\(k\\).\n\n-------------------------------------------------------------------\n2.  How many values of \\(k\\) make a given pair collide ?  \n-------------------------------------------------------------------\n\nFix once and for all an unordered pair \\(\\{i,j\\}\\) with \\(i<j\\).\nEquation (1) is equivalent to  \n\n\\[\n(j-i)\\,k\\equiv a_{i}-a_{j}\\pmod{p}. \\tag{2}\n\\]\n\nBecause \\(0<j-i<p\\) and \\(p\\) is prime, \\(j-i\\) is invertible modulo \\(p\\); denote its inverse by \\((j-i)^{-1}\\).\nMultiplying (2) by this inverse gives\n\n\\[\nk\\equiv (a_{i}-a_{j})\\,(j-i)^{-1}\\pmod{p}. \\tag{3}\n\\]\n\nThus exactly one residue class \\(k\\bmod{p}\\) makes the pair \\(\\{i,j\\}\\) collide.\nConsequently every unordered pair contributes to precisely one of the numbers \\(c(0),c(1),\\dots ,c(p-1)\\).\n\n-------------------------------------------------------------------\n3.  The average number of collisions over all \\(k\\)  \n-------------------------------------------------------------------\n\nThere are \\(\\binom{p}{2}=p(p-1)/2\\) unordered pairs in total, and by the preceding paragraph each of them is counted for exactly one value of \\(k\\).\nHence\n\n\\[\n\\sum_{k=0}^{p-1} c(k)=\\binom{p}{2}=\\frac{p(p-1)}{2}.\n\\]\n\nDividing by the \\(p\\) choices of \\(k\\) shows that the average number of collisions is  \n\n\\[\n\\frac{1}{p}\\sum_{k=0}^{p-1}c(k)=\\frac{p-1}{2}.\n\\]\n\nTherefore at least one residue \\(k_{0}\\in\\{0,1,\\dots ,p-1\\}\\) satisfies  \n\n\\[\nc(k_{0})\\le \\frac{p-1}{2}. \\tag{4}\n\\]\n\nFix such a \\(k_{0}\\) for the remainder of the proof.\n\n-------------------------------------------------------------------\n4.  Collisions versus distinct residues  \n-------------------------------------------------------------------\n\nWrite the multiset \\(S_{k_{0}}\\pmod{p}\\) as groups of equal residues\n\n\\[\nS_{k_{0}}\\pmod{p}=\\underbrace{\\{r_{1},\\dots ,r_{1}\\}}_{s_{1}\\text{ times}}\\;\\cup\n\\underbrace{\\{r_{2},\\dots ,r_{2}\\}}_{s_{2}\\text{ times}}\\;\\cup\\dots\\cup\n\\underbrace{\\{r_{m},\\dots ,r_{m}\\}}_{s_{m}\\text{ times}},\n\\]\n\nwhere \\(m=m(k_{0})\\) is the number of distinct residues and \\(s_{1},\\dots ,s_{m}\\ge 1\\) with \\(s_{1}+s_{2}+ \\dots + s_{m}=p\\).\n\nInside the block of size \\(s_{\\ell}\\) there are exactly \\(\\binom{s_{\\ell}}{2}\\) colliding pairs.\nHence  \n\n\\[\nc(k_{0})=\\sum_{\\ell=1}^{m}\\binom{s_{\\ell}}{2}\n          =\\frac12\\sum_{\\ell=1}^{m} s_{\\ell}(s_{\\ell}-1).\n\\]\n\nBecause the function \\(x\\mapsto \\frac12x(x-1)\\) is non\u2013negative and\n\n\\[\n\\frac12\\,s_{\\ell}(s_{\\ell}-1)\\;\\;-\\;\\;(s_{\\ell}-1)\n      =\\frac12\\,(s_{\\ell}-1)(s_{\\ell}-2)\\ge 0,\n\\]\n\nwe always have the elementary inequality\n\n\\[\n\\binom{s_{\\ell}}{2}\\ge s_{\\ell}-1.\n\\]\n\nSumming over \\(\\ell\\) yields  \n\n\\[\nc(k_{0})\\ge\\sum_{\\ell=1}^{m}(s_{\\ell}-1)=\n          \\Bigl(\\sum_{\\ell=1}^{m}s_{\\ell}\\Bigr)-m\n          =p-m. \\tag{5}\n\\]\n\n-------------------------------------------------------------------\n5.  Putting everything together  \n-------------------------------------------------------------------\n\nInequality (4) together with (5) gives  \n\n\\[\np-m\\le c(k_{0})\\le\\frac{p-1}{2},\n\\]\nso that  \n\n\\[\nm \\ge p-\\frac{p-1}{2}= \\frac{p+1}{2}>\\frac{p}{2}.\n\\]\n\nThus the chosen integer \\(k_{0}\\) satisfies\n\n\\[\nm(k_{0})\\ge \\frac{p+1}{2}\\ge \\frac{p}{2},\n\\]\n\ni.e. the \\(p\\) numbers \\(a_{1}+k_{0}, a_{2}+2k_{0},\\dots ,a_{p}+pk_{0}\\) give at least \\(p/2\\) different remainders upon division by \\(p\\).\n\n-------------------------------------------------------------------\n6.  Conclusion  \n-------------------------------------------------------------------\n\nFor every prime \\(p\\) and every collection of integers \\(a_{1},\\dots ,a_{p}\\) there exists an integer \\(k\\) (indeed some \\(k\\) with \\(0\\le k\\le p-1\\)) such that the residues modulo \\(p\\) of  \n\n\\[\na_{1}+k,\\;a_{2}+2k,\\;\\dots ,\\;a_{p}+pk\n\\]\n\ncontain at least \\(\\frac12\\,p\\) distinct values.\nThis completes the proof. \u220e",
+            "cost": {
+                "cost": 0.16053,
+                "input_tokens": 409,
+                "output_tokens": 3911
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:50:37.936662",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines for each integer k the number of \"collisions\" c(k) among the p values a_i + i k modulo p, shows via invertibility of j\u2212i mod p that each of the \\binom p2 pairs {i,j} collides for exactly one k mod p, and hence the average of c(k) over k\u2208{0,\u2026,p\u22121} is (p\u22121)/2. Picking k\u2080 with c(k\u2080)\u2264(p\u22121)/2, it then relates collisions to the number m(k\u2080) of distinct residues by noting c(k\u2080)=\u2211\u2097\n\\binom{s_\u2113}{2}\u2265\u2211\u2097(s_\u2113\u22121)=p\u2212m(k\u2080), yielding m(k\u2080)\u2265(p+1)/2>p/2, as required.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:33:46.150711"
+            }
+        }
+    ]
+}

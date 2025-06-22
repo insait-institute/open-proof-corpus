@@ -1,0 +1,23 @@
+You are judging the correctness of an LLM-generated proof for a math problem.
+
+A solution should be considered correct even if it would earn 5+/7 points in a full grading in standard mathematical competitions like the IMO. Examples of small penalties worth 1 point are if the solution:
+
+- Makes a small computational mistake that can be easily fixed
+- Misses an edge case which can be easily proven/disproven
+- Skips over a step that follows without much reasoning or manual work
+
+A solution should be marked as incorrect if:
+- It marks a step as trivial, if it is not immediately obvious why this would be the case
+- It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology
+- Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.
+- It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.
+
+The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the "trivial" step
+
+You should output the probability that you believe the proof is correct in a boxed environment. For instance, if you are 80% confidence in the correctness of the proof (due to small mistakes or complicated steps), output \\boxed{{80}}.
+
+### Problem
+{problem}
+
+### Proof
+{solution}

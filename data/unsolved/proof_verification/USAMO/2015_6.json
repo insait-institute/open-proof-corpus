@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.3,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2015
+    },
+    "problem": "Consider \\(0<\\lambda<1\\), and let \\(A\\) be a multiset of positive integers. Let \\(A_{n}=\\{a \\in A : a \\leq n\\}\\). Assume that for every \\(n \\in \\mathbb{N}\\), the multiset \\(A_{n}\\) contains at most \\(n \\lambda\\) numbers. Show that there are infinitely many \\(n \\in \\mathbb{N}\\) for which the sum of the elements in \\(A_{n}\\) is at most \\(\\frac{n(n+1)}{2} \\lambda\\).",
+    "problem_id": "USAMO_2015_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "For brevity, $\\# S$ denotes $|S|$. Let $x_{n}=n \\lambda-\\# A_{n} \\geq 0$. We now proceed by contradiction by assuming the conclusion fails for $n$ large enough; that is,\n\n$$\n\\begin{aligned}\n\\frac{n(n+1)}{2} \\lambda & <\\sum_{a \\in A_{n}} a \\\\\n& =1\\left(\\# A_{1}-\\# A_{0}\\right)+2\\left(\\# A_{2}-\\# A_{1}\\right)+\\cdots+n\\left(\\# A_{n}-\\# A_{n-1}\\right) \\\\\n& =n \\# A_{n}-\\left(\\# A_{1}+\\cdots+\\# A_{n-1}\\right) \\\\\n& =n\\left(n \\lambda-x_{n}\\right)-\\left[\\left(\\lambda-x_{1}\\right)+\\left(2 \\lambda-x_{2}\\right)+\\cdots+\\left((n-1) \\lambda-x_{n-1}\\right)\\right] \\\\\n& =\\frac{n(n+1)}{2} \\lambda-n x_{n}+\\left(x_{1}+\\cdots+x_{n-1}\\right) .\n\\end{aligned}\n$$\n\nThis means that for all sufficiently large $n$, say $n \\geq N_{0}$, we have\n\n$$\nx_{n}<\\frac{x_{1}+\\cdots+x_{n-1}}{n} \\quad \\forall n \\geq N_{0} \\text {. }\n$$\n\nIn particular, each $x_{n}$ is the less than the average of all preceding terms. Intuitively this means $x_{n}$ should become close to each other, since they are also nonnegative.\n\nHowever, we have a second condition we haven't used yet: the \"integer\" condition implies\n\n$$\n\\left|x_{n+1}-x_{n}\\right|=|\\lambda-\\#\\{n \\in A\\}|>\\varepsilon\n$$\nfor some fixed $\\varepsilon>0$, namely $\\varepsilon=\\min \\{\\lambda, 1-\\lambda\\}$. Using the fact that consecutive terms differ by some fixed $\\varepsilon$, we will derive a contradiction.\n\nIf we let $M$ be the average of $x_{1}, \\ldots, x_{N_{0}}$, then we ought to have\n\n$$\nx_{n}<M \\quad \\forall n>N_{0} .\n$$\n\nHence for $n>N_{0}$ we have $x_{n}+x_{n+1}<2 M-\\varepsilon$, and so for large enough $n$ the average must drop to just above $M-\\frac{1}{2} \\varepsilon$. Thus for some large $N_{1}>N_{0}$, we will have\n\n$$\nx_{n}<M-\\frac{1}{3} \\varepsilon \\quad \\forall n>N_{1} .\n$$\n\nIf we repeat this argument then with a large $N_{2}>N_{1}$, we obtain\n\n$$\nx_{n}<M-\\frac{2}{3} \\varepsilon \\quad \\forall n>N_{2}\n$$\nand so on and so forth. This is a clear contradiction.\n\nRemark. Note that if $A=\\{2,2,3,4,5, \\ldots\\}$ and $\\lambda=1$ then contradiction. So the condition that $0<\\lambda<1$ cannot be dropped, and (by scaling) neither can the condition that $A \\subseteq \\mathbb{Z}$.\n\nRemark (Suggested by Zhao Ting-wei). Despite the relation\n\n$$\nx_{n}<\\frac{x_{1}+\\cdots+x_{n-1}}{n} \\quad \\forall n \\geq N_{0}\n$$\nimplying that $x_{n}$ is bounded, it does not alone imply that $x_{n}$ converges, not even to some nonzero value. Zhao Ting-Wei showed me that one can have a sequence which is zero \"every so often\" yet where the average is nonzero.\n\nA counterexample is given explicitly by\n\n$$\nx_{n}= \\begin{cases}1000 & n=1 \\\\ 0 & n \\text { is a power of } 10 \\\\ 1+\\frac{1}{n} & \\text { otherwise }\\end{cases}\n$$\nwhich does not have a limit. For completeness, let's check this - let $H_{n}$ denote the $n$ 'th harmonic number, and compute\n\\$\\$\\begin{aligned}\n\n\\sum_{1}^{n-1} x_{n} \\& =1000+(n-1)+H_{n-1}-\\sum_{k=1}^{\\left\\lfloor\\log _{10} n\\right\\rfloor}\\left(1+\\frac{1}{10^{k}}\\right) <br>\n\\& >n+999+H_{n-1}-\\log _{10} n-\\left(1+\\frac{1}{10}+\u0412\u00b7\u0412\u00b7\u0412\u00b7\\right) <br>\n\\& >n+997+H_{n-1}-\\log _{10} n>n+1\n\n\\end{aligned}\\$\\$\nso $1+\\frac{1}{n}<\\frac{1}{n} \\sum_{1}^{n-1} x_{n}$ as needed.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.97,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2018
+    },
+    "problem": "Let \\(a, b, c\\) be positive real numbers such that \\(abc = \\frac{2}{3}\\). Prove that\n\n\\[\n\\frac{ab}{a+b} + \\frac{bc}{b+c} + \\frac{ca}{c+a} \\geq \\frac{a+b+c}{a^3+b^3+c^3}\n\\]",
+    "problem_id": "BMOSL_2018_1",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Solution.\n\nBy the AH mean inequality, we have\n\n$$\n\\frac{a b}{a+b}+\\frac{b c}{b+c}+\\frac{c a}{c+a}=\\frac{2}{3(a c+b c)}+\\frac{2}{3(a b+a c)}+\\frac{2}{3(a b+a c)} \\geqslant \\frac{3}{a b+a c+b c}\n$$\nso it only remains to prove that $\\frac{3}{a b+a c+b c} \\geqslant \\frac{a+b+c}{a^{3}+b^{3}+c^{3}}$, or equivalently\n$$\n3\\left(a^{3}+b^{3}+c^{3}\\right) \\geqslant(a+b+c)(a b+a c+b c)\n$$\n\nThe last inequality easily follows by summing $a^{3}+b^{3} \\geqslant a b(a+b), a^{3}+c^{3} \\geqslant a c(a+c)$, $b^{3}+c^{3} \\geqslant b c(b+c)$ and $a^{3}+b^{3}+c^{3} \\geqslant 3 a b c$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

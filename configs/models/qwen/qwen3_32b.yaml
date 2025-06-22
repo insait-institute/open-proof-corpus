@@ -1,0 +1,11 @@
+model: Qwen/Qwen3-32B
+api: vllm
+max_tokens: 32000
+temperature: 0.6
+top_p: 0.95
+concurrent_requests: 200
+read_cost: 0
+write_cost: 0
+n_gpus: 4
+human_readable_id: Qwen3-32B
+date: "2025-04-29"

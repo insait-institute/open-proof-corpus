@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2017
+    },
+    "problem": "Let \\( n \\geq 4 \\) points in the plane, no three of them are collinear. Prove that the number of parallelograms of area 1, formed by these points, is at most \\(\\frac{n^{2}-3n}{4}\\).",
+    "problem_id": "BMOSL_2017_22",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Fix a direction in the plane. We cannot have three points in the same line parallel to the direction so suppose that in that direction there are $k$ pairs of points, each pair belonging to a parallel line to the fixed direction. Then there are at most $k-1$ parallelograms of area $1$ formed by these $k$ pairs of points.\nSumming over all directions we get that the number of parallelograms of area $1$ are at most $\\binom{n}{2}-s$ where $s$ is the number of different directions. But in that way we count every parallelogram two times, so the that the number of parallelograms of area $1$ is at most $\\frac{\\binom{n}{2}-s}{2}$. We will prove that $s \\geq n$. Indeed, taking the convex hull of the $n$ points, let $x$ be a point on the boundary of the convex hull. Because the convex hull has at least three points on its boundary, we can take two points which are neighbors of $x$ in the convex hull, say $y, z$ these points. Then every segment starting from $x$ has different direction from $y z$. So we have at least $n-1+1=n$ different directions. So the number of parallelograms is at most $\\frac{\\binom{n}{2}-n}{2}=\\frac{n^{2}-3 n}{4}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

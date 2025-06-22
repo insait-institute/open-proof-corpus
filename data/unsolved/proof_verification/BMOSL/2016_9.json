@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.89,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2016
+    },
+    "problem": "Let positive integers \\( K \\) and \\( d \\) be given. Prove that there exists a positive integer \\( n \\) and a sequence of \\( K \\) positive integers \\( b_{1}, b_{2}, \\ldots, b_{K} \\) such that the number \\( n \\) is a \\( d \\)-digit palindrome in all number bases \\( b_{1}, b_{2}, \\ldots, b_{K} \\).",
+    "problem_id": "BMOSL_2016_9",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Let a positive integer $d$ be given. We shall prove that, for each large enough $n$, the number $(n!)^{d-1}$ is a $d$-digit palindrome in all number bases $\\frac{n!}{i}-1$ for $1 \\leqslant i \\leqslant n$. In particular, we shall prove that the digit expansion of $(n!)^{d-1}$ in the base $\\frac{n!}{i}-1$ is\n\n$$\n\\left\\langle i^{d-1}\\binom{d-1}{d-1}, i^{d-1}\\binom{d-1}{d-2}, i^{d-1}\\binom{d-1}{d-3}, \\ldots, i^{d-1}\\binom{d-1}{1}, i^{d-1}\\binom{d-1}{0}\\right\\rangle_{\\frac{n!}{i}-1}\n$$\n\nWe first show that, for each large enough $n$, all these digits are smaller than the considered base, that is, they are indeed digits in that base. It is enough to check this assertion for $i=n$, that is, to show the inequality $n^{d-1}\\binom{d-1}{j}<(n-1)$ ! $-1$. However, since for a fixed $d$ the right-hand side clearly grows faster than the left-hand side, this is indeed true for all large enough $n$.\n\nEverything that is left is to evaluate:\n\n$$\n\\begin{aligned}\n\\sum_{j=0}^{d-1} i^{d-1}\\binom{d-1}{j}\\left(\\frac{n!}{i}-1\\right)^{j} & =i^{d-1} \\sum_{j=0}^{d-1}\\binom{d-1}{j}\\left(\\frac{n!}{i}-1\\right)^{j}=i^{d-1} \\sum_{j=0}^{d-1}\\binom{d-1}{j}\\left(\\frac{n!}{i}-1\\right)^{j} \\\\\n& =i^{d-1}\\left(\\frac{n!}{i}-1+1\\right)^{d-1}=(n!)^{d-1}\n\\end{aligned}\n$$\n\nwhich completes the proof.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

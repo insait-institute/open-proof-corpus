@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.32,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2016
+    },
+    "problem": "An equilateral pentagon \\( A M N P Q \\) is inscribed in triangle \\( A B C \\) such that \\( M \\in \\overline{A B} \\), \\( Q \\in \\overline{A C} \\), and \\( N, P \\in \\overline{B C} \\). Let \\( S \\) be the intersection of \\(\\overline{M N}\\) and \\(\\overline{P Q}\\). Denote by \\(\\ell\\) the angle bisector of \\(\\angle M S Q\\). Prove that \\(\\overline{O I}\\) is parallel to \\(\\ell\\), where \\( O \\) is the circumcenter of triangle \\( A B C \\), and \\( I \\) is the incenter of triangle \\( A B C \\).",
+    "problem_id": "USAMO_2016_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "I First solution (complex). In fact, we only need $A M=A Q=N P$ and $M N=Q P$.\nWe use complex numbers with $A B C$ the unit circle, assuming WLOG that $A, B, C$ are labeled counterclockwise. Let $x, y, z$ be the complex numbers corresponding to the arc midpoints of $B C, C A, A B$, respectively; thus $x+y+z$ is the incenter of $\\triangle A B C$. Finally, let $s>0$ be the side length of $A M=A Q=N P$.\n\nThen, since $M A=s$ and $M A \\perp O Z$, it follows that\n\n$$\nm-a=i \\cdot s z\n$$\n\nSimilarly, $p-n=i \\cdot s y$ and $a-q=i \\cdot s x$, so summing these up gives\n\n$$\ni \\cdot s(x+y+z)=(p-q)+(m-n)=(m-n)-(q-p)\n$$\n\nSince $M N=P Q$, the argument of $(m-n)-(q-p)$ is along the external angle bisector of the angle formed, which is perpendicular to $\\ell$. On the other hand, $x+y+z$ is oriented in the same direction as $O I$, as desired.\n\n\u0433\u0402\u040b Second solution (trig, Danielle Wang). Let $\\delta$ and $\\epsilon$ denote $\\angle M N B$ and $\\angle C P Q$. Also, assume $A M N P Q$ has side length $1$.\n\nIn what follows, assume $A B<A C$. First, we note that\n\n$$\n\\begin{aligned}\nB N & =(c-1) \\cos B+\\cos \\delta \\\\\nC P & =(b-1) \\cos C+\\cos \\epsilon, \\text { and } \\\\\na & =1+B N+C P\n\\end{aligned}\n$$\n\nfrom which it follows that\n\n$$\n\\cos \\delta+\\cos \\epsilon=\\cos B+\\cos C-1\n$$\n\nAlso, by the Law of Sines, we have $\\frac{c-1}{\\sin \\delta}=\\frac{1}{\\sin B}$ and similarly on triangle $C P Q$, and from this we deduce\n\n$$\n\\sin \\epsilon-\\sin \\delta=\\sin B-\\sin C\n$$\n\nThe sum-to-product formulas\n\n$$\n\\begin{aligned}\n& \\sin \\epsilon-\\sin \\delta=2 \\cos \\left(\\frac{\\epsilon+\\delta}{2}\\right) \\sin \\left(\\frac{\\epsilon-\\delta}{2}\\right) \\\\\n& \\cos \\epsilon-\\cos \\delta=2 \\cos \\left(\\frac{\\epsilon+\\delta}{2}\\right) \\cos \\left(\\frac{\\epsilon-\\delta}{2}\\right)\n\\end{aligned}\n$$\n\ngive us\n\n$$\n\\tan \\left(\\frac{\\epsilon-\\delta}{2}\\right)=\\frac{\\sin B-\\sin C}{\\cos B+\\cos C-1}\n$$\n\nNow note that $\\ell$ makes an angle of $\\frac{1}{2}(\\pi+\\epsilon-\\delta)$ with line $B C$. Moreover, if line $O I$ intersects line $B C$ with angle $\\varphi$ then\n\n$$\n\\tan \\varphi=\\frac{r-R \\cos A}{\\frac{1}{2}(b-c)}\n$$\n\nSo in order to prove the result, we only need to check that\n\n$$\n\\frac{r-R \\cos A}{\\frac{1}{2}(b-c)}=\\frac{\\cos B+\\cos C+1}{\\sin B-\\sin C} .\n$$\n\nUsing the fact that $b=2 R \\sin B, c=2 R \\sin C$, this reduces to the fact that $r / R+1=$ $\\cos A+\\cos B+\\cos C$, which is the so-called Carnot theorem.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

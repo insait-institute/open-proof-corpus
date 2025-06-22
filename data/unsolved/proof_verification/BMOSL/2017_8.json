@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2017
+    },
+    "problem": "Find all functions \\( f: \\mathbf{Z}_{>0} \\rightarrow \\mathbb{Z}_{>0} \\) such that the number \\( x f(x) + f^2(y) + 2x f(y) \\) is a perfect square for all positive integers \\( x, y \\).",
+    "problem_id": "BMOSL_2017_8",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Let $p$ be a prime number. Then for $x=y=p$ the given condition gives us that the number $f^{2}(p)+3 p f(p)$ is a perfect square. Then, $f^{2}(p)+3 p f(p)=k^{2}$ for some positive integer $k$. Completing the square gives us that $(2 f(p)+3 p)^{2}-9 p^{2}=4 k^{2}$, or\n\n$$\n(2 f(p)+3 p-2 k)(2 f(p)+3 p+2 k)=9 p^{2} .\n$$\n\nSince $2 f(p)+3 p+3 k>3 p$, we have the following $4$ cases.\n\n$$\n\\begin{aligned}\n& \\left\\{\\begin{array} { l } \n{ 2 f ( p ) + 3 p + 2 k = 9 p } \\\\\n{ 2 f ( p ) + 3 p - 2 k = p }\n\\end{array} \\text { or } \\left\\{\\begin{array}{l}\n2 f(p)+3 p+2 k=p^{2} \\\\\n2 f(p)+3 p-2 k=9\n\\end{array}\\right.\\right. \\text { or } \\\\\n& \\left\\{\\begin{array} { l } \n{ 2 f ( p ) + 3 p + 2 k = 3 p ^ { 2 } } \\\\\n{ 2 f ( p ) + 3 p - 2 k = 3 }\n\\end{array} \\text { or } \\left\\{\\begin{array}{l}\n2 f(p)+3 p+2 k=9 p^{2} \\\\\n2 f(p)+3 p-2 k=1\n\\end{array}\\right.\\right.\n\\end{aligned}\n$$\n\nSolving the systems, we have the following cases for $f(p)$.\n\n$$\nf(p)=p \\text { or } f(p)=\\left(\\frac{p-3}{2}\\right)^{2} \\text { or } f(p)=\\frac{3 p^{2}-6 p-3}{4} \\text { or } f(p)=\\left(\\frac{3 p-1}{2}\\right)^{2} .\n$$\n\nIn all cases, we see that $f(p)$ can be arbitrary large whenever $p$ grows.\nNow fix a positive integer $x$. From the given condition we have that\n\n$$\n(f(y)+x)^{2}+x f(x)-x^{2}\n$$\nis a perfect square. Since for $y$ being a prime, let $y=q, f(q)$ can be arbitrary large and $x f(x)-x^{2}$ is fixed, it means that $x f(x)-x^{2}$ should be zero, since the difference of $(f(q)+x+1)^{2}$ and $(f(q)+x)^{2}$ can be arbitrary large.\nAfter all, we conclude that $x f(x)=x^{2}$, so $f(x)=x$, which clearly satisfies the given condition.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

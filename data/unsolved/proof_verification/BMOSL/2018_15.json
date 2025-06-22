@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.97,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2018
+    },
+    "problem": "In a triangle \\(ABC\\) with \\(AB = AC\\), \\(\\omega\\) is the circumcircle and \\(O\\) its center. Let \\(D\\) be a point on the extension of \\(BA\\) beyond \\(A\\). The circumcircle \\(\\omega_1\\) of triangle \\(OAD\\) intersects the line \\(AC\\) and the circle \\(\\omega\\) again at points \\(E\\) and \\(G\\), respectively. Point \\(H\\) is such that \\(DAEH\\) is a parallelogram. Line \\(EH\\) meets circle \\(\\omega_1\\) again at point \\(J\\). The line through \\(G\\) perpendicular to \\(GB\\) meets \\(\\omega_1\\) again at point \\(N\\) and the line through \\(G\\) perpendicular to \\(GJ\\) meets \\(\\omega\\) again at point \\(L\\). Prove that the points \\(L, N, H, G\\) lie on a circle.",
+    "problem_id": "BMOSL_2018_15",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "We first observe that $\\varangle D O E=\\varangle D A E=2 \\varangle A B C=\\varangle B O A$ and hence $\\varangle D O B=$ $\\varangle E O A$, which together with $O B=O A$ and $\\varangle O B D=\\varangle B A O=\\varangle O A E$ gives us $\\triangle O B D \\cong \\triangle O A E$. Therefore $B D=A E$.\nNext, $O G=O A$ implies $\\varangle O D G=\\varangle O D A=\\varangle O D B$ and hence $\\triangle O G D \\cong \\triangle O B D$. It follows that $D G=D B=A E=D H$. Moreover, since $A D \\| E J$, we have $D J=A E=$ $D G$. Thus, the points $B, G, H, J$ lie on a circle $\\omega_{2}$ with center $D$.\nWe deduce that $\\varangle A G H=\\varangle B G H-\\varangle B G A=180^{\\circ}-\\frac{1}{2} \\varangle H D B-\\varangle B C A=180^{\\circ}-$ $\\frac{1}{2} \\varangle C A B-\\varangle B C A=90^{\\circ}$.\nWe will now invert the diagram through $G$. By $\\hat{X}$ we denote the image of any point $X$. The points $\\hat{H}, \\hat{L}, \\hat{N}$ then lie on the lines $\\hat{B} \\hat{J}, \\hat{A} \\hat{B}$ and $\\hat{A} \\hat{J}$, respectively, such that $\\varangle \\hat{A} G \\hat{H}=\\hat{B} G \\hat{N}=\\varangle \\hat{J} G \\hat{L}=90^{\\circ}$. It remains to prove that $\\hat{H}, \\hat{L}$ and $\\hat{N}$ are collinear, which follows from the following statement:\n\n\nLemma. Let $X Y Z$ be a triangle and let $U$ be a point in the plane. If the lines through $U$ perpendicular to $U X, U Y, U Z$ meet the lines $Y Z, Z X, X Y$ respectively at points $P, Q, R$, then the points $P, Q$ and $R$ are collinear.\n$\\underline{\\text { Proof. Here we assume that } U \\text { is inside } \\triangle X Y Z \\text { and the angles } X U Y, Y U Z \\text { and } Z U X . . . ~}$ are all obtuse - the other cases are similar. We have\n\n$$\n\\frac{\\overrightarrow{Y P}}{\\overrightarrow{P Z}}=-\\frac{P_{Y U P}}{P_{P U Z}}, \\quad \\frac{\\overrightarrow{Z Q}}{\\overrightarrow{Q X}}=-\\frac{P_{Z U Q}}{P_{Q U X}}, \\quad \\frac{\\overrightarrow{X R}}{\\overrightarrow{R Y}}=-\\frac{P_{X U R}}{P_{R U Y}}\n$$\n\nOn the other hand, since $\\varangle Q U X=\\varangle Y U P$ are equal and equally directed, we have $\\frac{P_{Y U P}}{P_{Q U X}}=\\frac{U P \\cdot U Y}{U Q \\cdot U X}$. Writing the analogous expressions for $\\frac{P_{Z U Q}}{P_{R U Y}}$ and $\\frac{P_{X U R}}{P_{P U Z}}$\nand multiplying them out we obtain $\\frac{\\overrightarrow{Y P}}{\\overrightarrow{P Z}} \\cdot \\frac{\\overrightarrow{Z Q}}{\\overrightarrow{Q X}} \\cdot \\frac{\\overrightarrow{X R}}{\\overrightarrow{R Y}}=-1$, and the result follows by Menelaus' theorem.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

@@ -1,0 +1,698 @@
+/* --- Enhanced Main Content & Component Styles --- */
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  padding-top: 20px; /* Increased padding for better spacing */
+  padding-left: 50px; /* Increased padding for better spacing */
+  padding-right: 50px; /* Increased padding for better spacing */
+  margin-left: 360px; /* Relative margin */
+  margin-top: 20px;
+  min-width: 300px; /* Minimum width for main content */
+  max-width: 100% !important; /* Let flexbox handle width, or set to a specific percentage if sidebar is fixed */
+  /* max-width: 75%; Consider if you want to cap it or let it be responsive */
+  background-color: #ffffff; /* Assuming a white main area if sidebar is colored */
+}
+
+/* General Box Styling */
+.box {
+  width: 100%;
+  margin: 0 0 1.5rem 0;
+  padding: 1.5rem; /* Consistent padding */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer, slightly larger shadow */
+  max-height: 500px; /* Increased max-height slightly */
+  margin-top: 20px; /* Consistent top margin */
+  position: relative;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0; /* Default subtle border */
+  line-height: 1.6;
+}
+
+/* Enhanced Box Variants */
+/* We'll use colored top borders for distinction, which is often less visually overwhelming
+ than full background colors, but keep a very light tint of the original color.
+ If you prefer full backgrounds, you can revert the background-color and remove border-top. */
+
+.problem-box {
+  background-color: #f0f5ff; /* Lighter tint of #c7d9ff */
+  border-top: 4px solid #8eaadb; /* Original #c7d9ff darkened */
+  color: #2c3e50;
+}
+
+.solution-box {
+  background-color: #f0fff0; /* Lighter tint of #c7ffcb */
+  border-top: 4px solid #8ee094; /* Original #c7ffcb darkened */
+  color: #1e4620;
+}
+
+.incorrect-box {
+  background-color: #fee4e4; /* Lighter tint of #c7ffcb */
+  border-top: 4px solid #d88080; /* Original #c7ffcb darkened */
+  color: #333333;
+}
+
+.description-box, .judgment-box {
+  background-color: #f9f9f9; /* Kept light grey */
+  border-top: 4px solid #cccccc;
+  color: #333333;
+}
+
+.response-box {
+  background-color: #fff5e7; /* Lighter tint of #ffe4c8 */
+  border-top: 4px solid #ffc993; /* Original #ffe4c8 darkened */
+  color: #5a3e2b;
+  font-weight: normal;
+}
+
+/* Specific grading context backgrounds (can be applied via JS if needed) */
+.user-interaction { background-color: #f7f2ec; border-top: 4px solid #d1bca5; } /* Lighter #d1bca5 */
+.assistant-interaction { background-color: #fff5e7; border-top: 4px solid #ffe4c8; }
+
+.status-correct { background-color: #f0fff0; border-top: 4px solid #76c77b; }
+.status-incorrect { background-color: #fff0f0; border-top: 4px solid #ff8a80; }
+.status-semicorrect { background-color: #fff9f0; border-top: 4px solid #ffd9a0; }
+
+
+/* Tabs Styling */
+.tab {
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+  border-bottom: none; /* Remove bottom border from the tab bar itself */
+  background-color: #f8f9fa;
+  border-radius: 6px 6px 0 0; /* Rounded top corners */
+  margin-top: 1.5rem; /* Space above tabs */
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 20px; /* Slightly more padding */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 0.95rem;
+  color: #495057;
+  border-right: 1px solid #dee2e6; /* Separator between tabs */
+}
+
+.tab button:last-child {
+  border-right: none;
+}
+
+.tab button:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+.tab button.active {
+  background-color: #ffffff; /* Active tab connects with content area */
+  color: #007bff;
+  font-weight: 600;
+  border-bottom: 2px solid #007bff; /* Highlight active tab */
+  position: relative;
+  top: 1px; /* Make it look connected with tabcontent border */
+}
+
+.tabcontent {
+  display: none;
+  padding: 20px 15px; /* More padding in content */
+  border: 1px solid #dee2e6;
+  background-color: #ffffff;
+  border-top: none; /* Top border handled by active tab or overall tab bar */
+  border-radius: 0 0 6px 6px; /* Rounded bottom corners */
+  line-height: 1.6;
+}
+.tabcontent.active { /* If you use a class to show tab content */
+  display: block;
+}
+
+
+/* Traces Container */
+#traces {
+  width: 100%; /* Should be fine, or adjust based on parent padding */
+  overflow-x: hidden; /* Usually not desired for main text content, but keep if intended */
+  height: auto; /* Let content determine height */
+  /* margin: 0% 2%; Removed, as .main-content has padding */
+}
+
+/* Fade transitions (already good) */
+.fade {
+  opacity: 0;
+  transition: opacity 0.5s ease !important;
+}
+.fade.show {
+  opacity: 1;
+}
+
+/* Meta Card Styling */
+.meta-card {
+  border: 1px solid #d1d9e0; /* Softer border */
+  border-radius: 8px; /* More rounded corners */
+  padding: 1rem 1.25rem; /* Adjusted padding */
+  margin-top: 1rem; /* Consistent margin */
+  background: #f8f9fa; /* Lighter, cleaner background */
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+}
+.meta-card .label {
+  font-weight: 600; /* Slightly less bold */
+  color: #343a40;
+}
+.meta-card p {
+  margin: 0.3rem 0;
+  color: #495057;
+}
+.meta-card ul {
+  padding-left: 20px;
+  margin-top: 0.25rem;
+}
+.meta-card a {
+  color: #007bff;
+  text-decoration: none;
+}
+.meta-card a:hover {
+  text-decoration: underline;
+}
+
+/* General Form Styling Enhancements */
+/* Assuming Bootstrap is handling most form controls (form-control, form-check-input, etc.) */
+form.needs-validation {
+  margin-top: 1.5rem; /* Space above forms */
+}
+
+/* Styling for fieldset and legend from addMultipleChoice */
+fieldset.mb-3 { /* Bootstrap class */
+  border: 1px solid #ced4da;
+  padding: 1rem 1.25rem 0.75rem; /* Inner padding */
+  border-radius: 6px;
+  background-color: #fdfdfd; /* Slightly off-white background for grouping */
+}
+legend.col-form-label { /* Bootstrap class */
+  font-size: 1rem;   /* Make legend slightly larger */
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  width: auto; /* Allow legend to take natural width */
+  margin-bottom: 0.5rem;
+  color: #343a40;
+}
+.form-check { /* Bootstrap class */
+  margin-bottom: 0.5rem; /* Consistent spacing for radio/checkbox groups */
+}
+.form-check-label {
+  font-weight: normal; /* Ensure labels are not overly bold if not intended */
+}
+
+
+/* Grading Form Specifics (createGradingForm) */
+/* h5 titles for criteria */
+form h5 {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-top: 0rem; /* Space above each criterion title */
+  margin-bottom: 0.25rem !important; /* Override inline style if any */
+}
+/* p description for criteria */
+form p.text-muted.mb-1 { /* text-muted and mb-1 are Bootstrap */
+  font-size: 1rem;
+  margin-bottom: 0rem !important; /* More space below description */
+}
+/* Score and Feedback input groups */
+form .form-label.fw-semibold { /* fw-semibold is Bootstrap */
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+/* Annotations Section */
+/* h6 "Annotations" label */
+form h6 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+/* Button for "+ Add annotation" */
+form .btn-secondary { /* If this is the class for "Add annotation" */
+  background-color: #6c757d;
+  border-color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem; /* Space below the button */
+}
+form .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Feedback group for new annotation */
+form .d-none.flex-column.gap-2 { /* For the new annotation input area */
+  border: 1px dashed #ced4da;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  background-color: #f8f9fa;
+}
+
+/* Individual Annotation Box Display */
+.annotation-box {
+  /* Already uses d-flex, justify-content-between, align-items-start, p-2, mb-2, bg-light, rounded */
+  background-color: #e9ecef !important; /* Slightly darker than default Bootstrap bg-light for emphasis */
+  border: 1px solid #ced4da;
+  padding: 0.75rem 1rem !important; /* Override Bootstrap p-2 if needed for finer control */
+}
+.annotation-box p {
+  font-size: 0.88rem;
+  color: #333;
+}
+.annotation-box p strong {
+  color: #111;
+}
+.annotation-box .btn-outline-secondary { /* Close button */
+  padding: 0.2rem 0.5rem;
+  font-size: 0.9rem; /* Make "X" slightly smaller or adjust padding for better look */
+  line-height: 1;
+  border-color: #adb5bd;
+  color: #adb5bd;
+}
+.annotation-box .btn-outline-secondary:hover {
+  background-color: #dc3545; /* Red hover for delete */
+  color: white;
+  border-color: #dc3545;
+}
+p.no-annotations-message { /* Assuming you add this class if no annotations */
+  font-style: italic;
+  color: #6c757d;
+  padding: 1rem;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+
+/* Save Button and Status Pill */
+.d-inline-flex.align-items-center.gap-2 { /* Wrapper for save button and pill */
+  margin-top: 1.5rem; /* Space above save area */
+}
+.btn-primary { /* Bootstrap class */
+  font-size: 0.95rem;
+  padding: 0.5rem 1.25rem; /* Adjust padding */
+}
+span.badge.d-none.fade { /* Status pill */
+  font-size: 0.85rem;
+  padding: 0.5em 0.75em; /* Adjust padding */
+  vertical-align: middle;
+}
+
+/* Problem Feedback Form Specifics */
+/* Assuming createProblemFeedbackForm uses similar structures that can benefit from general form styling */
+/* You might need to add specific classes within createProblemFeedbackForm and style them if needed */
+
+/* General Headings used in JS */
+#traces > h4 { /* Problem, Correct Answer, Model Outputs labels */
+  font-size: 1.4rem;
+  color: #343a40;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+#traces > h6 { /* "No ground-truth solution exists." */
+  font-size: 1rem;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 1.5rem !important; /* Ensure it overrides */
+  margin-bottom: 1.5rem !important;
+}
+    /* ---- layout ---- */
+    .gallery  {               /* main wrapper */
+      display:  flex;
+      flex-wrap: wrap;
+      justify-content: center;/* centers last lone item */
+      gap: 1rem;
+      max-width: 960px;
+      margin: 0 auto;
+      margin-top: 3rem;
+    }
+    .figure   {               /* each tile */
+      flex: 1 1 33%;          /* two items per row on ≥600 px */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 33%;
+    }
+    .figure img{
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      border-radius: .5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      transition: transform .2s;
+    }
+    .figure img:hover{ transform: scale(1.03); }
+    .figure figcaption{ margin-top: 1rem; font-size: 1.4rem; color:#555; text-align: center;}
+  
+    /* ---- light-box ---- */
+    #lightbox{
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.9);
+      display: grid;
+      place-content: center;
+      visibility: hidden; opacity: 0;
+      transition: opacity .25s ease;
+      z-index: 999;
+    }
+    #lightbox.open{ visibility: visible; opacity: 1; }
+    #lightbox img{
+      max-width: 90vw; max-height: 90vh;
+    }
+
+    /* small neutral divider that’s easy to grab */
+/* --- Updated CSS for Resizer --- */
+.column-resizer {
+  flex: 0 0 6px; /* Fixed width for the resizer */
+  cursor: col-resize;
+  background-color: #cbd5e0; /* Tailwind gray-300 */
+  user-select: none;
+  border-radius: 0.25rem; /* Small rounded corners */
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+  margin: 0 0.5rem; /* Add some margin for visual separation */
+}
+
+.column-resizer:hover {
+  background-color: #9ca3af; /* Tailwind gray-400 on hover */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1); /* Slightly more pronounced shadow */
+}
+
+.column-resizer:active {
+  background-color: #6b7280; /* Tailwind gray-500 when active */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.15); /* Even more pronounced shadow */
+}
+
+/* Prevent text selection while dragging and change cursor globally */
+body.resize-active {
+  cursor: col-resize !important;
+  user-select: none;
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none;    /* For Firefox */
+  -ms-user-select: none;     /* For IE/Edge */
+}
+
+.toggle-description-button {
+  background-color: #f0f0f0; /* Light grey background */
+  color: #333; /* Dark grey text */
+  border: 1px solid #ccc; /* Subtle border */
+  padding: 8px 15px; /* Padding around text */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-family: Arial, sans-serif; /* Clean font */
+  font-size: 14px; /* Readable font size */
+  text-align: left; /* Align text to the left if button is full width */
+  width: auto; /* Adjust width as needed, or set to 100% */
+  margin-bottom: 5px; /* Space below the button */
+  display: flex; /* For aligning text and arrow */
+  align-items: center; /* Vertically center content */
+  justify-content: space-between; /* Pushes arrow to the right if you prefer that */
+}
+
+.toggle-description-button:hover {
+  background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+.toggle-description-button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Custom focus outline */
+}
+
+.toggle-description-button .arrow-indicator {
+  margin-left: 8px; /* Space between text and arrow */
+  font-size: 12px; /* Adjust arrow size if needed */
+  transition: transform 0.2s ease-in-out; /* Smooth transition for arrow rotation (optional) */
+}
+
+
+.existing-judgments-container {
+  background-color: #ffffff; /* Clean background */
+  border: 1px solid #dee2e6; /* Standard border, like tabcontent */
+  border-radius: 8px;        /* Consistent with .box */
+  padding: 1.5rem;           /* Generous padding, like .box */
+  margin-top: 1.5rem;        /* Consistent spacing */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Softer shadow, less than .box */
+}
+
+/* General title: "Previously Recorded Judgments" (H4) */
+.existing-judgments-container > h4 {
+  font-size: 1.3rem;      /* Slightly smaller than main #traces > h4 */
+  color: #343a40;
+  margin-top: 0;          /* Container provides top margin */
+  margin-bottom: 1.25rem; /* Space before the first criterion */
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e0e0; /* Matches #traces > h4 */
+  font-weight: 600;       /* Clearly a section title */
+}
+
+/* Wrapper for each criterion's title and its judgments */
+.existing-judgments-container .criterion-group { /* Add this class to 'criterionDiv' in JS */
+  margin-bottom: 1.5rem; /* Space between each criterion block */
+}
+.existing-judgments-container .criterion-group:last-child {
+  margin-bottom: 0; /* No bottom margin for the last group */
+}
+
+/* Title for each grading criterion (H5) */
+.existing-judgments-container .criterion-title {
+  font-size: 1.1rem;      /* Matches form h5 */
+  color: #2c3e50;         /* Matches form h5 */
+  font-weight: 600;
+  margin-top: 0;          /* Group provides top margin */
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #e9ecef; /* Lighter separator */
+}
+
+/* Box for an individual judgment */
+.existing-judgment-box {
+  background-color: #f8f9fa; /* Light background, like meta-card */
+  border: 1px solid #dee2e6; /* Standard border color */
+  /* Consider a subtle top border for accent if desired:
+  border-top: 3px solid #6c757d; // Matches a neutral dark color
+  */
+  padding: 1rem 1.25rem;    /* Matches .meta-card padding */
+  border-radius: 6px;       /* Consistent with fieldset, annotation-box */
+  margin-bottom: 1rem;      /* Space between judgments */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow like meta-card */
+  line-height: 1.5;         /* Good readability */
+}
+.criterion-group .existing-judgment-box:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Paragraphs within an individual judgment box */
+.existing-judgment-box p {
+  margin: 0.35rem 0; /* Slightly more vertical space */
+  font-size: 0.9rem;  /* Matches .meta-card p */
+  color: #495057;     /* Matches .meta-card p */
+}
+
+/* Strong tags used for labels like "Score:", "Feedback:" */
+.existing-judgment-box p strong {
+  color: #343a40;     /* Matches .meta-card .label */
+  font-weight: 600;   /* Standard bold */
+}
+
+/* Header for the judge's name/identifier */
+.existing-judgment-box .judge-header { /* Add this class in JS */
+  font-size: 0.95rem; /* Slightly more prominent */
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 0.5rem; /* More space after judge name */
+}
+
+/* Container for the feedback text itself */
+.existing-judgment-box .feedback-text { /* Add this class in JS */
+  white-space: pre-wrap; /* Keep this from JS */
+  font-size: 0.9rem;
+  color: #495057;     /* Match paragraph text */
+  background-color: #ffffff; /* White background for feedback area */
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #e9ecef; /* Subtle border around feedback */
+  margin-top: 0.25rem; /* Space between "Feedback:" label and the text block */
+}
+
+/* Message for when no judgments are recorded for a criterion */
+.existing-judgments-container .no-judgments-message { /* Add this class in JS */
+  font-style: italic;
+  color: #6c757d;      /* Standard muted text color */
+  padding: 1rem;
+  text-align: center;
+  background-color: #f8f9fa; /* Light background */
+  border: 1px dashed #dee2e6; /* Dashed border to indicate it's a placeholder/notice */
+  border-radius: 6px;
+  margin-top: 0.5rem;  /* Space above if it's the only thing under a criterion title */
+}
+
+llm-judgment-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Tabs specific to LLM Judgment */
+.llm-judgment-tabs {
+  /* inherits .tab styles for float containment */
+  border-bottom: 1px solid #e0e0e0; /* Add a separator below LLM tabs */
+}
+
+/* Content area for LLM summary */
+.llm-summary-content {
+  padding: 15px;
+  /* border-top: 1px solid #eee; /* No longer needed if .llm-judgment-tabs has border-bottom */
+}
+
+/* Container for the list of LLM issues */
+.llm-issues-list {
+  padding: 10px;
+  /* border-top: 1px solid #eee; /* No longer needed */
+}
+
+/* Styling for each individual issue box */
+.llm-issue-box {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-left: 4px solid #d9534f;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.llm-issue-box p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9em;
+}
+
+.llm-issue-box p:last-child {
+  margin-bottom: 0;
+}
+
+.llm-issue-box strong {
+  color: #333;
+}
+
+.llm-issue-cited-text {
+  background-color: #ececec;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.95em;
+  color: #555;
+}
+
+.llm-judgment-container .tabcontent {
+  animation: fadeInEffect 0.5s;
+}
+
+.clickable-cited-text {
+  cursor: pointer;
+  color: #007bff; /* Bootstrap primary blue, or your preferred link color */
+  font-style: italic; /* Optional: to make it look more like a quote */
+}
+
+.clickable-cited-text:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
+
+@keyframes fadeInEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.two-col-wrapper {
+  margin-bottom: 1rem;
+}
+.column-resizer {
+  width: 10px;
+  cursor: col-resize;
+  background-color: #f0f0f0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+.column-resizer:hover {
+  background-color: #e0e0e0;
+}
+
+.highlight-orange, .highlight-orange .katex-display {
+  background-color: orange;
+}
+
+/* Container for the feedback buttons (remains the same) */
+.llm-feedback-button-container {
+    margin-top: 12px; /* Space above the buttons */
+    display: flex; /* Aligns buttons in a row */
+    gap: 10px; /* Space between the buttons */
+}
+
+/* Common styling for both feedback buttons - UPDATED */
+.llm-feedback-button {
+    flex-grow: 1; /* Allows buttons to share the space equally */
+    padding: 5px 10px; /* Reduced padding for a smaller size */
+    border: 1px solid; /* Border color will be set by specific classes */
+    border-radius: 4px; /* Slightly adjusted border-radius */
+    cursor: pointer;
+    font-size: 0.85em; /* Reduced font size */
+    font-weight: 600; /* Bootstrap-like font-weight for outline buttons */
+    text-align: center;
+    background-color: transparent; /* Inverted style: transparent background */
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Styling for the "Accept" button - UPDATED for inverted style */
+.accept-button {
+    color: #6ca870; /* Softer green text (Bootstrap success color) */
+    border-color: #6ca870; /* Softer green border */
+}
+
+.accept-button:hover {
+    background-color: #6ca870; /* Green background on hover */
+    color: #fff; /* White text on hover */
+}
+
+.accept-button.selected {
+  background-color: #6ca870 !important; /* Green background on hover */
+  color: #fff !important; /* White text on hover */
+}
+
+.accept-button:focus { /* Optional: for better accessibility and visual feedback on focus */
+    box-shadow: 0 0 0 0.1rem #578659;
+    outline: none;
+}
+
+
+/* Styling for the "Reject" button - UPDATED for inverted style */
+.reject-button {
+    color: #a54f52; /* Softer red text (Bootstrap danger color) */
+    border-color: #a54f52; /* Softer red border */
+}
+
+.reject-button:hover {
+    background-color: #a54f52; /* Red background on hover */
+    color: #fff; /* White text on hover */
+}
+
+.reject-button.selected {
+  background-color: #a54f52 !important; /* Red background on hover */
+  color: #fff !important; /* White text on hover */
+}
+
+.reject-button:focus { /* Optional: for better accessibility and visual feedback on focus */
+    box-shadow: 0 0 0 0.1rem #733739;
+    outline: none;
+}

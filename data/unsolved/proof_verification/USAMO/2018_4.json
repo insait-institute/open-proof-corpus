@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.36,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2018
+    },
+    "problem": "Let \\( p \\) be a prime, and let \\( a_{1}, \\ldots, a_{p} \\) be integers. Show that there exists an integer \\( k \\) such that the numbers\n\n\\[\na_{1}+k, a_{2}+2k, \\ldots, a_{p}+pk\n\\]\n\nproduce at least \\(\\frac{1}{2} p\\) distinct remainders upon division by \\( p \\).",
+    "problem_id": "USAMO_2018_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "For each $k=0, \\ldots, p-1$ let $G_{k}$ be the graph on $\\{1, \\ldots, p\\}$ where we join $\\{i, j\\}$ if and only if\n\n$$\na_{i}+i k \\equiv a_{j}+j k \\quad(\\bmod p) \\Longleftrightarrow k \\equiv-\\frac{a_{i}-a_{j}}{i-j} \\quad(\\bmod p) .\n$$\n\nSo we want a graph $G_{k}$ with at least $\\frac{1}{2} p$ connected components.\nHowever, each $\\{i, j\\}$ appears in exactly one graph $G_{k}$, so some graph has at most $\\frac{1}{p}\\binom{p}{2}=\\frac{1}{2}(p-1)$ edges (by \"pigeonhole\"). This graph has at least $\\frac{1}{2}(p+1)$ connected components, as desired.\n\nRemark. Here is an example for $p=5$ showing equality can occur:\n\n$$\n\\left[\\begin{array}{lllll}\n0 & 0 & 3 & 4 & 3 \\\\\n0 & 1 & 0 & 2 & 2 \\\\\n0 & 2 & 2 & 0 & 1 \\\\\n0 & 3 & 4 & 3 & 0 \\\\\n0 & 4 & 1 & 1 & 4\n\\end{array}\\right] .\n$$\n\nAnkan Bhattacharya points out more generally that $a_{i}=i^{2}$ is sharp in general.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

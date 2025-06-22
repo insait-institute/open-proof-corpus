@@ -1,0 +1,21 @@
+n_problems: 365
+overlap: 0.3
+judge_file: "configs/judges/proof_verification.json"
+competition_weight:
+ putnam: 0
+ IMC: 10
+ BMOSL: 70
+ IMOSL: 10
+ irish: 10
+ JMO: 10
+ matharena: 30
+ USAMO: 10
+ bmo1: 10
+ bmo2: 10
+ bulgarian-EMT: 10
+ bulgarian-PMS: 10
+ bulgarian-ZMS: 10
+ BalticWay: 10
+ EGMO: 10
+ RMM: 70
+ izho: 10

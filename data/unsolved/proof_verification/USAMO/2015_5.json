@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.3,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2015
+    },
+    "problem": "Let \\(a, b, c, d, e\\) be distinct positive integers such that \\(a^{4}+b^{4}=c^{4}+d^{4}=e^{5}\\). Show that \\(a c+b d\\) is a composite number.",
+    "problem_id": "USAMO_2015_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Assume to the contrary that $p=a c+b d$, so that\n\n$$\n\\begin{aligned}\na c & \\equiv-b d \\quad(\\bmod p) \\\\\n\\Longrightarrow a^{4} c^{4} & \\equiv b^{4} d^{4} \\quad(\\bmod p) \\\\\n\\Longrightarrow a^{4}\\left(e^{5}-d^{4}\\right) & \\equiv\\left(e^{5}-a^{4}\\right) d^{4} \\quad(\\bmod p) \\\\\n\\Longrightarrow a^{4} e^{5} & \\equiv d^{4} e^{5} \\quad(\\bmod p) \\\\\n\\Longrightarrow e^{5}\\left(a^{4}-d^{4}\\right) & \\equiv 0 \\quad(\\bmod p)\n\\end{aligned}\n$$\n\nand hence\n\n$$\np \\mid e^{5}(a-d)(a+d)\\left(a^{2}+d^{2}\\right)\n$$\n\nClaim - We should have $p>e$.\n\nProof. We have $e^{5}=a^{4}+b^{4} \\leq a^{5}+b^{5}<(a c+b d)^{5}=p^{5}$.\nThus the above equation implies $p \\leq \\max \\left(a-d, a+d, a^{2}+d^{2}\\right)=a^{2}+d^{2}$. Similarly, $p \\leq b^{2}+c^{2}$. So\n\n$$\na c+b d=p \\leq \\min \\left\\{a^{2}+d^{2}, b^{2}+c^{2}\\right\\}\n$$\nor by subtraction\n$$\n0 \\leq \\min \\{a(a-c)+d(d-b), b(b-d)+c(c-a)\\}\n$$\n\nBut since $a^{4}+b^{4}=c^{4}+d^{4}$ the numbers $a-c$ and $d-b$ should have the same sign, and so this is an obvious contradiction.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

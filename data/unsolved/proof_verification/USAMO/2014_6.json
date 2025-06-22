@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.28,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2014
+    },
+    "problem": "Prove that there is a constant \\(c>0\\) with the following property: If \\(a, b, n\\) are positive integers such that \\(\\operatorname{gcd}(a+i, b+j)>1\\) for all \\(i, j \\in\\{0,1, \\ldots, n\\}\\), then\n\n\\[\n\\min \\{a, b\\}>(c n)^{n / 2}\n\\]",
+    "problem_id": "USAMO_2014_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nProve that there is a constant $c>0$ with the following property: If $a, b, n$ are positive integers such that $\\operatorname{gcd}(a+i, b+j)>1$ for all $i, j \\in\\{0,1, \\ldots, n\\}$, then\n\n$$\n\\min \\{a, b\\}>(c n)^{n / 2}\n$$\n\nLet $N=n+1$ and assume $N$ is (very) large. We construct an $N \\times N$ with cells $(i, j)$ where $0 \\leq i, j \\leq n$ and in each cell place a prime $p$ dividing $\\operatorname{gcd}(a+i, b+j)$.\n\nThe central claim is at least $50 \\%$ of the primes in this table exceed $0.001 n^{2}$. We count the maximum number of squares they could occupy:\n\n$$\n\\sum_{p}\\left\\lceil\\frac{N}{p}\\right\\rceil^{2} \\leq \\sum_{p}\\left(\\frac{N}{p}+1\\right)^{2}=N^{2} \\sum_{p} \\frac{1}{p^{2}}+2 N \\sum_{p} \\frac{1}{p}+\\sum_{p} 1\n$$\n\nHere the summation runs over primes $p \\leq 0.001 n^{2}$.\nLet $r=\\pi\\left(0.001 n^{2}\\right)$ denote the number of such primes. Now we consider the following three estimates. First,\n\n$$\n\\sum_{p} \\frac{1}{p^{2}}<\\frac{1}{2}\n$$\nwhich follows by adding all the primes directly with some computation. Moreover,\n$$\n\\sum_{p} \\frac{1}{p}<\\sum_{k=1}^{r} \\frac{1}{k}=O(\\log r)<o(N)\n$$\n\nusing the harmonic series bound, and\n\n$$\n\\sum_{p} 1<r \\sim O\\left(\\frac{N^{2}}{\\ln N}\\right)<o\\left(N^{2}\\right)\n$$\nvia Prime Number Theorem. Hence the sum in question is certainly less than $\\frac{1}{2} N^{2}$ for $N$ large enough, establishing the central claim.\n\nHence some column $a+i$ has at least one half of its primes greater than $0.001 n^{2}$. Because this is greater than $n$ for large $n$, these primes must all be distinct, so $a+i$ exceeds their product, which is larger than\n\n$$\n\\left(0.001 n^{2}\\right)^{N / 2}>c^{n} \\cdot n^{n}\n$$\nwhere $c$ is some constant (better than the requested bound).",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

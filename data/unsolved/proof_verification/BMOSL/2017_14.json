@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2017
+    },
+    "problem": "Let \\( \\triangle ABC \\) be a triangle with \\( AB < AC \\) inscribed in a circle \\( c \\). The tangent to \\( c \\) at point \\( C \\) meets the parallel from \\( B \\) to \\( AC \\) at point \\( D \\). The tangent to \\( c \\) at point \\( B \\) meets the parallel from \\( C \\) to \\( AB \\) at point \\( E \\), and the tangent to \\( c \\) at point \\( C \\) at point \\( L \\). Suppose the circumcircle \\( c_1 \\) of triangle \\( BDC \\) meets \\( AC \\) at point \\( T \\) and the circumcircle \\( c_2 \\) of triangle \\( BEC \\) meets \\( AB \\) at point \\( S \\). Prove that the lines \\( ST, BC, AL \\) are concurrent.",
+    "problem_id": "BMOSL_2017_14",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "We will prove first that the circle $c_{1}$ is tangent to $A B$ at the point $B$. In order to prove this, we have to prove that $\\measuredangle B D C=\\measuredangle A B C$. Indeed, since $B D \\| A C$, we have that $\\measuredangle D B C=\\measuredangle A C B$. Additionally, $\\angle B C D=\\measuredangle B A C$ (by chord and tangent), which means that the triangles $A B C, B D C$ have two equal angles and so the third ones are also equal. It follows that $\\angle B D C=\\measuredangle A B C$, so $c_{1}$ is tangent to $A B$ at the point $B$.\n\nSimilarly, the circle $c_{2}$ is tangent to $A C$ at the point $C$.\nAs a consequence, $\\measuredangle A B T=\\measuredangle A C B$ (by chord and tangent) and also $\\measuredangle B S C=\\measuredangle A C B$.\nBy the above, we have that $\\measuredangle A B T=\\measuredangle B S C$, so the lines $B T, S C$ are parallel.\nNow, let $S T$ intersect $B C$ at the point $K$. It suffice to prove that $K$ belongs to $A L$. From the trapezoid $B T C S$ we get that\n\n$$\n\\frac{B K}{K C}=\\frac{B T}{S C}\n$$\nand from the similar triangles $A B T, A S C$, we have that\n$$\n\\frac{B T}{S C}=\\frac{A B}{A S}\n$$\n\nBy (1), (2) we get that\n\n$$\n\\frac{B K}{K C}=\\frac{A B}{A S}\n$$\n\nFrom the power of point theorem, we have that\n\n$$\nA C^{2}=A B \\cdot A S \\Rightarrow A S=\\frac{A C^{2}}{A B}\n$$\n\nGoing back into (3), it gives that\n\n$$\n\\frac{B K}{K C}=\\frac{A B^{2}}{A C^{2}}\n$$\n\nFrom the last one, it follows that $K$ belongs to the symmedian of the triangle $A B C$.\nFinally, recall that the well known fact that since $L B$ and $L C$ are tangents, it follows that $A L$ is the symmedian of the triangle $A B C$, so $K$ belongs to $A L$, as needed.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

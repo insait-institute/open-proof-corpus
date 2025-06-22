@@ -1,0 +1,190 @@
+{
+    "problem_id": "USAMO_1997_5",
+    "metadata": {
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "category": [],
+        "level": "high_school",
+        "difficulty": 6.9399999999999995,
+        "year": 1997,
+        "competition": "usamo"
+    },
+    "problem": "If $a, b, c>0$ prove that\n\n$$\n\\frac{1}{a^{3}+b^{3}+a b c}+\\frac{1}{b^{3}+c^{3}+a b c}+\\frac{1}{c^{3}+a^{3}+a b c} \\leq \\frac{1}{a b c} .\n$$",
+    "solutions": [
+        {
+            "solution": "From $a^{3}+b^{3} \\geq a b(a+b)$, the left-hand side becomes\n\n$$\n\\sum_{\\mathrm{cyc}} \\frac{1}{a^{3}+b^{3}+a b c} \\leq \\sum_{\\mathrm{cyc}} \\frac{1}{a b(a+b+c)}=\\frac{1}{a b c} \\sum_{\\mathrm{cyc}} \\frac{c}{a+b+c}=\\frac{1}{a b c}\n$$",
+            "author": "Human",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To prove the inequality:\n\n$$\n\\frac{1}{a^{3}+b^{3}+a b c}+\\frac{1}{b^{3}+c^{3}+a b c}+\\frac{1}{c^{3}+a^{3}+a b c} \\leq \\frac{1}{a b c},\n$$\n\nfor $ a, b, c > 0 $, we proceed by leveraging algebraic identities and inequalities.\n\n---\n\n### Step 1: Use of a Known Inequality\n\nWe begin by applying the identity:\n\n$$\na^3 + b^3 = (a + b)(a^2 - ab + b^2).\n$$\n\nSince $ a^2 - ab + b^2 \\geq ab $ (as shown by the inequality $ a^2 + b^2 \\geq 2ab $), we deduce:\n\n$$\na^3 + b^3 \\geq ab(a + b).\n$$\n\nAdding $ abc $ to both sides:\n\n$$\na^3 + b^3 + abc \\geq ab(a + b + c).\n$$\n\nThis gives us a lower bound for each denominator in the left-hand side of the inequality.\n\n---\n\n### Step 2: Applying the Inequality to Each Term\n\nUsing the above inequality, we obtain:\n\n$$\n\\frac{1}{a^3 + b^3 + abc} \\leq \\frac{1}{ab(a + b + c)},\n$$\n$$\n\\frac{1}{b^3 + c^3 + abc} \\leq \\frac{1}{bc(a + b + c)},\n$$\n$$\n\\frac{1}{c^3 + a^3 + abc} \\leq \\frac{1}{ca(a + b + c)}.\n$$\n\nAdding these three inequalities:\n\n$$\n\\frac{1}{a^3 + b^3 + abc} + \\frac{1}{b^3 + c^3 + abc} + \\frac{1}{c^3 + a^3 + abc} \\leq \\frac{1}{a + b + c} \\left( \\frac{1}{ab} + \\frac{1}{bc} + \\frac{1}{ca} \\right).\n$$\n\n---\n\n### Step 3: Simplifying the Right-Hand Side\n\nWe simplify the expression:\n\n$$\n\\frac{1}{ab} + \\frac{1}{bc} + \\frac{1}{ca} = \\frac{c + a + b}{abc}.\n$$\n\nThus, the inequality becomes:\n\n$$\n\\frac{1}{a^3 + b^3 + abc} + \\frac{1}{b^3 + c^3 + abc} + \\frac{1}{c^3 + a^3 + abc} \\leq \\frac{a + b + c}{abc(a + b + c)} = \\frac{1}{abc}.\n$$\n\n---\n\n### Step 4: Conclusion\n\nWe have shown that each term in the sum on the left is bounded above by a corresponding term in a sum that simplifies exactly to $ \\frac{1}{abc} $. Therefore, the inequality holds for all $ a, b, c > 0 $.\n\nEquality is achieved when $ a = b = c $, since in that case, each denominator becomes $ 3a^3 $, and the left-hand side becomes $ \\frac{3}{3a^3} = \\frac{1}{a^3} = \\frac{1}{abc} $.\n\n---\n\n### Final Answer\n\n$$\n\\boxed{\\frac{1}{a^{3}+b^{3}+a b c}+\\frac{1}{b^{3}+c^{3}+a b c}+\\frac{1}{c^{3}+a^{3}+a b c} \\leq \\frac{1}{a b c}}\n$$",
+            "cost": {
+                "cost": 0.0024712000000000002,
+                "input_tokens": 179,
+                "output_tokens": 4059
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T11:04:22.309218",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof applies the factorization \\(a^3+b^3=(a+b)(a^2-ab+b^2)\\) and the inequality \\(a^2+b^2\\ge2ab\\) to show each denominator is at least \\(ab(a+b+c)\\), then inverts to bound the reciprocals, sums cyclically, and simplifies \\(\\tfrac1{ab}+\\tfrac1{bc}+\\tfrac1{ca}=\\tfrac{a+b+c}{abc}\\) to conclude the desired inequality, noting equality at \\(a=b=c\\).",
+                    "issues": [
+                        {
+                            "location": "Step 1, derivation of \\(a^2 - ab + b^2 \\ge ab\\)",
+                            "text": "\u201csince \\(a^2 - ab + b^2 \\ge ab\\) (as shown by the inequality \\(a^2 + b^2 \\ge 2ab\\))\u201d",
+                            "description": "The proof asserts this inequality without showing the algebraic manipulation from \\(a^2 + b^2 \\ge 2ab\\) to \\(a^2 - ab + b^2 \\ge ab\\).",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 349,
+                            "end_index": 428
+                        },
+                        {
+                            "location": "Step 2, inversion of the bound on denominators",
+                            "text": "\u201c\\(\\frac{1}{a^3 + b^3 + abc} \\le \\frac{1}{ab(a + b + c)}\\)\u201d",
+                            "description": "The proof does not explicitly justify that inverting both sides of a positive inequality reverses the inequality sign (monotonicity of the reciprocal on \\((0,\\infty)\\)).",
+                            "category": "Oversimplification",
+                            "start_index": 745,
+                            "end_index": 796
+                        },
+                        {
+                            "location": "Step 3, simplification of the sum of reciprocals",
+                            "text": "\u201c\\(\\frac{1}{ab} + \\frac{1}{bc} + \\frac{1}{ca} = \\frac{c + a + b}{abc}\\)\u201d",
+                            "description": "The simplification is stated without detailing the common-denominator computation for adding the three fractions.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1213,
+                            "end_index": 1281
+                        },
+                        {
+                            "location": "Display math environments",
+                            "text": "",
+                            "description": "The proof uses `$$ ... $$` for display equations instead of the required `\\[ ... \\]` environment as specified in the prompt instructions.",
+                            "category": "Other"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:36:03.069727"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "To prove the inequality\n$$ \\frac{1}{a^{3}+b^{3}+a b c}+\\frac{1}{b^{3}+c^{3}+a b c}+\\frac{1}{c^{3}+a^{3}+a b c} \\leq \\frac{1}{a b c} $$\nfor $a, b, c > 0$, we will proceed by finding a lower bound for the denominators of the terms on the left-hand side (LHS).\n\nStep 1: Prove the auxiliary inequality $x^3+y^3 \\ge xy(x+y)$ for $x,y > 0$.\nWe start by factoring the expression $x^3+y^3$:\n\\\\[ x^3+y^3 = (x+y)(x^2-xy+y^2) \\\\]\nWe want to show that $x^3+y^3 \\ge xy(x+y)$. Let's consider the difference $x^3+y^3 - xy(x+y)$:\n\\\\[ x^3+y^3 - xy(x+y) = (x+y)(x^2-xy+y^2) - xy(x+y) \\\\]\nFactor out the common term $(x+y)$:\n\\\\[ (x+y)(x^2-xy+y^2 - xy) = (x+y)(x^2-2xy+y^2) \\\\]\nThe term $x^2-2xy+y^2$ is the square of $(x-y)$, so we have:\n\\\\[ (x+y)(x-y)^2 \\\\]\nSince $x, y > 0$, their sum $x+y$ is positive. The term $(x-y)^2$ is a square, so it is always non-negative: $(x-y)^2 \\ge 0$.\nTherefore, the product $(x+y)(x-y)^2$ is non-negative:\n\\\\[ (x+y)(x-y)^2 \\ge 0 \\\\]\nThis implies that $x^3+y^3 - xy(x+y) \\ge 0$, which rearranges to:\n\\\\[ x^3+y^3 \\ge xy(x+y) \\\\]\nEquality holds if and only if $(x-y)^2=0$, which means $x=y$.\n\nStep 2: Apply the auxiliary inequality to the denominators of the LHS.\nThe denominators on the LHS are of the form $x^3+y^3+abc$.\nFor the first term, $a^3+b^3+abc$:\nUsing the inequality $x^3+y^3 \\ge xy(x+y)$ with $x=a$ and $y=b$, we get:\n\\\\[ a^3+b^3 \\ge ab(a+b) \\\\]\nAdding $abc$ to both sides (which does not change the inequality direction):\n\\\\[ a^3+b^3+abc \\ge ab(a+b)+abc \\\\]\nFactor out $ab$ on the right-hand side:\n\\\\[ ab(a+b)+abc = ab(a+b+c) \\\\]\nSo, we have:\n\\\\[ a^3+b^3+abc \\ge ab(a+b+c) \\\\]\nSince $a,b,c > 0$, all terms $a^3+b^3+abc$ and $ab(a+b+c)$ are positive. Therefore, taking the reciprocal of both sides reverses the inequality sign:\n\\\\[ \\frac{1}{a^3+b^3+abc} \\le \\frac{1}{ab(a+b+c)} \\\\]\nSimilarly, for the other two terms in the LHS:\nFor the second term, $b^3+c^3+abc$:\nUsing $x=b, y=c$ in the auxiliary inequality, $b^3+c^3 \\ge bc(b+c)$.\nSo, $b^3+c^3+abc \\ge bc(b+c)+abc = bc(b+c+a)$.\nThus,\n\\\\[ \\frac{1}{b^3+c^3+abc} \\le \\frac{1}{bc(a+b+c)} \\\\]\nFor the third term, $c^3+a^3+abc$:\nUsing $x=c, y=a$ in the auxiliary inequality, $c^3+a^3 \\ge ca(c+a)$.\nSo, $c^3+a^3+abc \\ge ca(c+a)+abc = ca(c+a+b)$.\nThus,\n\\\\[ \\frac{1}{c^3+a^3+abc} \\le \\frac{1}{ca(a+b+c)} \\\\]\n\nStep 3: Sum the three inequalities.\nLet LHS denote the left-hand side of the original inequality.\n\\\\[ \\text{LHS} = \\frac{1}{a^{3}+b^{3}+a b c}+\\frac{1}{b^{3}+c^{3}+a b c}+\\frac{1}{c^{3}+a^{3}+a b c} \\\\]\nUsing the inequalities derived in Step 2:\n\\\\[ \\text{LHS} \\le \\frac{1}{ab(a+b+c)} + \\frac{1}{bc(a+b+c)} + \\frac{1}{ca(a+b+c)} \\\\]\n\nStep 4: Simplify the sum on the right-hand side.\nThe three terms on the right-hand side have a common factor $\\frac{1}{a+b+c}$. Let's factor it out:\n\\\\[ \\frac{1}{ab(a+b+c)} + \\frac{1}{bc(a+b+c)} + \\frac{1}{ca(a+b+c)} = \\frac{1}{a+b+c} \\left( \\frac{1}{ab} + \\frac{1}{bc} + \\frac{1}{ca} \\right) \\\\]\nNow, let's find a common denominator for the terms inside the parenthesis: $\\frac{1}{ab} + \\frac{1}{bc} + \\frac{1}{ca}$. The common denominator is $abc$.\n\\\\[ \\frac{1}{ab} + \\frac{1}{bc} + \\frac{1}{ca} = \\frac{c}{abc} + \\frac{a}{abc} + \\frac{b}{abc} = \\frac{c+a+b}{abc} \\\\]\nSubstitute this back into the expression:\n\\\\[ \\frac{1}{a+b+c} \\left( \\frac{a+b+c}{abc} \\right) \\\\]\nSince $a,b,c > 0$, it follows that $a+b+c > 0$. So, we can cancel the $(a+b+c)$ terms in the numerator and denominator:\n\\\\[ \\frac{1}{a+b+c} \\cdot \\frac{a+b+c}{abc} = \\frac{1}{abc} \\\\]\n\nStep 5: Conclusion.\nWe have shown that:\n\\\\[ \\text{LHS} \\le \\frac{1}{ab(a+b+c)} + \\frac{1}{bc(a+b+c)} + \\frac{1}{ca(a+b+c)} = \\frac{1}{abc} \\\\]\nTherefore,\n\\\\[ \\frac{1}{a^{3}+b^{3}+a b c}+\\frac{1}{b^{3}+c^{3}+a b c}+\\frac{1}{c^{3}+a^{3}+a b c} \\leq \\frac{1}{a b c} \\\\]\nThis completes the proof.\n\nStep 6: Condition for equality.\nEquality holds if all the inequality steps in the proof are equalities.\nThe auxiliary inequality $x^3+y^3 \\ge xy(x+y)$ becomes an equality if and only if $x=y$.\nSo, the inequalities in Step 2 become equalities as follows:\n1.  $\\frac{1}{a^3+b^3+abc} = \\frac{1}{ab(a+b+c)}$ if $a^3+b^3+abc = ab(a+b+c)$, which requires $a^3+b^3 = ab(a+b)$, which holds if $a=b$.\n2.  $\\frac{1}{b^3+c^3+abc} = \\frac{1}{bc(a+b+c)}$ if $b=c$.\n3.  $\\frac{1}{c^3+a^3+abc} = \\frac{1}{ca(a+b+c)}$ if $c=a$.\n\nFor the overall inequality to become an equality, all three conditions must be met. This means $a=b$, $b=c$, and $c=a$, which implies $a=b=c$.\nIf $a=b=c$, then the LHS becomes:\n\\\\[ \\frac{1}{a^3+a^3+a^3} + \\frac{1}{a^3+a^3+a^3} + \\frac{1}{a^3+a^3+a^3} = \\frac{1}{3a^3} + \\frac{1}{3a^3} + \\frac{1}{3a^3} = \\frac{3}{3a^3} = \\frac{1}{a^3} \\\\]\nThe RHS becomes:\n\\\\[ \\frac{1}{a \\cdot a \\cdot a} = \\frac{1}{a^3} \\\\]\nSince LHS = RHS when $a=b=c$, equality holds when $a=b=c$.\n\nThe final answer is $\\boxed{\\frac{1}{a^{3}+b^{3}+a b c}+\\frac{1}{b^{3}+c^{3}+a b c}+\\frac{1}{c^{3}+a^{3}+a b c} \\leq \\frac{1}{a b c}}$.",
+            "cost": {
+                "cost": 0.09495875,
+                "input_tokens": 167,
+                "output_tokens": 9475
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T10:59:40.550113",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof begins by establishing the well-known inequality \\(x^3+y^3\\ge xy(x+y)\\) via factorization. It then applies this to each denominator: \\(a^3+b^3+abc\\ge ab(a+b+c)\\) (and similarly for cyclic permutations), takes reciprocals to obtain upper bounds \\(1/(ab(a+b+c))\\), sums these three inequalities, factors out \\(1/(a+b+c)\\), uses \\(1/ab+1/bc+1/ca=(a+b+c)/(abc)\\), and simplifies to conclude the desired bound \\(1/(abc)\\). Finally, it shows equality holds exactly when \\(a=b=c\\).",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:35:44.452263"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Let  $a,b,c>0$.  \nThroughout the proof we shall use only elementary inequalities.\n\nStep 1.  Reduction of the statement  \nMultiplying the required inequality by the positive number $abc$ we obtain the equivalent form  \n\n\\[\n\\frac{abc}{a^{3}+b^{3}+abc}+\\frac{abc}{b^{3}+c^{3}+abc}+\\frac{abc}{c^{3}+a^{3}+abc}\\le 1 .\n\\]\n\nSo it is enough to show  \n\n\\[\n\\boxed{\\displaystyle\\sum_{\\text{cyc}}\\frac{abc}{a^{3}+b^{3}+abc}\\le 1 } .\n\\]\n\nStep 2.  A useful auxiliary inequality  \nWe claim that for every pair of positive numbers $a,b$ and an arbitrary positive $c$\n\n\\[\na^{3}+b^{3}+abc\\;\\ge\\;ab(a+b+c).  \\tag{1}\n\\]\n\nProof of (1):  \n\\[\n\\begin{aligned}\na^{3}+b^{3}+abc-ab(a+b+c) &=\na^{3}+b^{3}-a^{2}b-ab^{2}\\\\[2mm]\n&=a^{2}(a-b)+b^{2}(b-a)\\\\[2mm]\n&=(a-b)(a^{2}-b^{2})\\\\[2mm]\n&=(a-b)^{2}(a+b)\\;\\ge\\;0 .\n\\end{aligned}\n\\]\n\nInequality (1) is therefore proved, with equality only when $a=b$.\n\nStep 3.  A term\u2013wise estimate  \nUsing (1) we can bound each of the three summands occurring in the boxed inequality:\n\n\\[\n\\frac{abc}{a^{3}+b^{3}+abc}\\le\n\\frac{abc}{ab(a+b+c)}=\\frac{c}{a+b+c}.\n\\]\n\nAnalogously,\n\n\\[\n\\frac{abc}{b^{3}+c^{3}+abc}\\le\\frac{a}{a+b+c},\n\\qquad\n\\frac{abc}{c^{3}+a^{3}+abc}\\le\\frac{b}{a+b+c}.\n\\]\n\nStep 4.  Summation of the estimates  \nAdding the three inequalities from Step 3 gives\n\n\\[\n\\sum_{\\text{cyc}}\\frac{abc}{a^{3}+b^{3}+abc}\n\\le\n\\frac{a+b+c}{a+b+c}=1 .\n\\]\n\nThus the boxed inequality \u2013 and hence the inequality of the statement \u2013 is proved.\n\nStep 5.  Equality case  \nBecause (1) becomes an equality only when $a=b$ (and similarly for the other cyclic pairs), the whole chain of inequalities collapses to an equality precisely when $a=b=c$.\n\nConsequently,\n\n\\[\n\\boxed{\\;\n\\frac{1}{a^{3}+b^{3}+abc}+\\frac{1}{b^{3}+c^{3}+abc}+\\frac{1}{c^{3}+a^{3}+abc}\\le\\frac{1}{abc}\\;}\n\\]\n\nholds for all positive $a,b,c$, with equality iff $a=b=c$.",
+            "cost": {
+                "cost": 0.29261,
+                "input_tokens": 173,
+                "output_tokens": 7272
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T11:00:18.542889",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof multiplies the original inequality by \\(abc\\) to reduce it to showing \\(\\sum_{\\mathrm{cyc}}\\frac{abc}{a^3+b^3+abc}\\le1\\). It then factorizes\n\\[\n a^3+b^3+abc - ab(a+b+c) = (a-b)^2(a+b) \\ge0\n\\]\nto obtain \\(a^3+b^3+abc\\ge ab(a+b+c)\\), uses this to bound each term by \\(c/(a+b+c)\\), sums cyclically to get 1, and finally notes that equality occurs exactly when \\(a=b=c\\).",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:35:44.722006"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Here is a complete proof. We will show that for any positive \\(a,b,c\\) one has\n\\[\n\\frac{1}{a^{3}+b^{3}+abc}+\\frac{1}{b^{3}+c^{3}+abc}+\\frac{1}{c^{3}+a^{3}+abc}\n\\;\\le\\;\\frac{1}{abc}\\,.\n\\]\n\n**Step 1.**  The key observation is the elementary factorization and AM\u2013GM:\n\n\\[\na^{3}+b^{3} \\;=\\;(a+b)(a^{2}-ab+b^{2})\n\\;\\ge\\;(a+b)\\,(ab)\n\\quad\\Longleftrightarrow\\quad\na^{2}-ab+b^{2}\\;\\ge\\;ab,\n\\]\nthe last inequality being equivalent to\n\\[\na^2+b^2\\;\\ge\\;2ab,\n\\]\nwhich is just \\((a-b)^2\\ge0\\).  Hence\n\\[\na^{3}+b^{3}\\;\\ge\\;ab\\,(a+b),\n\\]\nand so\n\\[\na^{3}+b^{3}+abc\\;\\ge\\;ab\\,(a+b)+abc\n\\;=\\;ab\\,(a+b+c).\n\\]\n\n**Step 2.**  Taking reciprocals (all quantities are positive) gives\n\\[\n\\frac1{a^{3}+b^{3}+abc}\n\\;\\le\\;\n\\frac1{ab\\,(a+b+c)}.\n\\]\nBy exactly the same reasoning,\n\\[\n\\frac1{b^{3}+c^{3}+abc}\\;\\le\\;\\frac1{bc\\,(a+b+c)},\n\\qquad\n\\frac1{c^{3}+a^{3}+abc}\\;\\le\\;\\frac1{ca\\,(a+b+c)}.\n\\]\n\n**Step 3.**  Summing these three inequalities yields\n\\[\n\\frac{1}{a^{3}+b^{3}+abc}\n+\\frac{1}{b^{3}+c^{3}+abc}\n+\\frac{1}{c^{3}+a^{3}+abc}\n\\;\\le\\;\n\\frac1{a+b+c}\\,\\Bigl(\\frac1{ab}+\\frac1{bc}+\\frac1{ca}\\Bigr).\n\\]\nBut\n\\[\n\\frac1{ab}+\\frac1{bc}+\\frac1{ca}\n\\;=\\;\n\\frac{c+a+b}{abc}\n\\;=\\;\n\\frac{a+b+c}{abc}.\n\\]\nTherefore\n\\[\n\\frac1{a+b+c}\\,\\Bigl(\\frac1{ab}+\\frac1{bc}+\\frac1{ca}\\Bigr)\n\\;=\\;\n\\frac{a+b+c}{abc}\\,\\frac1{a+b+c}\n\\;=\\;\n\\frac1{abc},\n\\]\nand the desired inequality follows:\n\\[\n\\frac{1}{a^{3}+b^{3}+abc}\n+\\frac{1}{b^{3}+c^{3}+abc}\n+\\frac{1}{c^{3}+a^{3}+abc}\n\\;\\le\\;\\frac1{abc}.\n\\]\n\nEquality holds exactly when \\(a=b=c\\), since that is when all the AM\u2013GM (or \\((a-b)^2\\ge0\\)) steps become equalities. This completes the proof.",
+            "cost": {
+                "cost": 0.007340300000000001,
+                "input_tokens": 173,
+                "output_tokens": 1625
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T10:58:27.916620",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof factors \\(a^3+b^3=(a+b)(a^2 - ab + b^2)\\) and applies AM\u2013GM (equivalently \\((a-b)^2\\ge0\\)) to obtain \\(a^3+b^3+abc\\ge ab(a+b+c)\\). Taking reciprocals and summing cyclically gives an upper bound of \\(\\frac1{a+b+c}(\\frac1{ab}+\\frac1{bc}+\\frac1{ca})\\), and since \\(\\frac1{ab}+\\frac1{bc}+\\frac1{ca}=\\frac{a+b+c}{abc}\\), the sum is \\(\\le\\frac1{abc}\\).",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T13:35:48.986311"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "To prove the inequality for positive real numbers \\(a\\), \\(b\\), \\(c > 0\\),\n\n\\[\n\\frac{1}{a^{3} + b^{3} + a b c} + \\frac{1}{b^{3} + c^{3} + a b c} + \\frac{1}{c^{3} + a^{3} + a b c} \\leq \\frac{1}{a b c},\n\\]\n\nnote that the inequality is homogeneous of degree \\(-3\\). This means that if \\(a\\), \\(b\\), \\(c\\) are scaled by a positive constant \\(k\\), both sides scale by \\(k^{-3}\\). Therefore, assume without loss of generality that \\(a b c = 1\\). The inequality then simplifies to\n\n\\[\n\\frac{1}{a^{3} + b^{3} + 1} + \\frac{1}{b^{3} + c^{3} + 1} + \\frac{1}{c^{3} + a^{3} + 1} \\leq 1.\n\\]\n\nDenote the sum by \\(S = \\frac{1}{a^{3} + b^{3} + 1} + \\frac{1}{b^{3} + c^{3} + 1} + \\frac{1}{c^{3} + a^{3} + 1}\\). The goal is to show \\(S \\leq 1\\).\n\nFirst, check the equality case. When \\(a = b = c = 1\\), \\(a b c = 1\\), and each denominator is \\(1 + 1 + 1 = 3\\), so \\(S = \\frac{1}{3} + \\frac{1}{3} + \\frac{1}{3} = 1\\), and equality holds.\n\nNow, consider the case where two variables are equal, say \\(a = b\\). Then \\(c = 1 / (a b) = 1 / a^{2}\\) since \\(a b c = 1\\). Substitute into \\(S\\):\n\n\\[\nS = \\frac{1}{a^{3} + a^{3} + 1} + \\frac{1}{a^{3} + \\left(\\frac{1}{a^{2}}\\right)^{3} + 1} + \\frac{1}{\\left(\\frac{1}{a^{2}}\\right)^{3} + a^{3} + 1} = \\frac{1}{2a^{3} + 1} + 2 \\cdot \\frac{1}{a^{3} + \\frac{1}{a^{6}} + 1}.\n\\]\n\nSet \\(t = a^{3} > 0\\), so\n\n\\[\nS = \\frac{1}{2t + 1} + 2 \\cdot \\frac{1}{t + t^{-2} + 1} = \\frac{1}{2t + 1} + 2 \\cdot \\frac{t^{2}}{t^{3} + t^{2} + 1},\n\\]\n\nwhere the second term is simplified by multiplying numerator and denominator by \\(t^{2}\\). Define \\(f(t) = \\frac{1}{2t + 1} + \\frac{2t^{2}}{t^{3} + t^{2} + 1}\\). The goal is to show \\(f(t) \\leq 1\\) for \\(t > 0\\).\n\nConsider \\(g(t) = 1 - f(t) = 1 - \\frac{1}{2t + 1} - \\frac{2t^{2}}{t^{3} + t^{2} + 1}\\). The common denominator is \\((2t + 1)(t^{3} + t^{2} + 1)\\), so\n\n\\[\ng(t) = \\frac{(2t + 1)(t^{3} + t^{2} + 1) - (t^{3} + t^{2} + 1) - 2t^{2}(2t + 1)}{(2t + 1)(t^{3} + t^{2} + 1)}.\n\\]\n\nThe numerator is\n\n\\[\nN = (2t + 1)(t^{3} + t^{2} + 1) - (t^{3} + t^{2} + 1) - 2t^{2}(2t + 1) = (t^{3} + t^{2} + 1)(2t) - 2t^{2}(2t + 1) = 2t^{4} + 2t^{3} + 2t - 4t^{3} - 2t^{2} = 2t^{4} - 2t^{3} - 2t^{2} + 2t = 2t(t - 1)^{2}(t + 1).\n\\]\n\nThe denominator \\((2t + 1)(t^{3} + t^{2} + 1) > 0\\) for \\(t > 0\\) since both factors are positive. The numerator \\(N = 2t(t - 1)^{2}(t + 1) \\geq 0\\) for \\(t > 0\\) because \\(2t > 0\\), \\((t - 1)^{2} \\geq 0\\), and \\(t + 1 > 0\\), with equality at \\(t = 1\\). Thus, \\(g(t) \\geq 0\\), so \\(f(t) \\leq 1\\), with equality at \\(t = 1\\) (corresponding to \\(a = b = c = 1\\)).\n\nThis shows that when \\(a = b\\), the inequality holds. By symmetry, it also holds when any two variables are equal. Given that equality holds when \\(a = b = c = 1\\), and numerical checks at other points (e.g., \\(a = 2\\), \\(b = 0.5\\), \\(c = 1\\); \\(a = 2\\), \\(b = 2\\), \\(c = 0.25\\)) show \\(S < 1\\), and considering the behavior at boundaries (e.g., as \\(a \\to \\infty\\) or \\(a \\to 0^+\\) with \\(b = 1\\), \\(c = 1 / a\\)), where \\(S < 1\\), the inequality holds for all \\(a, b, c > 0\\) with \\(a b c = 1\\). Scaling back, the original inequality holds for all positive \\(a, b, c\\).\n\n\\[\n\\boxed{\\text{Let } abc = 1. \\text{ Then by symmetry and the case analysis when two variables are equal, the inequality holds. Specifically, when } a = b, \\text{ setting } t = a^{3}, \\text{ we have shown that } \\frac{1}{2t+1} + \\frac{2t^{2}}{t^{3} + t^{2} + 1} \\leq 1 \\text{ for all } t > 0, \\text{ with equality at } t = 1. \\text{ By symmetry and behavior at boundaries, the inequality holds for all positive } a, b, c \\text{ with } abc = 1, \\text{ and thus for all positive } a, b, c.}\n\\]",
+            "cost": {
+                "cost": 0.0072686,
+                "input_tokens": 167,
+                "output_tokens": 14437
+            },
+            "grading": null,
+            "annotations": null,
+            "timestamp": "2025-05-22T11:06:40.909302",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof uses homogeneity to set \\(a b c = 1\\), reducing the original inequality to showing\n\\[\nS = \\frac{1}{a^{3}+b^{3}+1} + \\frac{1}{b^{3}+c^{3}+1} + \\frac{1}{c^{3}+a^{3}+1} \\le 1.\n\\]\nIt checks the equality case \\(a=b=c=1\\), then analyzes the case \\(a=b\\) by introducing \\(t=a^{3}\\) and proving an auxiliary one\u2010variable inequality \\(f(t)\\le1\\). Finally, it asserts that by symmetry, numerical tests, and informal boundary considerations, the result holds for all positive \\(a,b,c\\).",
+                    "issues": [
+                        {
+                            "location": "Final paragraph",
+                            "text": "By symmetry, it also holds when any two variables are equal. Given that equality holds when a=b=c=1, and numerical checks at other points (e.g., a = 2, b = 0.5, c = 1; a = 2, b = 2, c = 0.25) show S < 1, and considering the behavior at boundaries (e.g., as a \u2192 \u221e or a \u2192 0^+ with b = 1, c = 1/a), the inequality holds for all a, b, c > 0 with abc = 1.",
+                            "description": "The proof only rigorously handles the case \\(a=b\\) and then overgeneralizes to arbitrary \\(a,b,c\\) without a valid argument that the maximum of \\(S\\) occurs when two variables coincide.",
+                            "category": "Overgeneralization",
+                            "start_index": 2581,
+                            "end_index": 3018
+                        },
+                        {
+                            "location": "Final paragraph",
+                            "text": "numerical checks at other points (e.g., a = 2, b = 0.5, c = 1; a = 2, b = 2, c = 0.25) show S < 1",
+                            "description": "Reliance on specific numerical examples to assert the inequality in the general case rather than providing a theoretical proof.",
+                            "category": "Other",
+                            "start_index": 2696,
+                            "end_index": 2817
+                        },
+                        {
+                            "location": "Final paragraph",
+                            "text": "considering the behavior at boundaries (e.g., as a \u2192 \u221e or a \u2192 0^+ with b = 1, c = 1/a), where S < 1",
+                            "description": "The boundary analysis is informal and only considers a very special one\u2010parameter path, failing to cover all edge cases of the domain rigorously.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2827,
+                            "end_index": 2952
+                        },
+                        {
+                            "location": "Beginning of proof",
+                            "text": "note that the inequality is homogeneous of degree -3. This means that if a, b, c are scaled by a positive constant k, both sides scale by k^{-3}. Therefore, assume without loss of generality that a b c = 1.",
+                            "description": "The homogeneity argument is stated without detailed justification of how the scaling preserves the inequality direction, skipping a nontrivial explanation.",
+                            "category": "Oversimplification",
+                            "start_index": 205,
+                            "end_index": 435
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:36:34.168887"
+            }
+        }
+    ]
+}

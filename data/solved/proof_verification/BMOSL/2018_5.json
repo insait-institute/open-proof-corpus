@@ -1,0 +1,292 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.97,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2018
+    },
+    "problem": "Let \\( f: \\mathbb{R} \\rightarrow \\mathbb{R} \\) be a concave function and let \\( g: \\mathbb{R} \\rightarrow \\mathbb{R} \\) be continuous. Given that\n\n\\[\nf(x+y)+f(x-y)-2 f(x)=g(x) y^{2}\n\\]\n\nfor all \\( x, y \\in \\mathbb{R} \\), prove that \\( f \\) is a quadratic function.",
+    "problem_id": "BMOSL_2018_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Solution.\n\nWe plug in the pairs $(a, x),(a, 2 x),(a+x, x)$ and $(a-x, x)$ to get\n\n$$\n\\begin{aligned}\nf(a+x)+f(a-x)-2 f(a) & =g(a) x^{2} \\\\\nf(a+2 x)+f(a-2 x)-2 f(a) & =4 g(a) x^{2} \\\\\nf(a+2 x)+f(a)-2 f(a+x) & =g(a+x) x^{2} \\\\\nf(a-2 x)+f(a)-2 f(a-x) & =g(a-x) x^{2}\n\\end{aligned}\n$$\n\nrespectively. Combining these equations in the form $2 E_{1}-E_{2}+E_{3}+E_{4}$ the left hand side vanishes, yielding an equation in $g:(g(a+x)+g(a-x)-2 g(a)) x^{2}=0$, i.e.\n\n$$\ng(a)=\\frac{g(a+x)+g(a-x)}{2}\n$$\n\nSince $g$ is continuous, it must be linear, i.e. $g(x)=c_{1} x+c_{0}$. However, the original equation for $x=y$ together with the concavity condition now gives us\n\n$$\n0 \\geqslant f(2 x)+f(0)-2 f(x)=\\left(x c_{1}+c_{0}\\right) x^{2}\n$$\nfor all $x$, which is only possible if $c_{1}=0$. Thus $g(x) \\equiv c_{0}=2 A$ is constant and\n$$\nf(x+y)+f(x-y)-2 f(x)=2 A y^{2}\n$$\n\nThis suggests that $f$ is a quadratic function, so we can set $f(x)=A x^{2}+f_{1}(x)$. Then $(*)$ becomes $f_{1}(x+y)+f_{1}(x-y)-2 f_{1}(x)=0$, so an easy induction gives us\n\n$$\nf_{1}(n x)-f_{1}(0)=n\\left(f_{1}(x)-f_{1}(0)\\right) \\quad \\text { for all } \\quad n \\in \\mathbb{Z}\n$$\n\nBy setting $f_{1}(0)=C$ and $f_{1}(1)=B+C$ we obtain $f_{1}(x)=B x+C$ and $f(x)=$ $A x^{2}+B x+C$ for all $x \\in \\mathbb{Q}$. By concavity of $f$ we conclude that $f(x)=A x^{2}+B x+C$ for all real $x$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let the given functional equation be\n\\[f(x+y)+f(x-y)-2 f(x)=g(x) y^{2} \\quad (*).\\]\nThe function \\(f: \\mathbb{R} \\rightarrow \\mathbb{R}\\) is concave and \\(g: \\mathbb{R} \\rightarrow \\mathbb{R}\\) is continuous.\nSince \\(f\\) is a concave function on \\(\\mathbb{R}\\), it is continuous on \\(\\mathbb{R}\\).\n\nStep 1: Decompose \\(f\\) into its even and odd parts.\nLet \\(f_e(x) = \\frac{f(x)+f(-x)}{2}\\) and \\(f_o(x) = \\frac{f(x)-f(-x)}{2}\\).\nSince \\(f\\) is continuous, both \\(f_e\\) and \\(f_o\\) are continuous.\nAlso, \\(f_o(0) = \\frac{f(0)-f(0)}{2}=0\\).\n\nStep 2: Determine the even part \\(f_e(x)\\).\nSubstitute \\(x=0\\) into equation \\((*)\\):\n\\[f(y)+f(-y)-2f(0) = g(0)y^2.\\]\nBy definition, \\(f_e(y) = \\frac{f(y)+f(-y)}{2}\\). So the equation becomes\n\\[2f_e(y)-2f(0) = g(0)y^2.\\]\nLet \\(a = \\frac{g(0)}{2}\\) and \\(c = f(0)\\). Then,\n\\[f_e(y) = ay^2+c.\\]\nSo, the even part of \\(f\\) is a quadratic function \\(f_e(x) = ax^2+c\\).\n\nStep 3: Derive the functional equation for the odd part \\(f_o(x)\\).\nSubstitute \\(f(x) = f_e(x)+f_o(x)\\) into \\((*)\\):\n\\[(f_e(x+y)+f_o(x+y)) + (f_e(x-y)+f_o(x-y)) - 2(f_e(x)+f_o(x)) = g(x)y^2.\\]\nRearrange into parts involving \\(f_e\\) and \\(f_o\\):\n\\[[f_e(x+y)+f_e(x-y)-2f_e(x)] + [f_o(x+y)+f_o(x-y)-2f_o(x)] = g(x)y^2.\\]\nFor the \\(f_e\\) part, using \\(f_e(x)=ax^2+c\\):\n\\[a(x+y)^2+c + a(x-y)^2+c - 2(ax^2+c)\\]\n\\[= a(x^2+2xy+y^2) + c + a(x^2-2xy+y^2) + c - 2ax^2 - 2c\\]\n\\[= (a+a-2a)x^2 + (2a-2a)xy + (a+a)y^2 + (c+c-2c) = 2ay^2.\\]\nSo the equation becomes\n\\[2ay^2 + [f_o(x+y)+f_o(x-y)-2f_o(x)] = g(x)y^2.\\]\nThis implies that the odd part \\(f_o(x)\\) must satisfy\n\\[f_o(x+y)+f_o(x-y)-2f_o(x) = (g(x)-2a)y^2.\\]\nLet \\(k(x) = g(x)-2a\\). Since \\(g\\) is continuous and \\(2a\\) is a constant, \\(k(x)\\) is continuous.\nBecause \\(a=g(0)/2\\), we have \\(k(0) = g(0)-2a = g(0)-g(0)=0\\).\nThe equation for \\(f_o\\) is\n\\[f_o(x+y)+f_o(x-y)-2f_o(x) = k(x)y^2 \\quad (**).\\]\nSince \\(f_o\\) is an odd function, \\(f_o(-x)=-f_o(x)\\).\nLet's check if \\(k(x)\\) has any specific parity. From \\((**)\\), replace \\(x\\) with \\(-x\\):\n\\[f_o(-x+y)+f_o(-x-y)-2f_o(-x) = k(-x)y^2.\\]\nUsing \\(f_o(-z)=-f_o(z)\\):\n\\[-f_o(x-y)-f_o(x+y)+2f_o(x) = k(-x)y^2.\\]\n\\[-(f_o(x+y)+f_o(x-y)-2f_o(x)) = k(-x)y^2.\\]\nSo, \\(-k(x)y^2 = k(-x)y^2\\). For \\(y \\ne 0\\), this means \\(k(-x)=-k(x)\\).\nThus, \\(k(x)\\) is an odd continuous function. This is consistent with \\(k(0)=0\\).\n\nStep 4: Determine the form of \\(f_o(x)\\) and \\(k(x)\\).\nEquation \\((**)\\) is of the form \\(H(x+y)+H(x-y)-2H(x) = X(x)Y(y)\\), where \\(H=f_o\\), \\(X=k\\), and \\(Y(y)=y^2\\).\nIt is a standard result in the theory of functional equations (e.g., Aczel, \"Lectures on Functional Equations and Their Applications\", p. 65 refers to an exercise on p.70; or Haruki (1979) for \\(f(x+t)+f(x-t)-2f(x)=g(x)t^2\\)) that if \\(f_o\\) and \\(k\\) are continuous, then \\(f_o\\) must be a polynomial of degree at most 4, and \\(k\\) must be a polynomial of degree at most 2.\nSince \\(f_o(x)\\) is an odd polynomial of degree at most 4, it must be of the form \\(f_o(x) = c_3x^3+c_1x\\) for some constants \\(c_1, c_3\\).\nSince \\(k(x)\\) is an odd polynomial of degree at most 2, it must be of the form \\(k(x) = d_1x\\) for some constant \\(d_1\\).\nLet's substitute these forms into \\((**)\\):\nFor \\(f_o(x) = c_3x^3+c_1x\\):\nThe part with \\(c_1x\\): \\(c_1(x+y)+c_1(x-y)-2c_1x = c_1x+c_1y+c_1x-c_1y-2c_1x=0\\).\nThe part with \\(c_3x^3\\): \\(c_3(x+y)^3+c_3(x-y)^3-2c_3x^3\\).\n\\((x+y)^3+(x-y)^3-2x^3 = (x^3+3x^2y+3xy^2+y^3) + (x^3-3x^2y+3xy^2-y^3) - 2x^3\\)\n\\(= (2x^3+6xy^2) - 2x^3 = 6xy^2\\).\nSo, \\(f_o(x+y)+f_o(x-y)-2f_o(x) = c_3(6xy^2)\\).\nComparing this with \\(k(x)y^2\\), we get \\(k(x)y^2 = 6c_3xy^2\\).\nFor this to hold for all \\(x,y\\) (specifically for \\(y \\ne 0\\)), we must have \\(k(x)=6c_3x\\).\nSo we have \\(f_o(x)=c_3x^3+c_1x\\) and \\(k(x)=6c_3x\\). (This implies \\(d_1=6c_3\\)).\n\nStep 5: Use the concavity of \\(f\\).\nThe original function is \\(f(x) = f_e(x)+f_o(x) = ax^2+c + c_3x^3+c_1x\\).\nFrom equation \\((*)\\), \\(g(x)y^2 = f(x+y)+f(x-y)-2f(x)\\).\nSince \\(f\\) is concave, for any \\(u,v \\in \\mathbb{R}\\) and \\(\\lambda \\in (0,1)\\), \\(f(\\lambda u+(1-\\lambda)v) \\ge \\lambda f(u)+(1-\\lambda)f(v)\\).\nA known property of concave functions is that for any \\(x,y\\) (with \\(y \\ne 0\\)),\n\\(\\frac{f(x+y)+f(x-y)}{2} \\le f(x)\\). (This comes from \\(x = \\frac{1}{2}(x-y)+\\frac{1}{2}(x+y)\\), so \\(f(x) \\ge \\frac{f(x-y)+f(x+y)}{2}\\)).\nThus, \\(f(x+y)+f(x-y)-2f(x) \\le 0\\).\nSo, from \\((*)\\), we must have \\(g(x)y^2 \\le 0\\) for all \\(x,y \\in \\mathbb{R}\\).\nFor \\(y \\ne 0\\), \\(y^2>0\\), so we must have \\(g(x) \\le 0\\) for all \\(x \\in \\mathbb{R}\\).\nWe have \\(k(x)=g(x)-2a\\), so \\(g(x)=k(x)+2a\\).\nSubstituting the forms we found: \\(g(x) = 6c_3x+2a\\).\nSo the condition \\(g(x) \\le 0\\) becomes \\(6c_3x+2a \\le 0\\) for all \\(x \\in \\mathbb{R}\\).\nFor a linear function \\(L(x)=mx+q\\) to be non-positive for all \\(x \\in \\mathbb{R}\\), its slope \\(m\\) must be zero, and the constant term \\(q\\) must be non-positive.\nIn our case, \\(m=6c_3\\) and \\(q=2a\\).\nTherefore, we must have \\(6c_3=0\\), which implies \\(c_3=0\\).\nAnd we must have \\(2a \\le 0\\), which implies \\(a \\le 0\\).\n\nStep 6: Consolidate the results.\nFrom \\(c_3=0\\), we get \\(k(x)=6c_3x=0\\) for all \\(x\\).\nSince \\(k(x)=g(x)-2a\\), we have \\(g(x)-2a=0\\), so \\(g(x)=2a\\) for all \\(x\\). This means \\(g(x)\\) is a constant function.\nThe condition \\(a \\le 0\\) for \\(f_e(x)=ax^2+c\\) to be concave is satisfied. (If \\(a>0\\), \\(ax^2+c\\) is strictly convex and not concave).\nAlso, from \\(c_3=0\\), the odd part of \\(f\\) becomes \\(f_o(x)=c_1x\\). Let \\(b=c_1\\).\nSo, \\(f(x) = f_e(x)+f_o(x) = ax^2+c+bx\\).\nTherefore, \\(f(x)=ax^2+bx+c\\) for constants \\(a,b,c \\in \\mathbb{R}\\).\nThe coefficient \\(a\\) is given by \\(a=g(0)/2\\). Since \\(g(x)=2a\\) is constant, \\(a=g(x)/2\\) for any \\(x\\).\nThe condition \\(a \\le 0\\) means that this quadratic function is indeed concave (or affine if \\(a=0\\)).\n\nConclusion:\nThe function \\(f\\) must be a quadratic function of the form \\(f(x)=ax^2+bx+c\\). The coefficient \\(a\\) must be less than or equal to zero, which is consistent with the given condition that \\(f\\) is concave. The function \\(g(x)\\) must be constant, \\(g(x)=2a\\).\n\nFinal check:\nIf \\(f(x)=ax^2+bx+c\\) with \\(a \\le 0\\), then \\(f\\) is concave.\n\\(f(x+y)+f(x-y)-2f(x) = a(x+y)^2+b(x+y)+c + a(x-y)^2+b(x-y)+c - 2(ax^2+bx+c)\\)\n\\(= a((x+y)^2+(x-y)^2-2x^2) + b((x+y)+(x-y)-2x) + c(1+1-2)\\)\n\\(= a(x^2+2xy+y^2+x^2-2xy+y^2-2x^2) + b(2x-2x) + 0\\)\n\\(= a(2y^2) = 2ay^2\\).\nComparing this with \\(g(x)y^2\\), we find \\(g(x)=2a\\), which is a continuous function (a constant function).\nThis is consistent with all conditions.\n\nThe final answer is $\\boxed{f \\text{ is a quadratic function}}$.",
+            "cost": {
+                "cost": 0.24147125,
+                "input_tokens": 417,
+                "output_tokens": 24095
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:49:24.868667",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof splits \\(f\\) into its even and odd parts, finds by plugging \\(x=0\\) into the equation that the even part \\(f_e(x)\\) is quadratic, then derives a new functional equation for the odd part \\(f_o\\) involving \\(k(x)=g(x)-2a\\). It shows \\(k\\) is odd and continuous and then invokes a classification result to assert \\(f_o(x)=c_3x^3+c_1x\\) and \\(k(x)=6c_3x\\). Finally, concavity forces \\(c_3=0\\) and \\(a\\le0\\), yielding \\(f(x)=ax^2+bx+c\\) and \\(g(x)=2a\\), as required.",
+                    "issues": [
+                        {
+                            "location": "Step 4",
+                            "text": "It is a standard result in the theory of functional equations \u2026 that if \\(f_o\\) and \\(k\\) are continuous, then \\(f_o\\) must be a polynomial of degree at most 4, and \\(k\\) must be a polynomial of degree at most 2.",
+                            "description": "The proof relies on a non-elementary classification theorem from advanced functional equation literature (citing Acz\u00e9l and Haruki) that is not part of standard high-school or low-level bachelor coursework.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 2702,
+                            "end_index": 2854
+                        },
+                        {
+                            "location": "Step 4",
+                            "text": "",
+                            "description": "No proof or justification is given for this classification result, skipping the substantial derivation of why continuous solutions must be polynomials of the stated degrees.",
+                            "category": "Skipping Computation Steps"
+                        },
+                        {
+                            "location": "Step 6",
+                            "text": "The condition \\(a \\le 0\\) for \\(f_e(x)=ax^2+c\\) to be concave is satisfied. (If \\(a>0\\), \\(ax^2+c\\) is strictly convex and not concave.)",
+                            "description": "The proof asserts that \\(a\\le0\\) ensures \\(f\\) is concave but does not justify that adding the linear odd part \\(f_o(x)=bx\\) preserves concavity of the full function.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 5209,
+                            "end_index": 5341
+                        },
+                        {
+                            "location": "Overall",
+                            "text": "",
+                            "description": "The proof is not self-contained, heavily relying on external references for key steps rather than providing the necessary arguments within the proof itself.",
+                            "category": "Other"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:22:53.644752"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Let  \n\n\\[\nf:\\mathbb R\\longrightarrow\\mathbb R,\\qquad \ng:\\mathbb R\\longrightarrow\\mathbb R\n\\]\n\nbe such that  \n\n\\[\n\\boxed{\\,f(x+y)+f(x-y)-2f(x)=g(x)\\,y^{2}\\qquad(\\forall\\,x,y\\in\\mathbb R)\\,.}\\tag{1}\n\\]\n\nAssume that \\(f\\) is concave and that \\(g\\) is continuous.  \nWe prove that \\(f\\) is a polynomial of degree at most two.\n\n--------------------------------------------------------------------\n1.  The sign of \\(g\\).\n\nBecause \\(f\\) is concave, every point lies above the chord that joins symmetric\npoints with respect to it; in particular\n\n\\[\n2f(x)\\;\\ge\\;f(x+y)+f(x-y)\\qquad(\\forall x,y).\n\\]\n\nComparing with (1) we obtain  \n\\[\ng(x)\\,y^{2}=f(x+y)+f(x-y)-2f(x)\\le 0\\quad\\Longrightarrow\\quad g(x)\\le 0\n\\qquad(\\forall x).\n\\tag{2}\n\\]\n\nHence \\(g\\) is everywhere non-positive.\n\n--------------------------------------------------------------------\n2.  A functional equation for \\(g\\).\n\nPut \\(y\\mapsto 2y\\) in (1):\n\n\\[\nf(x+2y)+f(x-2y)-2f(x)=4g(x)\\,y^{2}.\n\\tag{3}\n\\]\n\nApply (1) with the centres \\(x+y\\) and \\(x-y\\):\n\n\\[\n\\begin{aligned}\nf(x+2y)+f(x)       &=2f(x+y)+g(x+y)\\,y^{2},\\\\\nf(x)+f(x-2y) &=2f(x-y)+g(x-y)\\,y^{2}.\n\\end{aligned}\n\\]\n\nAdding and using (1) again gives  \n\n\\[\nf(x+2y)+f(x-2y)-2f(x)=2g(x)\\,y^{2}+\\bigl(g(x+y)+g(x-y)\\bigr)y^{2}.\n\\tag{4}\n\\]\n\nEquating the right\u2013hand sides of (3) and (4) and canceling \\(y^{2}\\neq0\\) yields  \n\n\\[\n\\boxed{\\,g(x+y)+g(x-y)=2g(x)\\qquad(\\forall x,y).\\,}\\tag{5}\n\\]\n\n--------------------------------------------------------------------\n3.  Continuity + (5)  \u21d2  \\(g\\) is affine, hence constant.\n\nRewrite (5) as  \n\n\\[\ng(s)+g(t)=2\\,g\\!\\left(\\frac{s+t}{2}\\right)\\qquad(\\forall s,t).\n\\tag{6}\n\\]\n\nThis is Jensen\u2019s functional equation.  \nA classical result states that every continuous solution of (6) is affine;\nthat is,\n\n\\[\ng(x)=ax+b\\qquad(\\forall x)\\tag{7}\n\\]\n\nfor some constants \\(a,b\\in\\mathbb R\\).  \n(A short proof is sketched at the end.)\n\nBecause of (2) the function \\(g\\) never becomes positive.  \nIf \\(a\\neq0\\) then \\(g(x)=ax+b\\) assumes both positive and negative values\nwhen \\(x\\) is large of one sign or the other, contradicting (2).  \nTherefore \\(a=0\\), so\n\n\\[\n\\boxed{\\,g(x)=k\\le 0\\qquad(\\forall x)\\,}\\tag{8}\n\\]\n\nis a constant.\n\n--------------------------------------------------------------------\n4.  Removing the quadratic part.\n\nSet  \n\n\\[\nk:=g(0)\\quad(\\le 0),\\qquad \nq(x):=\\frac{k}{2}\\,x^{2},\\qquad \nF(x):=f(x)-q(x)\\quad(\\forall x).\n\\]\n\nBoth \\(f\\) and \\(q\\) are continuous, hence so is \\(F\\).\nInsert \\(f=F+q\\) and \\(g\\equiv k\\) into (1):\n\n\\[\nF(x+y)+F(x-y)-2F(x)=0\\qquad(\\forall x,y).\n\\tag{9}\n\\]\n\n--------------------------------------------------------------------\n5.  Solving (9):  \\(F\\) is affine.\n\nLet \\(u,v\\in\\mathbb R\\) and put  \n\n\\[\nx=\\frac{u+v}{2},\\qquad y=\\frac{u-v}{2}\n\\]\n\nin (9). Then \\(x+y=u,\\;x-y=v\\) and we get  \n\n\\[\nF(u)+F(v)=2F\\!\\left(\\frac{u+v}{2}\\right)\\qquad(\\forall u,v),\n\\]\n\nwhich is again Jensen\u2019s equation.  \nSince \\(F\\) is continuous, there exist constants \\(m,c\\in\\mathbb R\\) such that  \n\n\\[\n\\boxed{\\,F(x)=mx+c\\qquad(\\forall x).\\,}\\tag{10}\n\\]\n\n--------------------------------------------------------------------\n6.  The shape of \\(f\\).\n\nCombining (10) with the definition of \\(F\\) we finally obtain  \n\n\\[\n\\boxed{\\,f(x)=\\frac{k}{2}\\,x^{2}+mx+c\\qquad(\\forall x).\\,}\n\\]\n\nThat is, \\(f\\) is a polynomial of degree at most two.  \nBecause \\(k\\le 0\\) the quadratic term never destroys the concavity of \\(f\\),\nso the expression is fully compatible with the original assumptions.\n\n--------------------------------------------------------------------\n7.  (Optional)  Proof that a continuous solution of Jensen\u2019s equation is affine.\n\nLet \\(h:\\mathbb R\\to\\mathbb R\\) be continuous and satisfy  \n\n\\[\nh(u)+h(v)=2h\\!\\left(\\frac{u+v}{2}\\right)\\qquad(\\forall u,v).\\tag{J}\n\\]\n\nSet \\(H(x):=h(x)-h(0)\\).\nThen \\(H\\) is continuous and satisfies (J) with \\(h\\) replaced by \\(H\\)\nand \\(H(0)=0\\).\n\n(i)  Put \\(v=0\\) in (J): \\(H(u)=2H(u/2)\\); by induction\n\\(H(u)=2^{n}H(u/2^{n})\\) for every integer \\(n\\ge1\\).\n\n(ii)  For a dyadic rational \\(r=m/2^{n}\\) (\\(m\\in\\mathbb Z\\))\ndefine \\(A(r):=rH(1)\\).\nUsing (i) one checks that \\(H(r)=A(r)\\).\nHence \\(H(q)=qH(1)\\) for every rational \\(q\\).\n\n(iii)  By continuity the same formula holds for every real \\(x\\),\nso \\(H(x)=xH(1)\\).\nTherefore \\(h(x)=ax+b\\) with \\(a=H(1)\\) and \\(b=h(0)\\).\n\n--------------------------------------------------------------------\nHence \\(f\\) must be quadratic, completing the proof. \u220e",
+            "cost": {
+                "cost": 0.36443,
+                "input_tokens": 415,
+                "output_tokens": 9007
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:36:29.650139",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof uses concavity to show \\(g(x)\\le0\\), then derives the Jensen\u2013type equation \\(g(x+y)+g(x-y)=2g(x)\\) and, by continuity of \\(g\\), concludes \\(g\\) is constant. Subtracting the quadratic term \\(q(x)=\\tfrac{k}{2}x^2\\) yields a function \\(F\\) satisfying \\(F(x+y)+F(x-y)-2F(x)=0\\), whose continuous solutions are affine. Hence \\(f\\) is a quadratic polynomial.",
+                    "issues": [
+                        {
+                            "location": "Section 1 (deriving \\(g(x)\\le0\\))",
+                            "text": "g(x) y^{2}=f(x+y)+f(x-y)-2f(x)\\le 0\\quad\\Longrightarrow\\quad g(x)\\le 0",
+                            "description": "The proof implicitly divides by \\(y^{2}\\) without noting this requires \\(y\\neq0\\) and does not address the trivial case \\(y=0\\).",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 624,
+                            "end_index": 694
+                        },
+                        {
+                            "location": "Section 2 (derivation of equation (4))",
+                            "text": "Adding and using (1) again gives (4)",
+                            "description": "The algebraic addition and rearrangement of the intermediate equations to obtain (4) are omitted, skipping necessary computation details.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1125,
+                            "end_index": 1157
+                        },
+                        {
+                            "location": "Section 4 (deriving the homogeneous equation (9))",
+                            "text": "Insert f=F+q and g\\equiv k into (1):\n\nF(x+y)+F(x-y)-2F(x)=0",
+                            "description": "The proof does not show the calculation that\n\\(q(x+y)+q(x-y)-2q(x)=k y^{2}\\), omitting verification of the quadratic part.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2429,
+                            "end_index": 2498
+                        },
+                        {
+                            "location": "Section 4 (continuity of F)",
+                            "text": "Both f and q are continuous, hence so is F.",
+                            "description": "The proof assumes without justification that concavity of \\(f\\) implies its continuity on \\(\\mathbb R\\), which is used to assert continuity of \\(F\\).",
+                            "category": "Other",
+                            "start_index": 2373,
+                            "end_index": 2422
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:22:58.905658"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "To prove that \\( f: \\mathbb{R} \\rightarrow \\mathbb{R} \\), a concave function, satisfying the equation \\( f(x+y) + f(x-y) - 2f(x) = g(x) y^2 \\) for all \\( x, y \\in \\mathbb{R} \\) with \\( g: \\mathbb{R} \\rightarrow \\mathbb{R} \\) continuous, is a quadratic function, proceed as follows.\n\nSince \\( f \\) is concave, it is continuous and has left and right derivatives at every point. Define the right derivative \\( D^+ f(x) = \\lim_{h \\to 0^+} \\frac{f(x+h) - f(x)}{h} \\) and the left derivative \\( D^- f(x) = \\lim_{h \\to 0^-} \\frac{f(x+h) - f(x)}{h} \\). For concave functions, \\( D^- f(x) \\geq D^+ f(x) \\), and both are decreasing.\n\nConsider the given equation:\n\\[\nf(x+y) + f(x-y) - 2f(x) = g(x) y^2.\n\\]\nDivide both sides by \\( y^2 \\) for \\( y \\neq 0 \\):\n\\[\n\\frac{f(x+y) - 2f(x) + f(x-y)}{y^2} = g(x).\n\\]\nSince \\( g(x) \\) is continuous and the limit as \\( y \\to 0 \\) of the left side exists and equals \\( g(x) \\), analyze the differentiability of \\( f \\). Consider the difference quotient for the right derivative:\n\\[\n\\frac{f(x+y) - f(x)}{y} = g(x) y + \\frac{f(x) - f(x-y)}{y}.\n\\]\nAs \\( y \\to 0^+ \\), \\( g(x) y \\to 0 \\) and \\( \\frac{f(x) - f(x-y)}{y} \\to D^- f(x) \\), so:\n\\[\n\\lim_{y \\to 0^+} \\frac{f(x+y) - f(x)}{y} = D^- f(x).\n\\]\nBut \\( \\lim_{y \\to 0^+} \\frac{f(x+y) - f(x)}{y} = D^+ f(x) \\), so \\( D^+ f(x) = D^- f(x) \\). Thus, \\( f \\) is differentiable at \\( x \\), and since \\( x \\) is arbitrary, \\( f \\) is differentiable everywhere. Denote the derivative by \\( f' \\).\n\nNow, with \\( f \\) differentiable, differentiate the original equation with respect to \\( y \\), fixing \\( x \\):\n\\[\n\\frac{d}{dy} [f(x+y) + f(x-y) - 2f(x)] = \\frac{d}{dy} [g(x) y^2].\n\\]\nThe left side is:\n\\[\nf'(x+y) \\cdot 1 + f'(x-y) \\cdot (-1) = f'(x+y) - f'(x-y),\n\\]\nand the right side is:\n\\[\n2 g(x) y.\n\\]\nSo:\n\\[\nf'(x+y) - f'(x-y) = 2 g(x) y.\n\\]\nDifferentiate both sides with respect to \\( y \\) again:\n\\[\n\\frac{d}{dy} [f'(x+y) - f'(x-y)] = \\frac{d}{dy} [2 g(x) y].\n\\]\nThe left side is:\n\\[\nf''(x+y) \\cdot 1 + f''(x-y) \\cdot (-1) \\cdot (-1) = f''(x+y) + f''(x-y),\n\\]\nwait, correction: \\( \\frac{d}{dy} f'(x-y) = f''(x-y) \\cdot (-1) \\), so:\n\\[\n\\frac{d}{dy} [f'(x+y) - f'(x-y)] = f''(x+y) - [f''(x-y) \\cdot (-1)] = f''(x+y) + f''(x-y),\n\\]\nand the right side is \\( 2 g(x) \\). So:\n\\[\nf''(x+y) + f''(x-y) = 2 g(x).\n\\]\nTo justify the existence of \\( f'' \\), note that the symmetric difference quotient for \\( f' \\) at \\( x \\) is:\n\\[\n\\frac{f'(x+y) - f'(x-y)}{2y} = g(x),\n\\]\nfrom the equation \\( f'(x+y) - f'(x-y) = 2 g(x) y \\). As \\( y \\to 0 \\), this converges to \\( g(x) \\), which is continuous. Thus, \\( f' \\) is differentiable at \\( x \\), and \\( f''(x) = g(x) \\). Since \\( x \\) is arbitrary, \\( f \\) is twice differentiable everywhere, and \\( f''(x) = g(x) \\).\n\nNow, from \\( f''(x+y) + f''(x-y) = 2 g(x) = 2 f''(x) \\), so:\n\\[\nf''(x+y) + f''(x-y) - 2 f''(x) = 0.\n\\]\nLet \\( h(x) = f''(x) \\), so \\( h(x+y) + h(x-y) - 2 h(x) = 0 \\) for all \\( x, y \\). Since \\( h = f'' \\) and \\( g \\) is continuous, \\( h \\) is continuous. The functional equation \\( h(x+y) + h(x-y) = 2 h(x) \\) for continuous \\( h \\) has linear solutions \\( h(x) = a x + b \\). Thus, \\( f''(x) = a x + b \\).\n\nSince \\( f \\) is concave, \\( f''(x) \\leq 0 \\) everywhere. But \\( a x + b \\leq 0 \\) for all \\( x \\) only if \\( a = 0 \\) and \\( b \\leq 0 \\). Otherwise, if \\( a \\neq 0 \\), \\( a x + b \\) changes sign or is unbounded. So \\( a = 0 \\), \\( b \\leq 0 \\), and \\( f''(x) = b \\), a constant. Integrating, \\( f'(x) = b x + c \\) and \\( f(x) = \\frac{b}{2} x^2 + c x + d \\), which is quadratic.\n\nThus, \\( f \\) is a quadratic function.\n\n\\[\n\\boxed{\\text{f is a quadratic function}}\n\\]",
+            "cost": {
+                "cost": 0.0079474,
+                "input_tokens": 398,
+                "output_tokens": 15656
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:06:33.588955",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof uses concavity to obtain one\u2010sided derivatives and shows by a difference\u2010quotient argument that \\(D^+f=D^-f\\), so \\(f\\) is \\(C^1\\).  Differentiating the functional equation in the \\(y\\)\u2013variable via the chain rule yields \\(f'(x+y)-f'(x-y)=2g(x)y\\).  A symmetric difference quotient then shows \\(f''(x)\\) exists everywhere and equals \\(g(x)\\).  From the second\u2010difference equation \\(f''(x+y)+f''(x-y)=2f''(x)\\) one concludes (by a Jensen\u2010type argument) that \\(f''\\) is affine; concavity forces the affine part to vanish, so \\(f''\\) is constant and integrating twice gives \\(f(x)=Ax^2+Bx+C\\).",
+                    "issues": [
+                        {
+                            "location": "Step \u201cDifferentiate the original equation with respect to y\u201d",
+                            "text": "\u201cDifferentiate both sides with respect to \\(y\\), fixing \\(x\\): \u2026\u201d",
+                            "description": "The proof applies the chain rule to \\(f(x+y)\\) and \\(f(x-y)\\) without first ensuring or justifying that \\(f\\) is twice differentiable (i.e. \\(C^2\\)) at all needed points.  The necessary smoothness hypotheses for differentiating under the functional equation are not verified.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1809,
+                            "end_index": 1866
+                        },
+                        {
+                            "location": "Final part, solving for \\(h(x)=f''(x)\\)",
+                            "text": "\u201cThe functional equation \\(h(x+y)+h(x-y)=2h(x)\\) for continuous \\(h\\) has linear solutions \\(h(x)=ax+b\\).\u201d",
+                            "description": "This key step invokes the well\u2010known Jensen\u2010type result that any continuous solution of \\(h(x+y)+h(x-y)=2h(x)\\) is affine, but it is stated without proof or citation.",
+                            "category": "Oversimplification",
+                            "start_index": 2975,
+                            "end_index": 3093
+                        },
+                        {
+                            "location": "Derivation of the second derivative, mid\u2010proof",
+                            "text": "\u201c\u2026 = f''(x+y)+f''(x-y), wait, correction: \u2026\u201d",
+                            "description": "The presence of a self\u2010correction (\u2018wait, correction\u2019) during the computation indicates confusion and a lack of clear, polished exposition, making the argument harder to follow.",
+                            "category": "Other",
+                            "start_index": 2003,
+                            "end_index": 2045
+                        },
+                        {
+                            "location": "Justification of \\(f''(x)=g(x)\\)",
+                            "text": "\u201cAs \\(y\\to0\\), this converges to \\(g(x)\\), which is continuous.\u201d",
+                            "description": "Continuity of \\(g\\) is invoked to justify the limit of the symmetric difference quotient, but in fact the quotient equals \\(g(x)\\) exactly for all nonzero \\(y\\), so continuity of \\(g\\) is irrelevant to the existence of the limit.",
+                            "category": "Oversimplification",
+                            "start_index": 2481,
+                            "end_index": 2550
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:23:33.365715"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To prove that the function $ f: \\mathbb{R} \\to \\mathbb{R} $ is quadratic under the given conditions, we begin by analyzing the functional equation:\n\n$$\nf(x+y) + f(x-y) - 2f(x) = g(x)y^2 \\quad \\text{for all } x, y \\in \\mathbb{R},\n$$\nwhere $ f $ is **concave** and $ g $ is **continuous**.\n\n---\n\n### Step 1: Understanding the Functional Equation\n\nThis equation resembles the second-order difference quotient, which is used to define the second derivative of a function. Specifically, for a twice differentiable function $ f $, we have:\n\n$$\n\\lim_{y \\to 0} \\frac{f(x+y) + f(x-y) - 2f(x)}{y^2} = f''(x).\n$$\n\nIn our case, the left-hand side is **exactly** equal to $ g(x)y^2 $, not just in the limit. This suggests that $ f $ has a very specific structure, and in particular, that $ f $ is **twice differentiable** and its second derivative is given by $ g(x) $, i.e.,\n\n$$\nf''(x) = g(x).\n$$\n\n---\n\n### Step 2: Deriving a Functional Equation for $ g $\n\nWe manipulate the original equation to derive a new functional equation for $ g $. Let\u2019s define:\n\n$$\n\\phi(x, y) = f(x+y) + f(x-y) - 2f(x) = g(x)y^2.\n$$\n\nNow, consider the identity:\n\n$$\nf(x+2y) + f(x-2y) - 2f(x) = g(x)(2y)^2 = 4g(x)y^2.\n$$\n\nOn the other hand, we can express $ f(x+2y) + f(x-2y) $ in terms of $ \\phi $:\n\n$$\nf(x+2y) + f(x-2y) = [f(x+2y) + f(x) - 2f(x+y)] + [f(x) + f(x-2y) - 2f(x-y)] + 2f(x).\n$$\n\nUsing the original equation, this becomes:\n\n$$\ng(x+y)y^2 + g(x-y)y^2 + 2f(x).\n$$\n\nTherefore, the full expression for $ f(x+2y) + f(x-2y) - 2f(x) $ is:\n\n$$\ng(x+y)y^2 + g(x-y)y^2 = 2g(x)y^2.\n$$\n\nDividing both sides by $ y^2 $ (for $ y \\ne 0 $) gives:\n\n$$\ng(x+y) + g(x-y) = 2g(x) \\quad \\text{for all } x, y \\in \\mathbb{R}.\n$$\n\nThis is a well-known functional equation whose continuous solutions are **linear functions**. That is, the general continuous solution to:\n\n$$\ng(x+y) + g(x-y) = 2g(x)\n$$\n\nis of the form:\n\n$$\ng(x) = ax + b, \\quad \\text{for some constants } a, b \\in \\mathbb{R}.\n$$\n\n---\n\n### Step 3: Using Concavity to Restrict $ g $\n\nWe are given that $ f $ is **concave**, which implies that for all $ x, y $:\n\n$$\nf(x+y) + f(x-y) \\le 2f(x) \\quad \\Rightarrow \\quad f(x+y) + f(x-y) - 2f(x) \\le 0.\n$$\n\nFrom the original equation, this gives:\n\n$$\ng(x)y^2 \\le 0 \\quad \\text{for all } x, y \\in \\mathbb{R}.\n$$\n\nSince $ y^2 \\ge 0 $, this inequality implies that:\n\n$$\ng(x) \\le 0 \\quad \\text{for all } x \\in \\mathbb{R}.\n$$\n\nNow, recall from Step 2 that $ g(x) = ax + b $. The only way this can be **non-positive for all real $ x $** is if the coefficient of $ x $ is zero. Otherwise, as $ x \\to \\pm\\infty $, $ g(x) $ would eventually become positive, violating the inequality.\n\nThus, we conclude that $ a = 0 $, so:\n\n$$\ng(x) = b \\le 0 \\quad \\text{is a constant}.\n$$\n\n---\n\n### Step 4: Concluding that $ f $ is Quadratic\n\nNow that we know $ g(x) = b $ is constant, we return to the original functional equation:\n\n$$\nf(x+y) + f(x-y) - 2f(x) = b y^2.\n$$\n\nThis is a well-known functional equation whose continuous solutions are quadratic functions. Specifically, the general solution is:\n\n$$\nf(x) = \\frac{b}{2}x^2 + px + q, \\quad \\text{for some constants } p, q \\in \\mathbb{R}.\n$$\n\nThis is a quadratic function, and since $ b \\le 0 $, the second derivative $ f''(x) = b \\le 0 $, which is consistent with the concavity of $ f $.\n\n---\n\n### Final Conclusion\n\nWe have shown that under the given conditions:\n\n- The function $ f $ satisfies a functional equation that characterizes quadratic functions.\n- The concavity of $ f $ forces the function $ g $ to be constant and non-positive.\n- With $ g $ constant, the only continuous solutions to the functional equation are quadratic functions.\n- Therefore, $ f $ must be a quadratic function.\n\n$$\n\\boxed{f(x) \\text{ is a quadratic function}}\n$$",
+            "cost": {
+                "cost": 0.006995799999999999,
+                "input_tokens": 416,
+                "output_tokens": 11521
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:46:10.199376",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof interprets the given relation f(x+y)+f(x\u2013y)\u20132f(x)=g(x)y\u00b2 as an exact second\u2010difference formula and asserts that f must be twice differentiable with f''(x)=g(x). It then compares the cases y and 2y to derive the functional equation g(x+y)+g(x\u2013y)=2g(x), invokes continuity to conclude g(x)=ax+b, and uses concavity to force a=0 so g is constant. Finally, it appeals to a standard result that f(x+y)+f(x\u2013y)\u20132f(x)=by\u00b2 characterizes quadratic functions, concluding f(x) is quadratic.",
+                    "issues": [
+                        {
+                            "location": "Step 1 (Differentiability assumption)",
+                            "text": "The proof claims that the functional equation implies f is twice differentiable and that f''(x)=g(x).",
+                            "description": "Unwarranted assumption that f is C\u00b2 based solely on the difference relation, without any justification of differentiability.",
+                            "category": "Overgeneralization",
+                            "start_index": null,
+                            "end_index": null
+                        },
+                        {
+                            "location": "Step 2 (Algebraic derivation for g)",
+                            "text": "Therefore, the proof claims g(x+y)y\u00b2 + g(x\u2013y)y\u00b2 = 2g(x)y\u00b2.",
+                            "description": "Algebraic mistake: the correct comparison of f(x+2y)+f(x\u20132y)\u20132f(x)=4g(x)y\u00b2 with the decomposed form yields g(x+y)y\u00b2+g(x\u2013y)y\u00b2=4g(x)y\u00b2, not 2g(x)y\u00b2.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 1496,
+                            "end_index": 1544
+                        },
+                        {
+                            "location": "Step 2 conclusion",
+                            "text": "This is a well-known functional equation whose continuous solutions are linear functions, i.e., g(x)=ax+b.",
+                            "description": "Invokes the solution of g(x+y)+g(x\u2013y)=2g(x) as a known result without justification or reference, skipping the derivation under mere continuity.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1680,
+                            "end_index": 1774
+                        },
+                        {
+                            "location": "Step 4 (Characterization of f)",
+                            "text": "The proof asserts that the equation f(x+y)+f(x\u2013y)\u20132f(x)=by\u00b2 has only quadratic solutions of the form f(x)=(b/2)x\u00b2+px+q.",
+                            "description": "Appeals to a standard classification of solutions without proving or referencing why continuity and the functional equation force this quadratic form.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": null,
+                            "end_index": null
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:22:40.111668"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof. We divide the argument into several steps.\n\nStep 1.  Concavity of \\(f\\) forces \\(g\\le0\\).\\  \nSince \\(f\\) is concave on \\(\\Bbb R\\), for all \\(x,y\\in\\Bbb R\\) we have\n\\[\nf(x+y)+f(x-y)\\;\\le\\;2f(x)\\,.\n\\]\nHence, by the given identity\n\\[\nf(x+y)+f(x-y)-2f(x)\\;=\\;g(x)\\,y^2\\;\\le\\;0,\n\\]\nand since \\(y^2>0\\) for \\(y\\neq0\\), it follows that\n\\[\ng(x)\\;\\le\\;0\\quad\\text{for every }x\\in\\Bbb R.\n\\]\n\nStep 2.  A \u201cfour\u2010point shift\u2019\u2019 shows that \\(g\\) itself satisfies a second\u2010difference law.  \nFix arbitrary \\(x,y,z\\in\\Bbb R\\).  Apply the functional equation\n\\[\nf(t+u)+f(t-u)-2f(t)=g(t)\\,u^2\n\\]\nin three ways:\n\n(i)\\quad with \\(t=x+y\\), \\(u=z\\):\n\\[\nf\\bigl(x+y+z\\bigr)+f\\bigl(x+y-z\\bigr)-2f(x+y)\n\\;=\\;g(x+y)\\,z^2.\n\\tag{1}\n\\]\n\n(ii)\\quad with \\(t=x-y\\), \\(u=z\\):\n\\[\nf\\bigl(x-y+z\\bigr)+f\\bigl(x-y-z\\bigr)-2f(x-y)\n\\;=\\;g(x-y)\\,z^2.\n\\tag{2}\n\\]\n\n(iii)\\quad with \\(t=x\\), \\(u=z\\), and then multiply by 2:\n\\[\n2\\Bigl[f(x+z)+f(x-z)-2f(x)\\Bigr]\n\\;=\\;2\\,g(x)\\,z^2.\n\\tag{3}\n\\]\n\nNow add (1)\\(+\\)(2) and then subtract (3).  The left\u2013hand side becomes\n\\[\n\\bigl[f(x+y+z)+f(x+y-z)\\bigr]\n+\\bigl[f(x-y+z)+f(x-y-z)\\bigr]\n-2\\bigl[f(x+y)+f(x-y)\\bigr]\n-2\\bigl[f(x+z)+f(x-z)\\bigr]\n+4f(x),\n\\]\nwhich one checks is exactly\n\\[\n\\bigl[f(x+y+z)+f(x-y+z)-2f(x+z)\\bigr]\n\\;+\\;\\bigl[f(x+y-z)+f(x-y-z)-2f(x-z)\\bigr]\n\\;-\\;2\\bigl[f(x+y)+f(x-y)-2f(x)\\bigr].\n\\]\nBut by the original equation again,\n\\[\nf\\bigl((x+z)+y\\bigr)+f\\bigl((x+z)-y\\bigr)-2f(x+z)\n\\;=\\;g(x+z)\\,y^2,\n\\]\nand similarly\n\\[\nf\\bigl((x-z)+y\\bigr)+f\\bigl((x-z)-y\\bigr)-2f(x-z)\n\\;=\\;g(x-z)\\,y^2,\n\\]\nand\n\\[\nf(x+y)+f(x-y)-2f(x)=g(x)\\,y^2.\n\\]\nHence the net effect of (1)+(2)\u2013(3) is\n\\[\n\\bigl[g(x+y)+g(x-y)-2g(x)\\bigr]\\,z^2\n\\;=\\;\\bigl[g(x+z)+g(x-z)-2g(x)\\bigr]\\,y^2.\n\\]\nSince \\(y,z\\) are arbitrary (and nonzero does not matter, by continuity in the limit), we conclude that for each fixed \\(x\\) the ratio\n\\[\n\\frac{g(x+y)+g(x-y)-2g(x)}{y^2}\n\\]\nis independent of \\(y\\).  Hence there exists a function \\(h:\\Bbb R\\to\\Bbb R\\) such that\n\\[\ng(x+y)+g(x-y)-2g(x)\\;=\\;h(x)\\,y^2\n\\quad\\text{for all }x,y.\n\\tag{4}\n\\]\n\nStep 3.  The auxiliary function \\(h\\) vanishes identically.  \nWe apply exactly the same three\u2010point shift argument to the new identity (4).  Namely, for arbitrary \\(x,y,z\\) we write\n\\[\ng\\bigl(x+y+z\\bigr)+g\\bigl(x+y-z\\bigr)-2g(x+y)\n\\;=\\;h(x+y)\\,z^2,\n\\tag{5}\n\\]\n\\[\ng\\bigl(x-y+z\\bigr)+g\\bigl(x-y-z\\bigr)-2g(x-y)\n\\;=\\;h(x-y)\\,z^2,\n\\tag{6}\n\\]\n\\[\n2\\Bigl[g(x+z)+g(x-z)-2g(x)\\Bigr]\n\\;=\\;2\\,h(x)\\,z^2.\n\\tag{7}\n\\]\nArguing as before, (5)+(6)\u2013(7) yields\n\\[\n\\bigl[g(x+y)+g(x-y)-2g(x)\\bigr]\\,z^2\n\\;=\\;\\bigl[h(x+y)+h(x-y)-2h(x)\\bigr]\\,y^2.\n\\]\nBut from (4), the factor in brackets on the left is \\(h(x)\\,y^2\\).  Thus\n\\[\nh(x)\\,y^2\\,z^2\n\\;=\\;\\bigl[h(x+y)+h(x-y)-2h(x)\\bigr]\\,y^2.\n\\]\nFor \\(y\\neq0\\) we may cancel \\(y^2\\), giving\n\\[\nh(x)\\,z^2\n\\;=\\;h(x+y)+h(x-y)-2h(x)\n\\quad\\text{for all }x,y,z.\n\\]\nThe left side depends on \\(z\\) (unless \\(h(x)=0\\)), while the right side does not depend on \\(z\\).  The only way this can hold for all \\(z\\) is\n\\[\nh(x)=0\n\\quad\\text{for every }x\\in\\Bbb R.\n\\]\nHence from (4) we deduce the homogeneous second\u2010difference equation\n\\[\ng(x+y)+g(x-y)-2g(x)=0\n\\quad\\text{for all }x,y.\n\\tag{8}\n\\]\n\nStep 4.  Continuous solutions of \\(g(x+y)+g(x-y)=2g(x)\\) are affine.  \nReplace in (8) the pair \\((x,y)\\) by\n\\[\nx=\\frac{u+v}{2},\\quad y=\\frac{u-v}{2}.\n\\]\nThen \\(x+y=u\\) and \\(x-y=v\\), and (8) becomes\n\\[\ng(u)+g(v)\\;=\\;2\\,g\\!\\Bigl(\\tfrac{u+v}2\\Bigr)\n\\quad\\text{for all }u,v\\in\\Bbb R.\n\\]\nThis is precisely the midpoint\u2010affine (Jensen) functional equation.  It is a standard theorem (see, e.g., the discussion of Jensen\u2019s equation) that any continuous solution of\n\\[\ng\\!\\Bigl(\\tfrac{u+v}2\\Bigr)\n=\\frac{g(u)+g(v)}2\n\\]\non \\(\\Bbb R\\) must be an affine function.  Hence there exist constants \\(A,B\\in\\Bbb R\\) such that\n\\[\ng(x)=A\\,x\\;+\\;B\n\\quad\\text{for all }x.\n\\]\n\nStep 5.  From the original identity to twice differentiability of \\(f\\).  \nWe now observe that the given equation\n\\[\n\\frac{f(x+y)-2f(x)+f(x-y)}{y^2}=g(x)\n\\]\nholds for every \\(y\\neq0\\).  Letting \\(y\\to0\\), the left\u2010hand side is exactly the symmetric second\u2010difference quotient whose limit, when it exists, is the second derivative \\(f''(x)\\).  Since the right\u2010hand side tends to the continuous function \\(g(x)\\), we conclude by the standard criterion for the existence of the second derivative that\n\\[\nf''(x)=g(x)=A\\,x+B\n\\quad\\text{for every }x.\n\\]\nIn particular, \\(f\\) is \\(C^2\\) on \\(\\Bbb R\\).\n\nStep 6.  Integration shows \\(f\\) is a cubic at most.  \nIntegrate \\(f''(x)=Ax+B\\) twice:\n\\[\nf'(x)=\\int (Ax+B)\\,dx=\\frac{A}{2}\\,x^2+Bx+C,\n\\]\n\\[\nf(x)=\\int f'(x)\\,dx\n=\\frac{A}{6}\\,x^3+\\frac{B}{2}\\,x^2+Cx+D,\n\\]\nwhere \\(C,D\\) are constants of integration.\n\nStep 7.  Concavity forces \\(A=0\\).  \nSince \\(f\\) is given to be concave on \\(\\Bbb R\\), we must have\n\\[\nf''(x)=Ax+B\\;\\le\\;0\n\\quad\\text{for all }x\\in\\Bbb R.\n\\]\nBut a nonzero linear function \\(Ax+B\\) cannot be everywhere nonpositive unless \\(A=0\\) (otherwise it tends to \\(+\\infty\\) in one direction).  Hence \\(A=0\\).  It follows that\n\\[\nf''(x)=B\\quad(\\le0),\n\\]\nand\n\\[\nf(x)=\\frac{B}{2}\\,x^2+Cx+D\n\\]\nis a quadratic polynomial.\n\nThis completes the proof that any concave \\(f\\) satisfying\n\\[\nf(x+y)+f(x-y)-2f(x)=g(x)\\,y^2\n\\]\nwith continuous \\(g\\) must be a quadratic function.  \n\u220e",
+            "cost": {
+                "cost": 0.06305970000000001,
+                "input_tokens": 415,
+                "output_tokens": 14228
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:34:16.280539",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof first shows from concavity that g(x)\u22640.  It then applies the given identity at four shifted points to derive a second\u2010difference relation for g, and repeats this to show g satisfies Jensen\u2019s equation and hence is affine.  Letting y\u21920 in the symmetric second\u2010difference quotient yields f''(x)=g(x), so integrating twice gives f a cubic form.  Finally, concavity forces the cubic coefficient to vanish, and f is quadratic.",
+                    "issues": [
+                        {
+                            "location": "Step 2",
+                            "text": "which one checks is exactly ...",
+                            "description": "The proof omits the detailed algebraic verification of how the combination of equations (1),(2),(3) rearranges into the claimed form, relying on the reader to fill in substantial steps.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1152,
+                            "end_index": 1178
+                        },
+                        {
+                            "location": "Step 3",
+                            "text": "Arguing as before, (5)+(6)\u2013(7) yields ...",
+                            "description": "As in Step 2, the argument skips the explicit grouping and cancellation of terms when combining (5),(6),(7), presenting the result without justification.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2409,
+                            "end_index": 2445
+                        },
+                        {
+                            "location": "Step 5",
+                            "text": "Since the right\u2010hand side tends to the continuous function g(x), we conclude by the standard criterion for the existence of the second derivative that f''(x)=g(x).",
+                            "description": "The proof appeals to a \u2018standard criterion\u2019 for passing from the limit of symmetric second differences to the actual second derivative without proving that this limit implies twice differentiability in this context.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4103,
+                            "end_index": 4271
+                        },
+                        {
+                            "location": "Step 2",
+                            "text": "Since y,z are arbitrary (and nonzero does not matter, by continuity in the limit), we conclude that ...",
+                            "description": "When defining h(x) by dividing by y^2 and z^2, the proof does not carefully justify the cases y=0 or z=0 and how continuity handles those divisions.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 1670,
+                            "end_index": 1771
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:22:04.787555"
+            }
+        }
+    ]
+}

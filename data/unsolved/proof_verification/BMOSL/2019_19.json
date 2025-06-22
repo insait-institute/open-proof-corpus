@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.01,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2019
+    },
+    "problem": "Suppose that the numbers \\(\\{1,2, \\ldots, 25\\}\\) are written in some order in a \\(5 \\times 5\\) array. Find the maximal positive integer \\(k\\), such that the following holds. There is always a \\(2 \\times 2\\) subarray whose numbers have a sum not less than \\(k\\).",
+    "problem_id": "BMOSL_2019_19",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. We will prove that $k_{\\max }=45$.\nWe number the columns and the rows and we select all possible $3^{2}=9$ choices of an odd column with an odd row.\n\nCollecting all such pairs of an odd column with an odd row, we double count some squares. Indeed, we take some $3^{2}$ squares $5$ times, some $12$ squares $3$ times and there are some $4$ squares (namely all the intersections of an even column with an even row) that we don't take in such pairs.\n\nIt follows that the maximal total sum over all $3^{2}$ choices of an odd column with an odd row is\n\n$$\n5 \\times(17+18+\\cdots+25)+3 \\times(5+6+\\cdots+16)=1323\n$$\n\nSo, by an averaging argument, there exists a pair of an odd column with an odd row with sum at most $\\frac{1323}{9}=147$.\n\nThen all the other squares of the array will have sum at least\n\n$$\n(1+2+\\cdots+25)-147=178\n$$\n\nBut for these squares there is a tiling with $2 \\times 2$ arrays, which are $4$ in total. So there is an $2 \\times 2$ array, whose numbers have a sum at least $\\frac{178}{4}>44$. So, there is a $2 \\times 2$ array whose numbers have a sum at least $45$. This argument gives that\n\n$$\nk_{\\max } \\geq 45 .\n$$\n\nWe are going now to give an example of an array, in which $45$ is the best possible. We fill the rows of the array as follows:\n\n| $25$ | $5$ | $24$ | $6$ | $23$ |\n| :---: | :---: | :---: | :---: | :---: |\n| $11$ | $4$ | $12$ | $3$ | $13$ |\n| $22$ | $7$ | $21$ | $8$ | $20$ |\n| $14$ | $2$ | $15$ | $1$ | $16$ |\n| $19$ | $9$ | $18$ | $10$ | $17$ |\n\nWe are going now to even rows:\nIn the above array, every $2 \\times 2$ subarray has a sum, which is less or equal to $45$. This gives that\n\n$$\nk_{\\max } \\leq 45 .\n$$\n\nA combination of (1) and (2) gives that $k_{\\max }=45$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

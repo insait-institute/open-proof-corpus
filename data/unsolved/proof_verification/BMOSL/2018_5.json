@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.97,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2018
+    },
+    "problem": "Let \\( f: \\mathbb{R} \\rightarrow \\mathbb{R} \\) be a concave function and let \\( g: \\mathbb{R} \\rightarrow \\mathbb{R} \\) be continuous. Given that\n\n\\[\nf(x+y)+f(x-y)-2 f(x)=g(x) y^{2}\n\\]\n\nfor all \\( x, y \\in \\mathbb{R} \\), prove that \\( f \\) is a quadratic function.",
+    "problem_id": "BMOSL_2018_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Solution.\n\nWe plug in the pairs $(a, x),(a, 2 x),(a+x, x)$ and $(a-x, x)$ to get\n\n$$\n\\begin{aligned}\nf(a+x)+f(a-x)-2 f(a) & =g(a) x^{2} \\\\\nf(a+2 x)+f(a-2 x)-2 f(a) & =4 g(a) x^{2} \\\\\nf(a+2 x)+f(a)-2 f(a+x) & =g(a+x) x^{2} \\\\\nf(a-2 x)+f(a)-2 f(a-x) & =g(a-x) x^{2}\n\\end{aligned}\n$$\n\nrespectively. Combining these equations in the form $2 E_{1}-E_{2}+E_{3}+E_{4}$ the left hand side vanishes, yielding an equation in $g:(g(a+x)+g(a-x)-2 g(a)) x^{2}=0$, i.e.\n\n$$\ng(a)=\\frac{g(a+x)+g(a-x)}{2}\n$$\n\nSince $g$ is continuous, it must be linear, i.e. $g(x)=c_{1} x+c_{0}$. However, the original equation for $x=y$ together with the concavity condition now gives us\n\n$$\n0 \\geqslant f(2 x)+f(0)-2 f(x)=\\left(x c_{1}+c_{0}\\right) x^{2}\n$$\nfor all $x$, which is only possible if $c_{1}=0$. Thus $g(x) \\equiv c_{0}=2 A$ is constant and\n$$\nf(x+y)+f(x-y)-2 f(x)=2 A y^{2}\n$$\n\nThis suggests that $f$ is a quadratic function, so we can set $f(x)=A x^{2}+f_{1}(x)$. Then $(*)$ becomes $f_{1}(x+y)+f_{1}(x-y)-2 f_{1}(x)=0$, so an easy induction gives us\n\n$$\nf_{1}(n x)-f_{1}(0)=n\\left(f_{1}(x)-f_{1}(0)\\right) \\quad \\text { for all } \\quad n \\in \\mathbb{Z}\n$$\n\nBy setting $f_{1}(0)=C$ and $f_{1}(1)=B+C$ we obtain $f_{1}(x)=B x+C$ and $f(x)=$ $A x^{2}+B x+C$ for all $x \\in \\mathbb{Q}$. By concavity of $f$ we conclude that $f(x)=A x^{2}+B x+C$ for all real $x$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

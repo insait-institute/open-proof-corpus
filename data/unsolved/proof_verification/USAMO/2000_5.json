@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2000
+    },
+    "problem": "Let \\( A_{1} A_{2} A_{3} \\) be a triangle, and let \\(\\omega_{1}\\) be a circle in its plane passing through \\( A_{1} \\) and \\( A_{2} \\). Suppose there exist circles \\(\\omega_{2}, \\omega_{3}, \\ldots, \\omega_{7}\\) such that for \\( k=2,3, \\ldots, 7 \\), circle \\(\\omega_{k}\\) is externally tangent to \\(\\omega_{k-1}\\) and passes through \\( A_{k} \\) and \\( A_{k+1} \\) (indices \\(\\bmod 3\\)). Prove that \\(\\omega_{7}=\\omega_{1}\\).",
+    "problem_id": "USAMO_2000_5",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nLet $A_{1} A_{2} A_{3}$ be a triangle, and let $\\omega_{1}$ be a circle in its plane passing through $A_{1}$ and $A_{2}$. Suppose there exists circles $\\omega_{2}, \\omega_{3}, \\ldots, \\omega_{7}$ such that for $k=2,3, \\ldots, 7$, circle $\\omega_{k}$ is externally tangent to $\\omega_{k-1}$ and passes through $A_{k}$ and $A_{k+1}$ (indices mod 3). Prove that $\\omega_{7}=\\omega_{1}$.\n\nThe idea is to keep track of the subtended arc $\\widehat{A_{i} A_{i+1}}$ of $\\omega_{i}$ for each $i$. To this end, let $\\beta=\\measuredangle A_{1} A_{2} A_{3}, \\gamma=\\measuredangle A_{2} A_{3} A_{1}$ and $\\alpha=\\measuredangle A_{1} A_{2} A_{3}$.\n\n\nInitially, we set $\\theta=\\measuredangle O_{1} A_{2} A_{1}$. Then we compute\n\n$$\n\\begin{aligned}\n& \\measuredangle O_{1} A_{2} A_{1}=\\theta \\\\\n& \\measuredangle O_{2} A_{3} A_{2}=-\\beta-\\theta \\\\\n& \\measuredangle O_{3} A_{1} A_{3}=\\beta-\\gamma+\\theta \\\\\n& \\measuredangle O_{4} A_{2} A_{1}=(\\gamma-\\beta-\\alpha)-\\theta\n\\end{aligned}\n$$\n\nand repeating the same calculation another round gives\n\n$$\n\\measuredangle O_{7} A_{2} A_{1}=k-(k-\\theta)=\\theta\n$$\nwith $k=\\gamma-\\beta-\\alpha$. This implies $O_{7}=O_{1}$, so $\\omega_{7}=\\omega_{1}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

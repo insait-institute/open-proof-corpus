@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.93,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2017
+    },
+    "problem": "Let \\(a, b, c\\) be positive real numbers such that \\(abc = 1\\). Prove that\n\n\\[\n\\frac{1}{a^{5}+b^{5}+c^{2}}+\\frac{1}{b^{5}+c^{5}+a^{2}}+\\frac{1}{c^{5}+a^{5}+b^{2}} \\leq 1.\n\\]",
+    "problem_id": "BMOSL_2017_1",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "First we remark that\n\n$$\na^{5}+b^{5} \\geq a b\\left(a^{3}+b^{3}\\right)\n$$\n\nIndeed\n\n$$\n\\begin{aligned}\na^{5}+b^{5} \\geq a b\\left(a^{3}+b^{3}\\right) & \\Leftrightarrow a^{5}-a^{4} b-a b^{4}+b^{5} \\geq 0 \\\\\n& \\Leftrightarrow a^{4}(a-b)-b^{4}(a-b) \\geq 0 \\\\\n(a-b)\\left(a^{4}-b^{4}\\right) \\geq 0 & \\Leftrightarrow(a-b)^{2}\\left(a^{2}+b^{2}\\right)(a+b) \\geq 0\n\\end{aligned}\n$$\n\nWe rewrite the inequality as\n\n$$\n\\frac{1}{a^{5}+b^{5}+a b c^{3}}+\\frac{1}{b^{5}+c^{5}+b c a^{3}}+\\frac{1}{c^{5}+a^{5}+c a b^{3}} \\leq 1 .\n$$\n\nOn the other hand the following inequality is true\n\n$$\na^{5}+b^{5}+a b c^{3} \\geq a b\\left(a^{3}+b^{3}+c^{3}\\right)\n$$\nand similar for the other two.\nFinally, using AM-GM we get:\n\\$\\$\\begin{aligned}\n\n\\frac{1}{a^{5}+b^{5}+c^{2}}+\\frac{1}{b^{5}+c^{5}+a^{2}}+\\frac{1}{c^{5}+a^{5}+b^{2}} \\& \\leq \\frac{1}{a^{3}+b^{3}+c^{3}}\\left(\\frac{1}{a b}+\\frac{1}{b c}+\\frac{1}{c a}\\right)=\\frac{a+b+c}{a^{3}+b^{3}+c^{3}} <br>\n\\& \\leq \\frac{a+b+c}{\\frac{(a+b+c)^{3}}{9}}=\\frac{9}{(a+b+c)^{2}} \\leq \\frac{9}{(3 \\sqrt[3]{a b c})^{2}}=1\n\n\\end{aligned}\\$\\$",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

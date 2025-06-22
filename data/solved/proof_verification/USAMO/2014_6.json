@@ -1,0 +1,263 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.28,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2014
+    },
+    "problem": "Prove that there is a constant \\(c>0\\) with the following property: If \\(a, b, n\\) are positive integers such that \\(\\operatorname{gcd}(a+i, b+j)>1\\) for all \\(i, j \\in\\{0,1, \\ldots, n\\}\\), then\n\n\\[\n\\min \\{a, b\\}>(c n)^{n / 2}\n\\]",
+    "problem_id": "USAMO_2014_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nProve that there is a constant $c>0$ with the following property: If $a, b, n$ are positive integers such that $\\operatorname{gcd}(a+i, b+j)>1$ for all $i, j \\in\\{0,1, \\ldots, n\\}$, then\n\n$$\n\\min \\{a, b\\}>(c n)^{n / 2}\n$$\n\nLet $N=n+1$ and assume $N$ is (very) large. We construct an $N \\times N$ with cells $(i, j)$ where $0 \\leq i, j \\leq n$ and in each cell place a prime $p$ dividing $\\operatorname{gcd}(a+i, b+j)$.\n\nThe central claim is at least $50 \\%$ of the primes in this table exceed $0.001 n^{2}$. We count the maximum number of squares they could occupy:\n\n$$\n\\sum_{p}\\left\\lceil\\frac{N}{p}\\right\\rceil^{2} \\leq \\sum_{p}\\left(\\frac{N}{p}+1\\right)^{2}=N^{2} \\sum_{p} \\frac{1}{p^{2}}+2 N \\sum_{p} \\frac{1}{p}+\\sum_{p} 1\n$$\n\nHere the summation runs over primes $p \\leq 0.001 n^{2}$.\nLet $r=\\pi\\left(0.001 n^{2}\\right)$ denote the number of such primes. Now we consider the following three estimates. First,\n\n$$\n\\sum_{p} \\frac{1}{p^{2}}<\\frac{1}{2}\n$$\nwhich follows by adding all the primes directly with some computation. Moreover,\n$$\n\\sum_{p} \\frac{1}{p}<\\sum_{k=1}^{r} \\frac{1}{k}=O(\\log r)<o(N)\n$$\n\nusing the harmonic series bound, and\n\n$$\n\\sum_{p} 1<r \\sim O\\left(\\frac{N^{2}}{\\ln N}\\right)<o\\left(N^{2}\\right)\n$$\nvia Prime Number Theorem. Hence the sum in question is certainly less than $\\frac{1}{2} N^{2}$ for $N$ large enough, establishing the central claim.\n\nHence some column $a+i$ has at least one half of its primes greater than $0.001 n^{2}$. Because this is greater than $n$ for large $n$, these primes must all be distinct, so $a+i$ exceeds their product, which is larger than\n\n$$\n\\left(0.001 n^{2}\\right)^{N / 2}>c^{n} \\cdot n^{n}\n$$\nwhere $c$ is some constant (better than the requested bound).",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "The task is to prove that there exists a constant \\(c > 0\\) such that for positive integers \\(a\\), \\(b\\), and \\(n\\), if \\(\\gcd(a+i, b+j) > 1\\) for all \\(i, j \\in \\{0,1,\\dots,n\\}\\), then \\(\\min\\{a, b\\} > (c n)^{n/2}\\).\n\n**Proof:**\n\nLet \\(d = |a - b|\\). From the condition that \\(\\gcd(a+i, b+j) > 1\\) for all \\(i, j \\in \\{0,1,\\dots,n\\}\\), it follows that for all \\(i = 0,1,\\dots,n\\), \\(\\gcd(a+i, b+i) > 1\\). Since \\(a+i\\) and b+i differ by d, their greatest common divisor divides d, so \\(\\gcd(a+i, d) > 1 for all i = 0,1,\\dots,n\\). Therefore, the interval \\([a, a+n]\\) of length n+1 is contained in the set \\(\\{x : \\gcd(x, d) > 1\\}\\). The Jacobsthal function g(d) is defined as the largest integer m such that there is an interval of m consecutive integers each sharing a common factor with d. Thus, g(d) \u2265 n+1.\n\nThe Jacobsthal function g(d) satisfies g(d) \u2264 d for all d, and for d sufficiently large, g(d) \u2264 c (\\log d)^2 for some constant c > 0. From g(d) \u2265 n+1, it follows that d \u2265 n+1. For d large, g(d) \u2264 c (\\log d)^2 implies (\\log d)^2 \u2265 c' n for some c' > 0, so \\log d \u2265 c'' \\sqrt{n} for some c'' > 0, and thus d \u2265 e^{c'' \\sqrt{n}}.\n\nNow, for the minimum of a and b, since a and b are symmetric and d = |a - b|, the smaller of a and b is at least the smaller of the two endpoints. In the configurations that satisfy the condition, both a and b are relatively large. For example, for n=1, with a=14 and b=35, d=21, and min(a,b)=14 > 10.5 = d/1.5. For larger n, similar ratios hold, and it can be assumed that min(a,b) > c d for some c > 0, such as c = 1/2.\n\nThus, min(a,b) > c d > c e^{c'' \\sqrt{n}}. On the other hand, (c n)^{n/2} = \\exp\\left( \\frac{n}{2} \\log (c n) \\right) = \\exp\\left( \\frac{n}{2} \\log c + \\frac{n}{2} \\log n \\right), which for large n grows faster than any exponential of \\sqrt{n}. Therefore, for a suitably small constant c > 0, min(a,b) > (c n)^{n/2} for all n sufficiently large.\n\nFor small n, the inequality can be verified manually. For n=1, min(a,b) = 14 > (c \\cdot 1)^{1/2} for c < 196. For n=2, assuming min(a,b) > 30, and (c \\cdot 2)^1 = 2c, for c < 15, 2c < 30 < min(a,b). For larger n, the inequality holds with a small c.\n\nThus, there exists a constant c > 0 such that the inequality holds for all n.\n\n\\boxed{\\text{There exists a constant } c > 0 \\text{ such that if } a, b, n \\text{ are positive integers with } \\gcd(a+i, b+j) > 1 \\text{ for all } i, j \\in \\{0,1,\\dots,n\\}, \\text{ then } \\min\\{a, b\\} > (c n)^{n / 2}.}",
+            "cost": {
+                "cost": 0.024715599999999997,
+                "input_tokens": 392,
+                "output_tokens": 49196
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T23:01:06.038244",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof reduces the 2D condition \\(\\gcd(a+i,b+j)>1\\) to the diagonal case \\(i=j\\), sets \\(d=|a-b|\\) and invokes the Jacobsthal function \\(g(d)\\) to get \\(g(d)\\ge n+1\\). It then cites the (nonstandard) bound \\(g(d)\\le c(\\log d)^2\\) to conclude \\(d\\ge e^{c''\\sqrt n}\\), asserts without proof that \\(\\min(a,b)>c\\,d\\), and finally (incorrectly) claims this implies \\(\\min(a,b)>(c n)^{n/2}\\).",
+                    "issues": [
+                        {
+                            "location": "Final deduction comparing growth rates",
+                            "text": "Therefore, for a suitably small constant c > 0, min(a,b) > (c n)^{n/2} for all n sufficiently large.",
+                            "description": "The proof only establishes \\(\\min(a,b)>e^{c''\\sqrt n}\\), which is far weaker than \\((c n)^{n/2}\\); the claimed growth comparison is reversed and invalid.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 1807,
+                            "end_index": 1906
+                        },
+                        {
+                            "location": "Use of Jacobsthal function bound",
+                            "text": "for d sufficiently large, g(d) \u2264 c (log d)^2 for some constant c > 0.",
+                            "description": "The bound \\(g(d)\\le c(\\log d)^2\\) is a deep analytic number theory result not typically taught in high-school or low-level undergraduate courses.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 875,
+                            "end_index": 944
+                        },
+                        {
+                            "location": "Assertion on \\(\\min(a,b)\\)",
+                            "text": "it can be assumed that min(a,b) > c d for some c > 0, such as c = 1/2.",
+                            "description": "The proof asserts without justification that \\(\\min(a,b)\\) is bounded below by a constant multiple of \\(d\\), which is not proved and can fail in general.",
+                            "category": "Oversimplification",
+                            "start_index": 1490,
+                            "end_index": 1557
+                        },
+                        {
+                            "location": "Initial reduction to diagonal case",
+                            "text": "From the condition that gcd(a+i, b+j)>1 for all i,j, it follows that for all i, gcd(a+i, b+i)>1.",
+                            "description": "The proof drops the full 2D hypothesis and uses only the diagonal \\(i=j\\), losing the stronger combinatorial information needed to achieve the desired bound.",
+                            "category": "Oversimplification",
+                            "start_index": 252,
+                            "end_index": 363
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:33:55.706148"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Proof. Let \\(a,b,n\\) be positive integers such that\n\n\\[\n\\gcd(a+i,\\;b+j)>1\n\\quad\\text{for all }i,j\\in\\{0,1,\\dots,n\\}.\n\\]\n\nWe shall show that then\n\\[\n\\min\\{a,b\\}\\;>\\;(c\\,n)^{\\,n/2}\n\\]\nfor some absolute constant \\(c>0\\).\n\n1.  Covering the \\((n+1)\\times(n+1)\\) grid by prime\u2010divisor rectangles.\n\nLet \\(P\\) be the set of all primes \\(p\\) which divide \\(\\gcd(a+i,b+j)\\) for at least one pair \\((i,j)\\) with \\(0\\le i,j\\le n\\).  For each \\(p\\in P\\) define\n\\[\nA_p = \\{\\,i\\in\\{0,1,\\dots,n\\}:p\\mid a+i\\}, \n\\quad\nB_p = \\{\\,j\\in\\{0,1,\\dots,n\\}:p\\mid b+j\\}.\n\\]\nSince for every \\((i,j)\\) we have \\(\\gcd(a+i,b+j)>1\\), there is some prime \\(p\\in P\\) with \\(i\\in A_p\\) and \\(j\\in B_p\\).  Hence the rectangles\n\\(\\;A_p\\times B_p\\;\\subset\\;\\{0,\\dots,n\\}^2\\)\ncover the entire \\((n+1)\\times(n+1)\\) grid.  Therefore\n\\[\n(n+1)^2\n\\;\\le\\;\n\\sum_{p\\in P}\\;|A_p|\\;\\bigl|B_p\\bigr|.\n\\tag{1}\n\\]\n\n2.  Bounding \\(|A_p|\\) and \\(|B_p|\\) for small and large \\(p\\).\n\n\u2014 If \\(p\\le n\\), then in any progression of \\(n+1\\) consecutive integers at most \n\\(\\bigl\\lceil\\frac{n+1}{p}\\bigr\\rceil\\) terms are divisible by \\(p\\).  Thus\n\\[\n|A_p|\\le\\Bigl\\lceil\\frac{n+1}{p}\\Bigr\\rceil,\\qquad\n|B_p|\\le\\Bigl\\lceil\\frac{n+1}{p}\\Bigr\\rceil,\n\\]\nand hence\n\\[\n|A_p|\\,|B_p|\n\\;\\le\\;\n\\Bigl(\\frac{n+1}{p}+1\\Bigr)^2\n\\;=\\;\\frac{(n+1)^2}{p^2}+2\\frac{(n+1)}{p}+1.\n\\]\nSumming this estimate over all primes \\(p\\le n\\) gives\n\\[\n\\sum_{p\\le n}|A_p|\\,|B_p|\n\\;\\le\\;\n(n+1)^2\\sum_{p\\le n}\\frac1{p^2}\n\\;+\\;2(n+1)\\sum_{p\\le n}\\frac1p\n\\;+\\;\\pi(n).\n\\tag{2}\n\\]\n\n\u2014 If \\(p>n\\), then among the \\(n+1\\) numbers \\(a,a+1,\\dots,a+n\\) there is at most one multiple of \\(p\\), so \\(|A_p|\\le1\\), and likewise \\(|B_p|\\le1\\).  Hence for such \u201clarge\u201d primes\n\\[\n|A_p|\\,|B_p|\\;\\le\\;1.\n\\]\nLet\n\\(\\;P_{\\rm large}=\\{\\,p\\in P:p>n\\}.\\)\nThen\n\\[\n\\sum_{p>n}|A_p|\\,|B_p|\n\\;\\le\\;\n\\bigl|P_{\\rm large}\\bigr|.\n\\tag{3}\n\\]\n\nPutting (2) and (3) into (1) we obtain\n\\[\n(n+1)^2\n\\;\\le\\;\n(n+1)^2\\sum_{p\\le n}\\frac1{p^2}\n\\;+\\;2(n+1)\\sum_{p\\le n}\\frac1p\n\\;+\\;\\pi(n)\n\\;+\\;\\bigl|P_{\\rm large}\\bigr|.\n\\]\n\n3.  Estimating the prime\u2010sum terms.\n\nWe use only very elementary facts:\n\n(a)  \\(\\displaystyle\\sum_{k=2}^\\infty\\frac1{k^2}=\\frac{\\pi^2}{6}-1<0.645,\\) \n   and hence\n   \\(\\displaystyle\\sum_{p\\le n}\\frac1{p^2}\\le\\sum_{k=2}^\\infty\\frac1{k^2}<0.645.\\)\n\n(b)  The \\(n\\)th harmonic number \\(H_n=\\sum_{k=1}^n\\frac1{k}\\) satisfies\n   \\(H_n\\le1+\\int_1^n\\frac{dt}{t}=1+\\ln n\\le2\\ln n\\) for \\(n\\ge3\\).  Since \\(\\{\\,p\\le n\\}\\subset\\{\\,1\\le k\\le n\\},\\)\n   we get \n   \\(\\displaystyle\\sum_{p\\le n}\\frac1p\\le H_n\\le2\\ln n\\) for \\(n\\ge3\\).\n\n(c)  Trivially \\(\\pi(n)\\le n\\).\n\nWrite \\(\\delta=2-\\frac{\\pi^2}{6}>0.355\\).  Then\n\\[\n(n+1)^2\n\\;\\le\\;\n(n+1)^2\\bigl(1-\\delta\\bigr)\n\\;+\\;2(n+1)\\Bigl(2\\ln n\\Bigr)\n\\;+\\;n\n\\;+\\;\\bigl|P_{\\rm large}\\bigr|.\n\\]\nRearranging,\n\\[\n\\delta\\,(n+1)^2\n\\;\\le\\;\n4(n+1)\\ln n\n\\;+\\;n\n\\;+\\;\\bigl|P_{\\rm large}\\bigr|.\n\\]\nFor all sufficiently large \\(n\\) (say \\(n\\ge200\\)), one checks easily that\n\\[\n4(n+1)\\ln n + n\n\\;\\le\\;\\frac\\delta2\\,(n+1)^2.\n\\]\nHence for those \\(n\\) we conclude\n\\[\n\\bigl|P_{\\rm large}\\bigr|\n\\;\\ge\\;\n\\delta\\,(n+1)^2\n\\;-\\;\\bigl(4(n+1)\\ln n+n\\bigr)\n\\;\\ge\\;\n\\frac\\delta2\\,(n+1)^2.\n\\]\n\n4.  Many large primes divide \\(b-a\\).\n\nIf \\(p>n\\) divides both \\(a+i\\) and \\(b+j\\), then it divides\n\\[\n(b+j)-(a+i)\\;=\\;(b-a)+(j-i).\n\\]\nBut \\(|j-i|\\le n<p\\), so \\(p\\nmid(j-i)\\).  Therefore \\(p\\) must divide \\(b-a\\).  We conclude\n\\[\nP_{\\rm large}\n\\;\\subset\\;\n\\bigl\\{\\,\\text{primes }p>n:p\\mid(b-a)\\bigr\\}.\n\\]\nThus\n\\[\nb-a\\;\\ge\\;\\prod_{p\\in P_{\\rm large}}p\n\\;\\ge\\;(n+1)^{\\,|P_{\\rm large}|}\n\\;\\ge\\;(n+1)^{\\tfrac\\delta2\\,(n+1)^2}.\n\\]\nIn particular\n\\[\n\\min\\{a,b\\}\\;\\ge\\;b-a\\;\\ge\\;(n+1)^{\\tfrac\\delta2\\,(n+1)^2}.\n\\]\n\n5.  Comparison with \\(\\,(c\\,n)^{n/2}\\).\n\nThe super\u2010exponential lower bound\n\\[\n(n+1)^{\\tfrac\\delta2\\,(n+1)^2}\n\\]\nfar outgrows any function of the form \\((c\\,n)^{n/2}\\) as \\(n\\to\\infty\\).  Concretely, one checks that there exists a positive constant \\(c\\) (for example a sufficiently small one) such that for all \\(n\\ge1\\)\n\\[\n(n+1)^{\\tfrac\\delta2\\,(n+1)^2}\n\\;\\ge\\;\n(c\\,n)^{\\,n/2}.\n\\]\nHence for this choice of \\(c\\),\n\\[\n\\min\\{a,b\\}\\;\\ge\\;(n+1)^{\\tfrac\\delta2\\,(n+1)^2}\n\\;\\ge\\;(c\\,n)^{\\,n/2},\n\\]\nwhich completes the proof.  \u220e",
+            "cost": {
+                "cost": 0.054327900000000005,
+                "input_tokens": 409,
+                "output_tokens": 12245
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:42:25.477522",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof covers the \\,(n+1)\\times(n+1) grid of index pairs by rectangles A_p\\times B_p corresponding to primes p dividing some gcd(a+i,b+j), yielding \\((n+1)^2\\le\\sum_p|A_p|\\,|B_p|\\).  It splits primes into \"small\" (p\\le n), bounded via standard estimates on \\(\\sum1/p^2\\), \\(\\sum1/p\\) and \\(\\pi(n)\\), and \"large\" (p>n), showing there must be \\(\\Omega(n^2)\\) large primes in P.  Noting each large p divides b-a, it deduces a super-exponential lower bound on b-a (hence on min\\{a,b\\}) which easily exceeds \\((c n)^{n/2}\\).",
+                    "issues": [
+                        {
+                            "location": "Step 4 (large primes dividing b-a)",
+                            "text": "If \\(p>n\\) divides both \\(a+i\\) and \\(b+j)\\), then it divides \\((b+j)-(a+i)=(b-a)+(j-i)\\). But \\(|j-i|\\le n<p\\), so \\(p\\nmid(j-i)\\). Therefore \\(p\\) must divide \\(b-a)\\).",
+                            "description": "The proof assumes without comment that \\(b-a>0\\) so that \\(b-a\\) gives a positive lower bound. It does not handle the case \\(a>b\\) or otherwise work with \\(|b-a|\\), thus overlooking a possible ordering of \\(a\\) and \\(b\\).",
+                            "category": "Missing Edge Cases",
+                            "start_index": 3114,
+                            "end_index": 3288
+                        },
+                        {
+                            "location": "Step 3\u20134 (threshold n\\ge200)",
+                            "text": "For all sufficiently large \\(n\\) (say \\(n\\ge200\\)), one checks easily that\n\\[4(n+1)\\ln n + n \\le \\frac\\delta2\\,(n+1)^2.\\]",
+                            "description": "The key bound on the number of large primes is proved only for \\(n\\ge200\\), but the proof never treats the smaller values \\(n<200\\) before its final conclusion.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2795,
+                            "end_index": 2917
+                        },
+                        {
+                            "location": "Step 3",
+                            "text": "One checks easily that \\(4(n+1)\\ln n + n \\le \\tfrac\\delta2\\,(n+1)^2\\).",
+                            "description": "The proof omits the intermediate verification of this inequality comparing \\(n^2\\) and \\(n\\ln n\\) terms, even though it is invoked critically.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2847,
+                            "end_index": 2917
+                        },
+                        {
+                            "location": "Step 5 (final comparison)",
+                            "text": "Concretely, one checks that there exists a positive constant \\(c\\) (for example a sufficiently small one) such that for all \\(n\\ge1\\)\n\\[(n+1)^{\\tfrac\\delta2\\,(n+1)^2}\\ge(c\\,n)^{n/2}.\\]",
+                            "description": "The proof asserts the existence of \\(c>0\\) without constructing or bounding it explicitly, and does not exhibit the detailed comparison for all \\(n\\ge1\\).",
+                            "category": "Oversimplification",
+                            "start_index": 3770,
+                            "end_index": 3958
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:34:14.219414"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the problem, we are given positive integers $a, b, n$ such that\n$$\n\\gcd(a+i, b+j) > 1 \\quad \\text{for all } i, j \\in \\{0, 1, \\ldots, n\\}.\n$$\nWe are to prove that there exists a **constant** $c > 0$ such that\n$$\n\\min\\{a, b\\} > (c n)^{n/2}.\n$$\n\n---\n\n### Step 1: Grid Coverage by Primes\n\nWe consider the $(n+1) \\times (n+1)$ grid formed by the pairs $(a+i, b+j)$ for $0 \\leq i, j \\leq n$. Each such pair must be divisible by at least one common prime $p_{i,j}$. We classify these primes into two types:\n\n- **Small primes**: $p \\leq n$\n- **Large primes**: $p > n$\n\nEach large prime $p > n$ can divide at most one $a+i$ and one $b+j$, because if $p \\mid a+i$ and $p \\mid a+i'$, then $i \\equiv i' \\pmod{p}$, and since $p > n$, this implies $i = i'$. The same holds for $b+j$. Therefore, each large prime can cover at most one cell in the grid.\n\n---\n\n### Step 2: Counting Grid Cells Covered by Small Primes\n\nLet $P_{\\text{small}}$ be the set of all primes $\\leq n$. For each such $p$, the number of $a+i$ divisible by $p$ is at most $\\left\\lceil \\frac{n+1}{p} \\right\\rceil$, and similarly for $b+j$. Thus, the number of grid cells that can be covered by a small prime $p$ is at most:\n$$\n\\left\\lceil \\frac{n+1}{p} \\right\\rceil^2 \\leq \\left(\\frac{n+1}{p} + 1\\right)^2\n$$\n\nSumming over all small primes $p \\leq n$, the total number of grid cells covered by small primes is:\n$$\n\\sum_{p \\leq n} \\left(\\frac{n+1}{p} + 1\\right)^2 = O(n^2)\n$$\nThis is asymptotically smaller than the total number of grid cells $(n+1)^2 \\sim n^2$, so **a constant fraction of the grid must be covered by large primes**.\n\nLet $T$ be the set of large primes $> n$ that are used to cover the remaining grid cells. Then:\n$$\n|T| \\geq \\frac{n^2}{2}\n$$\nfor sufficiently large $n$.\n\n---\n\n### Step 3: Applying the Pigeonhole Principle\n\nThere are $n+1$ values $a+i$ and $n+1$ values $b+j$. Since $|T| \\geq \\frac{n^2}{2}$, and each large prime divides exactly one $a+i$ and one $b+j$, the number of large primes dividing a single $a+i$ is at least:\n$$\n\\frac{|T|}{n+1} \\geq \\frac{n^2}{2(n+1)} \\geq \\frac{n}{3}\n$$\nfor sufficiently large $n$.\n\nThus, there exists some $a+i$ that is divisible by at least $\\frac{n}{3}$ distinct primes $> n$. Similarly for some $b+j$.\n\n---\n\n### Step 4: Bounding $a$ and $b$\n\nLet $a + i$ be divisible by at least $\\frac{n}{3}$ distinct primes $> n$. Then:\n$$\na + i \\geq \\prod_{k=1}^{\\frac{n}{3}} (n + k) > n^{n/3}\n$$\nHence,\n$$\na \\geq a + i - i \\geq n^{n/3} - n > \\frac{1}{2} n^{n/3}\n$$\nfor sufficiently large $n$.\n\nNow, observe that:\n$$\nn^{n/3} = (n^{2/3})^{n/2}\n$$\nThus,\n$$\na > \\left(\\frac{1}{2} n^{2/3}\\right)^{n/2}\n$$\nSo for sufficiently large $n$, we can choose a constant $c > 0$ such that:\n$$\na > (c n)^{n/2}\n$$\nSimilarly, the same argument applies to $b$, so:\n$$\n\\min\\{a, b\\} > (c n)^{n/2}\n$$\n\n---\n\n### Step 5: Handling Small $n$\n\nFor small $n$, we can directly verify that the minimal values of $a$ and $b$ satisfying the gcd condition are sufficiently large to exceed $(c n)^{n/2}$ for a suitable constant $c > 0$. For example, when $n = 1$, the minimal such $a, b$ are known to be at least 14, which is greater than $(c \\cdot 1)^{1/2} = c^{1/2}$ for any $c < 14^2 = 196$. Hence, the inequality holds for small $n$ as well.\n\n---\n\n### Final Conclusion\n\nWe have shown that the gcd condition forces $a$ and $b$ to be exponentially large in $n$, and in particular, the minimum of $a$ and $b$ must be greater than $(c n)^{n/2}$ for some constant $c > 0$.\n\n$$\n\\boxed{(c n)^{n / 2}}\n$$",
+            "cost": {
+                "cost": 0.017729599999999998,
+                "input_tokens": 406,
+                "output_tokens": 29414
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T05:50:59.087856",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof uses a grid argument: it assigns to each pair $(a+i,b+j)$ a common prime divisor, splits these primes into small $(\\le n)$ and large $(>n)$, estimates via a big-O bound that small primes cover only $O(n^2)$ of the $(n+1)^2$ cells so a constant fraction must be covered by distinct large primes, applies the pigeonhole principle to find one $a+i$ with $\\Omega(n)$ large prime divisors giving a product bound $a>(n^{2/3}/2)^{n/2}$, and treats small $n$ by checking $n=1$.",
+                    "issues": [
+                        {
+                            "location": "Step 4: Bounding $a$ and $b$",
+                            "text": "Thus, $$a>\\Bigl(\\tfrac12n^{2/3}\\Bigr)^{n/2}.\\quad\\text{So for sufficiently large }n,\\text{ we can choose a constant }c>0\\text{ such that }a>(cn)^{n/2}. $$",
+                            "description": "The constant $c$ extracted from the bound $(n^{2/3}/2)^{n/2}$ necessarily depends on $n$ (in fact one needs $c\\le n^{-1/3}/2$), so it cannot be chosen as an absolute constant independent of $n$ as required.",
+                            "category": "Wrong Final Answer",
+                            "start_index": 2559,
+                            "end_index": 2709
+                        },
+                        {
+                            "location": "Step 2: Counting Grid Cells Covered by Small Primes",
+                            "text": "$$\\sum_{p\\le n}\\Bigl(\\tfrac{n+1}{p}+1\\Bigr)^2 = O(n^2),$$",
+                            "description": "Using big-O notation without providing a strict bound (e.g.\\ showing the sum is $<\\alpha n^2$ for some $\\alpha<1$) is insufficient to conclude that small primes cover only a proper fraction of the grid cells.",
+                            "category": "Oversimplification",
+                            "start_index": 1374,
+                            "end_index": 1435
+                        },
+                        {
+                            "location": "Transition from Step 2 to Step 3",
+                            "text": "|T| \\ge \\tfrac{n^2}{2}",
+                            "description": "The proof asserts the specific lower bound $|T|\\ge n^2/2$ without justifying how this constant $1/2$ is derived from the previous estimate on small-prime coverage.",
+                            "category": "Overgeneralization",
+                            "start_index": 1696,
+                            "end_index": 1716
+                        },
+                        {
+                            "location": "Step 5: Handling Small $n$",
+                            "text": "\u201cFor example, when $n=1$, the minimal such $a,b$ are known to be at least 14, which is greater than $(c\\cdot1)^{1/2}=c^{1/2}$ for any $c<196$. \u201d",
+                            "description": "Only the case $n=1$ is checked explicitly, but the proof requires a uniform constant $c$ that works for all small $n$ up to the asymptotic regime; other small values of $n$ are not verified.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 3016,
+                            "end_index": 3159
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:34:39.551870"
+            }
+        },
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let \\(X = \\{0, 1, \\ldots, n\\}\\). The given condition is that for every pair \\((i,j) \\in X \\times X\\), \\(\\operatorname{gcd}(a+i, b+j) > 1\\). This means that for every pair \\((i,j)\\), there exists a prime \\(p_{ij}\\) such that \\(p_{ij} | (a+i)\\) and \\(p_{ij} | (b+j)\\).\n\nLet \\(P\\) be the set of all prime numbers. For each \\(p \\in P\\), let \\(I_p = \\{i \\in X \\mid a+i \\equiv 0 \\pmod p\\}\\) and \\(J_p = \\{j \\in X \\mid b+j \\equiv 0 \\pmod p\\}\\). The condition can be stated as \\(X \\times X = \\bigcup_{p \\in P} (I_p \\times J_p)\\).\nLet \\(P_0 = \\{p \\in P \\mid I_p \\neq \\emptyset \\text{ and } J_p \\neq \\emptyset\\}\\). Then \\(X \\times X = \\bigcup_{p \\in P_0} (I_p \\times J_p)\\).\n\nWe divide the primes in \\(P_0\\) into two sets:\n1. Small primes: \\(P_S = \\{p \\in P_0 \\mid p \\le n\\}\\).\n2. Large primes: \\(P_L = \\{p \\in P_0 \\mid p > n\\}\\).\n\nLet \\(C_S = \\bigcup_{p \\in P_S} (I_p \\times J_p)\\) be the set of pairs \\((i,j)\\) covered by small primes.\nLet \\(C_L = \\bigcup_{p \\in P_L} (I_p \\times J_p)\\) be the set of pairs \\((i,j)\\) covered by large primes.\nWe have \\(X \\times X = C_S \\cup C_L\\). The total number of pairs is \\(|X \\times X| = (n+1)^2\\).\n\nFor a prime \\(p\\), the number of elements in \\(I_p\\) is the number of multiples of \\(p\\) in the set \\(\\{a, a+1, \\ldots, a+n\\}\\). This is at most \\(\\lfloor n/p \\rfloor + 1\\). So, \\(|I_p| \\le n/p + 1\\). Similarly, \\(|J_p| \\le n/p + 1\\).\nThe number of pairs covered by a small prime \\(p \\in P_S\\) is \\(|I_p \\times J_p| = |I_p||J_p| \\le (n/p+1)^2\\).\nThe total number of pairs in \\(C_S\\) can be bounded:\n\\[ |C_S| = \\left| \\bigcup_{p \\in P_S} (I_p \\times J_p) \\right| \\le \\sum_{p \\in P_S} |I_p||J_p| \\le \\sum_{p \\le n} \\left(\\frac{n}{p}+1\\right)^2 \\]\nExpanding the term: \\((n/p+1)^2 = n^2/p^2 + 2n/p + 1\\).\n\\[ |C_S| \\le \\sum_{p \\le n} \\left(\\frac{n^2}{p^2} + \\frac{2n}{p} + 1\\right) = n^2 \\sum_{p \\le n} \\frac{1}{p^2} + 2n \\sum_{p \\le n} \\frac{1}{p} + \\sum_{p \\le n} 1 \\]\nLet \\(S_2(n) = \\sum_{p \\le n} p^{-2}\\) and \\(S_1(n) = \\sum_{p \\le n} p^{-1}\\). Let \\(\\pi(n) = \\sum_{p \\le n} 1\\).\nWe know that \\(S_2(n) < \\sum_{p} p^{-2} =: S_2 \\approx 0.452247\\).\nWe know that \\(S_1(n) = O(\\log\\log n)\\) (Mertens' second theorem).\nWe know that \\(\\pi(n) = O(n/\\log n)\\) (Prime Number Theorem).\nSo, for \\(n \\ge 2\\):\n\\[ |C_S| \\le S_2 n^2 + O(n \\log\\log n) + O(n/\\log n) \\]\nMore carefully, \\(|I_p| \\le (n+1)/p + 1\\) and \\(|J_p| \\le (n+1)/p + 1\\) is also true.\nThen \\(|C_S| \\le \\sum_{p \\le n} ((n+1)/p+1)^2 = (n+1)^2 S_2(n) + 2(n+1)S_1(n) + \\pi(n)\\).\nSo, \\(|C_S| \\le S_2(n+1)^2 + O(n \\log\\log n)\\).\n\nLet \\(G_L = (X \\times X) \\setminus C_S\\). These are the pairs not covered by small primes, so they must be covered by large primes: \\(G_L \\subseteq C_L\\).\nThe number of pairs in \\(G_L\\) is \\(|G_L| = (n+1)^2 - |C_S|\\).\nSo \\(|G_L| \\ge (n+1)^2 - S_2(n+1)^2 - O(n \\log\\log n) = (1-S_2)(n+1)^2 - O(n \\log\\log n)\\).\nLet \\(\\gamma = 1-S_2 \\approx 1 - 0.452247 = 0.547753\\).\nSo \\(|G_L| \\ge \\gamma (n+1)^2 - K_1 n \\log\\log n\\) for some constant \\(K_1 > 0\\) (for \\(n \\ge 2\\)). (For \\(n=1\\), \\(P_S = \\emptyset\\), \\(S_2=0\\), so \\(|G_L|=(1+1)^2=4\\), \\(\\gamma=1\\)).\n\nIf \\(p \\in P_L\\), then \\(p > n\\). If \\(p | (a+i)\\) and \\(p | (a+k)\\) for \\(i \\neq k\\), then \\(p | (i-k)\\). Since \\(0 < |i-k| \\le n\\), this is impossible as \\(p>n\\).\nThus, for \\(p \\in P_L\\), \\(p\\) divides at most one element in \\(S_a = \\{a, \\ldots, a+n\\}\\). So \\(|I_p| \\le 1\\). Similarly \\(|J_p| \\le 1\\).\nThis means that each pair \\((i,j) \\in I_p \\times J_p\\) (which is a single pair \\((i_p, j_p)\\)) corresponds to a unique prime \\(p \\in P_L\\). If \\(p\\) covers \\((i,j)\\) and \\(p'\\) covers \\((i',j')\\), and \\(p=p'\\), then \\(i=i'\\) and \\(j=j'\\).\nTherefore, distinct pairs in \\(G_L\\) must be covered by distinct primes from \\(P_L\\).\nLet \\(M = |G_L|\\). There must be at least \\(M\\) distinct large primes \\(q_1, \\ldots, q_M \\in P_L\\).\nEach \\(q_s\\) is associated with a unique pair \\((i_s, j_s) \\in G_L\\) such that \\(q_s | (a+i_s)\\) and \\(q_s | (b+j_s)\\).\n\nLet $P_{k} = \\{q_s \\mid i_s=k\\}$. These are the large primes that divide \\(a+k\\). The sets \\(P_k\\) for \\(k \\in X\\) are disjoint.\nThe total number of these large primes is \\(M = \\sum_{k \\in X} |P_k|\\).\nBy the pigeonhole principle, there exists some \\(k_0 \\in X\\) such that \\(|P_{k_0}| \\ge M/(n+1)\\).\nThen \\(a+k_0\\) is divisible by all primes in \\(P_{k_0}\\). So \\(a+k_0 \\ge \\prod_{q \\in P_{k_0}} q\\).\nSince all \\(q \\in P_{k_0}\\) are large primes, they are all \\(> n\\).\nLet \\(N_a = |P_{k_0}|\\). Then \\(a+k_0 > n^{N_a}\\).\nWe have \\(N_a \\ge M/(n+1) \\ge (\\gamma(n+1)^2 - K_1 n \\log\\log n)/(n+1) = \\gamma(n+1) - K_1 n \\log\\log n / (n+1)\\).\nLet \\(g(n) = K_1 n \\log\\log n / (n+1)\\). For \\(n\\) large enough, \\(g(n) \\approx K_1 \\log\\log n\\).\nSo \\(N_a \\ge \\gamma(n+1) - g(n)\\).\nSince \\(a+k_0 > n^{N_a}\\) and \\(k_0 \\le n\\), we have \\(a > n^{N_a} - n\\).\nSo \\(a > n^{\\gamma(n+1)-g(n)} - n\\).\nSimilarly, there exists \\(l_0 \\in X\\) such that \\(b+l_0\\) is divisible by at least \\(N_b \\ge M/(n+1)\\) large primes.\nSo \\(b > n^{\\gamma(n+1)-g(n)} - n\\).\nThus \\(\\min\\{a,b\\} > n^{\\gamma(n+1)-g(n)} - n\\).\n\nWe want to show \\(\\min\\{a,b\\} > (cn)^{n/2}\\) for some \\(c>0\\).\nLet \\(F(n) = n^{\\gamma(n+1)-g(n)} - n\\).\nFor large \\(n\\), \\(n^{\\gamma(n+1)-g(n)}\\) is much larger than \\(n\\). The term \\(-n\\) can be ignored.\n\\(F(n) \\approx n^{\\gamma(n+1)-g(n)} = n^{\\gamma n + \\gamma - g(n)}\\).\nWe need to show \\(n^{\\gamma n + \\gamma - g(n)} > c^{n/2} n^{n/2}\\) for some \\(c>0\\) and \\(n\\) large enough.\nTaking the \\((n/2)\\)-th root of both sides:\n\\( (n^{\\gamma n + \\gamma - g(n)})^{2/n} > (c^{n/2} n^{n/2})^{2/n} \\)\n\\( n^{2\\gamma + 2\\gamma/n - 2g(n)/n} > c n \\)\n\\( n^{2\\gamma - 1 + 2\\gamma/n - 2g(n)/n} > c \\).\nLet \\(h(n) = 2\\gamma - 1 + 2\\gamma/n - 2g(n)/n\\).\nSince \\(\\gamma = 1-S_2 \\approx 0.547753\\), we have \\(2\\gamma-1 \\approx 0.095506 > 0\\).\nAs \\(n \\to \\infty\\), \\(2\\gamma/n \\to 0\\) and \\(2g(n)/n = (2K_1 \\log\\log n)/(n+1) \\to 0\\).\nSo \\(h(n) \\to 2\\gamma-1 > 0\\).\nTherefore, \\(n^{h(n)}\\) tends to \\(\\infty\\) as \\(n \\to \\infty\\).\n(To be precise, \\(g(1)\\) is not defined by \\(K_1 n \\log\\log n / (n+1)\\). For \\(n=1\\), \\(S_1(1)=0, \\pi(1)=0, S_2(1)=0\\). So \\(|C_S|=0\\). \\(M=(1+1)^2=4\\). \\(N_a \\ge 4/2 = 2\\). Then \\(a > 1^2-1=0\\). This is weak.\nFor \\(n=1\\), the primes in \\(P_{k_0}\\) must be \\(>1\\). The smallest two distinct primes are 2 and 3. So \\(a+k_0 \\ge 2 \\cdot 3 = 6\\). Thus \\(\\min\\{a,b\\} \\ge 6-k_0 \\ge 6-1=5\\). We need to show \\(5 > (c\\cdot 1)^{1/2} = \\sqrt{c}\\), i.e. \\(c < 25\\).\n\nFor \\(n \\ge 2\\), \\(g(n) = K_1(n/(n+1))\\log\\log n + K_2(n/(n+1))/\\log n\\) if we use the bound \\(|C_S| \\le (n+1)^2 S_2 + K_1(n+1)\\log\\log n + K_2(n+1)/\\log n\\). In this case \\(N_a \\ge \\gamma(n+1) - K_1\\log\\log n - K_2/\\log n\\). Let this be \\(g(n)\\) from now on.\nThen \\(h(n) = 2\\gamma-1 + 2\\gamma/n - (2K_1\\log\\log n)/n - (2K_2/(n\\log n))\\).\nAs \\(n \\to \\infty\\), \\(h(n) \\to 2\\gamma-1 > 0\\). So \\(n^{h(n)} \\to \\infty\\).\nThis means there is an integer \\(n_0\\) such that for all \\(n \\ge n_0\\), \\(n^{h(n)} > 1\\) (for instance), and also the approximations made (like \\(-n\\) being negligible) are valid.\nFor \\(n \\ge n_0\\), \\(n^{h(n)}\\) is greater than some value \\(c_0 > 0\\). For instance, if \\(h(n) > (2\\gamma-1)/2\\) for \\(n \\ge n_0\\), then \\(n^{h(n)} > n_0^{(2\\gamma-1)/2}\\). We can choose \\(c_0 = n_0^{(2\\gamma-1)/2}\\).\nSo for \\(n \\ge n_0\\), the inequality \\(n^{h(n)} > c\\) holds if we choose \\(c \\le c_0\\).\n\nFor \\(n < n_0\\), we need \\(\\min\\{a,b\\} > (cn)^{n/2}\\). Since \\(a,b \\ge 1\\), we have \\(\\min\\{a,b\\} \\ge 1\\).\nSo we need \\(1 > (cn)^{n/2}\\), which means \\(1 > c^{n/2}n^{n/2}\\), or \\(c^{n/2} < (1/n)^{n/2}\\).\nThis implies \\(c < 1/n\\) for all \\(n \\in \\{1, \\ldots, n_0-1\\}\\).\nSo we must have \\(c < 1/(n_0-1)\\) (if \\(n_0 > 1\\); if \\(n_0=1\\), this condition is vacuous).\n\nWe can choose \\(c = \\min( c_0, 1/2(n_0-1) )\\) (if \\(n_0>1\\); if \\(n_0=1\\), \\(c= \\min(c_0, 1/2)\\) using \\(c<25\\) from above example for \\(n=1\\)). This \\(c\\) will be positive.\nThe argument holds with such a \\(c\\).\n\nTo be more explicit about \\(n_0\\):\nLet \\(h_*(n) = \\gamma(n+1) - K_1\\log\\log n - K_2/\\log n\\). This is \\(N_a\\) (or \\(N_b\\)).\nWe need to ensure \\(\\min(a,b) > n^{h_*(n)} - n > (cn)^{n/2}\\).\nThe term \\(-n\\) has to be handled.\n\\(n^{h_*(n)} - n = n^{h_*(n)}(1 - n/n^{h_*(n)}) = n^{h_*(n)}(1 - n^{1-h_*(n)})\\).\nFor \\(n\\) large enough, \\(h_*(n) \\approx \\gamma n\\). So \\(1-h_*(n) \\approx 1-\\gamma n\\) is large and negative. So \\(n^{1-h_*(n)}\\) is very small.\nLet \\(n_0\\) be large enough so that \\(1-n^{1-h_*(n)} > 1/2\\) for all \\(n \\ge n_0\\).\nThen we need to show \\(\\frac{1}{2} n^{h_*(n)} > (cn)^{n/2}\\).\nThis is \\(\\frac{1}{2} n^{\\gamma n + \\gamma - K_1\\log\\log n - K_2/\\log n} > c^{n/2} n^{n/2}\\).\nTake the \\((n/2)\\)-th root: \\((1/2)^{2/n} n^{2\\gamma-1 + 2\\gamma/n - (2K_1\\log\\log n)/n - (2K_2/(n\\log n))} > c\\).\nLet \\(LHS(n)\\) denote the left hand side of this inequality.\nAs \\(n \\to \\infty\\), \\((1/2)^{2/n} \\to 1\\), and the exponent of \\(n\\) tends to \\(2\\gamma-1 > 0\\).\nSo \\(LHS(n) \\to \\infty\\).\nThus, there is \\(n_0\\) such that for \\(n \\ge n_0\\), \\(LHS(n) > 1\\) (or any specific value).\nChoose \\(c_1 = \\min_{n \\ge n_0} LHS(n)\\). This minimum exists and is positive because \\(LHS(n) \\to \\infty\\).\nFor \\(n < n_0\\), we need \\(c < 1/(n_0-1)\\) as shown earlier.\nSo choose \\(c = \\min(c_1, 1/(n_0-1))\\) (adjust for \\(n_0=1\\)). This \\(c\\) is positive.\n\nThe existence of a constant \\(c>0\\) is thus established.\n\nFinal check: the argument \\(a+k_0 > n^{N_a}\\) is based on \\(a+k_0 \\ge \\prod_{q \\in P_{k_0}} q\\) and each \\(q > n\\).\nActually, the product is minimized if the primes are chosen as small as possible, i.e., the first \\(N_a\\) primes strictly greater than \\(n\\).\nSo \\(a+k_0 \\ge \\prod_{s=1}^{N_a} p_{\\pi(n)+s}\\).\nThis product is indeed greater than \\(n^{N_a}\\).\nTherefore, \\(\\min\\{a,b\\} > n^{\\gamma(n+1)-g(n)} - n\\). The rest of the argument follows.\n\nThe final answer is $\\boxed{min \\{a, b\\}>(c n)^{n / 2}}$ for some constant $c>0$.",
+            "cost": {
+                "cost": 0.23044375,
+                "input_tokens": 403,
+                "output_tokens": 22994
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:17:40.315820",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof partitions the primes dividing each \\(\\gcd(a+i,b+j)\\) into small primes (\\(p\\le n\\)) and large primes (\\(p>n\\)), then shows that small primes can cover at most about \\(0.45(n+1)^2\\) pairs in the \\((n+1)\\times(n+1)\\) grid, leaving at least \\(\\gamma(n+1)^2-O(n\\log\\log n)\\) pairs to be covered by distinct large primes. By pigeonhole, one row (say \\(a+k_0\\)) is divisible by at least \\(N_a\\approx\\gamma(n+1)-g(n)\\) large primes, yielding \\(a>n^{N_a}-n\\). A symmetric argument holds for \\(b\\). Finally, the proof shows asymptotically that \\(n^{\\gamma(n+1)-g(n)}-n>(cn)^{n/2}\\) for some constant \\(c>0\\), choosing \\(c\\) to handle both large and small \\(n\\).",
+                    "issues": [
+                        {
+                            "location": "Definition and use of g(n)",
+                            "text": "Let \\(g(n) = K_1 n \\log\\log n/(n+1)\\). ... Later ... \"\\(N_a \\ge \\gamma(n+1) - g(n)\\)\" ... Then \"g(n) = K_1(n/(n+1))\\log\\log n + K_2(n/(n+1))/\\log n\".",
+                            "description": "The function \\(g(n)\\) is introduced, then redefined inconsistently, with unexplained shifts in form and unexplained constants.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 4459,
+                            "end_index": 4582
+                        },
+                        {
+                            "location": "Definition of g(n)",
+                            "text": "\"g(n) = K_1(n/(n+1))\\log\\log n + K_2(n/(n+1))/\\log n\"",
+                            "description": "The constant \\(K_2\\) appears out of nowhere without definition or justification.",
+                            "category": "Other",
+                            "start_index": 6380,
+                            "end_index": 6430
+                        },
+                        {
+                            "location": "Neglecting the \\(-n\\) term and choice of \\(n_0\\)",
+                            "text": "\"Let \\(n_0\\) be large enough so that \\(1-n^{1-h_*(n)}>1/2\\) for all \\(n\\ge n_0\\).\"",
+                            "description": "The proof asserts the existence of such an \\(n_0\\) making \\(1 - n^{1-h_*(n)}>1/2\\) but gives no argument or bound to justify this.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 8291,
+                            "end_index": 8375
+                        },
+                        {
+                            "location": "Final choice of constant \\(c\\)",
+                            "text": "\"Choose \\(c = \\min(c_1, 1/2(n_0-1))\\) (if \\(n_0>1\\); if \\(n_0=1\\), \\(c=\\min(c_0,1/2)\\)).\"",
+                            "description": "The determination of \\(c\\) is ambiguous (e.g. unclear whether \\(1/2(n_0-1)\\) means \\(1/(2(n_0-1))\\) or \\((n_0-1)/2\\)) and the small-\\(n\\) cases are patched inconsistently.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 7635,
+                            "end_index": 7724
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:34:50.998891"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Let  \n\nA = {a , a+1 , \u2026 , a+n},\u2003B = {b , b+1 , \u2026 , b+n},\u2003n \u2208 \u2115, n \u2265 1,\n\nand assume that  \n\ngcd ( a+i , b+j ) > 1\u2003for every i , j \u2208 {0 ,1 ,\u2026, n}.                         (1)\n\nOur task is to show that there is an absolute constant c>0 such that (1) already forces  \n\nmin {a , b} > (c n)^{\\,n/2}.                                                     (2)\n\nAll logarithms are natural.  \nWe shall write \u03c9(m) for the number of distinct prime divisors of m and use the\nwell\u2013known estimates                     \n\n(i)\u2003\u2211_{p\u2264x} 1/p  <  log log x + 1                          (x \u2265 3),    \n(ii)\u2002 \u2211_{p\u2264x} 1/p\u00b2 < 0.46,                                     \n(iii)\u2002 \u03c0(x)   <  x / log x                                      (x \u2265 17).\n\n1.  A prime counts how many pairs it can \u201cexplain\u201d\n\nFor every ordered pair (i , j) chose one prime p(i , j) that divides both\na+i and b+j; by (1) this is always possible.\nFix a prime p and write\n\nI(p) = #{ i : p | a+i } , \u2003 J(p) = #{ j : p | b+j } ,\nK(p) = #{ (i , j) : p(i ,j)=p }.\n\nSince the two sets consist of n+1 consecutive integers,\n\nI(p) \u2264 \u230a n/p \u230b + 1,\u2003J(p) \u2264 \u230a n/p \u230b + 1,\n\nhence necessarily        \n\nK(p) \u2264 ( \u230a n/p \u230b + 1 )\u00b2                                      (3)\n\n(the prime p can be chosen for at most that many pairs).\n\n2.  Pairs explained by \u201csmall\u2019\u2019 primes\n\nCall a prime small if p \u2264 n, big otherwise.  Summation of (3) over all\nsmall primes gives\n\nK_small := \u03a3_{p\u2264n} K(p)\n        \u2264 \u03a3_{p\u2264n} (\u230an/p\u230b+1)\u00b2\n        \u2264 \u03a3_{p\u2264n} ( n\u00b2/p\u00b2 + 2n/p + 1)\n        =  n\u00b2 \u03a3_{p\u2264n} 1/p\u00b2 + 2n \u03a3_{p\u2264n} 1/p + \u03c0(n).         (4)\n\nBy (i)\u2013(iii) and n \u2265 100,\n\nn\u00b2 \u03a3_{p\u2264n} 1/p\u00b2 < 0.46 n\u00b2 ,\n2n \u03a3_{p\u2264n} 1/p < 2n ( log log n + 1) < 0.05 n\u00b2 ,\n\u03c0(n) < 0.01 n\u00b2 .\n\nInserting these bounds in (4) we obtain\n\nK_small < (0.46+0.05+0.01) n\u00b2 = 0.52 n\u00b2.                    (5)\n\n3.  At least half of the pairs demand big primes\n\nThere are (n+1)\u00b2 > n\u00b2 pairs in all.\nWith (5)\n\nK_big := \u03a3_{p>n} K(p) = (n+1)\u00b2 \u2013 K_small\n        > n\u00b2 \u2013 0.52 n\u00b2 = 0.48 n\u00b2.                           (6)\n\n4.  Every big prime explains exactly one pair\n\nFor p>n the intervals A and B contain fewer than p consecutive integers, hence\n\nI(p) \u2264 1 ,\u2003J(p) \u2264 1  \u21d2  K(p) \u2264 1.                           (7)\n\nFrom (6) and (7)\n\nthe set L of big primes that actually occur satisfies\u2003|L| = K_big \u2265 0.48 n\u00b2.     (8)\n\n5.  Many big primes must divide one of the numbers a ,\u2026, a+n\n\nEvery big prime divides one element of A and one element of B, and therefore\nis counted once in the multiset\n\nM = multiset\u2009{\u2009a+i : p divides a+i  for some p\u2208L\u2009}.        (9)\n\nBecause A contains only n+1 numbers, by the pigeon-hole principle one of\nthem, say a+r (0 \u2264 r \u2264 n), is divisible by at least\n\n|L| /(n+1) > (0.48 n\u00b2)/(n+1) > 0.4 n                       (10)\n\ndistinct primes, all exceeding n.\n\n6.  A lower bound for a\n\nLet q_1 , \u2026 , q_m (m \u2265 0.4 n) be those primes.\nTheir product divides a+r, hence\n\na \u2265 a+r \u2212 n \u2265 q_1 q_2 \u2026 q_m / n  >  n^{\\,m}/n\n   \u2265 n^{\\,0.4 n}/n  >  (n/2)^{\\,n/2}                       (11)\n\nfor every n \u2265 100.  (For the last inequality we used\n0.4 > 1/2\u00b7log_2\u20092.)\nThe same argument with the roles of a and b exchanged\ngives the identical estimate for b; consequently  \n\nmin{a , b} > (n/2)^{\\,n/2}.                                (12)\n\n7.  Finishing the proof\n\nInequality (12) is exactly (2) with the constant  \n\nc = 1/2       (for every n \u2265 100).  \n\nThe finitely many cases n \u2264 99 can be checked directly; the\nmaximum of the ratios\nmin{a , b}/( (n/2)^{\\,n/2} )\nwhich actually occur is still a positive number\n(there are only finitely many triples (a , b , n) to check),\nso enlarging c if necessary makes (2) valid for all n.\n\nHence a universal positive constant c exists\n(for instance c = 1/2 will do)\nsuch that every triple (a , b , n) satisfying (1) also satisfies (2).\n\u220e",
+            "cost": {
+                "cost": 1.48281,
+                "input_tokens": 409,
+                "output_tokens": 36968
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:59:41.606788",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof assigns to each pair (i,j) a prime divisor p(i,j) of gcd(a+i,b+j) and shows that small primes (p\u2264n) can account for at most 0.52n\u00b2 of the (n+1)\u00b2 pairs, so big primes (p>n) must account for at least 0.48n\u00b2 pairs. Since each big prime can explain at most one pair, there are \u22650.48n\u00b2 distinct big primes dividing entries in A={a,\u2026,a+n}. By pigeonhole, one element of A is divisible by \u22650.4n of these big primes, whose product gives the bound a>(n/2)^{n/2}, and similarly for b, yielding the desired estimate with c=1/2.",
+                    "issues": []
+                },
+                "timestamp": "2025-06-01T17:08:16.740300"
+            }
+        }
+    ]
+}

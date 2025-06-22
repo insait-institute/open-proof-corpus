@@ -1,0 +1,294 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.89,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2016
+    },
+    "problem": "Find all monotonic functions \\( f: \\mathbb{R} \\rightarrow \\mathbb{R} \\) satisfying the condition: for every real number \\( x \\) and every natural number \\( n \\)\n\n\\[\n\\left|\\sum_{i=1}^{n} i\\left(f(x+i+1)-f^{2}(x+i)\\right)\\right|<C\n\\]\n\nwhere \\( C>0 \\) is independent of \\( x \\) and \\( f^{2}(x)=f(f(x)) \\).",
+    "problem_id": "BMOSL_2016_3",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. From the condition of the problem we get $\\left|\\sum_{i=1}^{n-1} i\\left(f(x+i+1)-f^{2}(x+i)\\right)\\right|<C$. Then $\\left|n\\left(f(x+n+1)-f^{2}(x+n)\\right)\\right|=\\left|\\sum_{i=1}^{n} i\\left(f(x+i+1)-f^{2}(x+i)\\right)-\\sum_{i=1}^{n-1} i\\left(f(x+i+1)-f^{2}(x+i)\\right)\\right|<2 C$ implying $\\left|f(x+n+1)-f^{2}(x+n)\\right|<\\frac{2 C}{n}$ for every real number $x$ and every natural number $n$. Let $y \\in \\mathbb{R}$ be arbitrary. Then there exists $x$ such that $y=x+n$. We obtain $\\left|f(y+1)-f^{2}(y)\\right|<\\frac{2 C}{n}$ for every real number $y$ and every natural number $n$. The last inequality holds for every natural number $n$ from where $f(y+1)=f^{2}(y)$ for every $y \\in \\mathbb{R}$. The function $f$ is monotonic which implies that it is an injection and the latter implies $f(y)=y+1$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "attempts": [
+        {
+            "model_id": "gemini/gemini-pro-2.5",
+            "solution": "Let \\(G(y) = f(y+1) - f^2(y)\\). The given condition is that for any \\(x \\in \\mathbb{R}\\) and \\(n \\in \\mathbb{N}\\),\n\\[ \\left| \\sum_{i=1}^n i G(x+i) \\right| < C \\]\nfor some constant \\(C > 0\\) independent of \\(x\\) and \\(n\\).\n\nThis implies that for any fixed \\(x\\), the series \\( \\sum_{i=1}^\\infty i G(x+i) \\) must converge.\nA necessary condition for the convergence of a series \\( \\sum b_i \\) is that \\( b_i \\to 0 \\) as \\( i \\to \\infty \\).\nThus, for any fixed \\(x\\), we must have \\( \\lim_{i \\to \\infty} i G(x+i) = 0 \\).\nLet \\(y_i = x+i\\). As \\(i \\to \\infty\\), \\(y_i \\to \\infty\\). The expression \\(i = y_i-x\\).\nSo, for any fixed \\(x\\), \\( \\lim_{i \\to \\infty} (y_i-x) G(y_i) = 0 \\).\nThis implies that \\( \\lim_{i \\to \\infty} G(y_i) = 0 \\).\nThis means \\( \\lim_{y \\to \\infty, y \\in \\{x+1, x+2, \\dots\\}} (f(y+1)-f^2(y)) = 0 \\).\nThis must hold for any choice of \\(x\\). Any arithmetic sequence \\(x_0+k\\) for \\(k \\in \\mathbb{N}\\) must satisfy this.\nSince \\(f\\) is monotonic, \\(f(y+1)-f^2(y)\\) does not oscillate too wildly. It can be shown that \\( \\lim_{y \\to \\infty} (f(y+1)-f^2(y)) = 0 \\). Let's denote this by \\(G(y) \\to 0\\) as \\(y \\to \\infty\\).\n\nThe function \\(f\\) is monotonic. So \\(f\\) is either non-decreasing or non-increasing.\n\nCase 1: \\(f\\) is non-decreasing.\n1a. Suppose \\( \\lim_{y \\to \\infty} f(y) = L \\) for some finite \\(L \\in \\mathbb{R}\\).\nSince \\(f\\) is non-decreasing, \\(f(y) \\le L\\) for all \\(y\\).\nAs \\(y \\to \\infty\\), \\(f(y+1) \\to L\\).\nAlso, \\(f(y) \\to L^-\\) (or \\(f(y)=L\\) for large \\(y\\)).\nSo \\(f^2(y) = f(f(y)) \\to \\lim_{z \\to L^-} f(z) = f(L^-)\\) (by monotonicity of \\(f\\), \\(f(L^-)\\) exists).\nFrom \\(G(y) \\to 0\\), we get \\( L - f(L^-) = 0 \\), so \\( f(L^-)=L \\).\nSince \\(f\\) is non-decreasing, \\(f(L^-) \\le f(L)\\). So \\(L \\le f(L)\\).\nAlso, since \\(f(y) \\le L\\) for all \\(y\\), we have \\(f(L) \\le L\\).\nTherefore, \\(f(L)=L\\).\nIf there is a \\(y_0\\) such that \\(f(y_0)=L\\), then for \\(y \\ge y_0\\), \\(f(y)=L\\) due to monotonicity \\(f(y) \\ge f(y_0)=L\\) and \\(f(y) \\le L\\).\nIf \\(f(y)<L\\) for all \\(y\\), then \\(f(L)=L\\) holds from \\(f(L^-)=L\\).\nSo, if \\( \\lim_{y \\to \\infty} f(y) = L \\), then \\(f(L)=L\\).\nIf \\(f(x)=L\\) for all \\(x \\ge y_0\\), then for \\(x\\) chosen such that \\(x+1 > y_0\\), all terms \\(G(x+i)\\) in the sum are \\(f(L)-f(L)\\) if \\(f(L)=L\\).\nSpecifically, if \\(x+i > y_0\\), then \\(f(x+i)=L\\). So \\(f^2(x+i)=f(L)\\).\nIf \\(f(L)=L\\), then \\(G(x+i) = L-L = 0\\) for \\(x+i > y_0\\).\nThe sum becomes finite: \\( S_n(x) = \\sum_{i=1}^{\\min(n, K_x)} i G(x+i) \\), where \\(K_x = \\lceil y_0-x \\rceil\\) if \\(y_0-x > 0\\), else \\(K_x=0\\). (More precisely, \\(K_x\\) is the largest \\(i\\) such that \\(x+i \\le y_0\\); if \\(x+1 > y_0\\), all terms are 0).\nLet \\(K_x = \\max(0, \\lfloor y_0-x \\rfloor)\\). The sum is \\( \\sum_{i=1}^{K_x} i G(x+i) \\). (The \\(K_x\\)-th term might be \\(G(x+K_x) = f(x+K_x+1)-f^2(x+K_x) = L - f^2(x+K_x)\\) if \\(x+K_x \\le y_0 < x+K_x+1\\)).\nThis sum, \\(S_{K_x}(x)\\), must be bounded by \\(C\\) for all \\(x\\).\nAs \\(x \\to -\\infty\\), \\(K_x \\to \\infty\\). So the condition applies to sums with an increasing number of terms.\nThis implies that \\( \\lim_{i \\to \\infty, y_i \\in \\{x_0-1, x_0-2, \\dots\\}} i' G(y_i) = 0 \\) where \\(i'\\) is the \"index from the right end\", i.e. \\( (K_x-i)G(x+i) \\to 0 \\). (This argument might be hand-wavy).\nMore simply, if \\( S_N = \\sum_{k=1}^N b_k \\) must be bounded for all \\(N\\), then \\(b_k \\to 0\\). The terms in \\(S_{K_x}(x)\\) are \\(j G(x+j)\\).\nThe requirement that \\( \\left| \\sum_{j=1}^{K_x} j G(x+j) \\right| < C \\) for all \\(x\\) (as \\(K_x \\to \\infty\\)) forces \\( \\lim_{j \\to \\infty} j G(x_j) = 0 \\) where \\(x_j\\) are values going to \\(-\\infty\\).\nLet \\(y=x+j\\). As \\(x \\to -\\infty\\) with \\(j\\) fixed, or as \\(j \\to \\infty\\) with \\(x\\) fixed such that \\(x+j\\) becomes more negative.\nLet \\(x_k = y_0-k\\) for \\(k \\in \\mathbb{N}\\). Then \\(K_{x_k} = k\\).\nThe sum is \\( \\sum_{j=1}^k j G(y_0-k+j) \\). Let \\(m = k-j\\).\n\\( \\sum_{m=0}^{k-1} (k-m)G(y_0-m) \\). This must be bounded for all \\(k\\).\nThis implies that \\( (k-m)G(y_0-m) \\to 0 \\) as \\(k-m \\to \\infty\\). So \\(j'G(y') \\to 0\\) as \\(y' \\to -\\infty\\) with \\(j'\\) being distance from \\(y_0\\).\nThis implies \\( \\lim_{y \\to -\\infty} G(y) = 0 \\).\nIf \\( \\lim_{y \\to -\\infty} f(y) = M \\) (finite), then similarly \\(f(M)=M\\).\nSo we have \\(f(x)=L\\) for \\(x \\ge y_0\\), \\(f(L)=L\\), and \\(f(x)=M\\) for \\(x \\le y_1\\), \\(f(M)=M\\). (Assume \\(y_1 < y_0\\)).\nFor \\(y_1 < x < y_0\\), \\(f(x)\\) is some non-decreasing function with \\(M \\le f(x) \\le L\\).\nThe sum \\( \\sum_{i=1}^n i G(x+i) \\) has non-zero terms \\(iG(x+i)\\) only if \\(x+i\\) or \\(x+i+1\\) are in \\((y_1, y_0)\\), or near boundaries.\nLet \\(i_M(x)\\) be such that \\(x+i_M(x) \\le y_1 < x+i_M(x)+1\\).\nLet \\(i_L(x)\\) be such that \\(x+i_L(x) < y_0 \\le x+i_L(x)+1\\).\nNon-zero terms are approximately from \\(i_M(x)\\) to \\(i_L(x)\\).\nIf \\(f(x)\\) is a step function: \\( f(x) = \\begin{cases} M & x < y_1 \\\\ H & y_1 \\le x < y_0 \\\\ L & x \\ge y_0 \\end{cases} \\). (This may not satisfy monotonicity if H is not between M and L).\nAssume \\( f(x) = \\begin{cases} M & x < y_0 \\\\ L & x \\ge y_0 \\end{cases} \\). (Here \\(y_1=y_0\\)). We need \\(M \\le L\\). Also \\(f(M)=M\\) and \\(f(L)=L\\).\nIf \\(M < y_0\\), then \\(f(M)=M\\). This is satisfied. If \\(M \\ge y_0\\), then \\(f(M)=L\\), so \\(M=L\\).\nIf \\(L \\ge y_0\\), then \\(f(L)=L\\). This is satisfied. If \\(L < y_0\\), then \\(f(L)=M\\), so \\(L=M\\).\nThe only non-zero term in the sum \\(S_n(x)\\) is when \\(x+i_0 < y_0 \\le x+i_0+1\\) for some \\(i_0 \\ge 1\\).\nThen \\(f(x+i_0)=M\\), \\(f(x+i_0+1)=L\\). \\(f^2(x+i_0)=f(M)\\).\nTerm is \\(i_0(L-f(M))\\).\nIf \\(M=L\\), the function is \\(f(x)=L\\) (constant). Then \\(f(L)=L\\) is satisfied. \\(G(y)=L-L=0\\) for all \\(y\\). The sum is always 0. This is a solution. So \\(f(x)=c\\) for any constant \\(c\\) is a solution.\nIf \\(M < L\\):\nIf \\(M < y_0\\), then \\(f(M)=M\\). The term is \\(i_0(L-M)\\).\nThe index \\(i_0 \\approx y_0-x\\). So the sum is approx \\( (y_0-x)(L-M) \\).\nAs \\(x \\to -\\infty\\), \\(y_0-x \\to \\infty\\). For this to be bounded, we need \\(L-M=0\\), so \\(L=M\\).\nThis again leads to \\(f(x)=c\\).\n\n1b. Suppose \\( \\lim_{y \\to \\infty} f(y) = \\infty \\).\nIf \\( \\lim_{y \\to -\\infty} f(y) = M \\) (finite). Then \\(f(M)=M\\). So \\(f(x)=M\\) for \\(x \\le y_1\\).\nThe argument \\(K \\sum G(y_1+j) + \\sum j G(y_1+j)\\) used in thought process applies:\nFor \\(x\\) such that \\(x+1 \\le y_1\\), let \\(N_x = \\lfloor y_1-(x+1) \\rfloor\\). The first \\(N_x\\) terms \\(G(x+i)\\) are \\(M-f(M)=0\\). (This is if \\(x+i+1 \\le y_1\\)).\nMore accurately, for \\(i\\) such that \\(x+i+1 \\le y_1\\), \\(G(x+i)=0\\) because \\(f(x+i)=M, f(x+i+1)=M, f^2(x+i)=f(M)=M\\).\nThe sum starts effectively at \\(i_1 \\approx y_1-x\\).\n\\( S_n(x) = \\sum_{i=i_1(x)}^n i G(x+i) \\).\nLet \\(y_j = x+i_1(x)+j-1\\). Then \\(S_n(x) = \\sum_{j=1}^{n-i_1(x)+1} (i_1(x)+j-1)G(y_j)\\).\nSince \\(y_j\\) starts near \\(y_1\\), this is \\(i_1(x) \\sum_{j} G(y_j) + \\sum_j (j-1)G(y_j)\\).\nSince \\(i_1(x) \\approx y_1-x\\) can be arbitrarily large, we must have \\( \\sum_{j} G(y_j) = 0 \\). (The sum is over values \\(y_j \\approx y_1, y_1+1, \\dots\\)).\nAlso \\( \\sum_j (j-1)G(y_j) \\) must be bounded. For this to hold for all \\(n\\), these series must converge.\nThe condition \\(G(y) \\to 0\\) as \\(y \\to \\infty\\) is already known.\nIf \\(f(y)=y+1\\), then \\(G(y)=0\\) for all \\(y\\). So \\( \\sum G(y_j)=0 \\) and \\( \\sum (j-1)G(y_j)=0 \\).\nThis function \\(f(x)=x+1\\) leads to \\( \\lim_{y \\to \\infty} f(y) = \\infty \\).\nIf we try to define \\( f(x) = \\begin{cases} M & x \\le y_1 \\\\ x+1 & x > y_1 \\end{cases} \\).\nThis must be non-decreasing, so \\(M \\le \\lim_{x \\to y_1^+} (x+1) = y_1+1\\).\nWe need \\(f(M)=M\\). If \\(M > y_1\\), then \\(f(M)=M+1\\), which implies \\(M=M+1\\), impossible.\nSo \\(M \\le y_1\\). This makes \\(f(M)=M\\). This also satisfies \\(M \\le y_1+1\\).\nNow check the sum condition for this hybrid function.\nTerms \\(iG(x+i)\\) are zero if \\(x+i+1 \\le y_1\\) (all args \\(M\\)) or if \\(x+i > y_1\\) (all args like \\(y+1\\), gives 0).\nThe only non-zero term can arise when \\(x+i_0 \\le y_1 < x+i_0+1\\) for some \\(i_0 \\ge 1\\).\nFor this \\(i_0\\), \\(f(x+i_0)=M\\), so \\(f^2(x+i_0)=f(M)=M\\).\nAnd \\(f(x+i_0+1) = (x+i_0+1)+1 = x+i_0+2\\).\nThe sum term is \\(i_0(x+i_0+2-M)\\).\nThe index \\(i_0 \\approx y_1-x\\).\nThe sum is \\( (y_1-x)(x+(y_1-x)+2-M) = (y_1-x)(y_1+2-M) \\).\nAs \\(x \\to -\\infty\\), \\(y_1-x \\to \\infty\\). For the sum to be bounded, we need \\(y_1+2-M=0\\), so \\(M=y_1+2\\).\nBut we need \\(M \\le y_1\\). So \\(y_1+2 \\le y_1 \\implies 2 \\le 0\\), which is impossible.\nThus, this type of \"mixed\" solution does not work. The only way is if such \\(i_0\\) does not exist for any \\(x\\), or \\(y_1-x\\) is bounded, neither of which is generally true.\n\n1c. Suppose \\( \\lim_{y \\to \\infty} f(y) = \\infty \\) and \\( \\lim_{y \\to -\\infty} f(y) = -\\infty \\).\nAs shown, we need \\( G(y) \\to 0 \\) as \\(y \\to \\infty\\) and \\(G(y) \\to 0\\) as \\(y \\to -\\infty\\).\nConsider \\(f(x)=x+1\\).\nThen \\(f^2(x) = f(f(x)) = f(x+1) = (x+1)+1 = x+2\\).\nSo \\(G(y) = f(y+1)-f^2(y) = ((y+1)+1) - (y+2) = (y+2)-(y+2)=0\\) for all \\(y \\in \\mathbb{R}\\).\nThe sum \\( \\sum_{i=1}^n i \\cdot 0 = 0 \\), which is bounded by any \\(C>0\\).\nSo \\(f(x)=x+1\\) is a solution.\n\nCase 2: \\(f\\) is non-increasing.\nThe same argument implies \\( \\lim_{y \\to \\infty} (f(y+1)-f^2(y))=0 \\) and \\( \\lim_{y \\to -\\infty} (f(y+1)-f^2(y))=0 \\).\n2a. If \\( \\lim_{y \\to \\infty} f(y)=L \\) (finite). Then \\(f(L)=L\\). (Argument for \\(f(L^-)=L\\) uses \\(f(y)\\le L\\), for non-increasing it is \\(f(y)\\ge L\\), then \\(f(L^+)=L\\). Then \\(f(L^+) \\ge f(L)\\) so \\(L \\ge f(L)\\). And \\(f(y)\\ge L\\) implies \\(f(L) \\ge L\\). So \\(f(L)=L\\).)\nThis implies \\(f(x)=L\\) for \\(x \\ge y_0\\).\nSimilarly, if \\( \\lim_{y \\to -\\infty} f(y)=M \\) (finite), then \\(f(M)=M\\) and \\(f(x)=M\\) for \\(x \\le y_1\\).\nSince \\(f\\) is non-increasing, \\(M \\ge L\\).\nThe argument that this leads to \\(f(x)=c\\) (constant) is identical to Case 1a.\nSo \\(f(x)=c\\) is a solution (already found).\n\n2b. Suppose \\( \\lim_{y \\to \\infty} f(y) = -\\infty \\).\nIf \\( \\lim_{y \\to -\\infty} f(y) = M \\) (finite). Then \\(f(M)=M\\) and \\(f(x)=M\\) for \\(x \\le y_1\\).\nThis case is symmetric to Case 1b. \\(f(x)=M\\) for \\(x \\le y_1\\), and \\(f(y+1)=f^2(y)\\) for \\(y > y_1\\).\nWe need a non-increasing function \\(f(y)\\) for \\(y > y_1\\) such that \\(f(y) \\to -\\infty\\) and \\(f(y+1)=f^2(y)\\).\nIf \\(f(y)=f(y+1)=f^2(y)\\), then \\(f(y)\\) is constant, which contradicts \\(f(y) \\to -\\infty\\).\nIf \\(f(y)\\) is not eventually constant, then \\(f(f(y)) = f(y+1)\\). Since \\(f\\) is non-increasing, \\(f(y+1) \\le f(y)\\).\nSo \\(f(f(y)) \\le f(y)\\). Let \\(z=f(y)\\). Then for all values \\(z\\) in the range \\( (-\\infty, \\lim_{x \\to y_1^+} f(x)] \\), we have \\(f(z) \\le z\\).\nIf there is \\(z_0\\) such that \\(f(z_0)=z_0\\), then \\(f(f(y))=f(y)\\) implies \\(f(y+1)=f(y)\\). Thus \\(f\\) is constant for large \\(y\\), contradiction.\nSo we must have \\(f(z)<z\\) for all \\(z\\) sufficiently negative.\nHowever, the \"mixed\" solution analysis from 1b shows this leads to a contradiction unless \\(G(y)=0\\) for \\(y>y_1\\).\nWe need $M = y_1+2$ (from $i_0(x+i_0+2-M)$ where $f(x+i_0+1)$ taken from the $f(y+1)=f^2(y)$ part and $f(x+i_0)$ from the constant $M$ part).\nThe $x+i_0+2$ part corresponds to $f(x+i_0+1)$.\nIf $f(y+1)=f^2(y)$ for $y>y_1$ and $f(y) \\to -\\infty$. No simple function like $C-y$ works.\nIf $f(x)=C-x$, $f^2(x)=x$. So $G(y) = C-(y+1)-y = C-1-2y$. This is not zero.\nThe condition $M=y_1+2$ is derived using $f(y_1+\\epsilon+1) = (y_1+\\epsilon)+1+ \\text{something}$.\nIt seems no non-constant solutions exist in this case. The argument \\(M=y_1+2\\) contradicting \\(M \\ge y_1+c\\) (for non-increasing, \\(M \\ge f(y_1+\\epsilon)\\)) means no such functions exist.\n\n2c. Suppose \\( \\lim_{y \\to \\infty} f(y) = -\\infty \\) and \\( \\lim_{y \\to -\\infty} f(y) = \\infty \\).\nWe need \\( G(y) \\to 0 \\) as \\(y \\to \\pm\\infty \\).\nIf such a function \\(f\\) exists where \\(G(y)=0\\) for all \\(y\\), i.e. \\(f(y+1)=f(f(y))\\) for all \\(y\\).\nSince \\(f\\) is non-increasing, \\(f(y+1) \\le f(y)\\). So \\(f(f(y)) \\le f(y)\\).\nLet \\(z=f(y)\\). As \\(y\\) spans \\( \\mathbb{R} \\), \\(z\\) also spans \\( \\mathbb{R} \\) (or an interval).\nSo \\(f(z) \\le z\\) for all \\(z\\) in the range of \\(f\\).\nIf there is \\(z_0\\) such that \\(f(z_0)=z_0\\), then \\(f(f(y))=f(y)\\) means \\(f(y+1)=f(y)\\). So \\(f\\) must be constant. This contradicts limits at \\( \\pm\\infty \\).\nSo \\(f(z)<z\\) for all \\(z\\) in the range of \\(f\\).\nThus \\(f(f(y)) < f(y)\\). So \\(f(y+1) < f(y)\\). This means \\(f\\) is strictly decreasing.\nIf \\(f(x)=-x+1\\). \\(f^2(x) = f(-x+1) = -(-x+1)+1 = x-1+1 = x\\).\nThen \\(G(y) = f(y+1)-f^2(y) = (-(y+1)+1) - y = -y-y = -2y\\).\nThis must be 0 for all \\(y\\), which is not true. Also \\( \\lim_{y \\to \\pm\\infty} G(y) = \\mp\\infty \\ne 0 \\).\n\nSo the only solutions are:\n1.  \\(f(x)=c\\) for any constant \\(c \\in \\mathbb{R}\\). Here \\(G(x+i)=c-f(c)=c-c=0\\). The sum is 0.\n2.  \\(f(x)=x+1\\). Here \\(G(x+i)=((x+i+1)+1)-((x+i)+2)=0\\). The sum is 0.\n\nLet's verify these.\nIf \\(f(x)=c\\), then \\(f(x+i+1)=c\\) and \\(f^2(x+i)=f(c)=c\\). So the sum is \\( \\left|\\sum_{i=1}^{n} i(c-c)\\right| = 0 < C \\) for any \\(C>0\\). This is a solution.\nIf \\(f(x)=x+1\\), then \\(f(x+i+1)=(x+i+1)+1 = x+i+2\\). And \\(f^2(x+i)=f(f(x+i))=f((x+i)+1)=(x+i)+1+1=x+i+2\\). So the sum is \\( \\left|\\sum_{i=1}^{n} i((x+i+2)-(x+i+2))\\right| = 0 < C \\) for any \\(C>0\\). This is a solution.\n\nThese arguments cover all cases for monotonic functions. The conditions are very strict.\n\nFinal check: The derivation \\(G(y) \\to 0\\) as \\(y \\to \\pm\\infty\\).\nFor \\(y \\to \\infty\\), it is \\( (y_i-x)G(y_i) \\to 0 \\) where \\(y_i=x+i\\). This can be written as \\( (Y-x_0) (f(Y+1)-f^2(Y)) \\to 0 \\) for any sequence \\(Y=x_0+n\\), \\(n \\to \\infty\\). This means \\(f(Y+1)-f^2(Y)\\) must go to 0 faster than \\(1/Y\\). So \\( \\lim_{Y\\to\\infty} (f(Y+1)-f^2(Y)) = 0 \\).\nFor \\(y \\to -\\infty\\):\nThe sum \\( \\sum_{i=1}^{K_x} i G(x+i) \\) must be bounded as \\(x \\to -\\infty\\), where \\(K_x \\approx y_0-x\\). Let \\(z_j = x+j\\). The sum is \\( \\sum_{j=1}^{y_0-x} j G(z_j) \\). The values \\(z_j\\) go from \\(x+1\\) to \\(y_0\\).\nThe convergence of \\( \\sum_{k=1}^N a_k(x) \\) for all \\(x\\), and uniform boundedness of partial sums.\nThe condition is \\( |\\sum_{i=1}^n i G(x+i)| < C \\). Let \\(x_k = X-k\\) for fixed \\(X\\) and \\(k \\to \\infty\\).\nThen \\( |\\sum_{i=1}^n i G(X-k+i)| < C \\). This shows that \\(iG(y) \\to 0\\) as \\(y \\to \\infty\\) (let \\(y = X-k+i\\), fix \\(X-k\\) and let \\(i \\to \\infty\\)).\nThe argument for \\(y \\to -\\infty\\) from \\( \\sum_{m=0}^{k-1} (k-m)G(y_0-m) \\) being bounded means that the tail terms must go to zero.\nSo \\((k-m_0)G(y_0-m_0) \\to 0\\) for fixed \\(m_0\\) and \\(k \\to \\infty\\). This also means \\( y' G(y') \\to 0 \\) where \\(y'\\) is \\(y_0-m_0\\) and the coefficient is distance from \\(y_0\\). This is correct. Thus \\( G(y) \\to 0 \\) as \\(y \\to -\\infty \\).\n\nThe two families of solutions are \\(f(x)=c\\) and \\(f(x)=x+1\\).\n\nThe final answer is $\\boxed{f(x) = c, f(x) = x+1}$.",
+            "cost": {
+                "cost": 0.33786125,
+                "input_tokens": 425,
+                "output_tokens": 33733
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:58:45.062821",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof introduces \\(G(y)=f(y+1)-f^2(y)\\) and uses the boundedness of the weighted sums \\(\\left|\\sum_{i=1}^n i\\,G(x+i)\\right|<C\\) to assert (without proper justification) that \\(i\\,G(x+i)\\to0\\) and hence \\(G(y)\\to0\\) as \\(y\\to\\pm\\infty\\). It then splits into cases based on the limits of a monotonic \\(f\\) at \\(\\pm\\infty\\), examines piecewise constant or linear behaviors, and tests the only two candidate solutions \\(f(x)=c\\) and \\(f(x)=x+1\\), showing they satisfy the original bound.",
+                    "issues": [
+                        {
+                            "location": "Early in the proof, when moving from bounded partial sums to termwise limits",
+                            "text": "\u201cThis implies that for any fixed \\(x\\), the series \n\\(\\sum_{i=1}^\\infty i G(x+i)\\) must converge. A necessary condition for the convergence of a series \\(\\sum b_i\\) is that \\(b_i\\to0\\) as \\(i\\to\\infty\\). Thus, for any fixed \\(x\\), we must have \\(\\lim_{i\\to\\infty} i G(x+i)=0\\).\u201d",
+                            "description": "Boundedness of the partial sums does not imply convergence of the series, nor that its terms tend to zero. The proof incorrectly treats bounded partial sums as if the series converges.",
+                            "category": "Overgeneralization",
+                            "start_index": 221,
+                            "end_index": 505
+                        },
+                        {
+                            "location": "After deriving \\(iG(x+i)\\to0\\), assertion of a pointwise limit",
+                            "text": "\u201cSince \\(f\\) is monotonic, \\(G(y)=f(y+1)-f^2(y)\\) does not oscillate too wildly. It can be shown that \\(\\lim_{y\\to\\infty}G(y)=0\\).\u201d",
+                            "description": "The proof appeals to monotonicity to assert without proof that the limits of \\(G(y)\\) exist and equal zero. No justification is given for passing from \\(i\\,G(x+i)\\to0\\) to pointwise \\(G(y)\\to0\\).",
+                            "category": "Oversimplification",
+                            "start_index": 936,
+                            "end_index": 1053
+                        },
+                        {
+                            "location": "Throughout case analysis, concluding the functional relation holds everywhere",
+                            "text": "\u201cThese arguments cover all cases for monotonic functions. The two families of solutions are \\(f(x)=c\\) and \\(f(x)=x+1\\).\u201d",
+                            "description": "The proof never establishes the key step that \\(G(y)=0\\) for every real \\(y\\), i.e. that \\(f(y+1)=f(f(y))\\) pointwise. It only shows the limit of \\(G(y)\\) at infinity vanishes, not that each term is zero.",
+                            "category": "Overgeneralization",
+                            "start_index": 12999,
+                            "end_index": 13080
+                        },
+                        {
+                            "location": "Final identification of solutions",
+                            "text": "\u201cSo \\(f(x)=c\\) for any constant \\(c\\) is a solution ... So \\(f(x)=x+1\\) is a solution. The final answer is \\(f(x)=c, f(x)=x+1\\).\u201d",
+                            "description": "The proof checks that these two functions satisfy the bound but does not rule out other monotonic solutions of the functional equation \\(f(f(x))=f(x+1)\\). It omits a rigorous argument (e.g., via injectivity) that these are the only solutions.",
+                            "category": "Other",
+                            "start_index": 5614,
+                            "end_index": 5711
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:24:25.735501"
+            }
+        },
+        {
+            "model_id": "xai/grok-3-mini-high",
+            "solution": "The task is to find all monotonic functions \\( f: \\mathbb{R} \\rightarrow \\mathbb{R} \\) such that for every real number \\( x \\) and every natural number \\( n \\),\n\n\\[\n\\left| \\sum_{i=1}^{n} i \\left( f(x+i+1) - f^{2}(x+i) \\right) \\right| < C,\n\\]\n\nwhere \\( C > 0 \\) is a constant independent of \\( x \\) and \\( n \\), and \\( f^{2}(x) = f(f(x)) \\).\n\nDefine the function \\( g(y) = f(y+1) - f(f(y)) \\). Then the sum can be rewritten as\n\n\\[\n\\sum_{i=1}^{n} i g(x+i).\n\\]\n\nThe condition requires that \\( \\left| \\sum_{i=1}^{n} i g(x+i) \\right| < C \\) for all \\( x \\in \\mathbb{R} \\) and all \\( n \\in \\mathbb{N} \\). Since \\( C \\) is independent of \\( x \\) and \\( n \\), the partial sums are uniformly bounded in both \\( x \\) and \\( n \\). This implies that for each fixed \\( x \\), the series \\( \\sum_{i=1}^{\\infty} i g(x+i) \\) converges, and the sum \\( h(x) = \\sum_{i=1}^{\\infty} i g(x+i) \\) is bounded by \\( C \\) for all \\( x \\).\n\nFirst, consider constant functions. If \\( f(x) = c \\) for some constant \\( c \\), then \\( f(f(x)) = f(c) = c \\) and \\( f(x+i+1) = c \\), so \\( g(y) = c - c = 0 \\). The sum is zero, which is bounded by any \\( C > 0 \\). Constant functions are monotonic, so they satisfy the condition.\n\nNext, consider linear functions of the form \\( f(x) = kx + b \\). For \\( f \\) to be monotonic, \\( k \\geq 0 \\) or \\( k \\leq 0 \\). Compute \\( g(y) = f(y+1) - f(f(y)) \\):\n\n\\[\nf(y+1) = k(y+1) + b = ky + k + b,\n\\]\n\\[\nf(f(y)) = f(ky + b) = k(ky + b) + b = k^2 y + kb + b.\n\\]\n\\[\ng(y) = (ky + k + b) - (k^2 y + kb + b) = (k - k^2)y + k - kb = (k - k^2)y + k(1 - b).\n\\]\n\nThe sum is\n\n\\[\n\\sum_{i=1}^{n} i g(x+i) = \\sum_{i=1}^{n} i \\left[ (k - k^2)(x + i) + k(1 - b) \\right] = (k - k^2) \\sum_{i=1}^{n} i (x + i) + k(1 - b) \\sum_{i=1}^{n} i.\n\\]\n\nUsing the formulas \\( \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2} \\) and \\( \\sum_{i=1}^{n} i^2 = \\frac{n(n+1)(2n+1)}{6} \\),\n\n\\[\n\\sum_{i=1}^{n} i (x + i) = x \\frac{n(n+1)}{2} + \\frac{n(n+1)(2n+1)}{6},\n\\]\n\\[\n\\sum_{i=1}^{n} i g(x+i) = (k - k^2) \\left( x \\frac{n(n+1)}{2} + \\frac{n(n+1)(2n+1)}{6} \\right) + k(1 - b) \\frac{n(n+1)}{2}.\n\\]\n\nThe term involving \\( \\sum_{i=1}^{n} i^2 \\) is \\( O(n^3) \\), so if \\( k - k^2 \\neq 0 \\), the sum grows unbounded as \\( n \\to \\infty \\), contradicting the boundedness condition. Thus, \\( k - k^2 = 0 \\), so \\( k = 0 \\) or \\( k = 1 \\).\n\n- If \\( k = 0 \\), \\( f(x) = b \\), which is constant and already shown to work.\n- If \\( k = 1 \\), \\( f(x) = x + b \\), and \\( g(y) = (1 - b) \\). The sum is \\( (1 - b) \\frac{n(n+1)}{2} \\), which is unbounded unless \\( 1 - b = 0 \\), so \\( b = 1 \\). Then \\( f(x) = x + 1 \\), and \\( g(y) = 0 \\), so the sum is zero and bounded.\n\nFor \\( k < 0 \\) (decreasing case), \\( k - k^2 \\neq 0 \\), and the sum grows unbounded, so no decreasing linear functions work except constants (when \\( k = 0 \\)).\n\nNow consider general monotonic functions. The condition \\( |h(x)| < C \\) for all \\( x \\) suggests that \\( g(y) = 0 \\) for all \\( y \\), as non-zero \\( g \\) leads to unbounded \\( h(x) \\) in tested cases. If \\( g(y) = 0 \\), then \\( f(y+1) = f(f(y)) \\) for all \\( y \\).\n\n- If \\( f \\) is constant, it works.\n- If \\( f \\) is increasing and \\( f(y+1) = f(f(y)) \\), for strictly increasing continuous \\( f \\), \\( f(x) = x + 1 \\). For non-strictly increasing or discontinuous cases, other functions were tested (e.g., step functions), but they do not satisfy the boundedness unless constant or \\( f(x) = x + 1 \\).\n- If \\( f \\) is decreasing and \\( f(y+1) = f(f(y)) \\), both sides cannot be equal unless constant, as one is decreasing and the other increasing.\n\nThus, the only monotonic functions satisfying the condition are constants and \\( f(x) = x + 1 \\).\n\n\\[\n\\boxed{\\text{all constant functions and } f(x) = x + 1}\n\\]",
+            "cost": {
+                "cost": 0.0086349,
+                "input_tokens": 408,
+                "output_tokens": 17025
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:24:23.014617",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines g(y)=f(y+1)\u2212f(f(y)) to rewrite the boundedness condition as bounds on partial sums of i\u00b7g(x+i), analyzes constant and linear functions to conclude that only k=0 or 1 yield bounded sums (giving constant f or f(x)=x+1), and then sketches a general argument that g must vanish for any monotonic f, leading to the functional equation f(f(y))=f(y+1) whose strictly increasing continuous solution is f(x)=x+1 and whose only other monotonic solution is constant.",
+                    "issues": [
+                        {
+                            "location": "Passage where the proof claims bounded partial sums imply convergence of the infinite series.",
+                            "text": "Since C is independent of x and n, the partial sums are uniformly bounded in both x and n. This implies that for each fixed x, the series \\sum_{i=1}^{\\infty} i g(x+i) converges, and the sum h(x) = \\sum_{i=1}^{\\infty} i g(x+i) is bounded by C for all x.",
+                            "description": "The proof incorrectly infers that bounded partial sums guarantee convergence of the infinite series without justification; boundedness alone does not imply convergence.",
+                            "category": "Oversimplification",
+                            "start_index": 599,
+                            "end_index": 901
+                        },
+                        {
+                            "location": "Generalization step concluding g(y)=0 for all y.",
+                            "text": "The condition |h(x)| < C for all x suggests that g(y)=0 for all y, as non-zero g leads to unbounded h(x) in tested cases.",
+                            "description": "The jump from checking only constant and linear cases to asserting g must be identically zero for any monotonic f is unjustified and relies solely on examples rather than a general argument.",
+                            "category": "Overgeneralization",
+                            "start_index": 2815,
+                            "end_index": 2973
+                        },
+                        {
+                            "location": "Conclusion for strictly increasing continuous f.",
+                            "text": "If f is increasing and f(y+1) = f(f(y)), for strictly increasing continuous f, f(x) = x + 1.",
+                            "description": "The proof asserts without derivation that the functional equation f(f(y))=f(y+1) forces f(x)=x+1 under monotonicity and continuity, but no justification or intermediate steps are provided.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 3078,
+                            "end_index": 3190
+                        },
+                        {
+                            "location": "Exclusion of non-strictly increasing or discontinuous monotonic functions.",
+                            "text": "For non-strictly increasing or discontinuous cases, other functions were tested (e.g., step functions), but they do not satisfy the boundedness unless constant or f(x) = x + 1.",
+                            "description": "No details or counterexamples are given to explain why step functions or other non-continuous monotonic functions must fail the condition.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 3195,
+                            "end_index": 3372
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:25:00.217838"
+            }
+        },
+        {
+            "model_id": "qwen/qwen3_235b_a22b",
+            "solution": "To solve the problem, we are asked to find all **monotonic** functions $ f: \\mathbb{R} \\to \\mathbb{R} $ such that for every real number $ x $ and every natural number $ n $, the following inequality holds:\n\n$$\n\\left| \\sum_{i=1}^n i \\left( f(x + i + 1) - f^2(x + i) \\right) \\right| < C,\n$$\nwhere $ C > 0 $ is a constant independent of $ x $ and $ n $, and $ f^2(x) = f(f(x)) $.\n\n---\n\n### Step 1: Understanding the Structure of the Sum\n\nLet us denote the sum as:\n$$\nS_n(x) = \\sum_{i=1}^n i \\left( f(x + i + 1) - f^2(x + i) \\right).\n$$\nThe condition requires that $ |S_n(x)| < C $ for all $ n \\in \\mathbb{N} $ and $ x \\in \\mathbb{R} $. This is a **uniform bound** on the absolute value of the sum, regardless of $ n $ and $ x $.\n\nThis implies that the sum cannot grow unboundedly as $ n $ increases, which is a very strong constraint.\n\n---\n\n### Step 2: Consider Constant Functions\n\nSuppose $ f(x) = c $, a constant function. Then:\n- $ f(x + i + 1) = c $,\n- $ f^2(x + i) = f(f(x + i)) = f(c) = c $,\n- So each term in the sum becomes $ i(c - c) = 0 $,\n- Therefore, $ S_n(x) = 0 $ for all $ n $ and $ x $,\n- The inequality $ |S_n(x)| < C $ is trivially satisfied for any $ C > 0 $.\n\nHence, **all constant functions** are valid solutions.\n\n---\n\n### Step 3: Consider the Function $ f(x) = x + 1 $\n\nLet\u2019s test this function:\n- $ f(x + i + 1) = x + i + 2 $,\n- $ f^2(x + i) = f(f(x + i)) = f(x + i + 1) = x + i + 2 $,\n- So $ f(x + i + 1) - f^2(x + i) = 0 $,\n- Therefore, each term in the sum is zero,\n- So $ S_n(x) = 0 $ for all $ n $ and $ x $,\n- Again, the inequality is satisfied.\n\nHence, $ f(x) = x + 1 $ is also a solution.\n\n---\n\n### Step 4: Analyze the General Case\n\nLet\u2019s consider the general form of the sum:\n$$\nS_n(x) = \\sum_{i=1}^n i \\left( f(x + i + 1) - f(f(x + i)) \\right).\n$$\nWe can rewrite this as:\n$$\nS_n(x) = \\sum_{i=1}^n i f(x + i + 1) - \\sum_{i=1}^n i f(f(x + i)).\n$$\n\nLet\u2019s try to telescope the first sum by shifting the index $ j = i + 1 $, so the first sum becomes:\n$$\n\\sum_{i=1}^n i f(x + i + 1) = \\sum_{j=2}^{n+1} (j - 1) f(x + j).\n$$\n\nSo the entire expression becomes:\n$$\nS_n(x) = \\sum_{j=2}^{n+1} (j - 1) f(x + j) - \\sum_{i=1}^n i f(f(x + i)).\n$$\n\nThis is not easily telescoped further, but it gives us a sense of the structure.\n\nNow, suppose that $ f $ is **non-constant** and **monotonic** (either non-decreasing or non-increasing). Then the terms $ f(x + i + 1) - f^2(x + i) $ will generally not be zero, and the sum $ S_n(x) $ may grow with $ n $, unless the terms cancel out in a very specific way.\n\nTo ensure that $ |S_n(x)| < C $ for all $ n $ and $ x $, the only way this can happen is if **each term in the sum is zero**, i.e., if:\n$$\nf(x + i + 1) = f^2(x + i), \\quad \\text{for all } i \\in \\mathbb{N}, x \\in \\mathbb{R}.\n$$\nThis is a **functional equation**:\n$$\nf(x + i + 1) = f(f(x + i)), \\quad \\text{for all } x \\in \\mathbb{R}, i \\in \\mathbb{N}.\n$$\nThis implies that:\n$$\nf(y + 1) = f(f(y)), \\quad \\text{for all } y \\in \\mathbb{R}.\n$$\n\nThis is a well-known functional equation. The **only monotonic** solutions to this equation are:\n- **Constant functions**, and\n- **The function $ f(x) = x + 1 $**.\n\nOther solutions (e.g., piecewise-defined or non-monotonic ones) would violate the monotonicity condition or fail to satisfy the functional equation.\n\n---\n\n### Step 5: Conclusion\n\nWe have shown that the only monotonic functions $ f: \\mathbb{R} \\to \\mathbb{R} $ that satisfy the condition\n$$\n\\left| \\sum_{i=1}^n i \\left( f(x + i + 1) - f^2(x + i) \\right) \\right| < C\n$$\nfor all $ x \\in \\mathbb{R} $, $ n \\in \\mathbb{N} $, and some constant $ C > 0 $, are:\n\n- All **constant functions** $ f(x) = c $ for some $ c \\in \\mathbb{R} $,\n- The function $ f(x) = x + 1 $.\n\nThese are the **only** monotonic functions that ensure the sum remains bounded for all $ n $ and $ x $.\n\n---\n\n### Final Answer\n\n$$\n\\boxed{f(x) = c} \\text{ for some constant } c \\in \\mathbb{R} \\quad \\text{or} \\quad \\boxed{f(x) = x + 1}\n$$",
+            "cost": {
+                "cost": 0.008444799999999999,
+                "input_tokens": 425,
+                "output_tokens": 13933
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-25T00:03:59.085617",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof defines \\(S_n(x)=\\sum_{i=1}^n i\\bigl(f(x+i+1)-f^2(x+i)\\bigr)\\), shows that constant functions and \\(f(x)=x+1\\) give \\(S_n(x)=0\\), then attempts a telescoping rewrite of the sums. It next asserts without justification that boundedness of \\(S_n(x)\\) forces each term \\(f(x+i+1)-f^2(x+i)=0\\), yielding the functional equation \\(f(y+1)=f(f(y))\\), and finally claims (as a \u201cwell-known\u201d result) that the only monotonic solutions are constant functions and \\(f(x)=x+1\\).",
+                    "issues": [
+                        {
+                            "location": "Step 4 (general case assertion)",
+                            "text": "To ensure that \\(|S_n(x)|<C\\) for all \\(n\\) and \\(x\\), the only way this can happen is if each term in the sum is zero, i.e., if \\(f(x + i + 1) = f^2(x + i)\\).",
+                            "description": "The proof claims without justification that the boundedness of the weighted sum implies each individual term vanishes, ignoring possible cancellations between nonzero terms.",
+                            "category": "Overgeneralization",
+                            "start_index": 2520,
+                            "end_index": 2682
+                        },
+                        {
+                            "location": "Telescoping attempt in Step 4",
+                            "text": "This is not easily telescoped further, but it gives us a sense of the structure.",
+                            "description": "The proof fails to carry out the crucial computation of subtracting successive sums to isolate the term \\(f(x+n+1)-f^2(x+n)\\) and derive a vanishing bound; it skips necessary computational steps.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 2163,
+                            "end_index": 2240
+                        },
+                        {
+                            "location": "Classification of functional equation in Step 4",
+                            "text": "This is a well-known functional equation. The only monotonic solutions to this equation are: constant functions, and the function \\(f(x)=x+1\\).",
+                            "description": "The proof asserts the classification of solutions without proof or proper reference, relying on a \u201cwell-known\u201d result that is not justified or cited.",
+                            "category": "Citing Non-Standard Works or Theorems",
+                            "start_index": 2960,
+                            "end_index": 3115
+                        },
+                        {
+                            "location": "Overall proof",
+                            "text": "",
+                            "description": "The monotonicity assumption is never used in the derivation of the functional equation and is only invoked at the end; the proof does not distinguish non-decreasing from non-increasing cases or justify injectivity.",
+                            "category": "Missing Edge Cases"
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:24:47.438322"
+            }
+        },
+        {
+            "model_id": "openai/o4-mini--high",
+            "solution": "Here is a fully self\u2010contained proof.  All steps are written out in detail, using only very elementary facts about monotonic functions and inequalities.\n\nProof.  \nAssume \\(f:\\Bbb R\\to\\Bbb R\\) is monotonic and there is a constant \\(C>0\\) such that for every \\(x\\in\\Bbb R\\) and every \\(n\\in\\Bbb N\\),\n\\[\n\\Bigl\\lvert\\sum_{i=1}^n i\\bigl(f(x+i+1)-f^2(x+i)\\bigr)\\Bigr\\rvert< C,\n\\]\nwhere by definition \\(f^2(t)=f(f(t))\\).\n\n1.  Define for each real \\(t\\) the \u201cstep\u2010difference\u201d  \n   \\[\n   A(t)\\;=\\;f(t+1)\\;-\\;f\\bigl(f(t)\\bigr).\n   \\]\n   Then the given sum can be rewritten as\n   \\[\n   S_n(x)\\;=\\;\\sum_{i=1}^n i\\bigl(f(x+i+1)-f^2(x+i)\\bigr)\n               \\;=\\;\\sum_{i=1}^n i\\,A(x+i).\n   \\]\n   By hypothesis \\(\\lvert S_n(x)\\rvert< C\\) for all \\(x,n\\).\n\n2.  Observe that\n   \\[\n   S_n(x)\\;=\\;S_{n-1}(x)\\;+\\;n\\,A(x+n),\n   \\]\n   so\n   \\[\n   \\bigl\\lvert n\\,A(x+n)\\bigr\\rvert\n   \\;=\\;\\bigl\\lvert S_n(x)-S_{n-1}(x)\\bigr\\rvert\n   \\;\\le\\;\\bigl\\lvert S_n(x)\\bigr\\rvert\n              +\\bigl\\lvert S_{n-1}(x)\\bigr\\rvert\n   \\;<\\;2C.\n   \\]\n   Hence for every real \\(t\\) and every natural \\(n\\) we have\n   \\[\n     \\bigl\\lvert n\\,A(t)\\bigr\\rvert<2C.\n   \\]\n   Indeed, to get this from the previous line one chooses \\(x=t-n\\), which is again an arbitrary real.\n\n3.  Divide by \\(n>0\\):\n   \\[\n     \\lvert A(t)\\rvert<\\frac{2C}{n}.\n   \\]\n   Since this holds for every \\(n\\in\\Bbb N\\), letting \\(n\\to\\infty\\) forces\n   \\[\n     A(t)\\;=\\;0\n     \\qquad\n     \\forall\\,t\\in\\Bbb R.\n   \\]\n   In other words,\n   \\[\n     \\boxed{%\n       f(t+1)=f\\bigl(f(t)\\bigr)\\quad\\forall\\,t\\in\\Bbb R.\n     }\n   \\]\n\n4.  We now solve the functional equation\n   \\[\n     f\\bigl(f(x)\\bigr)=f(x+1)\n     \\quad(x\\in\\Bbb R)\n   \\]\n   under the sole extra assumption that \\(f\\) is monotonic.  \n\n   (a)  If \\(f\\) is constant, say \\(f(x)=b\\) for all \\(x\\), then\n        \\(f(f(x))=f(b)=b\\) and \\(f(x+1)=b\\), so the equation holds.  \n\n   (b)  If \\(f\\) is not constant, then monotonicity implies it is either  \n        strictly increasing or strictly decreasing.  \n        \u2013  If it were strictly decreasing, then \\(x\\mapsto f(x+1)\\) is strictly decreasing  \n           while \\(x\\mapsto f(f(x))\\), being the composition of two strictly decreasing maps,  \n           is strictly increasing.  They cannot be equal.  \n        \u2013  Hence \\(f\\) must be strictly increasing.  In particular \\(f\\) is injective.  \n           Applying the inverse \\(f^{-1}\\) to the equation\n           \\[\n             f\\bigl(f(x)\\bigr)=f(x+1)\n           \\]\n           gives\n           \\[\n             f(x)=x+1\n             \\qquad(\\text{for all }x).\n           \\]\n\n5.  We have thus found exactly two families of monotonic solutions:\n   \\[\n     \\boxed{%\n       f(x)=b\\quad(b\\in\\Bbb R),\\quad\n       f(x)=x+1.\n     }\n   \\]\n   Finally, one checks directly that in each case\n   \\[\n     f(x+i+1)-f^2(x+i)=0\n     \\quad\\Longrightarrow\\quad\n     \\sum_{i=1}^n i\\bigl(f(x+i+1)-f^2(x+i)\\bigr)=0,\n   \\]\n   so the original inequality \\(\\lvert\\cdots\\rvert<C\\) is trivially satisfied.\n\nThis completes the proof that the only monotonic solutions are the constant functions and the single non\u2010constant solution \\(f(x)=x+1\\).",
+            "cost": {
+                "cost": 0.0645513,
+                "input_tokens": 423,
+                "output_tokens": 14565
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:36:05.744487",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof sets \\(A(t)=f(t+1)-f(f(t))\\) and rewrites the given bound as \\(S_n(x)=\\sum_{i=1}^n iA(x+i)\\), then uses the telescoping relation to show \\(|nA(t)|<2C\\) for all \\(n\\), forcing \\(A(t)=0\\). Hence \\(f(f(x))=f(x+1)\\). Under the assumption that \\(f\\) is monotonic, the proof checks the constant case, rules out strictly decreasing solutions by monotonicity arguments, deduces injectivity in the non-constant case, and concludes the only solutions are \\(f(x)=b\\) and \\(f(x)=x+1\\), which indeed satisfy the original inequality.",
+                    "issues": [
+                        {
+                            "location": "Step 4(b) \u2013 classification of non-constant monotonic functions",
+                            "text": "If \\(f\\) is not constant, then monotonicity implies it is either strictly increasing or strictly decreasing.",
+                            "description": "This oversimplifies the behavior of general monotonic (i.e. non-decreasing or non-increasing) functions, which can be non-constant yet fail to be strictly monotonic (they may have flat segments). The proof does not rule out such intermediate cases.",
+                            "category": "Oversimplification",
+                            "start_index": 1870,
+                            "end_index": 1987
+                        },
+                        {
+                            "location": "Step 4(b) \u2013 application of the inverse",
+                            "text": "Applying the inverse \\(f^{-1}\\) to the equation",
+                            "description": "The proof invokes \\(f^{-1}\\) as if \\(f\\) were a bijection onto \\(\\mathbb{R}\\), but strict monotonicity only guarantees injectivity (not surjectivity). The correct inference is by injectivity: from \\(f(f(x))=f(x+1)\\) conclude \\(f(x)=x+1\\), without needing a global inverse.",
+                            "category": "Other",
+                            "start_index": 2340,
+                            "end_index": 2386
+                        },
+                        {
+                            "location": "Step 2 \u2013 use of \\(S_{n-1}(x)\\) for \\(n=1\\)",
+                            "text": "The relation \\(S_n(x)=S_{n-1}(x)+n\\,A(x+n)\\) is applied when \\(n=1\\)",
+                            "description": "The proof implicitly treats \\(S_0(x)\\) (the empty sum) as \\(0\\) without defining it. While standard, the definition of \\(S_0(x)\\) should be stated for completeness.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 751,
+                            "end_index": 820
+                        },
+                        {
+                            "location": "Step 3 \u2013 limit argument",
+                            "text": "\\(\"Since this holds for every \\(n\\)\\), letting \\(n\\to\\infty\\) forces \\(A(t)=0\\)\"",
+                            "description": "The step uses the Archimedean property of the real numbers to conclude that if \\(|A(t)|<2C/n\\) for all \\(n\\), then \\(A(t)=0\\). This standard convergence argument is not explicitly justified.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 1302,
+                            "end_index": 1396
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:25:03.497577"
+            }
+        },
+        {
+            "model_id": "openai/o3",
+            "solution": "Solution.\n\nThroughout the solution the word \u2018monotone\u2019 means monotone non\u2013decreasing.  \n(Clearly, if a function satisfies the required relation, then so does its\nnegation; hence it is enough to deal with the non\u2013decreasing case.)\n\n------------------------------------------------------------------------\n1.  From the boundedness of the weighted sums we get a functional equation\n------------------------------------------------------------------------\n\nPut  \n\n\\[\nh(x)=f(x+1)-f\\!\\bigl(f(x)\\bigr),\\qquad x\\in\\mathbb R .\n\\]\n\nFor \\(x\\in\\mathbb R ,\\;n\\in\\mathbb N\\) let  \n\n\\[\nS(x,n)=\\sum_{k=1}^{n}k\\,h(x+k).\n\\]\n\nBy the hypothesis \\(\\lvert S(x,n)\\rvert<C\\) for every \\(x,n\\).\nFor \\(n\\ge 2\\)\n\n\\[\nS(x,n)-S(x,n-1)=n\\,h(x+n).\n\\]\n\nHence  \n\n\\[\n|n\\,h(x+n)|\\le |S(x,n)|+|S(x,n-1)|<2C .\n\\tag{1}\n\\]\n\nFix any \\(y\\in\\mathbb R\\).\nChoose an arbitrary positive integer \\(n\\) and put \\(x=y-n\\);\nthen \\(x+n=y\\).  Substituting this \\(x\\) in (1) we get\n\n\\[\n|h(y)|\\le\\frac{2C}{n}\\qquad\\text{for every }n\\in\\mathbb N .\n\\]\n\nLetting \\(n\\to\\infty\\) we obtain  \n\n\\[\nh(y)=0\\qquad\\text{for all }y\\in\\mathbb R .\n\\]\n\nThus we have proved\n\n\\[\n\\boxed{\\;f(x+1)=f\\!\\bigl(f(x)\\bigr)\\quad\\text{for every }x\\in\\mathbb R\\;}\n\\tag{2}\n\\]\n\nand the left-hand side of the inequality occurring in the statement is\nidentically \\(0\\).\nConsequently every monotone solution of (2) is a solution of the original\nproblem.\n\n-----------------------------------------------------------------\n2.  First class of solutions \u2013 the constant functions\n-----------------------------------------------------------------\n\nIf \\(f\\) is constant, say \\(f(x)\\equiv a\\) with \\(a\\in\\mathbb R\\),\nthen (2) obviously holds:\n\\(f(x+1)\\equiv a\\equiv f(a)=f\\!\\bigl(f(x)\\bigr)\\).\nAll constant functions satisfy the required inequality.\n\n------------------------------------------------------------\n3.  Second class \u2013 strictly increasing solutions\n------------------------------------------------------------\n\nAssume now that \\(f\\) is not constant and is strictly increasing.\nBecause \\(f\\) is injective, from\n\\(f(x+1)=f\\!\\bigl(f(x)\\bigr)\\) we immediately obtain\n\n\\[\nx+1=f(x)\\qquad\\text{for every }x,\n\\]\n\nthat is  \n\n\\[\n\\boxed{\\;f(x)=x+1\\;(x\\in\\mathbb R)\\;}\n\\tag{3}\n\\]\n\nwhich is indeed monotone and fulfils (2).\n\n------------------------------------------------------------------\n4.  Third class \u2013 a non\u2013strictly increasing (step) solution\n------------------------------------------------------------------\n\nSuppose now that \\(f\\) is monotone, non\u2013constant, but not strictly\nincreasing.  Then there exist \\(p<q\\) such that \\(f(p)=f(q)\\).\nBy monotonicity \\(f\\) is constant on the whole interval\n\\([p,q]\\).  Denote this common value by \\(c\\).\n\n---------------------------------------------------------------------------  \n4.1  The length of a minimal constant interval is exactly \\(1\\)\n---------------------------------------------------------------------------  \n\nLet  \n\n\\[\nd=\\inf\\{\\,q-p>0\\mid p<q,\\;f(p)=f(q)\\,\\}.\n\\]\n\nChoose \\(p<q\\) with \\(q-p=d\\) and \\(f(p)=f(q)\\).\nAs observed, \\(f\\) is constant on \\([p,q]\\).\n\n(i)  If \\(d>1\\), then \\(p+1\\in[p,q]\\) and hence\n\\(f(p+1)=f(p)\\).  Plugging \\(x=p\\) in (2) we get\n\\(f(p+1)=f\\!\\bigl(f(p)\\bigr)=f\\bigl(f(q)\\bigr)=f(q+1)\\).\nThus \\(f(p+1)=f(q+1)\\) while \\(q+1-(p+1)=d\\); this contradicts the\nminimality of \\(d\\).  Therefore \\(d\\le 1\\).\n\n(ii)  If \\(d<1\\) we use (2) again.\nFor every \\(x\\in[p,q]\\) we have \\(f(x)=c\\); hence\n\\(f(x+1)=f(c)\\) for all such \\(x\\).  Consequently \\(f\\) is also\nconstant on \\([p+1,q+1]\\).  Starting from the first constant\ninterval and shifting it repeatedly by \\(1\\), we generate pairwise\ndisjoint constant intervals whose union is unbounded above.\nBecause \\(f\\) is non\u2013decreasing, this forces \\(f\\) to be constant on a\nright half-line, and by (2) on the whole real axis \u2013 contradicting the\nassumption \u2018\\(f\\) non\u2013constant\u2019.  Therefore \\(d\\) cannot be smaller\nthan \\(1\\).\n\nCombining (i) and (ii) we have proved \\(d=1\\).\nSo there is an interval of length \\(1\\) on which \\(f\\) is constant,\nand there is no shorter one with that property.\n\n-----------------------------------------------------------------\n4.2  The function is constant on every unit interval\n-----------------------------------------------------------------\n\nLet \\(k\\in\\mathbb Z\\).\nTake \\(x\\in(k,k+1)\\); then \\(f(x)=:m_{k}\\) is a constant that depends\nonly on the integer \\(k\\).\nUsing (2),\n\n\\[\nm_{k+1}=f(x+1)=f\\!\\bigl(f(x)\\bigr)=f(m_{k}).\n\\tag{4}\n\\]\n\nBecause \\(f\\) is constant on \\((k,k+1)\\) and non\u2013decreasing, the value\n\\(m_{k}\\) must lie in the next interval, i.e. \\(m_{k}\\in[k+1,k+2)\\).\nConsequently \\(f\\) is also constant on every interval of the form\n\\([k,k+1)\\,(k\\in\\mathbb Z)\\).\n\n-----------------------------------------------------------------\n4.3  Determination of the constants \\(m_{k}\\)\n-----------------------------------------------------------------\n\nFor \\(x\\in(k,k+1)\\) we have \\(x<m_{k}<x+1\\).\nTaking limits as \\(x\\to k+1^{-}\\) and \\(x\\to k^{+}\\) shows that\n\n\\[\nk<m_{k}\\le k+1,\\qquad m_{k-1}\\le k.\n\\]\n\nFrom this and monotonicity we get the chain  \n\n\\[\nm_{k-1}\\le k < m_{k}\\le k+1 .\n\\tag{5}\n\\]\n\nApplying (4) with \\(k-1\\) instead of \\(k\\) we have\n\\(m_{k}=f(m_{k-1})\\).\nThe inequalities (5) imply that \\(m_{k-1}\\in[k,k]\\); hence\n\\(m_{k-1}=k\\).\nBut then (5) gives \\(k<m_{k}\\le k+1\\) and \\(m_{k}=f(k)\\).\nUsing (2) again with \\(x=k-1\\) we obtain\n\n\\[\nm_{k}=f(k)=f\\!\\bigl(f(k-1)\\bigr)=f(m_{k-1})=f(k)=k+1.\n\\]\n\nThus for every integer \\(k\\)\n\n\\[\nm_{k}=k+1.\n\\]\n\n-----------------------------------------------------------------\n4.4  The explicit form of \\(f\\) on the whole real line\n-----------------------------------------------------------------\n\nFor \\(x\\in[k,k+1)\\) we have \\(f(x)=m_{k}=k+1\\).\nTherefore\n\n\\[\n\\boxed{\\;f(x)=\\lfloor x\\rfloor +1\\qquad(x\\in\\mathbb R)\\;}\n\\tag{6}\n\\]\n\nwhich is indeed monotone and satisfies (2).\n\n-------------------------------------------------\n5.  Collecting the solutions\n-------------------------------------------------\n\nThe monotone functions \\(f:\\mathbb R\\to\\mathbb R\\) satisfying the\ninequality of the statement are exactly\n\n1.  all constant functions \\(f(x)\\equiv a\\;(a\\in\\mathbb R)\\);\n2.  the linear function \\(f(x)=x+1\\);\n3.  the step (integer\u2013ceil) function \\(f(x)=\\lfloor x\\rfloor +1\\).\n\nEvery one of them makes the expression inside the absolute value\nvanish, so the bound required in the problem is satisfied.\n\nHence these three families are the complete set of solutions.",
+            "cost": {
+                "cost": 1.52383,
+                "input_tokens": 423,
+                "output_tokens": 37990
+            },
+            "grading": null,
+            "rejected": false,
+            "annotations": null,
+            "timestamp": "2025-05-24T23:48:29.926166",
+            "llm_judgment": {
+                "result": {
+                    "summary": "The proof first derives from the bounded weighted sums that h(x)=f(x+1)-f(f(x)) vanishes, hence f(x+1)=f(f(x)). It then classifies monotone non\u2013decreasing solutions of this equation into three types: constant functions, the strictly increasing case f(x)=x+1, and the non\u2013strict case where f is constant on unit intervals, yielding the step function f(x)=\u230ax\u230b+1.",
+                    "issues": [
+                        {
+                            "location": "Introduction, reducing to non\u2013decreasing case",
+                            "text": "\u201cClearly, if a function satisfies the required relation, then so does its negation; hence it is enough to deal with the non\u2013decreasing case.\u201d",
+                            "description": "The claim that replacing f by \u2013f preserves the inequality is false: for g(x)=\u2013f(x), g\u00b2(x)=g(g(x))=\u2013f(\u2013f(x)) which does not match \u2013f(f(x)). Thus non-increasing solutions are ignored without justification.",
+                            "category": "Other",
+                            "start_index": 88,
+                            "end_index": 226
+                        },
+                        {
+                            "location": "Section 4.1, definition of minimal plateau",
+                            "text": "\u201cLet d=inf{ q\u2212p>0 \u2223 p<q, f(p)=f(q) }. Choose p<q with q\u2212p=d and f(p)=f(q).\u201d",
+                            "description": "The proof assumes the infimum of plateau lengths is attained. An infimum need not be a minimum, so there may be no p,q with q\u2212p=d, undermining the existence of a \u2018\u2018minimal\u2019\u2019 constant interval.",
+                            "category": "Missing Edge Cases",
+                            "start_index": 2873,
+                            "end_index": 2977
+                        },
+                        {
+                            "location": "Section 4.2, constant on every unit interval",
+                            "text": "\u201cLet k\\in\\mathbb Z. Take x\\in(k,k+1); then f(x)=:m_k is a constant that depends only on the integer k.\u201d",
+                            "description": "It is assumed without justification that the unit\u2010length plateaus align with integer intervals. If the initial constant interval starts at a non\u2010integer p, the subsequent plateaus lie on [p+k,p+1+k], not necessarily on (k,k+1).",
+                            "category": "Overgeneralization",
+                            "start_index": 4201,
+                            "end_index": 4315
+                        },
+                        {
+                            "location": "Section 4.3, deducing m_{k-1}=k",
+                            "text": "\u201cThe inequalities (5) imply that m_{k-1}\\in[k,k]; hence m_{k-1}=k.\u201d",
+                            "description": "From m_{k-1}\u2264k< m_k\u2264k+1 one only gets an upper bound m_{k-1}\u2264k, not a lower bound m_{k-1}\u2265k. Concluding m_{k-1}=k is unjustified.",
+                            "category": "Skipping Computation Steps",
+                            "start_index": 5130,
+                            "end_index": 5198
+                        }
+                    ]
+                },
+                "timestamp": "2025-06-01T13:25:29.303471"
+            }
+        }
+    ]
+}

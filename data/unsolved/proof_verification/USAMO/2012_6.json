@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "usamo",
+        "difficulty": 7.24,
+        "level": "high_school",
+        "source": "USAMO",
+        "url": "https://web.evanchen.cc/problems.html",
+        "year": 2012
+    },
+    "problem": "For integer \\( n \\geq 2 \\), let \\( x_{1}, x_{2}, \\ldots, x_{n} \\) be real numbers satisfying\n\n\\[\nx_{1}+x_{2}+\\cdots+x_{n}=0 \\quad \\text{and} \\quad x_{1}^{2}+x_{2}^{2}+\\cdots+x_{n}^{2}=1\n\\]\n\nFor each subset \\( A \\subseteq\\{1,2, \\ldots, n\\} \\), define \\( S_{A}=\\sum_{i \\in A} x_{i} \\). (If \\( A \\) is the empty set, then \\( S_{A}=0 \\).) Prove that for any positive number \\( \\lambda \\), the number of sets \\( A \\) satisfying \\( S_{A} \\geq \\lambda \\) is at most \\( 2^{n-3} / \\lambda^{2} \\). For which choices of \\( x_{1}, x_{2}, \\ldots, x_{n}, \\lambda \\) does equality hold?",
+    "problem_id": "USAMO_2012_6",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "## Problem statement\n\nFor integer $n \\geq 2$, let $x_{1}, x_{2}, \\ldots, x_{n}$ be real numbers satisfying\n\n$$\nx_{1}+x_{2}+\\cdots+x_{n}=0 \\quad \\text { and } \\quad x_{1}^{2}+x_{2}^{2}+\\cdots+x_{n}^{2}=1\n$$\n\nFor each subset $A \\subseteq\\{1,2, \\ldots, n\\}$, define $S_{A}=\\sum_{i \\in A} x_{i}$. (If $A$ is the empty set, then $S_{A}=0$.) Prove that for any positive number $\\lambda$, the number of sets $A$ satisfying $S_{A} \\geq \\lambda$ is at most $2^{n-3} / \\lambda^{2}$. For which choices of $x_{1}, x_{2}, \\ldots, x_{n}, \\lambda$ does equality hold?\n\nLet $\\varepsilon_{i}$ be a coin flip of $0$ or $1$. Then we have\n\n$$\n\\begin{aligned}\n\\mathbb{E}\\left[S_{A}^{2}\\right] & =\\mathbb{E}\\left[\\left(\\sum \\varepsilon_{i} x_{i}\\right)^{2}\\right]=\\sum_{i} \\mathbb{E}\\left[\\varepsilon_{i}^{2}\\right] x_{i}^{2}+\\sum_{i<j} \\mathbb{E}\\left[\\varepsilon_{i} \\varepsilon_{j}\\right] 2 x_{i} x_{j} \\\\\n& =\\frac{1}{2} \\sum x_{i}^{2}+\\frac{1}{2} \\sum x_{i} x_{j}=\\frac{1}{2}+\\frac{1}{2} \\sum_{i<j} x_{i} x_{j}=\\frac{1}{2}+\\frac{1}{2}\\left(-\\frac{1}{2}\\right)=\\frac{1}{4}\n\\end{aligned}\n$$\n\nIn other words, $\\sum_{A} S_{A}^{2}=2^{n-2}$. Since can always pair $A$ with its complement, we conclude\n\n$$\n\\sum_{S_{A}>0} S_{A}^{2}=2^{n-3}\n$$\n\nEquality holds iff $S_{A} \\in\\{ \\pm \\lambda, 0\\}$ for every $A$. This occurs when $x_{1}=1 / \\sqrt{2}, x_{2}=-1 / \\sqrt{2}$, $x_{3}=\\cdots=0$ (or permutations), and $\\lambda=1 / \\sqrt{2}$.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

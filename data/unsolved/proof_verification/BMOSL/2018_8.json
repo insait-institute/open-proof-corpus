@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 6.97,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "Private",
+        "year": 2018
+    },
+    "problem": "Alice and Bob play the following game: They start with two non-empty piles of coins. Taking turns, with Alice playing first, they choose a pile with an even number of coins and move half of the coins of this pile to the other pile. The game ends if a player cannot move, or if we reach a previously reached position. In the first case, the player who cannot move loses. In the second case, the game is declared a draw. Determine all pairs \\((a, b)\\) of positive integers such that if initially the two piles have \\(a\\) and \\(b\\) coins respectively, then Bob has a winning strategy.",
+    "problem_id": "BMOSL_2018_8",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "By $v_{2}(n)$ we denote the largest nonnegative integer $r$ such that $2^{r} \\mid n$.\nA position $(a, b)$ (i.e. two piles of sizes $a$ and $b$ ) is said to be $k$-happy if $v_{2}(a)=v_{2}(b)=k$ for some integer $k \\geqslant 0$, and $k$-unhappy if $\\min \\left\\{v_{2}(a), v_{2}(b)\\right\\}=k<\\max \\left\\{v_{2}(a), v_{2}(b)\\right\\}$. We shall prove that Bob has a winning strategy if and only if the initial position is $k$-happy for some even $k$.\n\n- Given a 0-happy position, the player in turn is unable to play and loses.\n- Given a $k$-happy position $(a, b)$ with $k \\geqslant 1$, the player in turn will transform it into one of the positions $\\left(a+\\frac{1}{2} b, \\frac{1}{2} b\\right)$ and $\\left(b+\\frac{1}{2} a, \\frac{1}{2} a\\right)$, both of which are ( $k-1$ )-happy because $v_{2}\\left(a+\\frac{1}{2} b\\right)=v_{2}\\left(\\frac{1}{2} b\\right)=v_{2}\\left(b+\\frac{1}{2} a\\right)=v_{2}\\left(\\frac{1}{2} a\\right)=k-1$.\nTherefore, if the starting position is $k$-happy, after $k$ moves they will get stuck at a $0$-happy position, so Bob will win if and only if $k$ is even.\n- Given a $k$-unhappy position $(a, b)$ with $k$ odd and $v_{2}(a)=k<v_{2}(b)=\\ell$, Alice can move to position $\\left(\\frac{1}{2} a, b+\\frac{1}{2} a\\right)$. Since $v_{2}\\left(\\frac{1}{2} a\\right)=v_{2}\\left(b+\\frac{1}{2} a\\right)=k-1$, this position is ( $k-1$ )-happy with $2 \\mid k-1$, so Alice will win.\n- Given a $k$-unhappy position $(a, b)$ with $k$ even and $v_{2}(a)=k<v_{2}(b)=\\ell$, Alice must not play to position $\\left(\\frac{1}{2} a, b+\\frac{1}{2} a\\right)$, because the new position is $(k-1)$-happy and will lead to Bob's victory. Thus she must play to position $\\left(a+\\frac{1}{2} b, \\frac{1}{2} b\\right)$. We claim that this position is also $k$-unhappy. Indeed, if $\\ell>k+1$, then $v_{2}\\left(a+\\frac{1}{2} b\\right)=$ $k<v_{2}\\left(\\frac{1}{2} b\\right)=\\ell-1$, whereas if $\\ell=k+1$, then $v_{2}\\left(a+\\frac{1}{2} b\\right)>v_{2}\\left(\\frac{1}{2} b\\right)=k$.\n\nHence a $k$-unhappy position is winning for Alice if $k$ is odd, and drawing if $k$ is even.",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-06-02 21:45:56"
+}

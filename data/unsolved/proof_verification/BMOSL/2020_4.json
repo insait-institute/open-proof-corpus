@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "category": [],
+        "competition": "bmo",
+        "difficulty": 7.05,
+        "level": "high_school",
+        "source": "Balkan MO Shortlist",
+        "url": "https://www.imo-official.org/",
+        "year": 2020
+    },
+    "problem": "Let \\( P(x) = x^3 + ax^2 + bx + 1 \\) be a polynomial with real coefficients and three real roots \\(\\rho_1, \\rho_2, \\rho_3\\) such that \\(|\\rho_1| < |\\rho_2| < |\\rho_3|\\). Let \\( A \\) be the point where the graph of \\( P(x) \\) intersects the y-axis, and the points \\( B(\\rho_1, 0), C(\\rho_2, 0), D(\\rho_3, 0) \\). If the circumcircle of \\(\\triangle ABD\\) intersects the y-axis for a second time at \\( E \\), find the minimum value of the length of the segment \\( EC \\) and the polynomials for which this is attained.",
+    "problem_id": "BMOSL_2020_4",
+    "solutions": [
+        {
+            "author": "Human",
+            "solution": "Solution. Let $O$ be the origin. Since $P(0)=1, A$ is the point $(0,1)$, so $O A=1$.\nFrom Vieta's relations we have $\\rho_{1} \\rho_{2} \\rho_{3}=-1$, so $\\left|\\rho_{1} \\rho_{2} \\rho_{3}\\right|=1$. (1)\n\n\nFrom the power of the point $O$ we have\n\n$$\nO B \\cdot O D=O A \\cdot O E \\Rightarrow\\left|\\rho_{1}\\right| \\cdot\\left|\\rho_{3}\\right|=1 \\cdot O E\n$$\nhence $O E=\\frac{1}{\\left|\\rho_{2}\\right|}$.\nFinally, from Pythagoras' theorem we have\n$$\nC E^{2}=O E^{2}+O C^{2}=\\left|\\rho_{2}\\right|^{2}+\\frac{1}{\\left|\\rho_{2}\\right|^{2}} \\geqslant 2\n$$\n\nhence $C E \\geqslant \\sqrt{2}$.\nThe equality holds for $\\left|\\rho_{2}\\right|=1 \\Longleftrightarrow \\rho_{2}= \\pm 1$. In the first case we have the family\n\n$$\nP(x)=(x-1)(x+a)\\left(x-\\frac{1}{a}\\right),\n$$\nwhile in the second case we have\n$$\nP(x)=(x+1)(x-a)\\left(x-\\frac{1}{a}\\right) .\n$$",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

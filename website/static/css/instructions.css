@@ -1,0 +1,172 @@
+/* Custom Styles for Instructions Section */
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.instructions-section {
+    padding: 40px 0;
+    background-color: #f9f9f9; /* Light background for the whole instructions area */
+}
+
+.instructions-container {
+    max-width: 900px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.instructions-header {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #2c3e50; /* Darker color for header */
+}
+
+.instructions-header h1 {
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 500;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.instructions-header .lead {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.instruction-step {
+    background-color: #ffffff;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Ensures border-radius clips content */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.instruction-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    background-color: #007bff; /* Bootstrap primary blue, or choose your own */
+    color: white;
+    padding: 15px 25px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.step-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-right: 20px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.step-title {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.step-content {
+    padding: 25px;
+}
+
+.step-content p {
+    font-size: 1rem;
+    color: #454545;
+    margin-bottom: 20px;
+}
+
+.step-content ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+.step-content ul li {
+    margin-bottom: 8px;
+}
+
+.step-screenshot {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: block; /* To allow margin auto to center if needed */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step-screenshot-small {
+    width: 40%;
+    max-width: 700px; /* Max width for screenshot */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: block; /* To allow margin auto to center if needed */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.screenshot-container {
+    text-align: center; /* Center the screenshot */
+    margin-bottom: 15px;
+}
+
+.screenshot-caption {
+    font-size: 0.9rem;
+    color: #777;
+    text-align: center;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .instructions-header h1 {
+        font-size: 2.2rem;
+    }
+    .step-header {
+        padding: 15px;
+    }
+    .step-number {
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+    }
+    .step-title {
+        font-size: 1.3rem;
+    }
+    .step-content {
+        padding: 20px;
+    }
+}
+@media (max-width: 576px) {
+    .instructions-header h1 {
+        font-size: 1.8rem;
+    }
+    .instructions-header .lead {
+        font-size: 1rem;
+    }
+    .step-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .step-number {
+        margin-bottom: 10px;
+    }
+}
