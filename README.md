@@ -340,7 +340,7 @@ The highest checkpoint according to the validation score is saved at `best_valid
 ```
 @article{openproofcorpus2025,
   title={The Open Proof Corpus: A Large-Scale Human Study of LLM Proofs},
-  author={Jasper Dekoninck and Ivo Petrov and  Kristian Minchev and Miroslav Marinov and Maria Drencheva and Lyuba Konova and Milen Milenov Shumanov and Kaloyan Tsvetkov and Nikolay Drenchev and Lazar D. Todorov and Kalina Nikolova and Nikolay Georgiev and Vanesa Kalinkova and Margulan Ismoldayev and Mislav Balunovic and Martin Vechev},
+  author={Jasper Dekoninck and Ivo Petrov and  Kristian Minchev and Mislav Balunovic and Martin Vechev and Miroslav Marinov and Maria Drencheva and Lyuba Konova and Milen Milenov Shumanov and Kaloyan Tsvetkov and Nikolay Drenchev and Lazar D. Todorov and Kalina Nikolova and Nikolay Georgiev and Vanesa Kalinkova and Margulan Ismoldayev},
   journal={arXiv},
   year={2025},
 }
