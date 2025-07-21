@@ -1,0 +1,23 @@
+{
+    "problem_id": "IMO_2025_1",
+    "metadata": {
+        "source": "IMO",
+        "url": "https://www.imo-official.org/",
+        "category": [],
+        "level": "high_school",
+        "year": 2025,
+        "competition": "imo"
+    },
+    "problem": "A line in the plane is called \\emph{sunny} if it is not parallel to any of the $x$-axis, the $y$-axis, or the line $x+y=0$.\n\nLet $n \\ge 3$ be a given integer. Determine all nonnegative integers $k$ such that there exist $n$ distinct lines in the plane satisfying both of the following:\n\\begin{itemize}\n\\item for all positive integers $a$ and $b$ with $a+b\\le n+1$, the point $(a,b)$ lies on at least one of the lines; and\n\\item exactly $k$ of the $n$ lines are sunny.\n\\end{itemize}",
+    "solutions": [
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

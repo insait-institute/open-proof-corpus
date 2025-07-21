@@ -1,0 +1,5 @@
+n_problems: 6
+overlap: 1
+judge_file: "configs/judges/imo_2025.json"
+competition_weight:
+ IMO: 1

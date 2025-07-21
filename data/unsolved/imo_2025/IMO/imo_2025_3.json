@@ -1,0 +1,28 @@
+{
+    "problem_id": "IMO_2025_3",
+    "metadata": {
+        "source": "IMO",
+        "url": "https://www.imo-official.org/",
+        "category": [],
+        "level": "high_school",
+        "year": 2025,
+        "competition": "imo"
+    },
+    "problem": "Let $\\mathbb{N}$ denote the set of positive integers. A function $f\\colon\\mathbb{N}\\to\\mathbb{N}$ is said to be bonza if\n\\[\nf(a)\\quad\\text{divides}\\quad b^a-f(b)^{f(a)}\n\\]\nfor all positive integers $a$ and $b$.\n\nDetermine the smallest real constant $c$ such that $f(n)\\leqslant cn$ for all bonza functions $f$ and all positive integers $n$.",
+    "solutions": [
+        {
+            "solution": "7. Assume that $P_{1}$ and $P_{2}$ are points inside $E$, and that the line $P_{1} P_{2}$ intersects the perimeter of $E$ at $Q_{1}$ and $Q_{2}$. If we prove the statement for $Q_{1}$ and $Q_{2}$, we are done, since these arcs can be mapped homothetically to join $P_{1}$ and $P_{2}$.\nLet $V_{1}, V_{2}$ be two vertices of $E$. Then applying two homotheties to the inscribed circle of $E$ one can find two arcs (one of them may be a side of $E)$ joining these two points, both tangent to the sides of $E$ that meet at $V_{1}$ and $V_{2}$. If $A$ is any point of the side $V_{2} V_{3}$, two homotheties with center $V_{1}$ take the arcs joining $V_{1}$ to $V_{2}$ and $V_{3}$ into arcs joining $V_{1}$ to $A$; their angle of incidence at $A$ remains $(1-2 / n) \\pi$.\nNext, for two arbitrary points $Q_{1}$ and $Q_{2}$ on two different sides $V_{1} V_{2}$ and $V_{3} V_{4}$, we join $V_{1}$ and $V_{2}$ to $Q_{2}$ with pairs of arcs that meet at $Q_{2}$ and have an angle of incidence $(1-2 / n) \\pi$. The two arcs that meet the line $Q_{1} Q_{2}$ again outside $E$ meet at $Q_{2}$ at an angle greater than or equal to $(1-2 / n) \\pi$. Two homotheties with center $Q_{2}$ carry these arcs to ones meeting also at $Q_{1}$ with the same angle of incidence.",
+            "author": "Human",
+            "images": {}
+        }
+    ],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1
+}

@@ -83,5 +83,25 @@
         "id": "17-a8b684de",
         "name": "Anon",
         "undergraduate": true
+    },
+    {
+        "id": "imo-1",
+        "name": "Ivo Petrov",
+        "undergraduate": true
+    },
+    {
+        "id": "imo-2",
+        "name": "Kristian Minchev",
+        "undergraduate": true
+    },
+    {
+        "id": "imo-3",
+        "name": "Maria Drencheva",
+        "undergraduate": true
+    },
+    {
+        "id": "imo-4",
+        "name": "Miroslav",
+        "undergraduate": true
     }
 ]

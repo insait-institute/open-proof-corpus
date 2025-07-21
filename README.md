@@ -19,6 +19,11 @@ This repository contains the code for the paper *The Open Proof Corpus: Building
 * Run your own experiment using our user interface,
 * Train the model as described in the paper.
 
+**Note:** This repository was also used for the IMO 2025 evaluation of [MathArena](https://matharena.ai). The project "imo_2025" contains all configs and parameters to reproduce our results. If, after running your own evaluation, you wish to convert the results to the MathArena format, you can run:
+```bash
+uv run python scripts/convert_matharena.py --convert imo_2025
+```
+
 ---
 
 ## 🚀 Installation
@@ -295,13 +300,13 @@ pip install -U ray==2.46.0
 ```
 
 ```bash
-python scripts/judge_inference.py --judge_configs {judge_models} --setting_config discrete --n 5 --skip-existing
+python ./scripts/judge_inference.py --judge_configs {judge_models} --setting_config discrete --n 5 --skip-existing
 ```
 
 ### Calculating results
 To obtain the results, run:
 ```bash
-python scripts/judge_results.py --setting_config discrete
+python ./scripts/judge_results.py --setting_config discrete
 ```
 ## 🏋️‍♀️ Training a Verification Model
 
@@ -337,11 +342,4 @@ The highest checkpoint according to the validation score is saved at `best_valid
 
 ## 📄 Citation
 
-```
-@article{openproofcorpus2025,
-  title={The Open Proof Corpus: A Large-Scale Human Study of LLM Proofs},
-  author={Jasper Dekoninck and Ivo Petrov and  Kristian Minchev and Mislav Balunovic and Martin Vechev and Miroslav Marinov and Maria Drencheva and Lyuba Konova and Milen Milenov Shumanov and Kaloyan Tsvetkov and Nikolay Drenchev and Lazar D. Todorov and Kalina Nikolova and Nikolay Georgiev and Vanesa Kalinkova and Margulan Ismoldayev},
-  journal={arXiv},
-  year={2025},
-}
-```
+<!-- Add citation information here when available -->
