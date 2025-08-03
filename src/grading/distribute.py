@@ -308,11 +308,11 @@ def add_files(project_config, judge_configs, problems_per_judge):
                 data_judged = json.load(open(os.path.join(project_config.website_folder, judge_id, problem), "r"))
                 if len(data_solved["attempts"]) > len(data_judged["attempts"]):
                     for attempt in data_solved["attempts"]:
-                        if attempt["model_id"] not in [a["model_id"] for a in data_judged["attempts"]]:
+                        if attempt["model_id"] not in [a["model_id"] for a in data_judged["attempts"]] or attempt["solution"] not in [a["solution"] for a in data_judged["attempts"]]:
                             data_judged["attempts"].append(attempt)
                 for attempt in data_solved["attempts"]:
                     for attempt2 in data_judged["attempts"]:
-                        if attempt2["model_id"] == attempt["model_id"]:
+                        if attempt2["model_id"] == attempt["model_id"] and attempt2["solution"] == attempt["solution"]:
                             attempt2["llm_judgment"] = attempt.get("llm_judgment", None)
 
                 with open(os.path.join(project_config.website_folder, judge_id, problem), "w") as f:

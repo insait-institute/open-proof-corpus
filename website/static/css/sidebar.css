@@ -103,8 +103,9 @@
 
 .sidebar-item-content {
     display: flex;
-    align-items: center;
+    align-items: center; /* Aligns file name and icon group vertically */
     width: 100%;
+    flex-wrap: wrap;     /* ✅ Allows the icon group to wrap below the file name if needed */
 }
 
 .competition-item {
@@ -144,7 +145,8 @@
 }
 
 .file-name-sidebar {
-    flex: 1 1 auto;
+    flex: 1 1 auto;      /* Allows the file name to grow and shrink */
+    min-width: 0;        /* Prevents the file name from overflowing */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -153,12 +155,15 @@
 }
 
 .file-status-sidebar {
-    margin-left: auto;
-    flex: 0 0 auto;
-    font-size: 1.1rem;
-    display: flex;
+    display: flex;       /* This container itself is a flexbox for the icons */
+    flex-wrap: wrap;     /* ✅ Allows the checkmarks/X's inside to wrap to a new line */
     gap: 6px;
+    font-size: 1.1rem;
+    
+    /* We remove the properties that forced it to a new line every time */
+    /* margin-left: auto; /* This can be added back if you want the group to the far right */
 }
+
 .competition-arrow {
     margin-left: auto;
     font-size: 0.9em;

@@ -19,10 +19,7 @@ This repository contains the code for the paper *The Open Proof Corpus: Building
 * Run your own experiment using our user interface,
 * Train the model as described in the paper.
 
-**Note:** This repository was also used for the IMO 2025 evaluation of [MathArena](https://matharena.ai). The project "imo_2025" contains all configs and parameters to reproduce our results. If, after running your own evaluation, you wish to convert the results to the MathArena format, you can run:
-```bash
-uv run python scripts/convert_matharena.py --convert imo_2025
-```
+**Note:** This repository is also used to run judging evaluation for [MathArena](https://matharena.ai). Please refer to the subsection on MathArena for reproducing those results.
 
 ---
 
@@ -340,6 +337,40 @@ sbatch slurm/train.sbatch
 
 The highest checkpoint according to the validation score is saved at `best_validation/`, while the latest checkpoints can be found in `checkpoints/`.
 
+## MathArena
+
+This repository was also used for the IMO 2025 evaluation of [MathArena](https://matharena.ai). The project "imo_2025" contains all configs and parameters to reproduce our results. You should be able to run the following commands to reproduce the results (after installing everything):
+```bash
+python scripts/solve.py --project imo_2025
+python scripts/distribute.py --project imo_2025
+cd website
+pip install -e .
+python main.py
+# after grading everything on the interface, accessible at http://127.0.0.1:5020/imo-1
+python scripts/recover.py --project imo_2025
+```
+This will give you all judged data in JSON file, post-processing afterwards you have to do yourself a bit.
+Note that the distributor will distribute everything among four judges with ID imo-1, imo-2, imo-3, and imo-4 and double-grade everything. If you wish to change this, you need to change configs/distribution/imo_2025.yaml to set overlap to 0 and configs/judges/imo_2025.json to have only e.g., imo-1.
+
+If, after running your own evaluation, you wish to convert the results to the MathArena format, you can run:
+```bash
+uv run python scripts/convert_matharena.py --convert imo_2025
+```
+
+The IMC 2025 is equivalent to the imc_2025 project. All instructions are the same as for the IMO, except that you now need to run two solvers:
+```bash
+python scripts/solve.py --project imc_2025
+python scripts/solve.py --project imc_2025 --project-config-path configs/solvers/imc_2025_best_of_n.yaml
+```
+Note that the agent implementation sometimes refuses to return an answer. You will have to rerun the command `python scripts/solve.py --project imc_2025` until it returns an answer for all of them. This will automatically skip existing solutions. 
+
 ## 📄 Citation
 
-<!-- Add citation information here when available -->
+```
+@article{dekoninck2025open,
+  title={The Open Proof Corpus: A Large-Scale Study of LLM-Generated Mathematical Proofs},
+  author={Dekoninck, Jasper and Petrov, Ivo and Minchev, Kristian and Balunovic, Mislav and Vechev, Martin and Marinov, Miroslav and Drencheva, Maria and Konova, Lyuba and Shumanov, Milen and Tsvetkov, Kaloyan and others},
+  journal={arXiv preprint arXiv:2506.21621},
+  year={2025}
+}
+```

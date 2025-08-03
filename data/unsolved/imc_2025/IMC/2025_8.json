@@ -1,0 +1,24 @@
+{
+    "problem_id": "IMC_2025_8",
+    "metadata": {
+        "source": "IMC",
+        "url": "https://www.imc-math.org.uk/",
+        "category": [],
+        "level": "undergraduate",
+        "difficulty": 7.0,
+        "year": 2025,
+        "competition": "imc"
+    },
+    "problem": "For an $n \\times n$ real matrix $A \\in M_{n}(\\mathbb{R})$, denote by $A^{\\mathrm{R}}$ its counter-clockwise $90^{\\circ}$ rotation. For example,\n\n$$\n\\left[\\begin{array}{lll}\n1 & 2 & 3 \\\\\n4 & 5 & 6 \\\\\n7 & 8 & 9\n\\end{array}\\right]^{\\mathrm{R}}=\\left[\\begin{array}{lll}\n3 & 6 & 9 \\\\\n2 & 5 & 8 \\\\\n1 & 4 & 7\n\\end{array}\\right]\n$$\n\nProve that if $A=A^{\\mathrm{R}}$ then for any eigenvalue $\\lambda$ of $A$, we have $\\operatorname{Re} \\lambda=0$ or $\\operatorname{Im} \\lambda=0$.",
+    "solutions": [],
+    "grading_scheme": [
+        {
+            "part_id": 1,
+            "title": "Correctness",
+            "description": "<p>A solution should be considered correct even if it would earn 5+/7 points in a full grading. Examples of small penalties worth 1 point are if the solution: <ul><li>Makes a small computational mistake that can be easily fixed</li><li>Misses an edge case which can be easily proven/disproven</li><li>Skips over a step that follows without much reasoning or manual work</li></ul> A solution should be marked as incorrect if: <ul><li>It marks a step as trivial, if it is not immediately obvious why this would be the case</li><li>It omits algebra-heavy computational steps, regardless of whether or not it has outlined the methodology</li><li>Generalizes over a pattern without rigorously describing the pattern, or without proving any relevant properties.</li><li>It cites a non-existing or unpopular source/Theorem, which cannot be immediately found from searching for it online. Thus, any theorems that can be immediately found and have a Wikipedia article are allowed.</li></ul> The model has been specifically told that it should not skip steps or mark them as trivial. Any violation of this rule should be considered by assuming the model does not know how to derive the &quot;trivial&quot; step</p>",
+            "points": 1
+        }
+    ],
+    "points": 1,
+    "date_added": "2025-08-01 19:24:39"
+}

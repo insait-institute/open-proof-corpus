@@ -51,17 +51,25 @@ if __name__ == "__main__":
         del data["attempts"]
         with open(os.path.join(args.temp_folder, filename), "w") as f:
             json.dump(data, f, indent=4)
-    
+
     for judge_part in solver_config.judges:
-        if judge_part["mode"] in ["discrete", "continuous"]:
-            single(project_config, solver_config, files_to_run, judge_part)
-        elif judge_part["mode"] == "random":
-            random_selector(project_config, solver_config, files_to_run, judge_part)
-        elif judge_part["mode"] == "dual":
-            judge_part["tournament_config"]["round_robin"] = True # set this to work better
-            dual(project_config, solver_config, files_to_run, judge_part)
-        else:
-            raise ValueError(f"Unknown judge mode: {judge_part['mode']}")
+        for i, model in enumerate(project_config.model_configs):
+            if not judge_part.get("same_judge") and i > 0:
+                continue
+            copy_judge_part = judge_part.copy()
+            if copy_judge_part.get("same_judge"):
+                copy_judge_part["judge"] = model
+                copy_judge_part["name"] = f"{model} {copy_judge_part['name']}"
+
+            if copy_judge_part["mode"] in ["discrete", "continuous"]:
+                single(project_config, solver_config, files_to_run, copy_judge_part)
+            elif copy_judge_part["mode"] == "random":
+                random_selector(project_config, solver_config, files_to_run, copy_judge_part)
+            elif copy_judge_part["mode"] == "dual":
+                copy_judge_part["tournament_config"]["round_robin"] = True # set this to work better
+                dual(project_config, solver_config, files_to_run, copy_judge_part)
+            else:
+                raise ValueError(f"Unknown judge mode: {copy_judge_part['mode']}")
 
     actual_data = []
     for file in files:
@@ -70,6 +78,8 @@ if __name__ == "__main__":
             data = json.load(open(os.path.join(args.temp_folder, filename), "r"))
         except:
             pass # problem was double judged
+        if "attempts" not in data:
+            continue
         correctness = [
             attempt["grading"].get("score", 0) for attempt in data["attempts_singular"]
         ]

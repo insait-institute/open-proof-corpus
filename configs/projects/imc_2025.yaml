@@ -1,0 +1,5 @@
+name: "IMC 2025"
+slug: "imc_2025"
+model_configs:
+  - "gemini/gemini-pro-2.5"
+  # - "openai/o4-mini--low"

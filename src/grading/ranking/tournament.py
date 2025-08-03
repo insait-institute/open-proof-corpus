@@ -11,8 +11,11 @@ from .judgment import Judgments
 
 
 class Tournament:
-    def __init__(self, problem_statement, judge_prompt, model_config, judgments,
-                 n_answers, n_rounds, judge_config=None, first_win_word="first", second_win_word="second"):
+    def __init__(self, problem_statement, judge_prompt, model_config,
+                 n_answers, n_rounds, judgments=None, judge_config=None, first_win_word="first", second_win_word="second", 
+                 order_independent=False, maj_vote=1):
+        if judgments is None:
+            judgments = Judgments()
         self.judgments = judgments
         self.judge_prompt = judge_prompt
         self.problem_statement = problem_statement
@@ -27,6 +30,8 @@ class Tournament:
         self.model_querier = APIQuery(**self.model_config)
         self.n_rounds = n_rounds
         self.pairing_results = []
+        self.order_independent = order_independent
+        self.maj_vote = maj_vote
 
     def save_current(self, output_folder):
         if output_folder is None:
@@ -44,9 +49,10 @@ class Tournament:
             del model_config["date"]
         return model_config
 
-    def add_answer(self, answer):
+    def add_answer(self, answer, cost=None):
         self.judgments.model_answers.add_model_answer(
-            answer
+            answer,
+            cost=cost
         )
 
     def run_answers(self):
@@ -79,12 +85,19 @@ class Tournament:
         else:
             return 0.5
         
-    def to_query(self, judgment):
-        formatted_prompt = self.judge_prompt.format(
-            solution_a=str(self.judgments.model_answers[judgment.first_answer_id]),
-            solution_b=str(self.judgments.model_answers[judgment.second_answer_id]),
-            problem=self.problem_statement,
-        )
+    def to_query(self, judgment, reverse_order=False):
+        if reverse_order:
+            formatted_prompt = self.judge_prompt.format(
+                solution_a=str(self.judgments.model_answers[judgment.second_answer_id]),
+                solution_b=str(self.judgments.model_answers[judgment.first_answer_id]),
+                problem=self.problem_statement,
+            )
+        else:
+            formatted_prompt = self.judge_prompt.format(
+                solution_a=str(self.judgments.model_answers[judgment.first_answer_id]),
+                solution_b=str(self.judgments.model_answers[judgment.second_answer_id]),
+                problem=self.problem_statement,
+            )
         return [
             {
                 "role": "user",
@@ -98,32 +111,36 @@ class Tournament:
             return False
         judgments_round = []
         for p1, p2 in pairings:
-            judgment = self.judgments.judge(p1, p2)
+            judgment = self.judgments.judge(p1, p2, order_independent=self.order_independent)
             judgments_round.append(judgment)
         
-        judgments_to_run = [judgment for judgment in judgments_round if judgment.outcome is None]
-
+        judgments_to_run = [judgment for judgment in judgments_round if len(judgment.detailed_outcomes) < self.maj_vote]
         if judgments_to_run:
             logger.info(f"Running {len(judgments_to_run)} judgments.")
             # Here you would run the judgments using the judge system
             # For now, we will just simulate the outcomes
-            queries = [
-                self.to_query(judgment) for judgment in judgments_to_run
-            ]
-
+            queries = []
+            judgments_of_queries = []
+            for judgment in judgments_to_run:
+                for i in range(len(judgment.detailed_outcomes), self.maj_vote):
+                    reversed_order = (i % 2 == 1)
+                    queries.append(self.to_query(judgment, reverse_order=reversed_order))
+                    judgments_of_queries.append((judgment, reversed_order))
             results = list(self.querier.run_queries(queries))
             for idx, output, cost in results:
-                judgment = judgments_to_run[idx]
-                judgment.set_outcome(
+                judgment = judgments_of_queries[idx]
+                judgment[0].add_outcome(
                     self.parse_output(output),
                     outcome_reasoning=output,
-                    cost=cost
+                    cost=cost,
+                    reversed_order=judgment[1]
                 )
         
-        self.pairing_results.append([judgment.get_simple() for judgment in judgments_round])
+        self.pairing_results.append([judgment.get_simple(max_votes=self.maj_vote) for judgment in judgments_round])
         return True
     
     def run_tournament(self, output_folder=None):
+        self.run_answers()
         for _ in range(self.n_rounds):
             logger.info(f"Running round {_ + 1}/{self.n_rounds}")
             self.save_current(output_folder)
@@ -138,7 +155,7 @@ class Tournament:
         pairs_done = set()
         judge_cost = 0
         for round_results in self.pairing_results:
-            for i, j, _ in round_results:
+            for i, j, _, _ in round_results:
                 if (i, j) in pairs_done:
                     continue
                 pairs_done.add((i, j))
@@ -158,11 +175,12 @@ class Tournament:
         rows = []
         for round_results in self.pairing_results:
             for judgment in round_results:
-                rows.append({
-                    "model_a": judgment[0],
-                    "model_b": judgment[1],
-                    "winner": "model_a" if judgment[2] == 0 else ("model_b" if judgment[2] == 1 else "tie"),
-                })
+                for detailed_outcome in judgment[3]:
+                    rows.append({
+                        "model_a": judgment[0],
+                        "model_b": judgment[1],
+                        "winner": "model_a" if detailed_outcome == 0 else ("model_b" if detailed_outcome == 1 else "tie"),
+                    })
         return pd.DataFrame(rows)
     
     def compute_simple_scores(self, df):
@@ -210,18 +228,19 @@ class SwissTournament(Tournament):
         rows = []
         for round_results in self.pairing_results:
             for judgment in round_results:
-                base_dict = {
-                    "model_a": judgment[0],
-                    "model_b": judgment[1],
-                    "winner": "model_a" if judgment[2] == 0 else ("model_b" if judgment[2] == 1 else "tie"),
-                }
-                if self.correct_length_bias:
-                    base_dict["length_a"] = len(self.judgments.model_answers[judgment[0]].answer) / 1000
-                    base_dict["length_b"] = len(self.judgments.model_answers[judgment[1]].answer) / 1000
-                if self.correct_position_bias:
-                    base_dict["position_a"] = 1
-                    base_dict["position_b"] = 0
-                rows.append(base_dict)
+                for outcome in judgment[3]:
+                    base_dict = {
+                        "model_a": judgment[0],
+                        "model_b": judgment[1],
+                        "winner": "model_a" if outcome == 0 else ("model_b" if outcome == 1 else "tie"),
+                    }
+                    if self.correct_length_bias:
+                        base_dict["length_a"] = len(self.judgments.model_answers[judgment[0]].answer) / 1000
+                        base_dict["length_b"] = len(self.judgments.model_answers[judgment[1]].answer) / 1000
+                    if self.correct_position_bias:
+                        base_dict["position_a"] = 1
+                        base_dict["position_b"] = 0
+                    rows.append(base_dict)
         return pd.DataFrame(rows)
 
     def get_ranking(self):
@@ -252,6 +271,8 @@ class SwissTournament(Tournament):
             pairs = []
             for i in range(self.n_answers):
                 for j in range(self.n_answers):
+                    if self.order_independent and i > j:
+                        continue
                     if i != j:
                         pairs.append((i, j))
             return pairs
@@ -261,14 +282,9 @@ class SwissTournament(Tournament):
         played_pairs = set()
 
         for round_result in self.pairing_results:
-            for p1, p2, result in round_result:
-                if result == 1:
-                    scores[p1] += 1
-                elif result == 0:
-                    scores[p2] += 1
-                else:
-                    scores[p1] += 0.5
-                    scores[p2] += 0.5
+            for p1, p2, result, _ in round_result:
+                scores[p1] += result
+                scores[p2] += (1 - result)
                 role_counts[p1]['first'] += 1
                 role_counts[p2]['second'] += 1
                 played_pairs.add(frozenset([p1, p2]))
@@ -398,7 +414,7 @@ class BracketTournament(Tournament):
     def get_next_round(self):
         n_losses = [0] * self.n_answers
         for round_result in self.pairing_results:
-            for i, j, result in round_result:
+            for i, j, result, _ in round_result:
                 if result >= 0.5:
                     n_losses[i] += 1
                 else:
@@ -422,7 +438,7 @@ class BracketTournament(Tournament):
         counts_first = [0] * self.n_answers
         count_both = [0] * self.n_answers
         for round_pairs in self.pairing_results:
-            for i, j, _ in round_pairs:
+            for i, j, _, _ in round_pairs:
                 counts_first[i] += 1
                 count_both[i] += 1
                 count_both[j] += 1
@@ -441,7 +457,7 @@ class BracketTournament(Tournament):
         reverse_ranking = []
         n_losses = [0] * self.n_answers
         for round_result in self.pairing_results:
-            for i, j, result in round_result:
+            for i, j, result, _ in round_result:
                 if result >= 0.5:
                     n_losses[i] += 1
                     if n_losses[i] > self.max_losses:

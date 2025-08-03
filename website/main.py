@@ -434,9 +434,14 @@ def get_data(judge_id, file_name):
 
     with open(file_path, 'r') as f:
         data = json.load(f)
+    if "attempts_singular" in data:
+        del data["attempts_singular"]
     data["attempts"] = [
         attempt for attempt in data["attempts"] if attempt["grading"] is None or not attempt["grading"].get("auto_grade", False)
     ]
+    for attempt in data["attempts"]:
+        if "judge_data" in attempt:
+            del attempt["judge_data"]
     return jsonify(data)
 
 # app name

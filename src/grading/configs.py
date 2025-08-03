@@ -27,7 +27,7 @@ class LLMJudgeConfig(BaseModel):
 
 class SolverConfig(BaseModel):
     model_config = ConfigDict(extra='forbid')  # Disallow extra fields in the config
-    prompt: str # Prompt to use for the solver
+    prompt: Optional[str] = None # Prompt to use for the solver
     prompt_gold: Optional[str] = None # Prompt to use for problems with a ground-truth solution
     type: Optional[str] = "default" # Type of solver, "default" or "best_of_n"
     attempt_key: Optional[str] = "attempts" # Key to store the attempts in. Should not be changed for default, and should be set to attempts_singular for best_of_n
@@ -35,11 +35,14 @@ class SolverConfig(BaseModel):
     n_attempts: Optional[int] = 10 # Number of attempts to make for the solver (if it fails because of out of tokens or similar)
     problem_regexes: Optional[List[str]] = [".*"] # List of problem regexes to assign to this solver
     n_solutions: Optional[int] = 1 # Number of solutions to generate for each problem per model
+    n_best_of_n: Optional[int] = 1 # Number of best-of-n solutions to generate for each problem per model
     allow_shuffle: Optional[bool] = True  # Whether to allow shuffling of the solutions
     overwrite: Optional[bool] = False # Whether to overwrite existing solutions
     can_reject: Optional[bool] = True # Whether the solver can reject solutions
     earliest_date_added: Optional[str] = None # Earliest date added for the problems to be solved by this solver
-
+    prompts: Optional[Dict[str, str]] = None
+    return_if_not_found: Optional[bool] = False # Whether to return the solution even if it is not found, instead of None
+    model_name_extension: Optional[str] = None # Extension to add to the model name in the output, e.g. " (best-of-32)" or " (agent)"
 
 class ModelConfig(BaseModel):
     model_config = ConfigDict(extra='allow')  # Disallow extra fields in the config

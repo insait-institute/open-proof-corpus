@@ -1,8 +1,8 @@
 name: "IMO 2025"
 slug: "imo_2025"
 model_configs:
-  - "gemini/gemini-pro-2.5"
-  - "openai/o3"
-  - "openai/o4-mini--high"
-  - "deepseek/r1_0528"
+  # - "gemini/gemini-pro-2.5"
+  # - "openai/o3"
+  # - "openai/o4-mini--high"
+  # - "deepseek/r1_0528"
   - "xai/grok-4"

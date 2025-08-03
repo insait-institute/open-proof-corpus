@@ -87,14 +87,20 @@
 .tab button {
   background-color: inherit;
   float: left;
-  border: none;
+  /* border: none;  <-- REMOVE THIS LINE */
   outline: none;
   cursor: pointer;
-  padding: 14px 20px; /* Slightly more padding */
+  padding: 14px 20px;
   transition: background-color 0.3s ease, color 0.3s ease;
   font-size: 0.95rem;
   color: #495057;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
   border-right: 1px solid #dee2e6; /* Separator between tabs */
+
+  /* ✅ ADD THIS LINE */
+  /* This reserves 2px of vertical space, matching the active state's border */
+  border-bottom: 2px solid transparent; 
 }
 
 .tab button:last-child {
@@ -107,12 +113,12 @@
 }
 
 .tab button.active {
-  background-color: #ffffff; /* Active tab connects with content area */
+  background-color: #ffffff; 
   color: #007bff;
   font-weight: 600;
   border-bottom: 2px solid #007bff; /* Highlight active tab */
   position: relative;
-  top: 1px; /* Make it look connected with tabcontent border */
+  top: 1px;
 }
 
 .tabcontent {

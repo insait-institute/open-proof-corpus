@@ -1,0 +1,5 @@
+n_problems: 10
+overlap: 0
+judge_file: "configs/judges/imc_2025.json"
+competition_weight:
+ IMC: 1

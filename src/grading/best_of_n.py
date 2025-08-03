@@ -2,7 +2,10 @@ from .api import APIQuery
 from .utils import extract_solution
 from .ranking.tournament import SwissTournament, BracketTournament
 from .ranking.judgment import Judgments, ModelAnswers
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from .configs import load_config
+from copy import deepcopy
+from filelock import FileLock
 import json
 import random
 import os
@@ -128,59 +131,129 @@ def single(project_config, solver_config, files_to_run, solver_config_judge_part
             json.dump(data, f, indent=4)
 
 
-def dual(project_config, solver_config, files_to_run, solver_config_judge_part):
-    config_judge = os.path.join(project_config.model_config_folder, solver_config_judge_part["judge"] + ".yaml")
-    for file in files_to_run:
-        
-        if solver_config_judge_part["tournament_type"] == "swiss":
-            tournament_class = SwissTournament
-        else:
-            tournament_class = BracketTournament
+def dual(project_config,
+         solver_config,
+         files_to_run,
+         solver_config_judge_part) -> None:
 
-        data = json.load(open(file, "r"))
+    # judge config is the same for every worker
+    config_judge = os.path.join(
+        project_config.model_config_folder,
+        f"{solver_config_judge_part['judge']}.yaml",
+    )
 
-        if any(model_id.endswith(f" ({solver_config_judge_part['name']})") for model_id in get_all_model_ids(data)):
-            continue
-        
-        model_answers = ModelAnswers([
-            attempt["solution"] for attempt in data[solver_config.attempt_key]
-        ])
-        judgments = Judgments(model_answers)
-        tournament = tournament_class(**solver_config_judge_part["tournament_config"],
-                                      judge_prompt=solver_config_judge_part["prompt"],
-                                      model_config=config_judge, judgments=judgments, 
-                                      n_answers=len(data[solver_config.attempt_key]), 
-                                      problem_statement=data["problem"])
+    # ---------- wrapped worker ---------- #
+    def process_index(index: int) -> None:
+        """
+        Run the original body of the loop for *one* value of `index`.
+        File writes stay thread-safe thanks to FileLock.
+        """
+        for file in files_to_run:
 
-        tournament.run_tournament(output_folder=None)
+            # ───── quick pre-flight (no lock) ─────
+            with open(file, "r", encoding="utf-8") as f:
+                data = json.load(f)
 
-        ranking = tournament.get_ranking()
+            if any(
+                model_id.endswith(f" ({solver_config_judge_part['name']})")
+                for model_id in get_all_model_ids(data)
+            ):
+                continue                                         # already judged
 
-        if "attempts" not in data:
-            data["attempts"] = []
-        
-        best_index = ranking.iloc[0]["answer"]
+            tournament_class = (
+                SwissTournament
+                if solver_config_judge_part["tournament_type"] == "swiss"
+                else BracketTournament
+            )
 
-        print(best_index, ranking)
+            # slice the candidate answers for *this* best-of-N round
+            attempts_all     = data[solver_config.attempt_key]
+            if solver_config_judge_part["same_judge"]:
+                attempts_all = [
+                    attempt
+                    for attempt in attempts_all
+                    if attempt["model_id"] == solver_config_judge_part["judge"]
+                ]
+            start, end       = index * solver_config.n_solutions, \
+                               (index + 1) * solver_config.n_solutions
+            attempts_slice   = attempts_all[start:end]
 
-        data["attempts"].append(data[solver_config.attempt_key][int(best_index)].copy())
+            # if fewer than n_solutions answers exist, skip
+            if not attempts_slice:
+                continue
 
-        data["attempts"][-1]["model_id"] = data["attempts"][-1]["model_id"] + f" ({solver_config_judge_part['name']})"
-        data["attempts"][-1]["judge_data"] = judgments.to_json()["judgments"]
-        extra_cost = {
-            "cost": sum(judgment.cost["cost"] for judgment in judgments.judgments),
-            "output_tokens": sum(judgment.cost["output_tokens"] for judgment in judgments.judgments),
-            "input_tokens": sum(judgment.cost["input_tokens"] for judgment in judgments.judgments)
-        }
-        cost_answers = {
-            "cost": sum(c["cost"]["cost"] for c in data[solver_config.attempt_key]),
-            "output_tokens": sum(c["cost"]["output_tokens"] for c in data[solver_config.attempt_key]),
-            "input_tokens": sum(c["cost"]["input_tokens"] for c in data[solver_config.attempt_key]),
-        }
-        data["attempts"][-1]["cost"]["cost"] = cost_answers["cost"] + extra_cost["cost"]
-        data["attempts"][-1]["cost"]["output_tokens"] = cost_answers["output_tokens"] + extra_cost["output_tokens"]
-        data["attempts"][-1]["cost"]["input_tokens"] = cost_answers["input_tokens"] + extra_cost["input_tokens"]
-        with open(file, "w") as f:
-            json.dump(data, f, indent=4)
+            model_answers = ModelAnswers([a["solution"] for a in attempts_slice])
+            judgments     = Judgments(model_answers)
 
-        
+            tournament = tournament_class(
+                **solver_config_judge_part["tournament_config"],
+                judge_prompt   = solver_config_judge_part["prompt"],
+                model_config   = config_judge,
+                judgments      = judgments,
+                n_answers      = len(attempts_slice),
+                problem_statement = data["problem"],
+            )
+            tournament.run_tournament(output_folder=None)
+            ranking = tournament.get_ranking()
+            best_ix = int(ranking.iloc[0]["answer"])
+
+            # ───── critical section ─────
+            lock = FileLock(f"{file}.lock")
+            with lock:
+                with open(file, "r", encoding="utf-8") as f:
+                    data_locked = json.load(f)
+
+                # duplicate-proof: another thread may have arrived first
+                if any(
+                    model_id.endswith(f" ({solver_config_judge_part['name']})")
+                    for model_id in get_all_model_ids(data_locked)
+                ):
+                    return                                        # already written
+
+                if "attempts" not in data_locked:
+                    data_locked["attempts"] = []
+
+                winner = deepcopy(attempts_slice[best_ix])
+
+                # tag winner if judges differ
+                if not solver_config_judge_part["same_judge"]:
+                    winner["model_id"] += f" ({solver_config_judge_part['name']})"
+
+                if solver_config.model_name_extension is not None:
+                    winner["model_name_extension"] = solver_config.model_name_extension
+                winner["judge_data"] = judgments.to_json()["judgments"]
+
+                # aggregate cost (original slice + extra judging calls)
+                extra_cost = {
+                    "cost":          sum(j.cost["cost"]           for j in judgments.judgments),
+                    "output_tokens": sum(j.cost["output_tokens"]  for j in judgments.judgments),
+                    "input_tokens":  sum(j.cost["input_tokens"]   for j in judgments.judgments),
+                }
+                slice_cost = {
+                    "cost":          sum(a["cost"]["cost"]           for a in attempts_slice),
+                    "output_tokens": sum(a["cost"]["output_tokens"]  for a in attempts_slice),
+                    "input_tokens":  sum(a["cost"]["input_tokens"]   for a in attempts_slice),
+                }
+                total_cost = winner["cost"].copy()
+                total_cost["cost"]           = slice_cost["cost"]          + extra_cost["cost"]
+                total_cost["output_tokens"]  = slice_cost["output_tokens"] + extra_cost["output_tokens"]
+                total_cost["input_tokens"]   = slice_cost["input_tokens"]  + extra_cost["input_tokens"]
+                winner["cost"] = total_cost
+                winner["index"] = (start, end)
+
+                data_locked["attempts"].append(winner)
+
+                with open(file, "w", encoding="utf-8") as f:
+                    json.dump(data_locked, f, indent=4)
+        # end-for file
+    # end process_index
+    # ------------------------------------- #
+
+    # Pick a sensible pool size; default to the exact n_best_of_n
+    max_workers = getattr(solver_config, "max_parallel", solver_config.n_best_of_n)
+
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = [pool.submit(process_index, idx)
+                   for idx in range(solver_config.n_best_of_n)]
+        for f in as_completed(futures):
+            f.result()   # propagate exceptions, if any

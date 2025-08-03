@@ -3,7 +3,7 @@ api: openrouter
 max_tokens: 128000
 read_cost: 3
 write_cost: 15
-human_readable_id: Grok 4
+human_readable_id: Grok 4 (Optimized Prompt)
 concurrent_requests: 1
 temperature: null
 top_p: null

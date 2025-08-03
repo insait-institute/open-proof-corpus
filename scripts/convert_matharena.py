@@ -86,7 +86,7 @@ if __name__ == "__main__":
         matharena_samples[model_id][id_]["messages"].append([
             {
                 "role": "user",
-                "content": solver_config.prompt.format(problem=sample["problem"])
+                "content": sample["problem"]
             },
             {
                 "role": "assistant",

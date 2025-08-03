@@ -17,14 +17,12 @@ import requests
 import json
 # Import tempfile to create temporary files
 import tempfile
+from transformers import AutoTokenizer
 
 try:
-    from transformers import AutoTokenizer
     from vllm import LLM, SamplingParams
 except ImportError:
-    logger.warning("vllm or transformers is not installed. Local vLLM model will not be available.")
     LLM = None
-
 
 
 def encode_image(image_path):
@@ -65,9 +63,6 @@ class APIQuery:
                 logger.info(f"Model: {model}, Reasoning effort: {reasoning_effort}")
         if api == "anthropic" and "claude-3-7" not in model and '4-20250514' not in model:
             logger.info("Setting max tokens to 8192 for Anthropic API.")
-            max_tokens = min(8192, max_tokens)
-        if api == "deepseek":
-            logger.info("Setting max tokens to 8192 for DeepSeek API.")
             max_tokens = min(8192, max_tokens)
         if api not in ["anthropic", "openai"] and batch_processing:
             logger.warning("Batch processing is only supported for the Anthropic API and OpenAI API.")
@@ -201,7 +196,7 @@ class APIQuery:
         elif self.no_system_messages:
             # convert system role to user role
             query = [{
-                "role": message["role"] if message["role"] != "system" else "user",
+                "role": message["role"] if message["role"] != "system" else "developer",
                 "content": message["content"]
             } for message in query]
         return query, image_path
@@ -489,7 +484,7 @@ class APIQuery:
         if self.is_chat:
             output = json_response['choices'][0]['message']['content']
             if "reasoning_content" in json_response['choices'][0]['message'] and json_response['choices'][0]['message']['reasoning_content'] is not None:
-                output = json_response['choices'][0]['message']['reasoning_content'] + "</think>\n\n" + output
+                output = json_response['choices'][0]['message']['reasoning_content'] + "</>\n\n" + output
             return {
                 "output": output,
                 "input_tokens": json_response['usage']['prompt_tokens'],
@@ -524,16 +519,32 @@ class APIQuery:
             file = client.files.upload(file=image_path)
             assert len(query) == 1
             parts.append(types.Part.from_uri(file_uri=file.uri, mime_type=file.mime_type))
+
+        if query[0]["role"] == "system":
+            system_instruction = query[0]["content"]
+            query = query[1:]
+        else:
+            system_instruction = None
         parts.append(types.Part.from_text(text=query[0]["content"]))
-        query = [types.Content(role="user", parts=parts)]
+        new_query = [types.Content(role="user", parts=parts)]
+        for query_part in query[1:]:
+            if query_part["role"] == "assistant":
+                new_query.append(types.Content(role="model", parts=[types.Part.from_text(text=query_part["content"])]))
+            else:
+                new_query.append(types.Content(role=query_part["role"], parts=[types.Part.from_text(text=query_part["content"])]))
 
         # if "think" in self.model:
         #     config['thinking_config'] = {'include_thoughts': True}
         # config = None
+        copy_kwargs = self.kwargs.copy()
+        if "config" in copy_kwargs and system_instruction is not None:
+            copy_kwargs["config"]["system_instruction"] = system_instruction
+        elif system_instruction is not None:
+            copy_kwargs["config"] = {"system_instruction": system_instruction}
         response = client.models.generate_content(
             model=self.model,
-            contents=query,
-            **self.kwargs
+            contents=new_query,
+            **copy_kwargs
         )
         # Google API being the Google API...
         assert response.usage_metadata.prompt_token_count is not None
@@ -712,12 +723,13 @@ class APIQuery:
             if output is None: # in case max token limit reached
                 output = ""
             if hasattr(response.choices[0].message, "reasoning_content") and \
-                response.choices[0].message.reasoning_content is not None:
-                output = response.choices[0].message.reasoning_content + "\n\n" + output
+                response.choices[0].message.reasoning_content is not None and \
+                    isinstance(response.choices[0].message.reasoning_content, str):
+                output = "<think>" + response.choices[0].message.reasoning_content + "</think>" + output
             input_tokens = response.usage.prompt_tokens
             output_tokens = response.usage.completion_tokens
             if self.base_url is not None and "api.x.ai" in self.base_url:
-                output_tokens += response.usage.completion_tokens_details.reasoning_tokens
+                output_tokens +=  response.usage.completion_tokens_details.reasoning_tokens
         else:
             response = client.responses.create(
                 model=self.model,
